@@ -1,0 +1,44 @@
+// Gaelan talks when Kova enters with Party
+
+
+IF	Dead("Arledrian")
+	GlobalGT("Z#ArledTalk","GLOBAL",0)
+	Global("Z#GaelanDie","AR0311",0)
+THEN
+	RESPONSE #100
+	SetCutSceneLite(TRUE)
+	SetGlobal("Z#GaelanDie","AR0311",1)
+	CreateCreatureObjectOffset("Z#Assas3","Gaelan",[-38.-25])
+	CreateCreatureObjectOffset("Z#Assas2","Gaelan",[-50.-5])
+	ActionOverride("Z#Assas3",EscapeArea() )
+	ActionOverride("Z#Assas2",EscapeArea() )
+	ActionOverride("Gaelan", SetSequence(SEQ_SLEEP) )
+	Wait(1)
+	SetCutSceneLite(FALSE)
+	ActionOverride("Gaelan",StartDialogNoSet(Player1))
+END
+
+IF	InParty("Kova") 
+	Global("WorkingForAran","GLOBAL",0)
+	Global("Linvail","GLOBAL",0)
+	Global("BodhiJob","GLOBAL",0)
+	Global("TIGael", "GLOBAL", 0)
+	Global("GaelanAsk", "AR0311", 0)
+THEN
+	RESPONSE #100
+	ActionOverride("Gaelan", StartDialog("SEEKOVA", Player1) )
+END
+
+IF	InParty("Kova") 
+	Global("WorkingForAran","GLOBAL",0)
+	Global("Linvail","GLOBAL",0)
+	Global("BodhiJob","GLOBAL",0)
+	Global("TIGael", "GLOBAL", 0)
+	Global("GaelanAsk", "AR0311", 1)
+	!Exists("Gaelan")
+THEN
+	RESPONSE #100
+	CreateCreature("Gaelan",[173.362],12)
+	ActionOverride("Gaelan", StartDialog("SEEKOVA", Player1) )
+END
+

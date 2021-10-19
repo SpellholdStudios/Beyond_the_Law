@@ -1,0 +1,41 @@
+// Creates Inspector Dayven in the Prison after you talk to Brega
+
+IF	Global("Z#Dayven", "AR1005", 0)
+	GlobalLT("Dayven","GLOBAL", 2)
+THEN
+	RESPONSE #100
+	SetGlobal("Z#Dayven", "AR1005", 1)
+//	SetGlobal("Dayven", "GLOBAL", 2)
+	CreateCreature("Z#Dayven",[885.525],0)
+	Continue()
+END
+
+IF	OR (2)
+		Global("Dayven", "GLOBAL", 14)
+		Global("Dayven", "GLOBAL", 15)
+	AreaCheckObject("AR1005", "Dayven")
+THEN
+	RESPONSE #100
+	ActionOverride("Dayven", DestroySelf() )
+	Continue()
+END
+
+IF	!GlobalTimerExpired("Z#KKInPrisonT","GLOBAL")
+	Global("Z#TrialClear","GLOBAL",1)
+	Global("Z#clearkkactions","AR1005",0)
+THEN
+	RESPONSE #100
+	SetGlobal("Z#clearkkactions","AR1005",1)
+	ActionOverride("Kova",ClearAllActions())
+	ActionOverride("Kiyone",ClearAllActions())
+END
+
+IF	GlobalTimerExpired("Z#KKInPrisonT","GLOBAL")
+	Global("Z#TrialClear","GLOBAL",1)
+	Global("Z#KKLeavePrison","AR1005",0)
+THEN
+	RESPONSE #100
+	SetGlobal("Z#KKLeavePrison","AR1005",1)
+	ActionOverride("Kova",DestroySelf())
+	ActionOverride("Kiyone",DestroySelf())
+END

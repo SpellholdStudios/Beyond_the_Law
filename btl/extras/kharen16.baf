@@ -1,0 +1,270 @@
+// Kharen's Script
+
+IF
+	NumTimesTalkedTo(0)
+	Detect([PC])
+THEN
+	RESPONSE #100
+	StartDialogueNoSet(LastSeenBy(Myself))
+END
+
+IF	Global("KhWin", "GLOBAL", 2)
+	StateCheck("Kova",STATE_STONE_DEATH) 
+THEN
+	RESPONSE #100
+	StartDialogueNoSet(Player1)
+END
+
+IF 	AreaCheck("AR1500")
+	Global("KhWin", "GLOBAL", 3)
+	Global("FindingKova", "GLOBAL", 250)
+	Detect("Kiyone")
+	StateCheck("Kova",STATE_EXPLODING_DEATH) 
+THEN
+	RESPONSE #100
+	StartDialogueNoSet(Player1)
+END
+
+IF 	Global("KhWin", "GLOBAL", 4)
+	StateCheck("Kiyone",STATE_STONE_DEATH) 
+THEN
+	RESPONSE #100
+	ForceSpell("Kiyone", WIZARD_FLAME_ARROW)
+	SetGlobal("KhWin", "GLOBAL", 5)
+END
+
+IF 	Global("KhWin", "GLOBAL", 3)
+	StateCheck("Kova",STATE_EXPLODING_DEATH)
+	!InParty("Kiyone")
+THEN
+	RESPONSE #100
+	StartDialogueNoSet(Player1)	
+END
+
+IF 	Global("KhWin", "GLOBAL", 5)
+	StateCheck("Kova",STATE_EXPLODING_DEATH)
+	StateCheck("Kiyone",STATE_EXPLODING_DEATH)
+THEN
+	RESPONSE #100
+	StartDialogueNoSet(Player1)	
+END
+
+IF 	Global("KhWin", "GLOBAL", 3)
+	!InActiveArea("Kova")
+	!InParty("Kiyone")
+THEN
+	RESPONSE #100
+	StartDialogueNoSet(Player1)
+END
+
+// you Win!
+
+IF	HPLT(Myself, 3)
+	Global("Heal", "LOCALS", 3)
+THEN
+	RESPONSE #100
+	StartDialog("kharen16", Player1)
+END
+
+// Changes Script immediately, initialises combat
+
+IF	ActuallyInCombat()
+	Detect([PC])
+	Global("Combat", "LOCALS", 0)
+THEN
+	RESPONSE #100
+	SetGlobal("Combat", "LOCALS", 1)
+	ChangeAIScript("",CLASS)
+	GiveItemCreate("Wa2Robe",Myself,1,0,0)
+	GiveItemCreate("Ring11",Myself,1,0,0)
+	GiveItemCreate("Ring39",Myself,1,0,0)
+	GiveItemCreate("potn52",Myself,5,0,0)
+	GiveItemCreate("Helm04",Myself,1,0,0)
+	FillSlot(SLOT_RING_LEFT )
+	FillSlot(SLOT_ARMOR)
+	FillSlot(SLOT_HELMET)
+	FillSlot(SLOT_RING_RIGHT)
+	TakeItemReplace("Ring95","Ring11",Myself) 
+	ApplySpell(Myself, WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)
+	ApplySpell(Myself, WIZARD_STONE_SKIN)
+	ApplySpell(Myself, WIZARD_MIRROR_IMAGE)
+	ApplySpell(Myself, WIZARD_TENSERS_TRANSFORMATION)
+	ApplySpell(Myself, WIZARD_REGENERATION)
+	ApplySpell(Myself, WIZARD_PROTECTION_FROM_ENERGY)
+	ReallyForceSpell(Myself, WIZARD_SIMULACRUM)
+	ReallyForceSpell(Myself, WIZARD_EFREET)
+	ReallyForceSpell(Myself, WIZARD_MORDENKAINENS_SWORD)
+	ReallyForceSpell(NearestEnemyOf(Myself), WIZARD_EFREET)
+	ReallyForceSpell(NearestEnemyOf(Myself), WIZARD_MORDENKAINENS_SWORD)
+	ReallyForceSpell(NearestEnemyOf(Myself),WIZARD_GREATER_MALISON)
+ 
+END
+
+// Buffing
+// 
+
+IF	HPPercentLT(Myself, 10)
+	GlobalLT("Heal", "LOCALS", 3)
+THEN
+	RESPONSE #100
+	IncrementGlobal("Heal", "LOCALS", 1)
+	ReallyForceSpell(Myself, CLERIC_HEAL)
+	Continue()
+END
+
+IF	HPPercentLT(Myself,50)
+	GlobalGT("Combat", "LOCALS", 0)	
+	HasItem("potn52",Myself) // Potion of Extra Healing
+THEN
+	RESPONSE #100
+	DisplayStringHead(Myself,46150) // quaffs a potion
+	GiveItemCreate("potn52",Myself,1,0,0)
+	UseItem("potn52",Myself) // Potion of Extra Healing
+	Continue()
+END
+
+IF	CheckStat(Myself,0,182)
+THEN
+	RESPONSE #100
+	ApplySpell(Myself, WIZARD_TENSERS_TRANSFORMATION)
+	Continue()
+END
+
+IF	CheckStat(Myself,0,174)
+THEN
+	RESPONSE #100
+	ApplySpell(Myself, WIZARD_REGENERATION)
+	Continue()
+END
+
+IF	CheckStatLT(Myself,50,18)
+THEN
+	RESPONSE #50
+	ApplySpell(Myself, WIZARD_PROTECTION_FROM_ENERGY)
+	Continue()
+	RESPONSE #50
+	Continue()
+END
+
+
+IF	CheckStat(Myself,0,STONESKINS)
+	GlobalLT("Z#Stoneskin","LOCALS",10)
+THEN
+	RESPONSE #100
+	IncrementGlobal("Z#Stoneskin","LOCALS",1)
+	ApplySpell(Myself, WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)
+	ApplySpell(Myself, WIZARD_STONE_SKIN)
+	ApplySpell(Myself, WIZARD_MIRROR_IMAGE)
+	Continue()
+END
+
+IF	See(NearestEnemyOf(Myself))
+	!StateCheck(Myself,STATE_INVISIBLE)
+THEN
+	RESPONSE #100
+	DisplayStringHead(Myself,46150) 
+	ReallyForceSpell(Myself, WIZARD_INVISIBILITY)	
+	Continue()
+END
+
+// Debuff Spells
+
+IF	OR(12)
+		HasBounceEffects(NearestEnemyOf(Myself))
+		HasImmunityEffects(NearestEnemyOf(Myself))
+		HasBounceEffects(SecondNearestEnemyOf(Myself))
+		HasImmunityEffects(SecondNearestEnemyOf(Myself))
+		HasBounceEffects(ThirdNearestEnemyOf(Myself))
+		HasImmunityEffects(ThirdNearestEnemyOf(Myself))
+		HasBounceEffects(FourthNearestEnemyOf(Myself))
+		HasImmunityEffects(FourthNearestEnemyOf(Myself))
+		HasBounceEffects(FifthNearestEnemyOf(Myself))
+		HasImmunityEffects(FifthNearestEnemyOf(Myself))
+		HasBounceEffects(SixthNearestEnemyOf(Myself))
+		HasImmunityEffects(SixthNearestEnemyOf(Myself))
+	Detect(LastTrigger)
+	GlobalLT("Z#RemoveMagic","LOCALS",5)
+THEN
+	RESPONSE #40
+	IncrementGlobal("Z#RemoveMagic","LOCALS",1)
+	ForceSpell(LastTrigger, WIZARD_PIERCE_MAGIC)
+	ForceSpell(LastTrigger, WIZARD_BREACH)
+	Continue()
+	RESPONSE #60
+	Continue()
+END
+
+// Die Weaklings!
+
+IF	OR(6)
+		HPLT(NearestEnemyOf(Myself),60)
+		HPLT(SecondNearestEnemyOf(Myself),60)
+		HPLT(ThirdNearestEnemyOf(Myself),60)
+		HPLT(FourthNearestEnemyOf(Myself),60)
+		HPLT(FifthNearestEnemyOf(Myself),60)
+		HPLT(SixthNearestEnemyOf(Myself),60)
+	Detect(LastTrigger)
+THEN
+	RESPONSE #100
+	ForceSpell(LastTrigger, WIZARD_POWER_WORD_KILL)
+	Continue()
+END
+
+IF	LOS(NearestEnemyOf(Myself),30)
+THEN
+	RESPONSE #100
+	ForceSpell(Myself, WIZARD_SUN_FIRE)
+	Continue()
+END	
+
+// Area Damage Spells
+
+IF	Detect(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #6
+	ForceSpell(LastTrigger,WIZARD_COMET)
+	RESPONSE #6
+	ForceSpell(LastTrigger,WIZARD_DRAGONS_BREATH)
+	RESPONSE #12
+	ForceSpell(LastTrigger,WIZARD_ABI_DALZIMS_HORRID_WILTING)
+	RESPONSE #12
+	ForceSpell(LastTrigger,WIZARD_CHAIN_LIGHTNING)
+	RESPONSE #12
+	ForceSpell(LastTrigger,WIZARD_FIREBALL)
+	RESPONSE #12
+	ForceSpell(LastTrigger,WIZARD_DELAYED_BLAST_FIREBALL)
+	RESPONSE #40
+	Continue()
+END
+
+// Disabling Spells
+
+IF	Detect(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #10
+	ForceSpell(LastTrigger,WIZARD_EMOTION_HOPELESSNESS)
+	RESPONSE #10
+	ForceSpell(LastTrigger,WIZARD_DOMINATION)
+	RESPONSE #10
+	ForceSpell(LastTrigger,WIZARD_CHAOS)
+	RESPONSE #10
+	ForceSpell(LastTrigger,WIZARD_NPC_SYMBOL_STUN)
+	RESPONSE #10
+	ForceSpell(LastTrigger,WIZARD_NPC_SYMBOL_FEAR)
+	RESPONSE #10
+	ForceSpell(LastTrigger,	WIZARD_DOMINATE)
+	RESPONSE #40
+	Continue()
+END
+
+
+// Summoning Spells 
+
+IF	Detect(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #40
+	ReallyForceSpell(Myself, WIZARD_MORDENKAINENS_SWORD)		
+	RESPONSE #20
+	ReallyForceSpell(Myself, WIZARD_TELEPORT_FIELD)			
+	RESPONSE #40
+END

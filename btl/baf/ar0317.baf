@@ -1,0 +1,8 @@
+// Adds RayicNote to Rayic Gethras
+
+IF	Global("AddRayic", "GLOBAL", 0)
+THEN
+	RESPONSE #100
+	SetGlobal("AddRayic", "GLOBAL", 1)
+	GiveItemCreate("RayNote","Rayic", 0,0,0)
+END

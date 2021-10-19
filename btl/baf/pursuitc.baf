@@ -1,0 +1,407 @@
+// Append to AmnTrp01.bcs, only in City
+
+// Bylanna's Messenger Myroven
+
+IF	AreaType(City)
+	Delay(10)
+	Range([PC],20)
+	Global("GovtGuards", "GLOBAL", 2)
+	!GlobalTimerNotExpired("KKGovtT","GLOBAL")
+	!ActuallyInCombat()
+	InParty("Kiyone")
+	InParty("Kova")
+	Global("Z#BaevrinPlot","GLOBAL",0)
+THEN
+	RESPONSE #100	
+	SetGlobal("GovtGuards", "GLOBAL", 3)	
+	CreateCreatureObjectOffScreen("Z#MESSEN", Player1, 0,0,0)
+	ActionOverride("Z#MESSEN", StartDialog("Z#MESSEN", Player1) )
+END	
+
+// After Seida Escapes
+
+IF	GlobalTimerExpired("Z#Part7Timer","GLOBAL")
+	Global("Z#TellSeidaFree","GLOBAL",0)
+	OR(2)
+	!Global("Z#BTLPart7Prison","GLOBAL",1)
+	!Global("Z#BTLPart7","GLOBAL",3)
+THEN
+	RESPONSE #100
+	SetGlobal("Z#TellSeidaFree","GLOBAL",2)	
+	CreateCreatureObjectOffScreen("Z#MESSEN", Player1, 0,0,0)
+	ActionOverride("Z#MESSEN", StartDialogNoSet(Player1) )
+END 
+
+IF	GlobalTimerExpired("Z#Part7Timer","GLOBAL")
+	Global("Z#TellSeidaFree","GLOBAL",0)
+	Global("Z#BTLPart7Prison","GLOBAL",1)
+	Global("Z#BTLPart7","GLOBAL",3)
+THEN
+	RESPONSE #100
+	SetGlobal("Z#TellSeidaFree","GLOBAL",1)	
+	SetGlobal("Z#BTLPart7","GLOBAL",4)
+	CreateCreatureObjectOffScreen("Z#DAYVEN", Player1, 0,0,0)
+	ActionOverride("Dayven", StartDialogNoSet(Player1) )
+END
+
+// Cowled Wizards
+
+IF	AreaType(City)
+	Delay(10)
+	Range([PC],20)
+	Global("KKCowl", "GLOBAL", 1)
+//	XPGT(Player1, 1000000)
+	!ActuallyInCombat()
+	InParty("Kova")
+	XPLT(Player1, 1000000)		
+	!RealGlobalTimerNotExpired("Pursuit","GLOBAL")
+THEN
+	RESPONSE #100
+		SetGlobal("KKCowl", "GLOBAL", 0)	
+		DisplayString(Myself,@16)
+		RealSetGlobalTimer("Pursuit","GLOBAL",600)
+		Wait(1)
+		CreateCreatureObjectOffset("COWENF1",Myself,[100.100])
+		CreateCreatureObjectOffset("COWENF3",Myself,[-100.100])
+		Wait(1)
+		CreateCreatureObjectOffset("COWENF4",Myself,[100.-100])		
+END
+
+IF	AreaType(City)
+	Delay(10)
+	Range([PC],20)
+	Global("KKCowl", "GLOBAL", 1)
+	XPGT(Player1, 999999)
+	!ActuallyInCombat()
+	InParty("Kova")
+	XPLT(Player1, 2000000)		
+	!RealGlobalTimerNotExpired("Pursuit","GLOBAL")
+THEN
+	RESPONSE #100
+		SetGlobal("KKCowl", "GLOBAL", 0)	
+		DisplayString(Myself,@16)
+		RealSetGlobalTimer("Pursuit","GLOBAL",600)
+		Wait(1)
+		CreateCreatureObjectOffset("COWENF1",Myself,[100.100])
+		CreateCreatureObjectOffset("COWENF3",Myself,[-100.100])
+		Wait(1)
+		CreateCreatureObjectOffset("Z#CW16",Myself,[-100.-100])
+		CreateCreatureObjectOffset("COWENF4",Myself,[100.-100])		
+END
+
+IF	AreaType(City)
+	Delay(10)
+	Range([PC],20)
+	Global("KKCowl", "GLOBAL", 1)
+	XPGT(Player1, 1999999)
+	!ActuallyInCombat()
+	InParty("Kova")
+	XPLT(Player1, 3000000)		
+	!RealGlobalTimerNotExpired("Pursuit","GLOBAL")
+THEN
+	RESPONSE #100
+		SetGlobal("KKCowl", "GLOBAL", 0)	
+		DisplayString(Myself,@16)
+		RealSetGlobalTimer("Pursuit","GLOBAL",600)
+		Wait(1)
+		CreateCreatureObjectOffset("MAGE18A",Myself,[100.100])
+		CreateCreatureObjectOffset("COWENF3",Myself,[-100.100])
+		Wait(1)
+		CreateCreatureObjectOffset("Z#CW16",Myself,[-100.-100])
+		CreateCreatureObjectOffset("COWENF4",Myself,[100.-100])		
+END
+
+IF	AreaType(City)
+	Delay(10)
+	Range([PC],20)
+	Global("KKCowl", "GLOBAL", 1)
+	XPGT(Player1, 2999999)
+	!ActuallyInCombat()
+	InParty("Kova")
+//	XPLT(Player1, 3000000)		
+	!RealGlobalTimerNotExpired("Pursuit","GLOBAL")
+THEN
+	RESPONSE #100
+		SetGlobal("KKCowl", "GLOBAL", 0)	
+		DisplayString(Myself,@16)
+		RealSetGlobalTimer("Pursuit","GLOBAL",600)
+		Wait(1)
+		CreateCreatureObjectOffset("MAGE18A",Myself,[100.100])
+		CreateCreatureObjectOffset("COWENF3",Myself,[-100.100])
+		Wait(1)
+		CreateCreatureObjectOffset("Z#CW16",Myself,[-100.-100])
+		CreateCreatureObjectOffset("Z#CW18",Myself,[100.-100])		
+END
+
+
+// Shadow Thieves
+
+IF
+	Delay(10)
+	Range([PC],20)
+	Global("KKThief", "GLOBAL", 1)
+//	XPGT(Player1, 1000000)
+	!ActuallyInCombat()
+	InParty("Kova")
+	XPLT(Player1, 1000000)		
+	!RealGlobalTimerNotExpired("Pursuit","GLOBAL")
+THEN
+	RESPONSE #100
+		SetGlobal("KKThief", "GLOBAL", 0)	
+		DisplayString(Myself,@16)
+		RealSetGlobalTimer("Pursuit","GLOBAL",600)
+		Wait(1)
+		CreateCreatureObjectOffset("Z#Assas1",Myself,[100.100])
+		CreateCreatureObjectOffset("Z#Assas1",Myself,[-100.-100])
+		
+		CreateCreatureOffScreen("Z#Arch1",0) 
+		CreateCreatureOffScreen("Z#Arch1",0) 
+		
+		CreateCreatureOffScreen("Z#Pri1",0) 
+//		CreateCreatureOffScreen("Z#Mage1",0) 
+END
+
+IF
+	Delay(10)
+	Range([PC],20)
+	Global("KKThief", "GLOBAL", 1)
+	XPGT(Player1, 999999)
+	!ActuallyInCombat()
+	InParty("Kova")
+	XPLT(Player1, 2000000)		
+	!RealGlobalTimerNotExpired("Pursuit","GLOBAL")
+THEN
+	RESPONSE #100
+		SetGlobal("KKThief", "GLOBAL", 0)	
+		DisplayString(Myself,@16)
+		RealSetGlobalTimer("Pursuit","GLOBAL",600)
+		Wait(1)
+//		CreateCreatureObjectOffset("Z#Assas1",Player1,[100.100])
+		CreateCreatureObjectOffset("Z#Assas2",Player1,[-100.-100])
+		CreateCreatureObjectOffset("Z#Assas2",Player1,[-100.100])
+		
+		CreateCreatureOffScreen("Z#Arch1",0) 
+		CreateCreatureOffScreen("Z#Arch1",0) 
+		
+		CreateCreatureOffScreen("Z#Pri1",0) 
+		CreateCreatureOffScreen("Z#Mage1",0) 
+END
+
+IF
+	Delay(10)
+	Range([PC],20)
+	Global("KKThief", "GLOBAL", 1)
+	XPGT(Player1, 1999999)
+	!ActuallyInCombat()
+	InParty("Kova")
+	XPLT(Player1, 3000000)		
+	!RealGlobalTimerNotExpired("Pursuit","GLOBAL")
+THEN
+	RESPONSE #100
+		SetGlobal("KKThief", "GLOBAL", 0)	
+		DisplayString(Myself,@16)
+		RealSetGlobalTimer("Pursuit","GLOBAL",600)
+		Wait(1)
+		CreateCreatureObjectOffset("Z#Assas2",Player1,[100.100])
+		CreateCreatureObjectOffset("Z#Assas3",Player1,[-100.-100])
+//		CreateCreatureObjectOffset("Z#Assas3",Player1,[-100.100])
+		
+		CreateCreatureOffScreen("Z#Arch2",0) 
+		CreateCreatureOffScreen("Z#Arch2",0) 
+		
+		CreateCreatureOffScreen("Z#Pri2",0) 
+		CreateCreatureOffScreen("Z#Mage2",0) 		
+END
+
+IF
+	Delay(10)
+	Range([PC],20)
+	Global("KKThief", "GLOBAL", 1)
+	XPGT(Player1, 2999999)
+	!ActuallyInCombat()
+	InParty("Kova")
+//	XPLT(Player1, 3000000)		
+	!RealGlobalTimerNotExpired("Pursuit","GLOBAL")
+THEN
+	RESPONSE #100
+		SetGlobal("KKThief", "GLOBAL", 0)	
+		DisplayString(Myself,@16)
+		RealSetGlobalTimer("Pursuit","GLOBAL",600)
+		Wait(1)
+		CreateCreatureObjectOffset("Z#Assas3",Player1,[100.100])
+		CreateCreatureObjectOffset("Z#Assas3",Player1,[-100.-100])
+		CreateCreatureObjectOffset("Z#Assas3",Player1,[-100.100])
+		
+		CreateCreatureOffScreen("Z#Arch2",0) 
+		CreateCreatureOffScreen("Z#Arch2",0) 
+		CreateCreatureOffScreen("Z#Arch2",0) 
+		
+		CreateCreatureOffScreen("Z#Pri2",0) 
+		CreateCreatureOffScreen("Z#Mage2",0) 
+//		CreateCreatureOffScreen("Z#Mage2",0) 
+END
+
+// Govt Guards in City
+
+IF	AreaType(City)
+	Delay(10)
+	Range([PC],20)
+	Global("KKGovt", "GLOBAL", 1)
+//	XPGT(Player1, 1000000)
+	!ActuallyInCombat()
+	InParty("Kova")
+	XPLT(Player1, 1000000)		
+	!RealGlobalTimerNotExpired("Pursuit","GLOBAL")
+THEN
+	RESPONSE #80
+		SetGlobal("KKGovt", "GLOBAL", 0)	
+		IncrementGlobal("GovtMeetGuards","GLOBAL",1)
+		DisplayString(Myself,@17)
+		RealSetGlobalTimer("Pursuit","GLOBAL",600)
+		Wait(1)
+		CreateCreatureObjectOffset("AMNLEG1",Myself,[100.100])
+		CreateCreatureObjectOffset("AMNLEG1",Myself,[-100.-100])
+		CreateCreatureObjectOffset("AMNLEG1",Myself,[100.-100])
+		CreateCreatureObjectOffset("AMNLEG1",Myself,[-100.100])
+		CreateCreatureObjectOffset("AMNLEG1",Myself,[-100.100])
+		
+		CreateCreatureOffScreen("COWENF1",0)  
+	RESPONSE #20
+		SetGlobal("KKGovt", "GLOBAL", 0)	
+		IncrementGlobal("GovtMeetGuards","GLOBAL",1)
+		DisplayString(Myself,@17)
+		RealSetGlobalTimer("Pursuit","GLOBAL",600)
+		Wait(1)
+		CreateCreatureObjectOffset("Z#Kni1",Myself,[100.100])
+		CreateCreatureObjectOffset("Z#Kni2",Myself,[-100.-100])
+		CreateCreatureObjectOffset("Z#Kni3",Myself,[100.-100])
+		CreateCreatureObjectOffset("Z#Kni4",Myself,[-100.100])
+END
+
+IF	AreaType(City)
+	Delay(10)
+	Range([PC],20)
+	Global("KKGovt", "GLOBAL", 1)
+	XPGT(Player1, 999999)
+	!ActuallyInCombat()
+	InParty("Kova")
+	XPLT(Player1, 2000000)		
+	!RealGlobalTimerNotExpired("Pursuit","GLOBAL")
+THEN
+	RESPONSE #80
+		SetGlobal("KKGovt", "GLOBAL", 0)	
+		IncrementGlobal("GovtMeetGuards","GLOBAL",1)
+		DisplayString(Myself,@17)
+		RealSetGlobalTimer("Pursuit","GLOBAL",600)
+		Wait(1)
+		CreateCreatureObjectOffset("AMNLEG1",Myself,[100.100])
+		CreateCreatureObjectOffset("AMNLEG1",Myself,[-100.-100])
+		CreateCreatureObjectOffset("AMNLEG1",Myself,[100.-100])
+		CreateCreatureObjectOffset("AMNLEG1",Myself,[-100.100])
+		CreateCreatureObjectOffset("AMNLEG1",Myself,[0.0])
+//		CreateCreatureObjectOffset("AMNLEG1",Myself,[-100.200])
+		
+		CreateCreatureOffScreen("COWENF1",0) 
+		CreateCreatureOffScreen("COWENF3",0) 
+	RESPONSE #20
+		SetGlobal("KKGovt", "GLOBAL", 0)	
+		IncrementGlobal("GovtMeetGuards","GLOBAL",1)
+		DisplayString(Myself,@17)
+		RealSetGlobalTimer("Pursuit","GLOBAL",600)
+		Wait(1)
+		CreateCreatureObjectOffset("Z#Kni1",Myself,[100.100])
+		CreateCreatureObjectOffset("Z#Kni2",Myself,[-100.-100])
+		CreateCreatureObjectOffset("Z#Kni3",Myself,[100.-100])
+		CreateCreatureObjectOffset("Z#Kni4",Myself,[-100.100])
+		CreateCreatureObjectOffset("Z#Kni6",Myself,[0.0])
+		CreateCreatureOffScreen("Z#Kni5",0)
+END
+
+IF	AreaType(City)
+	Delay(10)
+	Range([PC],20)
+	Global("KKGovt", "GLOBAL", 1)
+	XPGT(Player1, 1999999)
+	!ActuallyInCombat()
+	InParty("Kova")
+	XPLT(Player1, 3000000)		
+	!RealGlobalTimerNotExpired("Pursuit","GLOBAL")
+THEN
+	RESPONSE #80
+		SetGlobal("KKGovt", "GLOBAL", 0)	
+		IncrementGlobal("GovtMeetGuards","GLOBAL",1)
+		DisplayString(Myself,@17)
+		RealSetGlobalTimer("Pursuit","GLOBAL",600)
+		Wait(1)
+		CreateCreatureObjectOffset("AMNLEG1",Myself,[100.100])
+		CreateCreatureObjectOffset("AMNLEG1",Myself,[-100.-100])
+		CreateCreatureObjectOffset("AMNLEG1",Myself,[100.-100])
+		CreateCreatureObjectOffset("AMNLEG1",Myself,[-100.100])
+		CreateCreatureObjectOffset("AMNLEG1",Myself,[0.0])
+		CreateCreatureObjectOffset("AMNLEG1",Myself,[-100.200])
+//		CreateCreatureObjectOffset("AMNLEG1",Myself,[200.-100])
+				
+		CreateCreatureOffScreen("COWENF1",0)
+		CreateCreatureOffScreen("COWENF3",0) 
+		CreateCreatureOffScreen("COWENF4",0) 
+	RESPONSE #20
+		SetGlobal("KKGovt", "GLOBAL", 0)	
+		IncrementGlobal("GovtMeetGuards","GLOBAL",1)
+		DisplayString(Myself,@17)
+		RealSetGlobalTimer("Pursuit","GLOBAL",600)
+		Wait(1)
+		CreateCreatureObjectOffset("Z#Kni1",Myself,[100.100])
+//		CreateCreatureObjectOffset("Z#Kni1",Myself,[-150.-150])
+		CreateCreatureObjectOffset("Z#Kni2",Myself,[-100.-100])
+		CreateCreatureObjectOffset("Z#Kni3",Myself,[100.-100])
+		CreateCreatureObjectOffset("Z#Kni4",Myself,[-100.100])
+		CreateCreatureObjectOffset("Z#Kni6",Myself,[0.0])
+		CreateCreatureObjectOffset("Z#Kni1",Myself,[150.-150])
+		CreateCreatureOffScreen("Z#Kni5",0)
+END
+
+IF	AreaType(City)
+	Delay(10)
+	Range([PC],20)
+	Global("KKGovt", "GLOBAL", 1)
+	XPGT(Player1, 2999999)
+	!ActuallyInCombat()
+	InParty("Kova")
+//	XPLT(Player1, 3000000)		
+	!RealGlobalTimerNotExpired("Pursuit","GLOBAL")
+THEN
+	RESPONSE #80
+		SetGlobal("KKGovt", "GLOBAL", 0)	
+		IncrementGlobal("GovtMeetGuards","GLOBAL",1)
+		DisplayString(Myself,@17)
+		RealSetGlobalTimer("Pursuit","GLOBAL",600)		
+		Wait(1)
+		CreateCreatureObjectOffset("AMNLEG1",Myself,[100.100])
+		CreateCreatureObjectOffset("AMNLEG1",Myself,[-100.-100])
+		CreateCreatureObjectOffset("AMNLEG1",Myself,[100.-100])
+		CreateCreatureObjectOffset("AMNLEG1",Myself,[-100.100])
+		CreateCreatureObjectOffset("AMNLEG1",Myself,[0.0])
+		CreateCreatureObjectOffset("AMNLEG1",Myself,[-100.200])
+		CreateCreatureObjectOffset("AMNLEG1",Myself,[200.-100])
+//		CreateCreatureObjectOffset("AMNLEG1",Myself,[-200.100])
+		
+		CreateCreatureOffScreen("MAGE18A",0) 
+		CreateCreatureOffScreen("COWENF3",0) 
+		CreateCreatureOffScreen("COWENF4",0) 
+	RESPONSE #20
+		SetGlobal("KKGovt", "GLOBAL", 0)	
+		IncrementGlobal("GovtMeetGuards","GLOBAL",1)
+		DisplayString(Myself,@17)
+		RealSetGlobalTimer("Pursuit","GLOBAL",600)
+		Wait(1)
+		CreateCreatureObjectOffset("Z#Kni1",Myself,[100.100])
+		CreateCreatureObjectOffset("Z#Kni1",Myself,[-150.-150])
+		CreateCreatureObjectOffset("Z#Kni2",Myself,[-100.-100])
+		CreateCreatureObjectOffset("Z#Kni3",Myself,[100.-100])
+		CreateCreatureObjectOffset("Z#Kni4",Myself,[-100.100])
+		CreateCreatureObjectOffset("Z#Kni6",Myself,[0.0])
+		CreateCreatureObjectOffset("Z#Kni1",Myself,[150.-150])
+//		CreateCreatureObjectOffset("Z#Kni1",Myself,[-150.150])
+		CreateCreatureOffScreen("Z#Kni5",0)
+		CreateCreatureOffScreen("Z#Kni5",0)
+END

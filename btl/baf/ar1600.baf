@@ -1,0 +1,13 @@
+// AR1600 Brynnlaw, triggers BrynnAmbush Creator
+
+IF	GlobalGT("MetKharen", "GLOBAL", 0)
+	Global("BrynnAmbush", "GLOBAL", 0) 
+THEN
+	RESPONSE #100
+	SetGlobal("BrynnAmbush", "GLOBAL", 1)
+	CreateCreature("Z#Mage2",[2100.430],12)
+	ChangeEnemyAlly("Z#Mage2",NEUTRAL)
+	ActionOverride("Z#Mage2", ChangeAIScript("SHOUTDL2",DEFAULT) )
+	ActionOverride("Z#Mage2", SetDialogue("Z#BRYNN1") )
+	Continue()
+END

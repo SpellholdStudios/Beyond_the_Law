@@ -1,0 +1,21 @@
+// TrueSton.bcs
+
+IF	Global("KhWin", "GLOBAL", 2)
+	!StateCheck("Kova",STATE_STONE_DEATH)
+	InParty("Kova")
+	IsActive(Myself)
+THEN
+	RESPONSE #100
+	ReallyForceSpell("Kova",FORCE_STONE_TRAP)
+	TriggerActivation(Myself, FALSE)
+END
+
+IF	Global("KhWin", "GLOBAL", 4)
+	!StateCheck("Kiyone",STATE_STONE_DEATH)
+	InParty("Kiyone")
+	IsActive(Myself)
+THEN
+	RESPONSE #100
+	ReallyForceSpell("Kiyone",FORCE_STONE_TRAP)
+	TriggerActivation(Myself, FALSE)
+END

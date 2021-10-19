@@ -1,0 +1,12 @@
+// Removes this CRE from game when Myro etc are around
+
+IF	InMyArea("AR0531")
+	OR(4)
+	Global("Z#BaevrinPlot","GLOBAL",14)
+	Global("Z#BaevrinPlot","GLOBAL",17)
+	Global("Z#BaevrinPlot","GLOBAL",18)
+	Global("Z#BaevrinPlot","GLOBAL",19)
+THEN
+	RESPONSE #100
+	DestroySelf()
+END

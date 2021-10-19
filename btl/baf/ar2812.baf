@@ -1,0 +1,46 @@
+// AR2812 - launch BtL cutscenes
+
+IF	
+// OnCreation()
+	InParty("Kiyone")
+	InParty("Kova")
+	GlobalGT("KKRomance","GLOBAL",1)
+	GlobalGT("Z#TrialClear","GLOBAL",2)
+	Global("Z#Proposal","GLOBAL",2)
+THEN
+	RESPONSE #100
+	ActionOverride("Suelle2",SetNumTimesTalkedTo(5))
+//	FadeToColor([10.0],0)
+	ActionOverride("Kiyone",SetSequence(SEQ_SLEEP))
+	ActionOverride("Kiyone",LeaveAreaLUA("Z#2803","",[600.470],6))
+END
+
+IF	GlobalGT("KKRomance","GLOBAL",1)
+	GlobalGT("Z#TrialClear","GLOBAL",2)
+	InMyArea("Kiyone")
+	InMyArea("Kova")
+	Global("Z#Proposal","GLOBAL",3)
+	Global("Z#Proposallocal","AR2812",0)
+THEN
+	RESPONSE #100
+	FadeToColor([10.0],0)
+	SetGlobal("Z#Proposallocal","AR2812",1)
+	ActionOverride(Player1,LeaveAreaLUA("AR2812","",[467.264],8))
+	ActionOverride(Player2,LeaveAreaLUA("AR2812","",[519.262],7))
+	ActionOverride(Player3,LeaveAreaLUA("AR2812","",[420.274],9))
+	ActionOverride(Player4,LeaveAreaLUA("AR2812","",[569.275],7))
+	ActionOverride(Player5,LeaveAreaLUA("AR2812","",[365.290],9))
+	ActionOverride(Player6,LeaveAreaLUA("AR2812","",[616.295],7))
+	Wait(1)
+	FadeFromColor([10.0],0)
+	ActionOverride("Suelle2",SetNumTimesTalkedTo(0))
+END
+	
+// Kiyone in 2803
+// 600.470
+// 620.420 1
+// 580.530 9
+// Kova at 3790 2025 10
+
+// rejoining in 2800 3715.2065 10
+// rejoining in 2800 3755.2075 9

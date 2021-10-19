@@ -1,0 +1,59 @@
+// bios etc
+
+// unmarried
+
+IF
+	Global("StartEndBios","AR6200",1)
+	InParty("Kova")
+	Global("Z#KovaBio","GLOBAL",0)
+	Global("Z#Married","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Z#KovaBio","GLOBAL",1)
+		TextScreen("Z#KV1ND")
+		SmallWait(1)
+		Continue()
+END
+
+IF
+	Global("StartEndBios","AR6200",1)
+	InParty("Kiyone")
+	Global("Z#KiyoBio","GLOBAL",0)
+//	Global("Z#KovaBio","GLOBAL",1)
+	Global("Z#Married","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Z#KiyoBio","GLOBAL",1)
+		TextScreen("Z#KY1ND")
+		SmallWait(1)
+		Continue()
+END
+
+// married
+
+IF
+	Global("StartEndBios","AR6200",1)
+	InParty("Kiyone")
+	Global("Z#KiyoBio","GLOBAL",0)
+	Global("Z#Married","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Z#KiyoBio","GLOBAL",1)
+		TextScreen("Z#KY2ND")
+		SmallWait(1)
+		Continue()
+END
+
+IF
+	Global("StartEndBios","AR6200",1)
+	InParty("Kova")
+	Global("Z#KovaBio","GLOBAL",0)
+//	Global("Z#KiyoBio","GLOBAL",1)
+	Global("Z#Married","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("Z#KovaBio","GLOBAL",1)
+		TextScreen("Z#KV2ND")
+		SmallWait(1)
+		Continue()
+END
