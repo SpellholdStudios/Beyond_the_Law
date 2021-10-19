@@ -1,68 +1,68 @@
 IF	ActuallyInCombat()
-	Global("CombatInit", "LOCALS", 0)
+	Global("CombatInit","LOCALS",0)
 THEN
 	RESPONSE #100
-	SetGlobal("CombatInit", "Locals", 1)
-	TakeItemReplace("KovaDagF","KOVADAG1","Kova") 
+	SetGlobal("CombatInit","LOCALS",1)
+	TakeItemReplace("KovaDagF","KOVADAG1","Kova")
 	TakeItemReplace("KovaArmF","KOVAArm1","Kova")
 	EquipItem("KovaDagF")
-	ReallyForceSpell("Kova", WIZARD_TRUE_SIGHT)
-	ReallyForceSpell("Kova", WIZARD_MIRROR_IMAGE)
-	ReallyForceSpell("Kova", WIZARD_IMPROVED_INVISIBILITY)
-	ReallyForceSpell("Kova", WIZARD_MINOR_SPELL_DEFLECTION)
-	ReallyForceSpell("Kova", WIZARD_INVISIBILITY)
-	ReallyForceSpell("Kova", WIZARD_STONE_SKIN)
-	ReallyForceSpell("Kova", WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)
+	ReallyForceSpell("Kova",WIZARD_TRUE_SIGHT)
+	ReallyForceSpell("Kova",WIZARD_MIRROR_IMAGE)
+	ReallyForceSpell("Kova",WIZARD_IMPROVED_INVISIBILITY)
+	ReallyForceSpell("Kova",WIZARD_MINOR_SPELL_DEFLECTION)
+	ReallyForceSpell("Kova",WIZARD_INVISIBILITY)
+	ReallyForceSpell("Kova",WIZARD_STONE_SKIN)
+	ReallyForceSpell("Kova",WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)
 	GiveItemCreate("potn52","Kova",5,0,0)
 	GiveItemCreate("Boot01","Kova",1,0,0)
 	GiveItemCreate("Helm04","Kova",1,0,0)
 	FillSlot(SLOT_BOOTS)
 	FillSlot(SLOT_HELMET)
-	ReallyForceSpell("Kova", GAIN_ONE_THACO)	
-	ReallyForceSpell("Kova", GAIN_ONE_THACO)	
-	ReallyForceSpell("Kova", GAIN_ONE_THACO)	
-	ReallyForceSpell("Kova", GAIN_ONE_THACO)
-	ReallyForceSpell("Kova", GAIN_ONE_THACO)
-	ReallyForceSpell("Kova", GAIN_ONE_THACO)	
-	ReallyForceSpell("Kova", GAIN_ONE_THACO)	
-	ReallyForceSpell("Kova", GAIN_ONE_THACO)
+	ReallyForceSpell("Kova",GAIN_ONE_THACO)
+	ReallyForceSpell("Kova",GAIN_ONE_THACO)
+	ReallyForceSpell("Kova",GAIN_ONE_THACO)
+	ReallyForceSpell("Kova",GAIN_ONE_THACO)
+	ReallyForceSpell("Kova",GAIN_ONE_THACO)
+	ReallyForceSpell("Kova",GAIN_ONE_THACO)
+	ReallyForceSpell("Kova",GAIN_ONE_THACO)
+	ReallyForceSpell("Kova",GAIN_ONE_THACO)
 	GiveItemCreate("KvDieDag","Kova",1,0,0)
 	Continue()
 END
 
 IF	HPPercentLT(Myself,50)
-	Global("CombatInit", "LOCALS", 1)
+	Global("CombatInit","LOCALS",1)
 THEN
 	RESPONSE #100
-	SetGlobal("CombatInit", "Locals", 2)
-	ReallyForceSpell("Kova", WIZARD_IMPROVED_INVISIBILITY)
-	ReallyForceSpell("Kova", WIZARD_MIRROR_IMAGE)
-	ReallyForceSpell("Kova", WIZARD_STONE_SKIN)
-	ReallyForceSpell("Kova", WIZARD_MINOR_SPELL_DEFLECTION)
-	ReallyForceSpell("Kova", WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)
+	SetGlobal("CombatInit","LOCALS",2)
+	ReallyForceSpell("Kova",WIZARD_IMPROVED_INVISIBILITY)
+	ReallyForceSpell("Kova",WIZARD_MIRROR_IMAGE)
+	ReallyForceSpell("Kova",WIZARD_STONE_SKIN)
+	ReallyForceSpell("Kova",WIZARD_MINOR_SPELL_DEFLECTION)
+	ReallyForceSpell("Kova",WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)
 	Continue()
-END	
+END
 
 IF	OR(2)
 	StateCheck(Myself,STATE_HELPLESS)
 	StateCheck(Myself,STATE_STUNNED)
 THEN
 	RESPONSE #100
-	ApplySpell("Kova", WIZARD_OTILUKES_RESILIENT_SPHERE)
-	ApplySpell("Kova", WIZARD_SPELL_DEFLECTION)
+	ApplySpell("Kova",WIZARD_OTILUKES_RESILIENT_SPHERE)
+	ApplySpell("Kova",WIZARD_SPELL_DEFLECTION)
 	Continue()
 END
 
 IF	HPPercentLT(Myself,25)
-	Global("CombatInit", "LOCALS", 2)
+	Global("CombatInit","LOCALS",2)
 THEN
 	RESPONSE #100
-	SetGlobal("CombatInit", "Locals", 3)
-	ReallyForceSpell("Kova", WIZARD_IMPROVED_INVISIBILITY)
-	ReallyForceSpell("Kova", WIZARD_MIRROR_IMAGE)
-	ReallyForceSpell("Kova", WIZARD_STONE_SKIN)
-	ReallyForceSpell("Kova", WIZARD_MINOR_SPELL_DEFLECTION)
-	ReallyForceSpell("Kova", WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)
+	SetGlobal("CombatInit","LOCALS",3)
+	ReallyForceSpell("Kova",WIZARD_IMPROVED_INVISIBILITY)
+	ReallyForceSpell("Kova",WIZARD_MIRROR_IMAGE)
+	ReallyForceSpell("Kova",WIZARD_STONE_SKIN)
+	ReallyForceSpell("Kova",WIZARD_MINOR_SPELL_DEFLECTION)
+	ReallyForceSpell("Kova",WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)
 	Continue()
 END
 
@@ -81,33 +81,33 @@ IF	See(NearestEnemyOf(Myself))
 	!LOS(NearestEnemyOf(Myself),30)
 THEN
 	RESPONSE #100
-	ForceSpell(NearestEnemyOf(Myself), WIZARD_FIREBALL)
-	DisplayStringHead(Myself,46150) 
-	ReallyForceSpell("Kova", WIZARD_INVISIBILITY)
+	ForceSpell(NearestEnemyOf(Myself),WIZARD_FIREBALL)
+	DisplayStringHead(Myself,46150)
+	ReallyForceSpell("Kova",WIZARD_INVISIBILITY)
 	Continue()
 END
 
 IF	See(NearestEnemyOf(Myself))
 	!StateCheck(Myself,STATE_INVISIBLE)
-	Global("CastSF", "LOCALS", 0)
+	Global("CastSF","LOCALS",0)
 	LOS(NearestEnemyOf(Myself),30)
 THEN
 	RESPONSE #100
-	ForceSpell(Myself, WIZARD_SUN_FIRE)
-	DisplayStringHead(Myself,46150) 
-	ReallyForceSpell(Myself, WIZARD_INVISIBILITY)
-	SetGlobal("CastSF", "LOCALS", 1)
+	ForceSpell(Myself,WIZARD_SUN_FIRE)
+	DisplayStringHead(Myself,46150)
+	ReallyForceSpell(Myself,WIZARD_INVISIBILITY)
+	SetGlobal("CastSF","LOCALS",1)
 	Continue()
 END
 
 IF	See(NearestEnemyOf(Myself))
 	!StateCheck(Myself,STATE_INVISIBLE)
-	Global("CastSF", "LOCALS", 1)
+	Global("CastSF","LOCALS",1)
 	LOS(NearestEnemyOf(Myself),30)
 THEN
 	RESPONSE #100
 	EquipMostDamagingMelee()
-	SetGlobal("CastSF", "LOCALS", 0)
+	SetGlobal("CastSF","LOCALS",0)
 	AttackReevaluate(NearestEnemyOf(Myself),1)
 	Continue()
 END
@@ -124,7 +124,7 @@ IF	See(NearestEnemyOf(Myself))
 THEN
 	RESPONSE #100
 	EquipMostDamagingMelee()
-	SetGlobal("CastSF", "LOCALS", 0)
+	SetGlobal("CastSF","LOCALS",0)
 	AttackReevaluate(NearestEnemyOf(Myself),1)
 	Continue()
 END
@@ -132,7 +132,7 @@ END
 IF	AttackedBy([ANYONE],DEFAULT)
 THEN
 	RESPONSE #100
-	DisplayStringHead(Myself,46150) 
-	ReallyForceSpell("Kova", WIZARD_INVISIBILITY)
+	DisplayStringHead(Myself,46150)
+	ReallyForceSpell("Kova",WIZARD_INVISIBILITY)
 	Continue()
 END

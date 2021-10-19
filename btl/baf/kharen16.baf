@@ -8,48 +8,48 @@ THEN
 	StartDialogueNoSet(LastSeenBy(Myself))
 END
 
-IF	Global("KhWin", "GLOBAL", 2)
-	StateCheck("Kova",STATE_STONE_DEATH) 
+IF	Global("KhWin","GLOBAL",2)
+	StateCheck("Kova",STATE_STONE_DEATH)
 THEN
 	RESPONSE #100
 	StartDialogueNoSet(Player1)
 END
 
 IF 	AreaCheck("AR1500")
-	Global("KhWin", "GLOBAL", 3)
-	Global("FindingKova", "GLOBAL", 250)
+	Global("KhWin","GLOBAL",3)
+	Global("FindingKova","GLOBAL",250)
 	Detect("Kiyone")
-	StateCheck("Kova",STATE_EXPLODING_DEATH) 
+	StateCheck("Kova",STATE_EXPLODING_DEATH)
 THEN
 	RESPONSE #100
 	StartDialogueNoSet(Player1)
 END
 
-IF 	Global("KhWin", "GLOBAL", 4)
-	StateCheck("Kiyone",STATE_STONE_DEATH) 
+IF 	Global("KhWin","GLOBAL",4)
+	StateCheck("Kiyone",STATE_STONE_DEATH)
 THEN
 	RESPONSE #100
-	ForceSpell("Kiyone", WIZARD_FLAME_ARROW)
-	SetGlobal("KhWin", "GLOBAL", 5)
+	ForceSpell("Kiyone",WIZARD_FLAME_ARROW)
+	SetGlobal("KhWin","GLOBAL",5)
 END
 
-IF 	Global("KhWin", "GLOBAL", 3)
+IF 	Global("KhWin","GLOBAL",3)
 	StateCheck("Kova",STATE_EXPLODING_DEATH)
 	!InParty("Kiyone")
 THEN
 	RESPONSE #100
-	StartDialogueNoSet(Player1)	
+	StartDialogueNoSet(Player1)
 END
 
-IF 	Global("KhWin", "GLOBAL", 5)
+IF 	Global("KhWin","GLOBAL",5)
 	StateCheck("Kova",STATE_EXPLODING_DEATH)
 	StateCheck("Kiyone",STATE_EXPLODING_DEATH)
 THEN
 	RESPONSE #100
-	StartDialogueNoSet(Player1)	
+	StartDialogueNoSet(Player1)
 END
 
-IF 	Global("KhWin", "GLOBAL", 3)
+IF 	Global("KhWin","GLOBAL",3)
 	!InActiveArea("Kova")
 	!InParty("Kiyone")
 THEN
@@ -57,42 +57,42 @@ THEN
 	StartDialogueNoSet(Player1)
 END
 
-IF	HPPercentLT(Myself, 30)
-	Global("Combat", "LOCALS", 0)
+IF	HPPercentLT(Myself,30)
+	Global("Combat","LOCALS",0)
 THEN
 	RESPONSE #100
-	SetGlobal("Combat", "LOCALS", 1)
+	SetGlobal("Combat","LOCALS",1)
 	ChangeAIScript("",CLASS)
-	ReallyForceSpell(Myself, CLERIC_HEAL)
-	ReallyForceSpell(Myself, WIZARD_PROTECTION_FROM_FIRE)
-	ReallyForceSpell(Myself, WIZARD_IMPROVED_INVISIBILITY)
-	ReallyForceSpell(Myself, WIZARD_MIRROR_IMAGE)
-	ReallyForceSpell(Myself, WIZARD_STONE_SKIN)
-	ReallyForceSpell(Myself, WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)
+	ReallyForceSpell(Myself,CLERIC_HEAL)
+	ReallyForceSpell(Myself,WIZARD_PROTECTION_FROM_FIRE)
+	ReallyForceSpell(Myself,WIZARD_IMPROVED_INVISIBILITY)
+	ReallyForceSpell(Myself,WIZARD_MIRROR_IMAGE)
+	ReallyForceSpell(Myself,WIZARD_STONE_SKIN)
+	ReallyForceSpell(Myself,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)
 	GiveItemCreate("potn52",Myself,5,0,0)
 	PlaySound("KhHide")
 	Continue()
 END
 
-IF	HPLT(Myself, 3)
-	GlobalGT("Combat", "LOCALS", 0)
+IF	HPLT(Myself,3)
+	GlobalGT("Combat","LOCALS",0)
 THEN
 	RESPONSE #100
-	StartDialog("kharen16", Player1)
+	StartDialog("kharen16",Player1)
 END
 
 IF	HPPercentLT(Myself,50)
-	Global("Combat", "LOCALS", 1)
+	Global("Combat","LOCALS",1)
 THEN
 	RESPONSE #100
-	SetGlobal("Combat", "LOCALS", 2)
-	ReallyForceSpell(Myself, WIZARD_STONE_SKIN)
-	ReallyForceSpell(Myself, WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)
+	SetGlobal("Combat","LOCALS",2)
+	ReallyForceSpell(Myself,WIZARD_STONE_SKIN)
+	ReallyForceSpell(Myself,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)
 	Continue()
-END	
+END
 
 IF	HPPercentLT(Myself,50)
-	GlobalGT("Combat", "LOCALS", 0)	
+	GlobalGT("Combat","LOCALS",0)
 	HasItem("potn52",Myself) // Potion of Extra Healing
 THEN
 	RESPONSE #100
@@ -103,42 +103,42 @@ END
 
 IF	See(NearestEnemyOf(Myself))
 	!StateCheck(Myself,STATE_INVISIBLE)
-	GlobalGT("Combat", "LOCALS", 0)	
+	GlobalGT("Combat","LOCALS",0)
 	!LOS(NearestEnemyOf(Myself),30)
 THEN
 	RESPONSE #100
-	ForceSpell(NearestEnemyOf(Myself), WIZARD_FIREBALL)
-//	ForceSpell(NearestEnemyOf(Myself), WIZARD_CHAIN_LIGHTNING)
-	DisplayStringHead(Myself,46150) 
-	ReallyForceSpell(Myself, WIZARD_INVISIBILITY)
+	ForceSpell(NearestEnemyOf(Myself),WIZARD_FIREBALL)
+//	ForceSpell(NearestEnemyOf(Myself),WIZARD_CHAIN_LIGHTNING)
+	DisplayStringHead(Myself,46150)
+	ReallyForceSpell(Myself,WIZARD_INVISIBILITY)
 	PlaySound("KhHide")
 	Continue()
 END
 
 IF	See(NearestEnemyOf(Myself))
 	!StateCheck(Myself,STATE_INVISIBLE)
-	GlobalGT("Combat", "LOCALS", 0)	
-	Global("CastSF", "LOCALS", 0)
+	GlobalGT("Combat","LOCALS",0)
+	Global("CastSF","LOCALS",0)
 	LOS(NearestEnemyOf(Myself),30)
 THEN
 	RESPONSE #100
-	ForceSpell(Myself, WIZARD_SUN_FIRE)
-	DisplayStringHead(Myself,46150) 
-	ReallyForceSpell(Myself, WIZARD_INVISIBILITY)
+	ForceSpell(Myself,WIZARD_SUN_FIRE)
+	DisplayStringHead(Myself,46150)
+	ReallyForceSpell(Myself,WIZARD_INVISIBILITY)
 	PlaySound("KhHide")
-	SetGlobal("CastSF", "LOCALS", 1)
+	SetGlobal("CastSF","LOCALS",1)
 	Continue()
 END
 
 IF	See(NearestEnemyOf(Myself))
 	!StateCheck(Myself,STATE_INVISIBLE)
-	GlobalGT("Combat", "LOCALS", 0)	
-	Global("CastSF", "LOCALS", 1)
+	GlobalGT("Combat","LOCALS",0)
+	Global("CastSF","LOCALS",1)
 	LOS(NearestEnemyOf(Myself),30)
 THEN
 	RESPONSE #100
 	EquipMostDamagingMelee()
-	SetGlobal("CastSF", "LOCALS", 0)
+	SetGlobal("CastSF","LOCALS",0)
 	AttackReevaluate(NearestEnemyOf(Myself),15)
 	Continue()
 END
@@ -151,22 +151,22 @@ THEN
 END
 
 IF	See(NearestEnemyOf(Myself))
-	GlobalGT("Combat", "LOCALS", 0)	
+	GlobalGT("Combat","LOCALS",0)
 	StateCheck(Myself,STATE_INVISIBLE)
 THEN
 	RESPONSE #100
 	EquipMostDamagingMelee()
-	SetGlobal("CastSF", "LOCALS", 0)
+	SetGlobal("CastSF","LOCALS",0)
 	AttackReevaluate(NearestEnemyOf(Myself),15)
 	Continue()
 END
 
 IF	AttackedBy([ANYONE],DEFAULT)
-	GlobalGT("Combat", "LOCALS", 0)	
+	GlobalGT("Combat","LOCALS",0)
 THEN
 	RESPONSE #100
-	DisplayStringHead(Myself,46150) 
-	ReallyForceSpell(Myself, WIZARD_INVISIBILITY)
+	DisplayStringHead(Myself,46150)
+	ReallyForceSpell(Myself,WIZARD_INVISIBILITY)
 	PlaySound("KhHide")
 	Continue()
 END

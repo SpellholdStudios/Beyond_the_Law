@@ -1,9 +1,10 @@
 // AR0312, removes Arledrian after relevant Baevrin event
 
-IF	AreaCheckObject("AR0312", "Arledrian")
+IF
+	AreaCheckObject("AR0312","Arledrian")
 	GlobalGT("Z#BaevrinPlot","GLOBAL",22)
 THEN
 	RESPONSE #100
-	ActionOverride("Arledrian",DestroySelf() )
-	Continue()
+		ActionOverride("Arledrian",DestroySelf())
+		Continue()
 END

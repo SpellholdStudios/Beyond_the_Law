@@ -1,7 +1,7 @@
 // bios etc
 
 // unmarried
-
+// ---------
 IF
 	Global("StartEndBios","AR6200",1)
 	InParty("Kova")
@@ -30,7 +30,7 @@ THEN
 END
 
 // married
-
+// -------
 IF
 	Global("StartEndBios","AR6200",1)
 	InParty("Kiyone")

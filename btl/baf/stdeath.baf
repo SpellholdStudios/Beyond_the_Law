@@ -1,11 +1,12 @@
-// append to STDEATH 
+// append to STDEATH
 
-IF	OR(2)
+IF
+	OR(2)
 		AreaCheck("AR0306")
 		AreaCheck("AR0307")
 	GlobalGT("Z#MeetingSeida","GLOBAL",3)
 	!HasItem("STDEATH",Myself)
 THEN
 	RESPONSE #100
-	DestroySelf()
+		DestroySelf()
 END

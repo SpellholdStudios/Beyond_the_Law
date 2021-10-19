@@ -1,18 +1,19 @@
 // Append to AR0515.BCS
 
-IF	Global("Z#BaevrinPlot","GLOBAL",8)
+IF
+	Global("Z#BaevrinPlot","GLOBAL",8)
 THEN
 	RESPONSE #100
-	SetGlobal("Z#BaevrinPlot","GLOBAL",9)
-	CreateCreature("Z#Assas3", [400.485], 10)
-	ActionOverride("Z#Assas3", SetDialogue("Z#BvP8"))
-	ActionOverride("Z#Assas3", ChangeAIScript("SHOUTDL2",CLASS) )
-	ChangeEnemyAlly("Z#Assas3",NEUTRAL)
-	GiveItemCreate("amul02","Z#Assas3",2,0,0)
-	ActionOverride("Z#Assas3", FillSlot(0) )
-	TakeItemReplace("MinHp1","amul02","Z#Assas3") 
-	CreateCreature("Z#Adyl", [280.560], 10)
-	CreateCreature("Z#Mage2", [220.512], 11)
-	CreateCreature("Z#Mage2", [395.615], 9)
-	CreateCreature("Z#Pri2", [340.530], 10)
+		SetGlobal("Z#BaevrinPlot","GLOBAL",9)
+		CreateCreature("Z#Assas3",[400.485],10)
+		ActionOverride("Z#Assas3",SetDialogue("Z#BvP8"))
+		ActionOverride("Z#Assas3",ChangeAIScript("SHOUTDL2",CLASS))
+		ChangeEnemyAlly("Z#Assas3",NEUTRAL)
+		GiveItemCreate("amul02","Z#Assas3",2,0,0)
+		ActionOverride("Z#Assas3",FillSlot(0))
+		TakeItemReplace("MinHp1","amul02","Z#Assas3")
+		CreateCreature("Z#Adyl",[280.560],10)
+		CreateCreature("Z#Mage2",[220.512],11)
+		CreateCreature("Z#Mage2",[395.615],9)
+		CreateCreature("Z#Pri2",[340.530],10)
 END
