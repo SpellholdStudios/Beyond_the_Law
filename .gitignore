@@ -45,7 +45,7 @@ $RECYCLE.BIN/
 *.zip
 # *.exe
 dev_notes.txt
-z*.*
+#z*.*
 # todo*.*
 
 
