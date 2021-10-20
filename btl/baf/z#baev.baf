@@ -1,0 +1,43 @@
+// Baevrin's Script when attacked
+
+IF 	ActuallyInCombat()
+	AreaCheck("AR0500")
+	Global("Z#AdylChase","LOCALS",0)
+	InMyArea("Z#Adyl")
+THEN
+	RESPONSE #100
+	SetGlobal("Z#AdylChase","LOCALS",1)
+	ActionOverride("Z#Adyl",MoveToObjectFollow("Z#Baev"))
+END
+
+IF	ActuallyInCombat()
+	AreaCheck("AR0500")
+	Detect("Z#MERAHN")
+THEN
+	RESPONSE #1
+	MoveToObject("Z#MERAHN")
+	Wait(2)
+	RESPONSE #3
+	Continue()
+END
+
+IF	ActuallyInCombat()
+	AreaCheck("AR0500")
+	Detect("Z#TERAHN")
+THEN
+	RESPONSE #1
+	MoveToObject("Z#TERAHN")
+	Wait(2)
+	RESPONSE #2
+	Continue()
+END
+
+
+IF	ActuallyInCombat()
+	AreaCheck("AR0500")
+	Detect("Z#MESSEN")
+THEN
+	RESPONSE #100
+	MoveToObject("Z#MESSEN")
+	Wait(2)
+END

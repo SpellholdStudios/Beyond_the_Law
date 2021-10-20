@@ -1,0 +1,10 @@
+// Z#ProtBV
+
+IF
+	Detect("Z#Baev")
+	See(NearestEnemyOf("Z#Baev"))
+	ActuallyInCombat()
+THEN
+	RESPONSE #100
+		ProtectObject("Z#Baev",40)
+END

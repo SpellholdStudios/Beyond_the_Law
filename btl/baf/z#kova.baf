@@ -1,0 +1,1846 @@
+
+// Interjections
+
+// Outside post Resurrection
+// -------------------------
+IF
+	AreaCheck("Z#2800")
+	Global("Z#KKProposal","Z#2800",1)
+	LOS("Kiyone",10)
+THEN
+	RESPONSE #100
+		FaceObject("Kiyone")
+		ActionOverride("Kiyone",SetSequence(SEQ_AWAKE))
+		ActionOverride("Kiyone",FaceObject("Kova"))
+		Wait(1)
+		StartDialogNoSet("Kiyone")
+END
+
+// Hell
+// ----
+IF
+	AreaCheck("AR2900")
+	GlobalGT("KKRomance","GLOBAL",1)
+	GlobalGT("Z#TrialClear","GLOBAL",2)
+	RealGlobalTimerExpired("Z#ProposalT","AR2900")
+	Global("Z#Proposal","GLOBAL",1)
+THEN
+	RESPONSE #100
+		StartDialogNoSet("Kiyone")
+END
+
+// Trial Full acquit
+// -----------------
+IF
+	GlobalGT("Z#TrialClear","GLOBAL",2)
+	Global("Z#postfullacquit","LOCALS",0)
+	AreaCheck("AR1000")
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+END
+
+// Lanthorn Trial - Kiyo Dead
+// --------------------------
+IF
+	PartyHasItem("C6LANTHO") // Rhynn Lanthorn
+	AreaCheck("AR2500")
+	Global("Z#TrialClear","GLOBAL",0)
+	InParty(Myself)
+	!InParty("Kiyone")
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+END
+
+// Kova on killing Arledrian
+// -------------------------
+IF
+	Dead("Arledrian")
+	GlobalGT("Z#ArledTalk","GLOBAL",2)
+	Global("Z#killarled","LOCALS",0)
+	!ActuallyInCombat()
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+END
+
+// Kova doubts Edwin
+// -----------------
+IF
+	Global("Z#doubtededwin","GLOBAL",0)
+	InParty("Kiyone") InMyArea("Kiyone")
+	InParty("Edwin")
+	OR(2)
+		Global("Z#gaelanc6","GLOBAL",6)
+		Global("Z#gaelanc6","GLOBAL",7)
+	AreaCheck("AR0300")
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+END
+
+IF
+	Dead("Z#Messen") !InMyArea("Habrega")
+	InMyArea("Kiyone") InParty("Kiyone")
+	Global("Z#MyroDead","LOCALS",0)
+THEN
+	RESPONSE #100
+		StartDialogNoSet("Kiyone")
+END
+
+IF
+	OR(2) AreaCheck("AR0522") AreaCheck("AR0509")
+		Global("Z#BaevrinPlot","GLOBAL",6)
+		Global("Z#BvPlotComm1","LOCALS",0)
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+END
+
+IF
+	OR(9)
+		Dead("Slave100")
+		Dead("Slave101")
+		Dead("Slave102")
+		Dead("Slave103")
+		Dead("Slave104")
+		Dead("Slave105")
+		Dead("Slave106")
+		Dead("Slave107")
+		Dead("udilsla2")
+	AreaCheck("AR2400")
+	Global("Z#illithidslavedie","LOCALS",0)
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+END
+
+IF
+	OR(2)
+		Global("PhaereInnuendo","GLOBAL",2)
+		Global("PhaereInnuendo","GLOBAL",3)
+	AreaCheck("AR2200")
+	Gender(Player1,MALE)
+	Detect(Player1)
+	Global("Z#commentphaere","LOCALS",0)
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+END
+
+IF
+	GlobalGT("AmbientStartRun","AR2200",3)
+	InMyArea("DADROW6")
+	AreaCheck("AR2200")
+	InParty("Kiyone") InMyArea("Kiyone")
+	Global("Z#drowchase","LOCALS",0)
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+END
+
+IF
+	Global("Z#stopfree","LOCALS",0)
+	!InMyArea("udtrap01")
+	!InMyArea("udtrap02")
+	!InMyArea("udtrap03")
+	!InMyArea("udtrap04")
+	!InMyArea("udtrap05")
+	!InMyArea("udtrap06")
+	AreaCheck("AR2100")
+	OR(6)
+		Global("face1","AR2100",2)
+		Global("face2","AR2100",2)
+		Global("face3","AR2100",2)
+		Global("face4","AR2100",2)
+		Global("face5","AR2100",2)
+		Global("face6","AR2100",2)
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+END
+
+IF
+	AreaCheck("AR2100")
+	Global("Z#SayUnderdark","LOCALS",0)
+	Global("EnteredArea","AR2100",1)
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+END
+
+IF
+	AreaCheck("AR1516")
+	!ActuallyInCombat()
+	Dead("Yoshimo")
+	GlobalGT("BKovaYoshi","GLOBAL",2)
+	Global("Z#YoshDie","GLOBAL",0)
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+END
+
+IF
+	!Global("FinalFight","AR6200",4)
+	!Global("MelStillImmortal","AR6200",2)
+	OR(3)
+		AreaCheck("AR1512")
+		AreaCheck("AR1513")
+		AreaCheck("AR1514")
+	InParty("Kiyone") InMyArea("Kiyone")
+	Global("Z#KvAskSlayer","GLOBAL",0)
+	OR (2)
+		Global("DrowTalk","GLOBAL",5)
+		Global("SelfTalk","GLOBAL",3)
+	Global("speakWhenLonkDead","GLOBAL",0)
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+END
+
+IF
+	Global("AsylumPlot","GLOBAL",41)
+	AreaCheck("AR1512")
+	Global("KKAsylumNote","GLOBAL",0)
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+END
+
+IF
+	Global("JaylosFree","GLOBAL",2)
+	Dead("BODFGT03")
+THEN
+	RESPONSE #100
+		ActionOverride("Jaylos",StartDialogNoSet("Kova"))
+END
+
+IF
+	Global("JaylosFree","GLOBAL",2)
+	!Dead("BODFGT03")
+	SpellCast(Myself,WIZARD_FLAME_ARROW)
+THEN
+	RESPONSE #100
+		SmallWait(8)
+		ActionOverride("BODFGT03",Kill(Myself))
+END
+
+IF
+	Global("JaylosFree","GLOBAL",1)
+	Detect("BODFGT03")
+THEN
+	RESPONSE #100
+		ActionOverride("BODFGT03",StartDialog("BODFGTSP",Player1))
+END
+
+IF
+	PartyHasItem("MISC4U")
+	Global("KvEmbarl","LOCALS",0)
+	!Dead("Embarl")
+	!See("Embarl")
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+END
+
+IF
+	GlobalGT("EdwinJob","GLOBAL",0)
+	AreaCheck("AR0300")
+	Global("sayedwin","LOCALS",0)
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+END
+
+IF
+	AreaCheck("AR1008")
+	Global("twistedrune","LOCALS",0)
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+END
+
+IF
+	Dead("Madulf")
+	AreaCheck("AR1100")
+	!ActuallyInCombat()
+	Global("madultdie","LOCALS",0)
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+END
+
+IF
+	AreaCheck("AR1401")
+	Global("darktemple","LOCALS",0)
+	!Global("villagesaved","GLOBAL",1)
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+END
+
+IF
+	PartyHasItem("Leat13")
+	OR(2)
+		AreaCheck("AR0206")
+		AreaCheck("AR0201")
+	Global("TheshalDie","LOCALS",0)
+	!ActuallyInCombat()
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+END
+
+IF
+	Dead("CEFALD01")
+	AreaCheck("AR1900")
+	Global("FaldDie","LOCALS",0)
+	InParty("Kiyone")
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+END
+
+IF
+	Dead("trfued01")
+	Dead("trfued05")
+	GlobalGT("feudplot","GLOBAL",1)
+	Global("trnobledie","LOCALS",0)
+	!ActuallyInCombat()
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+END
+
+IF
+	Dead("TRTHF01")
+	Global("ItonaSeeKova","GLOBAL",2)
+	AreaCheck("AR1900")
+	!ActuallyInCombat()
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+END
+
+IF
+	!Dead("TRTHF01")
+	Global("ItonaSeeKova","GLOBAL",1)
+	Dead("TRRAK01")
+	AreaCheck("AR1900")
+THEN
+	RESPONSE #100
+		SetGlobal("ItonaSeeKova","GLOBAL",1)
+		CreateCreature("TRTHF01",[4085.1110],10)
+		ActionOverride("TRTHF01",StartDialogNoSet(Player1))
+END
+
+IF
+	See("MaeVar")
+	InParty("Kova")
+	!StateCheck("Kova",STATE_INVISIBLE)
+	!Allegiance("MaeVar",ENEMY)
+	Global("MaeSeeKova","LOCALS",0)
+THEN
+	RESPONSE #100
+		ActionOverride("MaeVar",StartDialogNoSet(Player1))
+END
+
+IF
+	InParty("Kiyone") !Dead("Kiyone")
+	See("Madam")
+	Global("SeeNin","LOCALS",0)
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+END
+
+IF
+	OR(6)
+		See("kpgol01")
+		See("kpgol02")
+		See("kpgol03")
+		See("kpgol04")
+		See("kpgol05")
+		See("kpgol06")
+	Global("DeArniseGolem","LOCALS",0)
+	AreaCheck("AR1303")
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+END
+
+// Trial - when Imprisoned
+// -----------------------
+IF
+	AreaCheck("Z#1002")
+	Global("Z#TrialClear","GLOBAL",1)
+	LOS("Z#Kni1",5)
+	LOS("Z#Kni2",5)
+	LOS("Kiyone",5)
+THEN
+	RESPONSE #100
+		ActionOverride("Z#Kni1",EscapeArea())
+		ActionOverride("Z#Kni2",EscapeArea())
+		ActionOverride("Kiyone",EscapeAreaMove("AR1005",635,715,9))
+		SetGlobalTimer("Z#KKInPrisonT","GLOBAL",ONE_DAY)
+		SetCutSceneLite(FALSE)
+		MoveBetweenAreas("AR1005",[515.765],10)// [515.765],10
+END
+
+// After Brynnlaw Ambush
+// ---------------------
+IF
+	AreaCheck("AR1600")
+	!ActuallyInCombat()
+	GlobalGT("BrynnAmbush","GLOBAL",1)
+	!Global("BrynnAmbush","GLOBAL",4)
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+END
+
+// Kiyone dies or Injured
+// ----------------------
+IF
+	!HPPercentLT("Kiyone",20)
+	!Dead("Kiyone")
+	GlobalGT("KKRomance","GLOBAL",1)
+	Global("CastKiyoneHurt","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("CastKiyoneHurt","LOCALS",0)
+END
+
+IF
+	HPPercentLT("Kiyone",20)
+	!Dead("Kiyone")
+	GlobalGT("KKRomance","GLOBAL",1)
+	Global("CastKiyoneHurt","LOCALS",0)
+	ActuallyInCombat()
+THEN
+	RESPONSE #50
+		SetGlobal("CastKiyoneHurt","LOCALS",1)
+		DisplayStringHead("Kova",@804)  // ~Fall back, Kiyone. Now.~
+		ReallyForceSpell("Kiyone",WIZARD_INVISIBILITY)
+	RESPONSE #50
+		SetGlobal("CastKiyoneHurt","LOCALS",1)
+		DisplayStringHead("Kova",@804)  // ~Fall back, Kiyone. Now.~
+		ReallyForceSpell("Kiyone",WIZARD_MIRROR_IMAGE)
+END
+
+IF
+	Died("Kiyone")
+	GlobalGT("KKRomance","GLOBAL",1)
+THEN
+	RESPONSE #100
+		DisplayStringHead("Kova",@805)  // ~You will pay for what you did to Kiyone!~
+		Attack(LastAttackerOf("Kiyone"))
+END
+
+
+// Kova & Kitchen
+// --------------
+IF
+	Global("Z#RestInn","GLOBAL",1)
+	Global("Z#TrialClear","GLOBAL",0)
+	GlobalGT("KKRomance","GLOBAL",0)
+	Global("BKvCook","GLOBAL",2)
+	InParty("Kiyone") InMyArea("Kiyone")
+	OR(10)
+		AreaCheck("AR0313") // The Thumb
+		AreaCheck("AR0406") // Copper Coronet
+		AreaCheck("AR0509") // Five Flagons
+		AreaCheck("AR0513") // Delosar
+		AreaCheck("AR0522") // Five Flagons
+		AreaCheck("AR0704") // Mithrest
+		AreaCheck("AR0709") // Den of 7 Vales
+		AreaCheck("AR1105") // Umar Inn
+		AreaCheck("AR1602") // Brynnlaw Inn
+		AreaCheck("AR2010") // Trademeet Inn
+THEN
+	RESPONSE #100
+		SetCutSceneLite(TRUE)
+		SetGlobal("BKvCook","GLOBAL",3)
+		SetGlobal("Z#RestInn","GLOBAL",0)
+		RealSetGlobalTimer("KvCookT","GLOBAL",2)
+		StorePartyLocations()
+		Hide()
+		Hide()
+		RunAwayFrom("Kiyone",23)
+END
+
+IF
+	GlobalGT("KKRomance","GLOBAL",0)
+	Global("Z#TrialClear","GLOBAL",0)
+	InParty("Kiyone") InMyArea("Kiyone")
+	Global("BKvCook","GLOBAL",4)
+	RealGlobalTimerExpired("KvCookT","GLOBAL")
+	OR(10)
+		AreaCheck("AR0313") // The Thumb
+		AreaCheck("AR0406") // Copper Coronet
+		AreaCheck("AR0509") // Five Flagons
+		AreaCheck("AR0513") // Delosar
+		AreaCheck("AR0522") // Five Flagons
+		AreaCheck("AR0704") // Mithrest
+		AreaCheck("AR0709") // Den of 7 Vales
+		AreaCheck("AR1105") // Umar Inn
+		AreaCheck("AR1602") // Brynnlaw Inn
+		AreaCheck("AR2010") // Trademeet Inn
+THEN
+	RESPONSE #100
+		SetGlobal("BKvCook","GLOBAL",5)
+		RestorePartyLocations()
+		FadeFromColor([20.0],0)
+		GiveGoldForce(-3)
+		StartDialogNoSet("Kiyone")
+END
+
+// Fishing areas
+// -------------
+IF
+	Global("Z#KvFishingPlace","GLOBAL",1)
+	AreaCheck("AR1100") // Umar Hills
+	InParty("Kova")
+	InParty("Kiyone")
+THEN
+	RESPONSE #100
+		SetGlobal("Z#KvFishingPlace","GLOBAL",2)
+		RealSetGlobalTimer("KKDreamT","GLOBAL",1)
+		ActionOverride("Kova",RunAwayFrom(Player1,15))
+		ActionOverride("Kiyone",RunAwayFrom(Player1,15))
+		FadeToColor([10.0],0)
+		ActionOverride("Kova",NoAction())
+		ActionOverride("Kiyone",NoAction())
+		ActionOverride("Kova",JumpToPoint([2215.2469]))
+		ActionOverride("Kova",Face(8))
+		ActionOverride("Kiyone",JumpToPoint([2260.2475]))
+		ActionOverride("Kiyone",Face(10))
+END
+
+IF
+	Global("Z#KvFishingPlace","GLOBAL",1)
+	AreaCheck("AR1200") // Windspear
+	InParty("Kova")
+	InParty("Kiyone")
+THEN
+	RESPONSE #100
+		SetGlobal("Z#KvFishingPlace","GLOBAL",2)
+		RealSetGlobalTimer("KKDreamT","GLOBAL",1)
+		ActionOverride("Kova",RunAwayFrom(Player1,15))
+		ActionOverride("Kiyone",RunAwayFrom(Player1,15))
+		FadeToColor([20.0],0)
+		ActionOverride("Kova",NoAction())
+		ActionOverride("Kiyone",NoAction())
+		ActionOverride("Kova",JumpToPoint([2155.2400]))
+		ActionOverride("Kova",Face(9))
+		ActionOverride("Kiyone",JumpToPoint([2200.2445]))
+		ActionOverride("Kiyone",Face(11))
+END
+
+IF
+	Global("Z#KvFishingPlace","GLOBAL",1)
+	AreaCheck("AR1800") // North Forest
+	InParty("Kova")
+	InParty("Kiyone")
+THEN
+	RESPONSE #100
+		SetGlobal("Z#KvFishingPlace","GLOBAL",2)
+		RealSetGlobalTimer("KKDreamT","GLOBAL",1)
+		ActionOverride("Kova",RunAwayFrom(Player1,15))
+		ActionOverride("Kiyone",RunAwayFrom(Player1,15))
+		FadeToColor([10.0],0)
+		ActionOverride("Kova",NoAction())
+		ActionOverride("Kiyone",NoAction())
+		ActionOverride("Kova",JumpToPoint([1235.230]))
+		ActionOverride("Kova",Face(7))
+		ActionOverride("Kiyone",JumpToPoint([1170.255]))
+		ActionOverride("Kiyone",Face(5))
+END
+
+IF
+	Global("Z#KvFishingPlace","GLOBAL",1)
+	AreaCheck("AR2500") // Underdark Exit
+	InParty("Kova")
+	InParty("Kiyone")
+THEN
+	RESPONSE #100
+		SetGlobal("Z#KvFishingPlace","GLOBAL",2)
+		RealSetGlobalTimer("KKDreamT","GLOBAL",1)
+		ActionOverride("Kova",RunAwayFrom(Player1,15))
+		ActionOverride("Kiyone",RunAwayFrom(Player1,15))
+		FadeToColor([10.0],0)
+		ActionOverride("Kova",NoAction())
+		ActionOverride("Kiyone",NoAction())
+		ActionOverride("Kova",JumpToPoint([315.1265]))
+		ActionOverride("Kova",Face(6))
+		ActionOverride("Kiyone",JumpToPoint([350.1245]))
+		ActionOverride("Kiyone",Face(7))
+END
+
+IF
+	Global("Z#KvFishingPlace","GLOBAL",1)
+	AreaCheck("AR2600") // Forest of Tethyr
+	InParty("Kova")
+	InParty("Kiyone")
+THEN
+	RESPONSE #100
+		SetGlobal("Z#KvFishingPlace","GLOBAL",2)
+		RealSetGlobalTimer("KKDreamT","GLOBAL",1)
+		ActionOverride("Kova",RunAwayFrom(Player1,15))
+		ActionOverride("Kiyone",RunAwayFrom(Player1,15))
+		FadeToColor([10.0],0)
+		ActionOverride("Kova",NoAction())
+		ActionOverride("Kiyone",NoAction())
+		ActionOverride("Kova",JumpToPoint([4235.3135]))
+		ActionOverride("Kova",Face(13))
+		ActionOverride("Kiyone",JumpToPoint([4190.3170]))
+		ActionOverride("Kiyone",Face(15))
+END
+
+IF
+	Global("Z#KvFishingPlace","GLOBAL",1)
+	AreaCheck("AR3000") // Watcher's Keep
+	InParty("Kova")
+	InParty("Kiyone")
+THEN
+	RESPONSE #100
+		SetGlobal("Z#KvFishingPlace","GLOBAL",2)
+		RealSetGlobalTimer("KKDreamT","GLOBAL",1)
+		ActionOverride("Kova",RunAwayFrom(Player1,15))
+		ActionOverride("Kiyone",RunAwayFrom(Player1,15))
+		FadeToColor([15.0],0)
+		ActionOverride("Kova",NoAction())
+		ActionOverride("Kiyone",NoAction())
+		ActionOverride("Kova",JumpToPoint([2045.945]))
+		ActionOverride("Kova",Face(7))
+		ActionOverride("Kiyone",JumpToPoint([1975.965]))
+		ActionOverride("Kiyone",Face(6))
+END
+
+IF
+	Global("Z#KvFishingPlace","GLOBAL",2)
+	RealGlobalTimerExpired("KKDreamT","GLOBAL")
+THEN
+	RESPONSE #100
+		FadeFromColor([15.0],0)
+		MoveViewObject(Myself,INSTANT)
+		SetGlobal("Z#KvFishingPlace","GLOBAL",3)
+END
+
+// Kv Fishing
+// ----------
+IF
+Global("Z#KvFishingPlace","GLOBAL",3)
+	Global("BKvFishing","GLOBAL",0)
+	Global("KvFishing","GLOBAL",1)
+THEN
+	RESPONSE #100
+		StartDialogNoSet("Kiyone")
+END
+
+IF
+	Global("KvFishing","GLOBAL",1)
+	Global("BKvFishing","GLOBAL",1)
+	Global("Z#KvFishingPlace","GLOBAL",0)
+	RealGlobalTimerExpired("KKDreamT","GLOBAL")
+THEN
+	RESPONSE #100
+		FaceObject("Kiyone")
+		StartDialogNoSet("Kiyone")
+END
+
+IF
+	Global("Z#KvFishingPlace","GLOBAL",3)
+	Global("BKvFishing","GLOBAL",1)
+	Global("KvFishing","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("KvFishing","GLOBAL",2)
+		RealSetGlobalTimer("KKDreamT","GLOBAL",1)
+END
+
+IF
+	Global("KvFishing","GLOBAL",2)
+	Global("BKvFishing","GLOBAL",1)
+	RealGlobalTimerExpired("KKDreamT","GLOBAL")
+THEN
+	RESPONSE #100
+		StartDialogNoSet("Kiyone")
+END
+
+IF
+	Global("KvFishing","GLOBAL",3)
+	Global("BKvFishing","GLOBAL",1)
+	Global("Z#PartyRested","GLOBAL",0)
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+END
+
+// String Fixer
+// ------------
+IF
+  HotKey(F)
+THEN
+  RESPONSE #100
+    StartCutSceneMode()
+    StartCutScene("Z#kvfix")
+END
+
+// KKDream1
+// --------
+IF
+	Global("KKDream1","GLOBAL",9)
+THEN
+	RESPONSE #100
+		SetCutSceneLite(TRUE)
+		SetGlobal("KKDream1","GLOBAL",8)
+		RealSetGlobalTimer("KKDreamT","GLOBAL",2)
+		SetSequence(SEQ_AWAKE)
+		RunAwayFrom("Kiyone",25)
+END
+
+IF
+	Global("KKDream1","GLOBAL",3)
+	Range("Kiyone",5)
+THEN
+	RESPONSE #100
+		MoveViewObject(Myself,INSTANT)
+		StartDialogNoSet("Kiyone")
+END
+
+IF
+	Global("KKDream1","GLOBAL",5)
+	Range("Kiyone",5)
+	RealGlobalTimerExpired("KKDreamT","GLOBAL")
+THEN
+	RESPONSE #100
+		MoveViewObject(Myself,INSTANT)
+		StartDialogNoSet("Kiyone")
+END
+
+
+// Kova's Dagger 1
+// ---------------
+IF
+	Global("KvDagUpg","GLOBAL",0)
+	!HasItem("KovaDag2",Myself)
+	PartyHasItem("KovaDag2")
+THEN
+	RESPONSE #100
+		TakePartyItemAll("KovaDag2")
+		DisplayStringHead(Myself,@803)  // ~I think that blade belongs to me.~
+END
+
+IF
+	Global("KvDagUpg","GLOBAL",0)
+   	!HasItem("KovaDag2",Myself)
+	!PartyHasItem("KovaDag2")
+THEN
+   	RESPONSE #100
+		GiveItemCreate("KovaDag2",Myself,0,0,0)
+END
+
+IF
+	NumItemsGT("KovaDag2","Kova",1)
+THEN
+   	RESPONSE #100
+		DestroyItem("KovaDag2")
+END
+
+IF
+	!Global("KvDagUpg","GLOBAL",0)
+	PartyHasItem("KovaDag2")
+THEN
+	RESPONSE #100
+		ActionOverride(Player1,DestroyItem("KovaDag2"))
+		ActionOverride(Player2,DestroyItem("KovaDag2"))
+		ActionOverride(Player3,DestroyItem("KovaDag2"))
+		ActionOverride(Player4,DestroyItem("KovaDag2"))
+		ActionOverride(Player5,DestroyItem("KovaDag2"))
+		ActionOverride(Player6,DestroyItem("KovaDag2"))
+END
+
+// Kova's Dagger 2
+// ---------------
+IF
+	Global("KvDagUpg","GLOBAL",1)
+	!HasItem("KovaDag3",Myself)
+	PartyHasItem("KovaDag3")
+THEN
+	RESPONSE #100
+		TakePartyItemAll("KovaDag3")
+		DisplayStringHead(Myself,@803)  // ~I think that blade belongs to me.~
+END
+
+IF
+	Global("KvDagUpg","GLOBAL",1)
+   	!HasItem("KovaDag3",Myself)
+	!PartyHasItem("KovaDag3")
+THEN
+   	RESPONSE #100
+		GiveItemCreate("KovaDag3",Myself,0,0,0)
+END
+
+IF
+	NumItemsGT("KovaDag3","Kova",1)
+THEN
+   	RESPONSE #100
+		DestroyItem("KovaDag3")
+END
+
+IF
+	!Global("KvDagUpg","GLOBAL",1)
+	PartyHasItem("KovaDag3")
+THEN
+	RESPONSE #100
+		ActionOverride(Player1,DestroyItem("KovaDag3"))
+		ActionOverride(Player2,DestroyItem("KovaDag3"))
+		ActionOverride(Player3,DestroyItem("KovaDag3"))
+		ActionOverride(Player4,DestroyItem("KovaDag3"))
+		ActionOverride(Player5,DestroyItem("KovaDag3"))
+		ActionOverride(Player6,DestroyItem("KovaDag3"))
+END
+
+// Kova's Dagger 3
+// ---------------
+IF
+	Global("KvDagUpg","GLOBAL",2)
+	!HasItem("KovaDag5",Myself)
+	PartyHasItem("KovaDag5")
+THEN
+	RESPONSE #100
+		TakePartyItemAll("KovaDag5")
+		DisplayStringHead(Myself,@803)  // ~I think that blade belongs to me.~
+END
+
+IF
+	Global("KvDagUpg","GLOBAL",2)
+   	!HasItem("KovaDag5",Myself)
+	!PartyHasItem("KovaDag5")
+THEN
+   	RESPONSE #100
+		GiveItemCreate("KovaDag5",Myself,0,0,0)
+END
+
+IF
+	NumItemsGT("KovaDag5","Kova",1)
+THEN
+   	RESPONSE #100
+		DestroyItem("KovaDag5")
+END
+
+IF
+	!Global("KvDagUpg","GLOBAL",2)
+	PartyHasItem("KovaDag5")
+THEN
+	RESPONSE #100
+		ActionOverride(Player1,DestroyItem("KovaDag5"))
+		ActionOverride(Player2,DestroyItem("KovaDag5"))
+		ActionOverride(Player3,DestroyItem("KovaDag5"))
+		ActionOverride(Player4,DestroyItem("KovaDag5"))
+		ActionOverride(Player5,DestroyItem("KovaDag5"))
+		ActionOverride(Player6,DestroyItem("KovaDag5"))
+END
+
+// Kova's Armor 1
+// --------------
+IF
+	Global("KvArmUpg","GLOBAL",0)
+	!HasItem("KovaArm1",Myself)
+	PartyHasItem("KovaArm1")
+THEN
+	RESPONSE #100
+		TakePartyItemAll("KovaArm1")
+		DisplayStringHead(Myself,@802)  // ~I believe you have my robes.~
+END
+
+IF
+	Global("KvArmUpg","GLOBAL",0)
+   	!HasItem("KovaArm1",Myself)
+	!PartyHasItem("KovaArm1")
+THEN
+   	RESPONSE #100
+		GiveItemCreate("KovaArm1",Myself,0,0,0)
+END
+
+IF
+	NumItemsGT("KovaArm1","Kova",1)
+THEN
+   	RESPONSE #100
+		DestroyItem("KovaArm1")
+END
+
+IF
+	!Global("KvArmUpg","GLOBAL",0)
+	PartyHasItem("KovaArm1")
+THEN
+	RESPONSE #100
+		ActionOverride(Player1,DestroyItem("KovaArm1"))
+		ActionOverride(Player2,DestroyItem("KovaArm1"))
+		ActionOverride(Player3,DestroyItem("KovaArm1"))
+		ActionOverride(Player4,DestroyItem("KovaArm1"))
+		ActionOverride(Player5,DestroyItem("KovaArm1"))
+		ActionOverride(Player6,DestroyItem("KovaArm1"))
+END
+
+// Kova's Armor 2
+// --------------
+IF
+	Global("KvArmUpg","GLOBAL",1)
+	!HasItem("KovaArm2",Myself)
+	PartyHasItem("KovaArm2")
+THEN
+	RESPONSE #100
+		TakePartyItemAll("KovaArm2")
+		DisplayStringHead(Myself,@802)  // ~I believe you have my robes.~
+END
+
+IF
+	Global("KvArmUpg","GLOBAL",1)
+   	!HasItem("KovaArm2",Myself)
+	!PartyHasItem("KovaArm2")
+THEN
+   	RESPONSE #100
+		GiveItemCreate("KovaArm2",Myself,0,0,0)
+END
+
+IF
+	NumItemsGT("KovaArm2","Kova",1)
+THEN
+   	RESPONSE #100
+		DestroyItem("KovaArm2")
+END
+
+IF
+	!Global("KvArmUpg","GLOBAL",1)
+	PartyHasItem("KovaArm2")
+THEN
+	RESPONSE #100
+		ActionOverride(Player1,DestroyItem("KovaArm2"))
+		ActionOverride(Player2,DestroyItem("KovaArm2"))
+		ActionOverride(Player3,DestroyItem("KovaArm2"))
+		ActionOverride(Player4,DestroyItem("KovaArm2"))
+		ActionOverride(Player5,DestroyItem("KovaArm2"))
+		ActionOverride(Player6,DestroyItem("KovaArm2"))
+END
+
+// Kova's Armor 3
+// --------------
+IF
+	Global("KvArmUpg","GLOBAL",2)
+	!HasItem("KovaArm5",Myself)
+	PartyHasItem("KovaArm5")
+THEN
+	RESPONSE #100
+		TakePartyItemAll("KovaArm5")
+		DisplayStringHead(Myself,@802)  // ~I believe you have my robes.~
+END
+
+IF
+	Global("KvArmUpg","GLOBAL",2)
+   	!HasItem("KovaArm5",Myself)
+	!PartyHasItem("KovaArm5")
+THEN
+   	RESPONSE #100
+		GiveItemCreate("KovaArm5",Myself,0,0,0)
+END
+
+IF
+	NumItemsGT("KovaArm5","Kova",1)
+THEN
+   	RESPONSE #100
+		DestroyItem("KovaArm5")
+END
+
+IF
+	!Global("KvArmUpg","GLOBAL",2)
+	PartyHasItem("KovaArm5")
+THEN
+	RESPONSE #100
+		ActionOverride(Player1,DestroyItem("KovaArm5"))
+		ActionOverride(Player2,DestroyItem("KovaArm5"))
+		ActionOverride(Player3,DestroyItem("KovaArm5"))
+		ActionOverride(Player4,DestroyItem("KovaArm5"))
+		ActionOverride(Player5,DestroyItem("KovaArm5"))
+		ActionOverride(Player6,DestroyItem("KovaArm5"))
+END
+
+// Kova's Ring1
+// ------------
+IF
+	Global("KKRingUpg","GLOBAL",0)
+	GlobalGT("Z#Proposal","GLOBAL",8)
+	!HasItem("KvRing1",Myself)
+	!HasItem("KvRing1","Kiyone")
+	PartyHasItem("KvRing1")
+THEN
+	RESPONSE #100
+		TakePartyItemAll("KvRing1")
+		DisplayStringHead(Myself,@806)  // ~Please, that ring is important to me.~
+END
+
+IF
+	Global("KKRingUpg","GLOBAL",0)
+	GlobalGT("Z#Proposal","GLOBAL",8)
+	!PartyHasItem("KvRing1")
+THEN
+	RESPONSE #100
+		GiveItemCreate("KvRing1",Myself,0,0,0)
+END
+
+IF
+	NumItemsGT("KvRing1","Kova",1)
+THEN
+   	RESPONSE #100
+		DestroyItem("KvRing1")
+END
+
+IF	PartyHasItem("KvRing1")
+	OR(2)
+		Global("KKRingUpg","GLOBAL",1)
+		!GlobalGT("Z#Proposal","GLOBAL",8)
+THEN
+	RESPONSE #100
+		ActionOverride(Player1,DestroyItem("KvRing1"))
+		ActionOverride(Player2,DestroyItem("KvRing1"))
+		ActionOverride(Player3,DestroyItem("KvRing1"))
+		ActionOverride(Player4,DestroyItem("KvRing1"))
+		ActionOverride(Player5,DestroyItem("KvRing1"))
+		ActionOverride(Player6,DestroyItem("KvRing1"))
+END
+
+// Kova's Ring2
+// ------------
+IF
+	Global("KKRingUpg","GLOBAL",1)
+	GlobalGT("Z#Proposal","GLOBAL",8)
+	!HasItem("KvRing2",Myself)
+	!HasItem("KvRing2","Kiyone")
+	PartyHasItem("KvRing2")
+THEN
+	RESPONSE #100
+		TakePartyItemAll("KvRing2")
+		DisplayStringHead(Myself,@806)  // ~Please, that ring is important to me.~
+END
+
+IF
+	Global("KKRingUpg","GLOBAL",1)
+	GlobalGT("Z#Proposal","GLOBAL",8)
+	!PartyHasItem("KvRing2")
+THEN
+	RESPONSE #100
+		GiveItemCreate("KvRing2",Myself,0,0,0)
+END
+
+IF
+	NumItemsGT("KvRing2","Kova",1)
+THEN
+   	RESPONSE #100
+		DestroyItem("KvRing2")
+END
+
+IF
+	PartyHasItem("KvRing2")
+	OR(2)
+		Global("KKRingUpg","GLOBAL",0)
+		!GlobalGT("Z#Proposal","GLOBAL",8)
+THEN
+	RESPONSE #100
+		ActionOverride(Player1,DestroyItem("KvRing2"))
+		ActionOverride(Player2,DestroyItem("KvRing2"))
+		ActionOverride(Player3,DestroyItem("KvRing2"))
+		ActionOverride(Player4,DestroyItem("KvRing2"))
+		ActionOverride(Player5,DestroyItem("KvRing2"))
+		ActionOverride(Player6,DestroyItem("KvRing2"))
+END
+
+
+// If Kiyone dies and is kicked out
+// --------------------------------
+IF
+	OR(5)
+		StateCheck("Kiyone",STATE_ACID_DEATH)
+		StateCheck("Kiyone",STATE_FLAME_DEATH)
+		StateCheck("Kiyone",STATE_EXPLODING_DEATH)
+		StateCheck("Kiyone",STATE_STONE_DEATH)
+		StateCheck("Kiyone",STATE_FROZEN_DEATH)
+	!InPartyAllowDead("Kiyone")
+	InParty(Myself)
+THEN
+	RESPONSE #100
+		StartDialog("KVCSPLAT",Player1)
+END
+
+IF
+	Dead("Kiyone")
+	!StateCheck("Kiyone",STATE_ACID_DEATH)
+	!StateCheck("Kiyone",STATE_FLAME_DEATH)
+	!StateCheck("Kiyone",STATE_EXPLODING_DEATH)
+	!StateCheck("Kiyone",STATE_STONE_DEATH)
+	!StateCheck("Kiyone",STATE_FROZEN_DEATH)
+	!InPartyAllowDead("Kiyone")
+	Global("KKJoin","GLOBAL",1)
+THEN
+	RESPONSE #100
+		StartDialog("KVCDEAD",Player1)
+END
+
+// J Triggers Related Game States
+// ------------------------------
+IF
+	GlobalGT("Break","LOCALS",6)
+	InParty("Kiyone")
+	InParty(Myself)
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+END
+
+IF
+	!StateCheck(Player1,STATE_SLEEPING)
+	ReputationLT(Player1,9)
+	Global("Bad9","LOCALS",0)
+	!ActuallyInCombat()
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+END
+
+IF	!InParty("Kiyone")
+	!Dead("Kiyone")
+	InParty("Kova")
+	!Global("KKJoin","GLOBAL",0)
+	!Global("KKJoin","GLOBAL",1)
+	!ActuallyInCombat()
+THEN
+	RESPONSE #100
+	LeaveParty()
+END
+
+// Create MaeLOA after getting MaeVar's Letters
+// --------------------------------------------
+IF
+	PartyHasItem("MISC4V")
+	Global("LOAClue","GLOBAL",0)
+	!Global("RenalJob","GLOBAL",4)
+	InParty("Kova")
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+END
+
+IF
+	PartyHasItem("MISC4V")
+	Global("LOAClue","GLOBAL",0)
+	AreaCheck("AR0300")
+	Global("RenalJob","GLOBAL",4)
+	InParty("Kova")
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+END
+
+// Killing Big Baddie 2
+// --------------------
+IF
+	Global("Z#KKKillHard","GLOBAL",3)
+	InParty("Kova")
+	InParty("Kiyone")
+	!ActuallyInCombat()
+	Global("Z#KKHardFight","GLOBAL",1)
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+END
+
+// Firkraag
+// --------
+IF
+	ActuallyInCombat()
+	AreaCheck("AR1203")
+	Allegiance("firkra02",ENEMY)
+	InParty("Kiyone")
+	InParty("Kova")
+	See("firkra02")
+	Global("Z#KKHardFight","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Z#KKHardFight","GLOBAL",1)
+END
+
+IF
+	ActuallyInCombat()
+	AreaCheck("AR1203")
+	Dead("firkra02")
+	InParty("Kova")
+	InParty("Kiyone")
+	Global("Z#KKHardFight","GLOBAL",1)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Z#KKKillHard","GLOBAL",1)
+END
+
+// Shadow Dragon
+// -------------
+IF
+	ActuallyInCombat()
+	AreaCheck("AR1402")
+	Allegiance("shadra01",ENEMY)
+	InParty("Kiyone")
+	InParty("Kova")
+	See("shadra01")
+	Global("Z#KKHardFight","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Z#KKHardFight","GLOBAL",1)
+END
+
+IF
+	ActuallyInCombat()
+	AreaCheck("AR1402")
+	Dead("shadra01")
+	InParty("Kova")
+	InParty("Kiyone")
+	Global("Z#KKHardFight","GLOBAL",1)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Z#KKKillHard","GLOBAL",1)
+END
+
+// Kangaxx the DemiLich
+// --------------------
+IF
+	ActuallyInCombat()
+	AreaCheck("AR0331")
+	Allegiance("hldemi",ENEMY)
+	InParty("Kiyone")
+	InParty("Kova")
+	See("hldemi")
+	Global("Z#KKHardFight","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Z#KKHardFight","GLOBAL",1)
+END
+
+IF
+	ActuallyInCombat()
+	AreaCheck("AR0331")
+	Dead("hldemi")
+	InParty("Kova")
+	InParty("Kiyone")
+	Global("Z#KKHardFight","GLOBAL",1)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Z#KKKillHard","GLOBAL",1)
+END
+
+// Black Dragon
+// ------------
+IF
+	ActuallyInCombat()
+	AreaCheck("AR2807")
+	Allegiance("dragblac",ENEMY)
+	InParty("Kiyone")
+	InParty("Kova")
+	See("dragblac")
+	Global("Z#KKHardFight","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Z#KKHardFight","GLOBAL",1)
+END
+
+IF
+	ActuallyInCombat()
+	AreaCheck("AR2807")
+	Dead("dragblac")
+	InParty("Kova")
+	InParty("Kiyone")
+	Global("Z#KKHardFight","GLOBAL",1)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Z#KKKillHard","GLOBAL",1)
+END
+
+// Adalon the Silver Dragon
+// ------------------------
+IF
+	ActuallyInCombat()
+	AreaCheck("AR2102")
+	Allegiance("udsilver",ENEMY)
+	InParty("Kiyone")
+	InParty("Kova")
+	See("udsilver")
+	Global("Z#KKHardFight","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Z#KKHardFight","GLOBAL",1)
+END
+
+IF
+	ActuallyInCombat()
+	AreaCheck("AR2102")
+	Dead("udsilver")
+	InParty("Kova")
+	InParty("Kiyone")
+	Global("Z#KKHardFight","GLOBAL",1)
+THEN
+	RESPONSE #100
+		IncrementGlobal("Z#KKKillHard","GLOBAL",1)
+END
+
+// Kova's First Revival
+// --------------------
+IF
+	Global("KovaDied","GLOBAL",1)
+	!ActuallyInCombat()
+	InParty(Myself)
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+END
+
+// Killing Edwin
+// -------------
+IF
+	Global("BKovaEdwin","GLOBAL",2)
+	!LOS("Edwin",4)
+	InParty("Edwin")
+THEN
+	RESPONSE #100
+		SetGlobal("BKovaEdwin","GLOBAL",3)
+		StartDialogNoSet(Player1)
+END
+
+// Scripts for Kova Talking in Areas, usually after leaving places
+// ---------------------------------------------------------------
+IF
+	AreaType(OUTDOOR)
+	InParty("Kiyone")
+	InMyArea("Kiyone")
+	Global("GovtGuards","GLOBAL",4)
+	Global("KvEvidEnough","GLOBAL",0)
+	RealGlobalTimerExpired("Z#EnoughT","GLOBAL")
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+END
+
+IF
+	AreaCheck("AR1000")
+	InParty("Kiyone")
+	InMyArea("Kiyone")
+	Global("DayvClue","GLOBAL",1)
+	Global("KKFindCrom","GLOBAL",0)
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+END
+
+IF
+	!AreaCheck("AR1103")
+	InParty("Kiyone") See("Kiyone")
+	Global("JermClue","GLOBAL",1)
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+END
+
+IF
+	!AreaCheck("AR1002")
+	InParty("Kiyone") See("Kiyone")
+	Global("BylTalk","GLOBAL",2)
+	!ActuallyInCombat()
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+END
+
+IF
+	!AreaCheck("AR1002")
+	InParty("Kiyone") See("Kiyone")
+	Global("BylTalk","GLOBAL",3)
+	Global("BregaTalk","GLOBAL",1)
+	!ActuallyInCombat()
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+END
+
+IF
+	!AreaCheck("AR1002")
+	InParty("Kiyone") See("Kiyone")
+	Global("BylTalk","GLOBAL",3)
+	Global("CornTalk","GLOBAL",1)
+	!PartyHasItem("CornRep")
+	!ActuallyInCombat()
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+END
+
+IF
+	!AreaCheck("AR1002")
+	InParty("Kova")
+	InParty("Kiyone") See("Kiyone")
+	PartyHasItem("CornRep")
+	Global("EnforcerRep","LOCALS",0)
+	!Global("CornTalk","GLOBAL",3)
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+END
+
+IF
+	Global("Dayven","GLOBAL",4)
+	!AreaCheckObject("AR1005","Kova")
+	!AreaCheckObject("AR1005","Kiyone")
+	InParty("Kiyone") See("Kiyone")
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+END
+
+IF
+	!AreaCheck("AR1002")
+	Global("Dayven","GLOBAL",6)
+	InParty("Kiyone") See("Kiyone")
+	!ActuallyInCombat()
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+END
+
+// Scripts for Kova about Gaelan Bayle and the Shadow Thief Offer
+// --------------------------------------------------------------
+IF
+	AreaCheck("AR0400")
+	Global("NoGaelan","Locals",0)
+	!ActuallyInCombat()
+THEN
+	RESPONSE #100
+		SetGlobal("NoGaelan","Locals",1)
+		StartDialogNoSet(Player1)
+END
+
+IF
+	Global("BodhiAppear","GLOBAL",3)
+	!Global("NoGaelan","Locals",3)
+	AreaCheck("AR0800") // Graveyard
+	!ActuallyInCombat()
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+END
+
+// Script for Kova on Kharen's Cutscene
+// ------------------------------------
+IF
+	AreaCheck("AR1500")
+ 	Global("KhWin","GLOBAL",1)
+ 	Global("FindingKova","GLOBAL",250)
+THEN
+ 	RESPONSE #100
+		ActionOverride("Kiyone",JumpToPoint([710.2725]))
+		StartDialogNoSet(Player1)
+END
+
+// Script for Kova to kill self when in Gaelan's Home
+// --------------------------------------------------
+IF
+	AreaCheck("AR0311")
+	!Global("FindingKova","GLOBAL",255)
+	Global("FindingKova","GLOBAL",250)
+	Global("TIGael","GLOBAL",1)
+THEN
+	RESPONSE #100
+		LeaveParty()
+		ReallyForceSpell(Myself,TRAP_SPEAR)
+		Kill(Myself)
+END
+
+// Script for Kova when handed over to Brega
+// -----------------------------------------
+IF
+	Global("BregaTalk","GLOBAL",249)
+THEN
+	RESPONSE #100
+		SetCutSceneLite(TRUE)
+		ActionOverride("HABREGA",ForceSpell("HABREGA",INQUIS_TRUE_SIGHT))
+		Wait(1)
+		CreateCreature("AMNG1",[-1.-1],0)
+		SetGlobal("BregaTalk","GLOBAL",250)
+		ActionOverride("AMNG1",Attack("Kova"))
+		Wait(1)
+		Recoil()
+		StartDialogNoSet(Player1)
+		SetCutSceneLite(FALSE)
+END
+
+// Script for Kova when handed over to Corneil
+// -------------------------------------------
+IF
+	Global("CornTalk","GLOBAL",250)
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+		ActionOverride("CORNEIL",ReallyForceSpell("Kova",WIZARD_FINGER_OF_DEATH))
+		SetCutSceneLite(TRUE)
+		Wait(2)
+		LeaveParty()
+		Kill(Myself)
+		SetCutSceneLite(FALSE)
+END
+
+// Scripts for Kova Hiding in City and various subparts
+// ----------------------------------------------------
+IF
+	InMyArea("Z#BAEV")
+	GlobalGT("Z#BaevrinPlot","GLOBAL",2)
+	InParty("Kova")
+	!Global("FindingKova","GLOBAL",255)
+	!StateCheck("Kova",STATE_INVISIBLE)
+	!ActuallyInCombat()
+	Global("Z#KovaHide","GLOBAL",0)
+THEN
+	RESPONSE #100
+		ApplySpellRES("Z#HIDE",Myself)
+		DisplayString(Myself,@801)  // ~Hide in Shadows succeeded~
+END
+
+IF
+	AreaType(City)
+	AreaType(Outdoor)
+	InParty("Kova")
+	!Global("FindingKova","GLOBAL",255)
+	!StateCheck("Kova",STATE_INVISIBLE)
+	!ActuallyInCombat()
+	!RealGlobalTimerNotExpired("KvHidingT","GLOBAL")
+	Global("Z#KovaHide","GLOBAL",0)
+THEN
+	RESPONSE #5
+		ApplySpellRES("Z#HIDE",Myself)
+		DisplayString(Myself,@801)  // ~Hide in Shadows succeeded~
+	RESPONSE #15
+		RealSetGlobalTimer("KvHidingT","GLOBAL",3)
+END
+
+IF
+	OR (12)
+		AreaCheck("AR1002") // Council of 6 Building
+		AreaCheck("AR1005") // Prison
+		AreaCheck("AR1103") // Jermien's Room
+		AreaCheck("AR0317") // Rayic's Room
+		AreaCheck("AR0301") // Mae Guild 0
+		AreaCheck("AR0302") // Mae Guild 1
+		AreaCheck("AR0303") // Mae Guild 2
+		AreaCheck("AR0304") // Mae Guild 3
+		AreaCheck("AR0321") // Your Guild 0
+		AreaCheck("AR0322") // Your Guild 1
+		AreaCheck("AR0323") // Your Guild 2
+		AreaCheck("AR0324") // Your Guild 3
+	InParty("Kova")
+	!Global("Z#TrialClear","GLOBAL",1)
+	!Global("FindingKova","GLOBAL",255)
+	!StateCheck("Kova",STATE_INVISIBLE)
+	!ActuallyInCombat()
+	!RealGlobalTimerNotExpired("KvHidingT","GLOBAL")
+	Global("Z#KovaHide","GLOBAL",0)
+THEN
+	RESPONSE #5
+		ApplySpellRES("Z#HIDE",Myself)
+		DisplayString(Myself,@801)  // ~Hide in Shadows succeeded~
+	RESPONSE #5
+		RealSetGlobalTimer("KvHidingT","GLOBAL",3)
+END
+
+IF
+	OR(3)
+		AreaCheck("AR0305") // ST,Docks level 1
+		AreaCheck("AR0306") // ST,Docks level 2 with Renal
+		AreaCheck("AR0307") // ST,Docks basement with Aran
+	InParty("Kova")
+	!Global("FindingKova","GLOBAL",255)
+	!StateCheck("Kova",STATE_INVISIBLE)
+	!ActuallyInCombat()
+	Global("Z#KovaHide","GLOBAL",0)
+THEN
+	RESPONSE #100
+		ApplySpellRES("Z#HIDE",Myself)
+		DisplayString(Myself,@801)  // ~Hide in Shadows succeeded~
+END
+
+
+/* -------------------------------------------------- *
+ *  Scripts for Kova while Kiyone is looking for him  *
+ * -------------------------------------------------- */
+IF
+	Global("FindingKova","GLOBAL",2)
+	AreaCheck("AR1200")
+	!HasItem("Invulner",Myself) // Makes him unkillable
+THEN
+	RESPONSE #100
+		GiveItemCreate("Invulner",Myself,1,0,0)
+		EquipItem("Invulner")
+END
+
+IF
+	InParty("Kiyone") // Kiyone appears near Kova when one of the party members passes by near Kova
+	Global("FindingKova","GLOBAL",2)
+	Global("KKJoin","GLOBAL",0)
+//	AreaCheck("AR1200")
+	!LOS("Kiyone",100)
+	OR (6)
+		LOS(Player1,100)
+		LOS(Player2,100)
+		LOS(Player3,100)
+		LOS(Player4,100)
+		LOS(Player5,100)
+		LOS(Player6,100)
+THEN
+	RESPONSE #100
+		ActionOverride("Kiyone",NoAction())
+		ActionOverride("Kiyone",JumpToPoint([760.1700])
+		ActionOverride("Kiyone",Face(3))
+END
+
+IF
+	Global("FindingKova","GLOBAL",2)
+	AreaCheck("AR1200")
+	!StateCheck(Myself,STATE_INVISIBLE) // Keeps him Invisible
+THEN
+	RESPONSE #100
+		ReallyForceSpell(Myself,WIZARD_INVISIBILITY)
+END
+
+IF
+	InParty("Kiyone")
+	Global("FindingKova","GLOBAL",3)
+THEN
+	RESPONSE #100
+		SetGlobal("FindingKova","GLOBAL",4)
+		DestroySelf()
+END
+
+IF
+	InParty("Kiyone")
+	Global("FindingKova","GLOBAL",5)
+THEN
+	RESPONSE #100
+//		SetGlobal("FindingKova","GLOBAL",5)
+		StartDialogNoSet(Player1)
+END
+
+
+/* ---------------------------------- *
+ *  Scripts for Kova's Thac0 bonuses  *
+ * ---------------------------------- */
+IF
+	XPGT(Myself,1319999)     // Thief level 13
+	Global("ToHit","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("ToHit","LOCALS",1)
+		ReallyForceSpellRES("Z#GTHAC",Myself)
+END
+
+IF
+	XPGT(Myself,2639999)     // Thief level 16
+	Global("ToHit","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("ToHit","LOCALS",2)
+		ReallyForceSpellRES("Z#GTHAC",Myself)
+END
+
+IF
+	XPGT(Myself,3959999)     // Thief level 19
+	Global("ToHit","LOCALS",2)
+THEN
+	RESPONSE #100
+		SetGlobal("ToHit","LOCALS",3)
+		ReallyForceSpellRES("Z#GTHAC",Myself)
+END
+
+IF
+	XPGT(Myself,5719999)     // Thief level 23
+	Global("ToHit","LOCALS",3)
+THEN
+	RESPONSE #100
+		SetGlobal("ToHit","LOCALS",4)
+		ReallyForceSpellRES("Z#GTHAC",Myself)
+END
+
+IF
+	XPGT(Myself,7479999)     // Thief level 27
+	Global("ToHit","LOCALS",4)
+THEN
+	RESPONSE #100
+		SetGlobal("ToHit","LOCALS",5)
+		ReallyForceSpellRES("Z#GTHAC",Myself)
+END
+
+
+/* ------------------------------------------------- *
+ *  XP Triggers to be run once Kova Joins the Party  *
+ * ------------------------------------------------- */
+IF
+	XPLT(Player1,150000)
+	Global("KovaJoinedB4","LOCALS",0)
+	InParty("Kova")
+THEN
+	RESPONSE #100
+		SetGlobal("KovaJoinedB4","LOCALS",1)
+END
+
+IF
+	XPGT(Player1,149999)
+	XPLT(Player1,300000)
+	Global("KovaJoinedB4","LOCALS",0)
+	InParty("Kova")
+THEN
+	RESPONSE #100
+		AddXPObject("Kova",61000)
+		SetGlobal("KovaJoinedB4","LOCALS",1)
+END
+
+IF
+	XPGT(Player1,299999)
+	XPLT(Player1,600000)
+	Global("KovaJoinedB4","LOCALS",0)
+	InParty("Kova")
+THEN
+	RESPONSE #100
+		AddXPObject("Kova",211000)
+		SetGlobal("KovaJoinedB4","LOCALS",1)
+END
+
+IF
+	XPGT(Player1,599999)
+	XPLT(Player1,900000)
+	Global("KovaJoinedB4","LOCALS",0)
+	InParty("Kova")
+THEN
+	RESPONSE #100
+		AddXPObject("Kova",511000)
+		SetGlobal("KovaJoinedB4","LOCALS",1)
+END
+
+IF
+	XPGT(Player1,899999)
+	XPLT(Player1,1200000)
+	Global("KovaJoinedB4","LOCALS",0)
+	InParty("Kova")
+THEN
+	RESPONSE #100
+		AddXPObject("Kova",811000)
+		SetGlobal("KovaJoinedB4","LOCALS",1)
+END
+
+IF
+	XPGT(Player1,1199999)
+	XPLT(Player1,1500000)
+	Global("KovaJoinedB4","LOCALS",0)
+	InParty("Kova")
+THEN
+	RESPONSE #100
+		AddXPObject("Kova",1111000)
+		SetGlobal("KovaJoinedB4","LOCALS",1)
+END
+
+IF
+	XPGT(Player1,1499999)
+	XPLT(Player1,1800000)
+	Global("KovaJoinedB4","LOCALS",0)
+	InParty("Kova")
+THEN
+	RESPONSE #100
+		AddXPObject("Kova",1411000)
+		SetGlobal("KovaJoinedB4","LOCALS",1)
+END
+
+IF
+	XPGT(Player1,1799999)
+	XPLT(Player1,2100000)
+	Global("KovaJoinedB4","LOCALS",0)
+	InParty("Kova")
+THEN
+	RESPONSE #100
+		AddXPObject("Kova",1711000)
+		SetGlobal("KovaJoinedB4","LOCALS",1)
+END
+
+IF
+	XPGT(Player1,2099999)
+	XPLT(Player1,2400000)
+	Global("KovaJoinedB4","LOCALS",0)
+	InParty("Kova")
+THEN
+	RESPONSE #100
+		AddXPObject("Kova",2011000)
+		SetGlobal("KovaJoinedB4","LOCALS",1)
+END
+
+IF
+	XPGT(Player1,2399999)
+	XPLT(Player1,2700000)
+	Global("KovaJoinedB4","LOCALS",0)
+	InParty("Kova")
+THEN
+	RESPONSE #100
+		AddXPObject("Kova",2311000)
+		SetGlobal("KovaJoinedB4","LOCALS",1)
+END
+
+IF
+	XPGT(Player1,2699999)
+	XPLT(Player1,3000000)
+	Global("KovaJoinedB4","LOCALS",0)
+	InParty("Kova")
+THEN
+	RESPONSE #100
+		AddXPObject("Kova",2611000)
+		SetGlobal("KovaJoinedB4","LOCALS",1)
+END
+
+IF
+	XPGT(Player1,2999999)
+	XPLT(Player1,3300000)
+	Global("KovaJoinedB4","LOCALS",0)
+	InParty("Kova")
+THEN
+	RESPONSE #100
+		AddXPObject("Kova",2911000)
+		SetGlobal("KovaJoinedB4","LOCALS",1)
+END
+
+IF
+	XPGT(Player1,3299999)
+	XPLT(Player1,3600000)
+	Global("KovaJoinedB4","LOCALS",0)
+	InParty("Kova")
+THEN
+	RESPONSE #100
+		AddXPObject("Kova",3211000)
+		SetGlobal("KovaJoinedB4","LOCALS",1)
+END
+
+IF 	XPGT(Player1,3599999)
+	XPLT(Player1,3900000)
+	Global("KovaJoinedB4","LOCALS",0)
+	InParty("Kova")
+THEN
+	RESPONSE #100
+		AddXPObject("Kova",3511000)
+		SetGlobal("KovaJoinedB4","LOCALS",1)
+END
+
+IF 	XPGT(Player1,3899999)
+	Global("KovaJoinedB4","LOCALS",0)
+	InParty("Kova")
+THEN
+	RESPONSE #100
+		AddXPObject("Kova",3811000)
+		SetGlobal("KovaJoinedB4","LOCALS",1)
+END

@@ -1,0 +1,11 @@
+// for Corneil
+
+// after Kharen cutscene with Corneil
+
+IF 	Global("Z#KharenMove","GLOBAL",5)
+	AreaCheckObject("AR1002",Player1)
+THEN
+	RESPONSE #100
+	SetGlobal("Z#KharenMove","GLOBAL",6)
+	StartDialogNoSet(Player1)
+END

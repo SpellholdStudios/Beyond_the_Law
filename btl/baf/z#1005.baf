@@ -1,0 +1,70 @@
+// Z#1005 prison for Kharen cutscene
+
+IF
+	Global("Z#KharenMove","GLOBAL",0)
+	AreaCheckObject("Z#1005",Player1)
+THEN
+	RESPONSE #100
+		SetCutSceneLite(TRUE)
+		SetGlobal("Z#KharenMove","GLOBAL",1)
+//		CreateCreature("PRISONG2",[200.665],14)
+		CreateCreature("PRISONG1",[545.915],6)
+		CreateCreature("PRISONG2",[375.855],10)
+		CreateCreature("PRISONG1",[325.800],10)
+		CreateCreature("OBSERVE",[380.780],0)
+		MoveViewObject("OBSERVE",INSTANT)
+		CreateCreature("OBSERVE",[230.965],0)
+		RealSetGlobalTimer("Z#kharenprison","Z#1005",3)
+END
+
+IF
+	Global("Z#KharenMove","GLOBAL",1)
+	RealGlobalTimerExpired("Z#kharenprison","Z#1005")
+THEN
+	RESPONSE #100
+		SetGlobal("Z#KharenMove","GLOBAL",2)
+		CreateCreature("Z#Khar16",[355.830],2)
+		ActionOverride("kharen",ChangeAIScript("",OVERRIDE))
+		ActionOverride("kharen",ChangeAIScript("",DEFAULT))
+		ActionOverride("kharen",ApplySpell(Myself,WIZARD_PROTECTION_FROM_NORMAL_WEAPONS))
+		ActionOverride("kharen",Enemy())
+		ActionOverride("kharen",Unlock("Door13"))
+		ActionOverride("kharen",OpenDoor("Door13"))
+		RealSetGlobalTimer("Z#kharenprison","Z#1005",3)
+		ActionOverride("Kharen",ForceSpell(Myself,WIZARD_DEATH_SPELL))
+END
+
+IF
+	Global("Z#KharenMove","GLOBAL",2)
+	RealGlobalTimerExpired("Z#kharenprison","Z#1005")
+THEN
+	RESPONSE #100
+		SetGlobal("Z#KharenMove","GLOBAL",3)
+		ActionOverride("kharen",MoveToPointNoInterrupt([215.922]))
+		RealSetGlobalTimer("Z#kharenprison","Z#1005",1)
+END
+
+IF
+	Global("Z#KharenMove","GLOBAL",3)
+	!OpenState("Door12",TRUE)
+	RealGlobalTimerExpired("Z#kharenprison","Z#1005")
+THEN
+	RESPONSE #100
+		ActionOverride("kharen",Unlock("Door12"))
+		ActionOverride("kharen",OpenDoor("Door12"))
+		SetCutSceneLite(TRUE)
+		CreateCreature("OBSERVE",[180.840],0)
+		ActionOverride("Z#Seid16",StartDialogNoSet("Kharen"))
+END
+
+IF
+	Global("Z#KharenMove","GLOBAL",4)
+	!AreaCheckObject("Z#1005","Kharen")
+	!AreaCheckObject("Z#1005","Z#Seid16")
+THEN
+	RESPONSE #100
+		SetGlobal("Z#KharenMove","GLOBAL",5)
+		SetCutSceneLite(FALSE)
+		ActionOverride(Player1,LeaveAreaLUA("AR1002","",[580.870],9))
+//		RestorePartyLocations()
+END

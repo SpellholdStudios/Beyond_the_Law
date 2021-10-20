@@ -1,0 +1,231 @@
+// Edwin's Battle Script alongside Seida
+
+IF	Die()
+THEN
+	RESPONSE #100
+		AddExperienceParty(22000)
+END
+
+IF	Detect([PC])
+	Global("Z#SeidFight","LOCALS",0)
+THEN
+	RESPONSE #100
+	SetGlobal("Z#SeidFight","LOCALS",1)
+	ReallyForceSpell(Myself,CLERIC_HEAL)
+	GiveItemCreate("potn52",Myself,10,0,0)
+	ReallyForceSpell(Myself,WIZARD_TRUE_SIGHT)
+	ReallyForceSpell(Myself,WIZARD_HASTE)
+	ReallyForceSpell(Myself,WIZARD_SPELL_TRAP)
+	ReallyForceSpell(Myself,WIZARD_PROTECTION_FROM_FIRE)
+	ReallyForceSpell(Myself,WIZARD_MIRROR_IMAGE)
+	ReallyForceSpell(Myself,WIZARD_STONE_SKIN)
+	ReallyForceSpell(Myself,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)
+	ReallyForceSpell(Myself,WIZARD_MISLEAD)
+END
+
+// Standard
+
+IF	HPPercentLT(Myself,51)
+	HasItem("potn52",Myself)
+THEN
+	RESPONSE #100
+	UseItem("potn52",Myself)
+	Continue()
+END
+
+IF	!StateCheck(Myself,STATE_HASTED)
+THEN
+	RESPONSE #100
+	ApplySpell(Myself,WIZARD_HASTE)
+	Continue()
+END
+
+IF	CheckStat(Myself,0,167)
+THEN
+	RESPONSE #100
+	ApplySpell(Myself,WIZARD_TRUE_SIGHT)
+	Continue()
+END
+
+IF	CheckStatLT(Myself,90,RESISTFIRE)
+THEN
+	RESPONSE #100
+	ApplySpell(Myself,WIZARD_PROTECTION_FROM_FIRE)
+	Continue()
+END
+
+// Buffs / Protections
+
+IF	!StateCheck(Myself,STATE_INVISIBLE)
+	CheckStat(NearestEnemyOf(Myself),0,167)
+	CheckStat(SecondNearestEnemyOf(Myself),0,167)
+	CheckStat(ThirdNearestEnemyOf(Myself),0,167)
+	CheckStat(FourthNearestEnemyOf(Myself),0,167)
+	CheckStat(FifthNearestEnemyOf(Myself),0,167)
+	CheckStat(SixthNearestEnemyOf(Myself),0,167)
+	GlobalLT("Z#InvisSpell","LOCALS",2)
+THEN
+	RESPONSE #50
+	IncrementGlobal("Z#InvisSpell","LOCALS",1)
+	ForceSpell(Myself,WIZARD_SHADOW_DOOR)
+	Continue()
+	RESPONSE #50
+	IncrementGlobal("Z#InvisSpell","LOCALS",1)
+	ForceSpell(Myself,WIZARD_MISLEAD)
+	Continue()
+END
+
+IF	CheckStat(Myself,0,185)
+	GlobalLT("Z#ProtMagicWeapon","LOCALS",2)
+THEN
+	RESPONSE #100
+	IncrementGlobal("Z#ProtMagicWeapon","LOCALS",1)
+	ApplySpell(Myself,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)
+END
+
+IF	CheckStat(Myself,0,164)
+	GlobalLT("Z#SpellTrap","LOCALS",1)
+THEN
+	RESPONSE #100
+	IncrementGlobal("Z#SpellTrap","LOCALS",1)
+	ApplySpell(Myself,WIZARD_SPELL_TRAP)
+END
+
+IF	CheckStat(Myself,0,STONESKINS)
+	GlobalLT("Z#Stoneskin","LOCALS",3)
+THEN
+	RESPONSE #100
+	IncrementGlobal("Z#Stoneskin","LOCALS",1)
+	ApplySpell(Myself,WIZARD_STONE_SKIN)
+	ApplySpell(Myself,WIZARD_MIRROR_IMAGE)
+END
+
+// Attacks
+
+IF 	GlobalTimerNotExpired("Z#RecastT","LOCALS")
+//	!GlobalTimerNotExpired("Z#TimeStopT","LOCALS")
+THEN
+	RESPONSE #100
+END
+
+IF 	!GlobalTimerNotExpired("Z#RecastT","LOCALS")
+THEN
+	RESPONSE #100
+	SetGlobalTimer("Z#RecastT","LOCALS",4)
+	Continue()
+END
+
+IF	Detect([PC])
+	Global("Z#TimeStop","LOCALS",0)
+THEN
+	RESPONSE #100
+	SetGlobal("Z#TimeStop","LOCALS",1)
+	ForceSpell(Myself,WIZARD_TIME_STOP)
+	SetGlobalTimer("Z#TimeStopT","LOCALS",18)
+	ForceSpell(LastSeenBy(Myself),WIZARD_GREATER_MALISON)
+	ForceSpell(LastSeenBy(Myself),WIZARD_WAIL_OF_THE_BANSHEE)
+END
+
+IF	OR(2)
+		HasBounceEffects([PC])
+		HasImmunityEffects([PC])
+	Detect([PC])
+	GlobalLT("Z#RemoveMagic","LOCALS",5)
+	!GlobalTimerNotExpired("Z#BreachT","LOCALS")
+THEN
+	RESPONSE #100
+	IncrementGlobal("Z#RemoveMagic","LOCALS",1)
+	SetGlobalTimer("Z#BreachT","LOCALS",12)
+	ReallyForceSpell(LastSeenBy(Myself),WIZARD_PIERCE_MAGIC)
+	ForceSpell(LastSeenBy(Myself),WIZARD_BREACH)
+	Continue()
+END
+
+IF	Detect([PC])
+	HPLT(LastSeenBy(Myself),60)
+	GlobalLT("Z#KillPW","LOCALS",2)
+	!GlobalTimerNotExpired("Z#KillWordT","LOCALS")
+THEN
+	RESPONSE #100
+	IncrementGlobal("Z#KillPW","LOCALS",1)
+	SetGlobalTimer("Z#KillWordT","LOCALS",8)
+	ForceSpell(LastSeenBy(Myself),WIZARD_POWER_WORD_KILL)
+END
+
+IF	Detect([PC])
+	HPLT(LastSeenBy(Myself),60)
+	GlobalLT("Z#DeathSpell","LOCALS",3)
+	!GlobalTimerNotExpired("Z#KillWordT","LOCALS")
+THEN
+	RESPONSE #100
+	IncrementGlobal("Z#DeathSpell","LOCALS",1)
+	SetGlobalTimer("Z#KillWordT","LOCALS",8)
+	ForceSpell(LastSeenBy(Myself),WIZARD_DEATH_SPELL)
+END
+
+IF	Detect([PC])
+	Global("Z#MeteorShower","LOCALS",0)
+THEN
+	RESPONSE #50
+	SetGlobal("Z#MeteorShower","LOCALS",1)
+	ForceSpell(LastSeenBy(Myself),WIZARD_METEOR_SWARM)
+	RESPONSE #50
+	Continue()
+END
+
+IF	Detect([PC])
+	GlobalLT("Z#ChainLightning","LOCALS",2)
+THEN
+	RESPONSE #70
+	IncrementGlobal("Z#ChainLightning","LOCALS",1)
+	ForceSpell(LastSeenBy(Myself),WIZARD_CHAIN_LIGHTNING)
+	RESPONSE #30
+	Continue()
+END
+
+IF	Detect([PC])
+	GlobalLT("Z#AbiDalzim","LOCALS",2)
+THEN
+	RESPONSE #20
+	IncrementGlobal("Z#AbiDalzim","LOCALS",1)
+	ForceSpell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)
+	RESPONSE #80
+	Continue()
+END
+
+IF	Detect([PC])
+	LOS(LastSeenBy(Myself),30)
+	GlobalLT("Z#Sunfire","LOCALS",4)
+THEN
+	RESPONSE #80
+	IncrementGlobal("Z#Sunfire","LOCALS",1)
+	ForceSpell(Myself,WIZARD_SUN_FIRE)
+	RESPONSE #20
+	Continue()
+END
+
+IF	LOS(NearestEnemyOf(Myself),30)
+	LOS(ThirdNearestEnemyOf(Myself),30)
+	LOS(SecondNearestEnemyOf(Myself),30)
+	GlobalLT("Z#Sunfire","LOCALS",4)
+THEN
+	RESPONSE #100
+	IncrementGlobal("Z#Sunfire","LOCALS",1)
+	ForceSpell(Myself,WIZARD_SUN_FIRE)
+END
+
+IF	Detect([PC])
+THEN
+	RESPONSE #45
+	ForceSpell(LastSeenBy(Myself),WIZARD_FIREBALL)
+	RESPONSE #45
+	ForceSpell(LastSeenBy(Myself),WIZARD_FLAME_ARROW)
+	RESPONSE #45
+	ForceSpell(LastSeenBy(Myself),WIZARD_FINGER_OF_DEATH)
+END
+
+// Seida
+// Poison Weapon (innate)
+// Minor Whirlwind
+// Stoneskin
+// Non-Detection

@@ -1,0 +1,103 @@
+// Z#2812 - wedding place
+
+IF
+	OnCreation()
+THEN
+	RESPONSE #100
+//		SetGlobal("Z#Proposal","GLOBAL",3)
+		FadeToColor([0.0],0)
+		ActionOverride(Player2,LeaveAreaLUA("Z#2812","",[458.352],9))
+		ActionOverride(Player3,LeaveAreaLUA("Z#2812","",[518.352],7))
+		ActionOverride(Player4,LeaveAreaLUA("Z#2812","",[488.392],8))
+		ActionOverride(Player5,LeaveAreaLUA("Z#2812","",[428.392],9))
+		ActionOverride(Player6,LeaveAreaLUA("Z#2812","",[548.392],7))
+		Explore()
+		CreateCreature("suendel3",[325.422],10) // Elven Warrior
+		CreateCreature("suendel6",[773.434],6)  // Elven Warrior
+		CreateCreature("suendel2",[311.339],8)  // Elven Warrior
+		CreateCreature("suendel4",[648.410],7)  // Elf Female
+		CreateCreature("suendel4",[702.296],4)  // Elf Female
+		CreateCreature("suendel5",[730.366],4)  // Elf
+		CreateCreature("suendel5",[260.288],12) // Elven Warrior
+		CreateCreature("suendel6",[378.353],8)  // Elf
+		CreateCreature("suendel6",[634.352],6)  // Elf
+		CreateCreature("suendel5",[217.399],10) // Elf
+		ActionOverride(Player1,LeaveAreaLUA("Z#2812","",[488.312],8))
+END
+
+IF
+	AreaCheckObject("Z#2812",Player1)
+	Global("Z#Proposal","GLOBAL",3)
+THEN
+	RESPONSE #100
+		SetGlobal("Z#Proposal","GLOBAL",4)
+		ActionOverride("Kova",MakeUnselectable(1000))
+		ActionOverride("Kiyone",MakeUnselectable(1000))
+		ActionOverride("Kiyone",LeaveAreaLUA("AR2810","",[458.352],9))
+		ActionOverride("Kova",LeaveAreaLUA("AR2810","",[518.352],7))
+		CreateCreature("z#kvwed",[445.265],9)
+		CreateCreature("z#kywed",[531.265],7)
+END
+
+// spawn priestess
+// ---------------
+IF
+	!Dead("sudemin")
+	Global("Z#Proposal","GLOBAL",4)
+	Global("z#spawndemin","Z#2812",0)
+THEN
+	RESPONSE #100
+		SetGlobal("z#spawndemin","Z#2812",1)
+		CreateCreature("z#demin1",[488.206],0)
+		FaceObject("z#demin1")
+		ActionOverride("Kiyone",FaceObject("z#demin1"))
+		Wait(1)
+		FadeFromColor([10.0],0)
+		ActionOverride("z#demin1",StartDialogNoSet(Player1))
+END
+
+IF
+	Dead("sudemin")
+	Global("Z#Proposal","GLOBAL",4)
+	Global("z#spawndemin","Z#2812",0)
+THEN
+	RESPONSE #100
+		SetGlobal("z#spawndemin","Z#2812",2)
+		CreateCreature("z#demin2",[488.206],0)
+		FaceObject("z#demin2")
+		ActionOverride("Kiyone",FaceObject("z#demin2"))
+		Wait(1)
+		FadeFromColor([10.0],0)
+		ActionOverride("z#demin2",StartDialogNoSet(Player1))
+END
+
+// During Wedding 
+// --------------
+IF
+	Global("Z#Proposal","GLOBAL",5)
+	RealGlobalTimerExpired("Z#weddingT","Z#2812")
+THEN
+	RESPONSE #100
+		GiveItemCreate("KvRing1","Kova",1,0,0)
+		GiveItemCreate("KyRing1","Kiyone",1,1,0)
+		ActionOverride("z#demin1",StartDialogNoSet(Player1))	
+		ActionOverride("z#demin2",StartDialogNoSet(Player1))	
+END
+
+IF
+	Global("Z#Proposal","GLOBAL",6)
+	RealGlobalTimerExpired("Z#weddingT","Z#2812")
+THEN
+	RESPONSE #100
+		ActionOverride("z#kywed",StartDialogNoSet("z#kvwed"))	
+END
+
+IF
+	Global("Z#Proposal","GLOBAL",7)
+	RealGlobalTimerExpired("Z#weddingT","Z#2812")
+THEN
+	RESPONSE #100
+		UndoExplore()
+		ActionOverride(Player1,StartDialog("Player1",Player1))
+END
+

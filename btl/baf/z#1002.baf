@@ -1,0 +1,138 @@
+// For Trial Area
+
+// OnCreation
+// ----------
+IF
+//	OnCreation()
+	Global("Created","Z#1002",0)
+	AreaCheckObject("Z#1002","Kiyone")
+	AreaCheckObject("Z#1002","Kova")
+THEN
+	RESPONSE #100
+		FadeToColor([0.0],0)
+		DayNight(7)
+		CreateCreature("Z#NOB1",[675.645],14)
+		CreateCreature("Z#NOB2",[635.675],13)
+		CreateCreature("Z#NOB3",[595.710],12)
+		Wait(1)
+		ActionOverride("Kiyone",JumpToPoint([800.690]))
+		ActionOverride("Kova",JumpToPoint([885.690]))
+		ActionOverride("Kova",Face(10))
+		ActionOverride("Kiyone",Face(11))
+		MoveViewObject("Kova",INSTANT)
+		SetGlobal("Created","Z#1002",1)
+		SetCutSceneLite(TRUE)
+END
+
+// Spawn Myroven
+// -------------
+IF
+ 	!Dead("Z#MESSEN")
+	Global("SpawnMyro","Z#1002",0)
+THEN
+	RESPONSE #100
+		SetGlobal("SpawnMyro","Z#1002",1)
+		CreateCreature("Z#MESSEN",[1060.645],2)
+END
+
+IF
+ 	!Dead("Z#Baev")
+	GlobalGT("Z#BaevrinPlot","GLOBAL",22)
+	Global("SpawnBaev","Z#1002",0)
+THEN
+	RESPONSE #100
+		SetGlobal("SpawnBaev","Z#1002",1)
+		CreateCreature("Z#Baev",[1035.770],7)
+		CreateCreature("Z#Adyl",[990.800],7)
+END
+
+// Unblur,Start Trial
+
+IF
+	Global("Created","Z#1002",1)
+	Global("Z#NoblesLeft","Z#1002",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Created","Z#1002",2)
+		FadeFromColor([10.0],0)
+		ActionOverride("Bylanna",StartDialogNoSet(Player1))
+END
+
+// Clear Journal Entries once Trial Over
+// -------------------------------------
+IF
+	GlobalGT("Z#TrialClear","GLOBAL",0)
+	Global("Z#CleanJournal","Z#1002",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Z#CleanJournal","Z#1002",1)
+
+		EraseJournalEntry(@5001)
+		EraseJournalEntry(@5002)
+		EraseJournalEntry(@5003)
+		EraseJournalEntry(@5004)
+		EraseJournalEntry(@5005)
+		EraseJournalEntry(@5006)
+		EraseJournalEntry(@5007)
+		EraseJournalEntry(@5008)
+		EraseJournalEntry(@5009)
+
+		EraseJournalEntry(@5010)
+		EraseJournalEntry(@5011)
+		EraseJournalEntry(@5012)
+		EraseJournalEntry(@5013)
+		EraseJournalEntry(@5015)
+		EraseJournalEntry(@5016)
+
+		EraseJournalEntry(@5020)
+		EraseJournalEntry(@5021)
+		EraseJournalEntry(@5022)
+		EraseJournalEntry(@5023)
+		EraseJournalEntry(@5025)
+		EraseJournalEntry(@5026)
+		EraseJournalEntry(@5027)
+		EraseJournalEntry(@5028)
+		EraseJournalEntry(@5029)
+
+		EraseJournalEntry(@5030)
+		EraseJournalEntry(@5031)
+		EraseJournalEntry(@5032)
+		EraseJournalEntry(@5033)
+		EraseJournalEntry(@5034)
+		EraseJournalEntry(@5035)
+		EraseJournalEntry(@5036)
+		EraseJournalEntry(@5037)
+		EraseJournalEntry(@5038)
+		EraseJournalEntry(@5039)
+
+//		EraseJournalEntry(@5040)
+//		EraseJournalEntry(@5041)
+//		EraseJournalEntry(@5042)
+
+		EraseJournalEntry(@5050)
+		EraseJournalEntry(@5051)
+		EraseJournalEntry(@5052)
+		EraseJournalEntry(@5053)
+END
+
+// Continue Trial after Nobles Leave
+// ---------------------------------
+IF
+	Global("Z#NoblesLeft","Z#1002",1)
+	GlobalGT("Z#TrialClear","GLOBAL",1)
+	RealGlobalTimerExpired("Z#NoblesLeftT","Z#1002")
+	Global("Z#ByePostBribe","Z#1002",0)
+THEN
+	RESPONSE #100
+		ActionOverride("Bylanna",StartDialogNoSet(Player1))
+END
+
+// Bylanna gives well wishes
+// -------------------------
+IF
+	RealGlobalTimerExpired("Z#NoblesLeftT","Z#1002")
+	Global("Z#TrialClear","GLOBAL",4)
+THEN
+	RESPONSE #100
+		ActionOverride("Bylanna",StartDialogNoSet(Player1))
+END

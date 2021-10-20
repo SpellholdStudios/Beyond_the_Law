@@ -1,0 +1,32 @@
+// for prison guards that kharen deals with
+
+IF
+	AreaCheck("Z#1005")
+	Global("Z#KharenMove","GLOBAL",2)
+	Global("Z#seekharen","LOCALS",0)
+THEN
+	RESPONSE #30
+		SetGlobal("Z#seekharen","LOCALS",1)
+		ChangeEnemyAlly(Myself,GOODBUTBLUE)
+		DisplayStringHead(Myself,@843)  // ~Stop her!~
+		MoveToObject("Kharen")
+	RESPONSE #40
+		SetGlobal("Z#seekharen","LOCALS",1)
+		ChangeEnemyAlly(Myself,GOODBUTBLUE)
+		DisplayStringHead(Myself,@842)  // ~Sound the alarm!~
+		MoveToObject("Kharen")
+	RESPONSE #40
+		SetGlobal("Z#seekharen","LOCALS",1)
+		ChangeEnemyAlly(Myself,GOODBUTBLUE)
+		DisplayStringHead(Myself,@841)  // ~What the...?~
+		MoveToObject("Kharen")
+END
+
+IF
+	AreaCheck("Z#1005")
+//	Global("Z#seekharen","LOCALS",1)
+	Global("Z#KharenMove","GLOBAL",3)
+THEN
+	RESPONSE #100
+		Kill(Myself)
+END

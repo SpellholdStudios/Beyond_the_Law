@@ -1,0 +1,226 @@
+// Add to Area Script
+
+IF	Global("Z#MeetingSeida","GLOBAL",3)
+	Global("Z#Player1MoveIn","Z#0041",1)
+	!AreaCheckObject("Z#0041","Aran")
+	!AreaCheckObject("Z#0041","Renal Bloodscalp")
+THEN
+	RESPONSE #100
+	SetCutSceneLite(TRUE)
+	ActionOverride(Player1,MoveToPointNoInterrupt([470.520]) )
+	ActionOverride(Player2,MoveToPointNoInterrupt([390.520]) )
+	ActionOverride(Player3,MoveToPointNoInterrupt([550.520]) )
+	ActionOverride(Player4,MoveToPointNoInterrupt([470.580]) )
+	ActionOverride(Player5,MoveToPointNoInterrupt([390.580]) )
+	ActionOverride(Player6,MoveToPointNoInterrupt([550.580]) )
+	MoveViewPoint([550.460],INSTANT)
+	Wait(1)
+	SetGlobal("Z#Player1MoveIn","Z#0041",2)
+END
+
+IF	Global("Timing","Z#0041",0)
+THEN
+	RESPONSE #100
+	SetGlobal("Timing","Z#0041",1)
+	DayNight(22)
+END
+
+IF	Global("Z#MeetingSeida","GLOBAL",1)
+	AreaCheckObject("Z#0041",Player1)
+THEN
+	RESPONSE #100
+	SetGlobal("Z#MeetingSeida","GLOBAL",2)
+	ActionOverride(Player1,MakeUnselectable(0))
+	Explore()
+	CreateCreature("Z#Seid16",[650.400],2)
+	CreateCreature("Renal",[610.510],9)
+	CreateCreature("Aran",[480.520],11)
+	MoveViewObject("Aran",INSTANT)
+	ActionOverride("Aran",StartDialogNoSet("Z#Seid16") ) 
+END
+
+
+// Spawning
+
+IF	Global("Z#SpawnAssas","Z#0041",1)
+	GlobalLT("Z#MeetingSeida","GLOBAL",5)
+THEN
+	RESPONSE #50
+	SetGlobal("Z#SpawnAssas","Z#0041",0)
+	SetGlobal("Z#SeidaAssasTSet","Z#0041",0)
+	CreateCreatureOffScreen("Z#Assas3",0)
+	Continue()
+END
+
+IF	Global("Z#SpawnSTMage","Z#0041",1)
+	GlobalLT("Z#MeetingSeida","GLOBAL",5)
+THEN
+	RESPONSE #50
+	SetGlobal("Z#SpawnSTMage","Z#0041",0)
+	SetGlobal("Z#SeidaWizardTSet","Z#0041",0)
+	CreateCreatureOffScreen("Z#Mage2",0) 
+	Continue()
+END
+
+IF	Global("Z#SpawnCW18","Z#0041",1)
+	GlobalLT("Z#MeetingSeida","GLOBAL",5)
+THEN
+	RESPONSE #50
+	SetGlobal("Z#SpawnCW18","Z#0041",0)
+	SetGlobal("Z#SeidaWizardTSet","Z#0041",0)
+	CreateCreatureOffScreen("Z#CW18",0) 
+	Continue()
+END
+
+IF	Global("Z#SpawnCW16","Z#0041",1)
+	GlobalLT("Z#MeetingSeida","GLOBAL",5)
+THEN
+	RESPONSE #50
+	SetGlobal("Z#SpawnCW16","Z#0041",0)
+	SetGlobal("Z#SeidaWizardTSet","Z#0041",0)
+	CreateCreatureOffScreen("Z#CW16",0) 
+	Continue()
+END
+
+// Timers
+
+IF	Global("Z#SeidaAssas","Z#0041",1)
+	Global("Z#SeidaAssasTSet","Z#0041",0)
+	DifficultyLT(HARD)
+THEN
+	RESPONSE #100
+	SetGlobalTimer("Z#SeidaAssasT3","Z#0041",7) 
+	SetGlobalTimer("Z#SeidaAssasT5","Z#0041",14) 
+	SetGlobalTimer("Z#SeidaAssasT7","Z#0041",24) 
+	SetGlobal("Z#SeidaAssasTSet","Z#0041",1)
+	Continue()
+END
+
+IF	GlobalGT("Z#SeidaWizard","Z#0041",0)
+	Global("Z#SeidaWizardTSet","Z#0041",0)
+	DifficultyLT(HARD)
+THEN
+	RESPONSE #100
+	SetGlobalTimer("Z#SeidaWizardT0","Z#0041",16) 
+	SetGlobalTimer("Z#SeidaWizardT1","Z#0041",32) 
+	SetGlobal("Z#SeidaWizardTSet","Z#0041",1)
+	Continue()
+END
+
+IF	Global("Z#SeidaAssas","Z#0041",1)
+	Global("Z#SeidaAssasTSet","Z#0041",0)
+	Difficulty(HARD)
+THEN
+	RESPONSE #100
+	SetGlobalTimer("Z#SeidaAssasT3","Z#0041",6) 
+	SetGlobalTimer("Z#SeidaAssasT5","Z#0041",12) 
+	SetGlobalTimer("Z#SeidaAssasT7","Z#0041",20) 
+	SetGlobal("Z#SeidaAssasTSet","Z#0041",1)
+	Continue()
+END
+
+IF	GlobalGT("Z#SeidaWizard","Z#0041",0)
+	Global("Z#SeidaWizardTSet","Z#0041",0)
+	Difficulty(HARD)
+THEN
+	RESPONSE #100
+	SetGlobalTimer("Z#SeidaWizardT0","Z#0041",12) 
+	SetGlobalTimer("Z#SeidaWizardT1","Z#0041",24) 
+	SetGlobal("Z#SeidaWizardTSet","Z#0041",1)
+	Continue()
+END
+
+IF	Global("Z#SeidaAssas","Z#0041",1)
+	Global("Z#SeidaAssasTSet","Z#0041",0)
+	DifficultyGT(HARD)
+THEN
+	RESPONSE #100
+	SetGlobalTimer("Z#SeidaAssasT3","Z#0041",5) 
+	SetGlobalTimer("Z#SeidaAssasT5","Z#0041",10) 
+	SetGlobalTimer("Z#SeidaAssasT7","Z#0041",17) 
+	SetGlobal("Z#SeidaAssasTSet","Z#0041",1)
+	Continue()
+END
+
+IF	GlobalGT("Z#SeidaWizard","Z#0041",0)
+	Global("Z#SeidaWizardTSet","Z#0041",0)
+	DifficultyGT(HARD)
+THEN
+	RESPONSE #100
+	SetGlobalTimer("Z#SeidaWizardT0","Z#0041",9) 
+	SetGlobalTimer("Z#SeidaWizardT1","Z#0041",18) 
+	SetGlobal("Z#SeidaWizardTSet","Z#0041",1)
+	Continue()
+END
+
+// Edwin InParty Betrayal Script, placed on Area Script
+
+IF	InParty("Edwin")
+	SpellCast("Edwin",WIZARD_SUN_FIRE)
+	Global("Z#EdwinBetray","Z#0041",1)
+THEN
+	RESPONSE #100
+	SetGlobal("Z#EdwinBetray","Z#0041",2)
+	ActionOverride("Edwin",StartDialogNoSet(Player1))
+	Continue()
+END
+
+IF	!InParty("Edwin")
+	SpellCast("Edwin",WIZARD_FLAME_ARROW)
+	Global("Z#BribedEdwin","GLOBAL",5)
+THEN
+	RESPONSE #100
+	ActionOverride("Z#Seid16",StartDialogNoSet("Edwin"))
+	Continue()
+END
+
+IF	InParty("Edwin")
+	Allegiance("Z#Seid16",ENEMY)
+	Global("Z#EdwinBetray","Z#0041",0)
+	Global("Z#BribedEdwin","GLOBAL",0)
+THEN
+	RESPONSE #100
+	SetGlobal("Z#EdwinBetray","Z#0041",1)
+	ActionOverride("Edwin",ApplySpell(Myself,CLERIC_HEAL))
+	ActionOverride("Edwin",ApplySpell(Myself,WIZARD_STONE_SKIN))
+	ActionOverride("Edwin",ApplySpell(Myself,WIZARD_PROTECTION_FROM_FIRE))
+	ActionOverride("Edwin",ReallyForceSpell(Myself,WIZARD_SUN_FIRE))
+END
+
+// Edwin Out Of Party Talk
+
+IF	!Dead("Edwin")
+	Global("Z#EdwinAppear","Z#0041",0)
+	Global("Z#MeetingSeida","GLOBAL",4)
+	!InParty("Edwin")
+	Global("Z#EdwinBetray","Z#0041",0)
+//	Global("Z#BribedEdwin","GLOBAL",0)
+THEN
+	RESPONSE #100
+	SetGlobal("Z#EdwinAppear","Z#0041",1)
+	MoveGlobal("Z#0041","Edwin",[730.340])
+	ActionOverride("Edwin", SetDialogue("EDWINP") )
+	ActionOverride("Edwin", StartDialogNoSet(Player1) )
+	Continue()
+END
+
+// Edwin Leaves
+
+IF	Global("Z#BribedEdwin","GLOBAL",6) 
+	Global("Z#EdwinAppear","Z#0041",1)
+	Global("Z#SeidaWizard","Z#0041",0)
+	GlobalTimerExpired("Z#SeidaWizardT","Z#0041")
+THEN
+	RESPONSE #100
+	ActionOverride("Z#Seid16", StartDialogNoSet(Player1) )
+END
+
+// Seida Talks    
+
+IF	Allegiance("Z#Seid16", NEUTRAL)
+	Global("Z#MeetingSeida","GLOBAL",3)
+	Global("Z#Player1MoveIn","Z#0041",2)
+THEN
+	RESPONSE #100
+	ActionOverride("Z#Seid16", StartDialogNoSet(Player1) )
+END

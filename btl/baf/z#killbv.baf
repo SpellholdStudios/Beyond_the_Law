@@ -1,0 +1,68 @@
+// Z#KillBv
+
+IF
+	See("Z#Merahn")
+	DifficultyLT(HARD)
+THEN
+	RESPONSE #15
+		AttackReevaluate("Z#Merahn",30)
+	RESPONSE #30
+		Continue()
+END
+
+IF
+	See("Z#Terahn")
+	DifficultyLT(HARD)
+THEN
+	RESPONSE #15
+		AttackReevaluate("Z#Terahn",30)
+	RESPONSE #15
+		Continue()
+END
+
+IF
+	See("Z#Merahn")
+	Difficulty(HARD)
+THEN
+	RESPONSE #15
+		AttackReevaluate("Z#Merahn",30)
+	RESPONSE #40
+		Continue()
+END
+
+IF
+	See("Z#Terahn")
+	Difficulty(HARD)
+THEN
+	RESPONSE #15
+		AttackReevaluate("Z#Terahn",30)
+	RESPONSE #25
+		Continue()
+END
+
+IF
+	See("Z#Merahn")
+	DifficultyGT(HARD)
+THEN
+	RESPONSE #10
+		AttackReevaluate("Z#Merahn",30)
+	RESPONSE #40
+		Continue()
+END
+
+IF
+	See("Z#Terahn")
+	DifficultyGT(HARD)
+THEN
+	RESPONSE #10
+		AttackReevaluate("Z#Terahn",30)
+	RESPONSE #30
+		Continue()
+END
+
+IF
+	See("Z#Baev")
+THEN
+	RESPONSE #100
+		AttackReevaluate("Z#Baev",15)
+END

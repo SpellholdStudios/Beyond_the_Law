@@ -1,0 +1,132 @@
+// Z#KOVAD.bcs, for when Resting
+
+// Checking with Edwin
+// -------------------
+IF	Global("Z#doubtededwin","GLOBAL",1)
+	Global("Z#GotGameDream","GLOBAL",0)
+	InParty("Edwin") InMyArea("Edwin")
+	InPartyAllowDead("Kiyone")
+	InPartyAllowDead("Kova")
+	OR(2)
+		Global("Z#gaelanc6","GLOBAL",6)
+		Global("Z#gaelanc6","GLOBAL",7)
+THEN
+	RESPONSE #100
+	ActionOverride(Player1,StartDialog("Player1",Player1))
+END
+
+// KKDream1
+// --------
+IF	InParty("Kova")
+	InParty("Kiyone")
+	AreaType(FOREST)
+	Global("Z#TrialClear","GLOBAL",0)
+	Global("KKRomance","GLOBAL",0)
+	Global("KKDream1","GLOBAL",0)
+	Global("Z#GotGameDream","GLOBAL",0)
+	OR(2)
+		TimeLT(7)
+		TimeGT(21)
+THEN
+	RESPONSE #100
+	SetCutSceneLite(TRUE)
+	FadeToColor([10.0],0)
+	MoveViewObject("Kiyone",INSTANT)
+	ActionOverride(Player1,SetSequence(SEQ_SLEEP))
+	ActionOverride(Player2,SetSequence(SEQ_SLEEP))
+	ActionOverride(Player3,SetSequence(SEQ_SLEEP))
+	ActionOverride(Player4,SetSequence(SEQ_SLEEP))
+	ActionOverride(Player5,SetSequence(SEQ_SLEEP))
+	ActionOverride(Player6,SetSequence(SEQ_SLEEP))
+	SetGlobal("KKDream1","GLOBAL",9)
+	FadeFromColor([10.0],0)
+END
+
+// Kova on Fishing
+// ---------------
+IF	InParty("Kova")
+	InParty("Kiyone")
+	Global("Z#TrialClear","GLOBAL",0)
+	Global("Z#GotGameDream","GLOBAL",0)
+	GlobalGT("KKRomance","GLOBAL",1)
+	GlobalLT("BKvFishing","GLOBAL",2)
+	Global("KvFishing","GLOBAL",0)
+	OR(6)
+	AreaCheck("AR1100") // Umar Hills
+	AreaCheck("AR1200") // Windspear Hills
+	AreaCheck("AR1800") // North Forest
+	AreaCheck("AR2500") // Underdark Exit
+	AreaCheck("AR2600") // Forest of Tethyr
+	AreaCheck("AR3000") // Watcher's Keep
+	Global("Z#PartyRested","GLOBAL",0)
+THEN
+	RESPONSE #100
+	SetGlobal("Z#PartyRested","GLOBAL",2)
+	SetCutSceneLite(TRUE)
+	SetGlobal("KvFishing","GLOBAL",1)
+	RealSetGlobalTimer("KKDreamT","GLOBAL",1)
+	ActionOverride("Kiyone",FaceObject("Kova"))
+	RunAwayFrom("Kiyone",15)
+END
+
+IF	InParty("Kova")
+	InParty("Kiyone")
+	Global("Z#TrialClear","GLOBAL",0)
+	Global("Z#GotGameDream","GLOBAL",0)
+	GlobalGT("KKRomance","GLOBAL",1)
+	Global("BKvFishing","GLOBAL",2)
+	Global("KvFishing","GLOBAL",0)
+	OR(6)
+	AreaCheck("AR1100") // Umar Hills
+	AreaCheck("AR1200") // Windspear Hills
+	AreaCheck("AR1800") // North Forest
+	AreaCheck("AR2500") // Underdark Exit
+	AreaCheck("AR2600") // Forest of Tethyr
+	AreaCheck("AR3000") // Watcher's Keep
+	Global("Z#PartyRested","GLOBAL",0)
+THEN
+	RESPONSE #100
+	SetGlobal("Z#PartyRested","GLOBAL",2)
+//	SetCutSceneLite(TRUE)
+	SetGlobal("KvFishing","GLOBAL",1)
+	StartDialogNoSet("Kiyone")
+END
+
+// Kiyone on Writing
+// -----------------
+IF	InParty("Kova")
+	InParty("Kiyone")
+	GlobalGT("KKRomance","GLOBAL",1)
+	GlobalLT("BKyWrite","GLOBAL",2)
+	Global("Z#PartyRested","GLOBAL",0)
+	RandomNum(4,1)
+THEN
+	RESPONSE #100
+	SetGlobal("Z#PartyRested","GLOBAL",1)
+	StartDialogNoSet("Kiyone")
+END
+
+IF	InParty("Kova")
+	InParty("Kiyone")
+	GlobalGT("KKRomance","GLOBAL",1)
+	Global("BKyWrite","GLOBAL",2)
+	Global("Z#PartyRested","GLOBAL",0)
+	RandomNum(4,1)
+THEN
+	RESPONSE #100
+	SetGlobal("Z#PartyRested","GLOBAL",1)
+	ActionOverride("Kiyone",StartDialogNoSet("Kova"))
+END
+
+// Yoshimo Party!
+// --------------
+IF	InParty("Yoshimo")
+	InMyArea("Yoshimo")
+	Global("BKovaYoshi","GLOBAL",3)
+	Global("Z#GotGameDream","GLOBAL",0)
+	PartyHasItem("YoshKata")
+THEN
+	RESPONSE #100
+	ActionOverride("Yoshimo",StartDialogNoSet("Kova"))
+END
+

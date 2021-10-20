@@ -1,0 +1,205 @@
+// Z#MESSEN.BAF
+
+IF
+	Global("Z#BaevrinPlot","GLOBAL",18)
+	Global("BvPlotKillUsAll","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		DestroyAllEquipment()
+		ActionOverride("Z#Terahn",DestroyAllEquipment())
+		ActionOverride("Z#Merahn",DestroyAllEquipment())
+		ActionOverride("Z#Ardel",DestroyAllEquipment())
+		ActionOverride("Z#Baev",DestroyAllEquipment())
+		ActionOverride("Z#Adyl",DestroyAllEquipment())
+		SmallWait(5)
+		SetGlobal("BvPlotKillUsAll","LOCALS",1)
+		SetInterrupt(TRUE)
+END
+
+IF
+	Global("BvPlotKillUsAll","LOCALS",1)
+	Global("Z#BaevrinPlot","GLOBAL",18)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		Kill("Z#Ardel")
+		Kill("Z#Terahn")
+		Kill("Z#Merahn")
+		Kill("Z#Baev")
+		Kill("Z#Adyl")
+		RealSetGlobalTimer("KKDreamT","GLOBAL",1)
+		SetInterrupt(TRUE)
+		Kill(Myself)
+END
+
+IF
+	AreaCheck("AR0511")
+	Global("Z#BaevrinPlot","GLOBAL",3)
+	Detect([PC])
+	InParty("Kiyone")
+THEN
+	RESPONSE #100
+		SetGlobal("Z#BaevrinPlot","GLOBAL",4)
+		SetCutSceneLite(TRUE)
+		CreateCreature("Z#Baev",[145.765],14)
+		CreateCreature("Z#Ardel",[150.825],14)
+		CreateCreature("Z#Terahn",[280.820],14)
+		CreateCreature("Z#Merahn",[215.860],14)
+		Unlock("Door Object 2")
+		OpenDoor("Door Object 2")
+		ActionOverride(Player1,MoveToObjectFollow("Z#Messen"))
+		ActionOverride("Kiyone",MoveToObjectFollow("Z#Messen"))
+		Wait(1)
+		MoveToPointNoInterrupt([263.855])
+		Wait(2)
+		SetCutSceneLite(FALSE)
+		ActionOverride(Player1,NoAction())
+		ActionOverride("Kiyone",NoAction())
+		ActionOverride("Z#Terahn",StartDialogNoSet(Player1))
+END
+
+IF
+	AreaCheck("AR0528")
+	Global("DispelInvis","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("DispelInvis","LOCALS",1)
+		ReallyForceSpell(Myself,WIZARD_TRUE_SIGHT)
+END
+
+IF
+	AreaCheck("AR0528")
+	Global("Z#BaevrinPlot","GLOBAL",11)
+	InMyArea("Z#Baev")
+	InMyArea("Z#Adyl")
+THEN
+	RESPONSE #100
+		ActionOverride("Z#Baev",StartDialogNoSet(Player1))
+END
+
+IF
+	Detect("Z#Baev")
+	See(NearestEnemyOf("Z#Baev"))
+	ActuallyInCombat()
+THEN
+	RESPONSE #100
+		ProtectObject("Z#Baev",40)
+END
+
+IF
+	!ActuallyInCombat()
+	Global("Z#BaevrinPlot","GLOBAL",23)
+	!Dead("Z#Baev")
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+END
+
+IF
+	!ActuallyInCombat()
+	Global("Z#BaevrinPlot","GLOBAL",23)
+	Dead("Z#Baev")
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+END
+
+IF
+	Global("Z#BaevrinPlot","GLOBAL",30)
+	Dead("Z#Baev")
+	AreaCheck("AR1002")
+THEN
+	RESPONSE #100
+		ActionOverride("Z#MESSEN",StartDialogNoSet(Player1))
+END
+
+// Resurrect dead party members after fight with Seida
+// ---------------------------------------------------
+IF
+	AreaCheck("Z#0041")
+	GlobalGT("BregaIn","Z#0041",2)
+	InPartyAllowDead(Player2)
+	!InParty(Player2)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@831)  // ~uses scroll~
+		ForceSpell(Player2,CLERIC_RESURRECTION)
+END
+
+IF
+	AreaCheck("Z#0041")
+	GlobalGT("BregaIn","Z#0041",2)
+	InPartyAllowDead(Player3)
+	!InParty(Player3)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@831)  // ~uses scroll~
+		ForceSpell(Player3,CLERIC_RESURRECTION)
+END
+
+IF
+	AreaCheck("Z#0041")
+	GlobalGT("BregaIn","Z#0041",2)
+	InPartyAllowDead(Player4)
+	!InParty(Player4)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@831)  // ~uses scroll~
+		ForceSpell(Player4,CLERIC_RESURRECTION)
+END
+
+IF
+	AreaCheck("Z#0041")
+	GlobalGT("BregaIn","Z#0041",2)
+	InPartyAllowDead(Player5)
+	!InParty(Player5)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@831)  // ~uses scroll~
+		ForceSpell(Player5,CLERIC_RESURRECTION)
+END
+
+IF
+	AreaCheck("Z#0041")
+	GlobalGT("BregaIn","Z#0041",2)
+	InPartyAllowDead(Player6)
+	!InParty(Player6)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,@831)  // ~uses scroll~
+		ForceSpell(Player6,CLERIC_RESURRECTION)
+END
+
+IF	Global("BregaIn","Z#0041",1)
+	Detect([PC])
+	AreaCheck("Z#0041")
+THEN
+	RESPONSE #100
+	StartDialogNoSet(Player1)
+END
+
+IF
+	Global("BregaIn","Z#0041",2)
+	RealGlobalTimerExpired("BregaSeeSeidaT","Z#0041")
+	AreaCheck("Z#0041")
+	Detect("Z#Seid16")
+	!See("Z#Seid16")
+THEN
+	RESPONSE #100
+		ActionOverride("Z#Seid16",DestroyItem("CLCK06"))
+		ForceSpell(Myself,INQUIS_TRUE_SIGHT)
+END
+
+IF
+	Global("BregaIn","Z#0041",2)
+	RealGlobalTimerExpired("BregaSeeSeidaT","Z#0041")
+	AreaCheck("Z#0041")
+	Global("z#makebregatalk","LOCALS",0)
+	See("Z#Seid16")
+THEN
+	RESPONSE #100
+		SetGlobal("z#makebregatalk","LOCALS",1)
+		ChangeEnemyAlly(Myself,ALLY)
+		ActionOverride("Habrega",StartDialogNoSet([PC]))
+END

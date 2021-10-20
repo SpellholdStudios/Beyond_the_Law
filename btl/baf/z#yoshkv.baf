@@ -1,0 +1,35 @@
+// Yoshimo and Kova Training
+
+IF	True()
+THEN
+	RESPONSE #100
+	CutSceneId("Kova")
+	
+	MoveViewObject(Myself,FAST)
+	MoveToObject("Yoshimo")
+	DisplayStringWait("Yoshimo",30581)  // You're right behind me, right?, SELECT_ACTION4
+	ActionOverride("Yoshimo", FaceObject("Kova") )
+	MoveViewObject(Myself,INSTANT)
+
+	Playsound("kvcom6") 
+	DisplayStringWait("Kova", ~I am here.~) // SELECT_COMMON6
+	FaceObject("Yoshimo")
+	ReallyForceSpell("Yoshimo", WIZARD_IMPROVED_HASTE)
+	ReallyForceSpell("Kova", WIZARD_IMPROVED_HASTE)
+
+	ActionOverride("Yoshimo", Swing() )
+	Swing()
+	ActionOverride("Yoshimo", Swing() )
+	Swing()
+	ActionOverride("Yoshimo", Swing() )
+	Swing()
+
+	Wait(1)
+	Playsound("kvcom5")
+	DisplayStringWait("Kova", @806) // I think I'm finally getting a hang of this.
+	DisplayStringWait("Yoshimo",30577)  // Soh des neh?., SELECT_COMMON6
+	Wait(2)	
+	ReallyForceSpellRES("Z#GTHAC", "Kova") 
+	EndCutSceneMode() 
+	RestParty()
+END

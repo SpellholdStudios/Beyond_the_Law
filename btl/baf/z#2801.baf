@@ -1,0 +1,33 @@
+// Z#2801
+
+IF
+	AreaCheckObject("Z#2801",Player1)
+	Global("Z#Proposal","GLOBAL",8)
+	Global("Z#night","Z#2801",0)
+THEN
+	RESPONSE #100
+		UndoExplore()
+		CreateCreature("z#kvwed",[225.470],7)
+		CreateCreature("z#kywed",[165.385],15)
+		ActionOverride("Z#KyWed",StartDialogNoSet("Z#KvWed"))
+END
+
+IF
+	Global("Z#night","Z#2801",1)
+	RealGlobalTimerExpired("Z#weddingT","Z#2801")
+THEN
+	RESPONSE #100
+		SetGlobal("Z#night","Z#2801",2)
+		MoveViewObject("observe",INSTANT)
+		ActionOverride("Z#KvWed",MoveToPoint([225.470]))
+		RealSetGlobalTimer("Z#weddingT","Z#2801",3)
+END
+
+IF
+	Global("Z#night","Z#2801",2)
+	RealGlobalTimerExpired("Z#weddingT","Z#2801")
+THEN
+	RESPONSE #100
+		ActionOverride("Z#KvWed",FaceObject("Z#KyWed"))
+		ActionOverride("Z#KvWed",StartDialogNoSet("Z#KyWed"))
+END
