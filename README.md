@@ -5,15 +5,17 @@
 ![Language](https://img.shields.io/static/v1?label=language&message=English&color=limegreen)
 
 ![Supported games](https://img.shields.io/static/v1?label=supported%20games&message=BGII%20%7C%20BGT%20%7C%20BG2%3AEE%20%7C%20EET&color=dodgerblue)
-
-
 <div align="center"><h1></a>Beyond the Law (WIP)</h1>
 
-<h3>A Spellhold Studios mod for Baldur's Gate II: SoA and ToB (classical and EE games),<br>
+<h3>A mod hosted at Spellhold Studios for Baldur's Gate II: ToB (original and EE games),<br>
 Baldur's Gate Trilogy and EET<h3>
 
 </div><br>
 
+
+**Original Author:** Zyraen  
+**Mod Website:** <a href="ODO link">Spellhold Studios</a>  
+**Mod Forum:** <a href="TODO link">TODO</a><br>
 
 ## 
 
@@ -25,6 +27,9 @@ Baldur's Gate Trilogy and EET<h3>
 
 ## 
 
+:page_facing_up: [Read the mod's readme](https://spellholdstudios.github.io/readmes/btl-readme-english.html)
+
+:inbox_tray: [Download the mod at Spellhold Studios](http://www.shsforums.net/files/file/26-beyond-the-law)<br>
 
 ## 
 
@@ -47,16 +52,16 @@ Was Jermien building a golem simply to protect his daughter?
 
 BTL also examines many of our concepts of good & evil, right & wrong, justice & forgiveness, courage & despair, means & ends, and most importantly, perhaps, what it means to really live, and to find a purpose in that, amidst this journey of self-discovery between these two NPCs.
 
-
-Hello! I traified and added EE-EET compatibility to another mod, "Beyond the Law". At the same time, I put things in order in the mod files and put all the files in separate folders depending on the file type.
-https://www.dropbox....w 1.40.rar?dl=0
+-----------------------------------------------------------------------------
+Hello! I traified and added EE-EET compatibility to another mod, "Beyond the Law".
 
 P.S. In the mod there is a file Inter25.tra, in which dialogues with Volo and interjections of the ToB part are added, except for the call through the Fate Spirit, but this file is not compiled in a tp2 file - perhaps it is worth including it there?
 At the same time, without strings for the Fate Spirit the EET_TRANSITION function will not be needed, so I did not add it.
  
-Also, the TP2 file does not compile the riddles.d file (as it has been included under Zyraen's Miscellaneous Mods - https://www.pocketpl...ens-miscellany/), and files from the Extras folder (for what reason, I don’t know)
+Also, the TP2 file does not compile the riddles.d file (as it has been included under Zyraen's Miscellaneous Mods), and files from the Extras folder (for what reason, I don’t know)
 
 https://www.pocketplane.net/zyraens-miscellany/
+
 
 <hr>
 
@@ -131,10 +136,10 @@ https://www.pocketplane.net/zyraens-miscellany/
     - ...
     - Provided accurate sized NPC portraits for EE games and renamed large portraits in epilogue files.
 - Included all BWP Fixpack fixes:
-    - *start.baf*: <a href="http://www.shsforums.net/topic/33192-btl-with-bgt/">Hoppy's BGT compatibility fix start</a> preventing Kiyone from showing up in the BG1 part meeting the alignment, rep requirements and chapter 2.
+    - *start.baf*: <a href="http://www.shsforums.net/topic/33192-btl-with-bgt/">Hoppy's BGT compatibility fix start</a> preventing Kiyone from showing up in the BG1 part meeting the alignment, rep requirements and chapter 2. Revamped by Gwendolyne for compatibility with EET and oBG2 games.
     - *z#1002.baf*: <a href="http://www.shsforums.net/topic/47635-notes-oddities-and-possible-bugs-in-my-bwp-game-spoilers/page-14#entry566555">Lollorian's methodical `OnCreation()` removal from blocks that have a LOCALS/GLOBAL associated with them</a>.
     - *z#2801.baf*: <a href="https://www.gibberlings3.net/forums/topic/27712-bg2ee-parse-error-compiling-g3mrsgtubaf">agb1's `Face()` -> `FaceObject()` conversion</a>.
-    - "*items.d*": <a href="http://www.shsforums.net/topic/45266-small-typo/">Lollorian's small typo fixes</a> (also renamed gthac.spl to z#gthac.spl).
+    - "*items.d*": <a href="http://www.shsforums.net/topic/45266-small-typo/">Lollorian's small typo fixes</a> (also renamed "*gthac.spl*" to "*z#gthac.spl*").
  - ...
 - Fixed typos.
 - Split setup.tra files into separate thematic files for more comfortable readability.
@@ -153,8 +158,7 @@ https://www.pocketplane.net/zyraens-miscellany/
 
 ##### Version 1.35 (January 16, 2008)
 
-- Fixed typo of `~=InParty` in "*InterJ.d*".
-- Removed useless files and "*backup*" folder.
+- "*InterJ.d*": Fixed typo of `~=InParty`.
 - Banter Intervals between Kova and Kiyone reduced to slightly under 1/3 of previous interval.
 - Minimum Banter Intervals shortened to negligible.
 - Final Banter between the two of them being friends should not repeat anymore.

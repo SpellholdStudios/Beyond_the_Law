@@ -42,6 +42,13 @@ ACTION_IF !VARIABLE_IS_SET bg2_chapter BEGIN // Always block must run only once 
 		OUTER_SPRINT ee_file ""
 	END
 
+	// Ensures events won't run in BG1 section in Baldur's Gate Trilogy and EET
+	ACTION_IF GAME_IS ~bgt eet~ BEGIN
+		OUTER_SPRINT ~BG2_VAR~ ~Global("ENDOFBG1","GLOBAL",2)~
+	END ELSE BEGIN
+		OUTER_SPRINT ~BG2_VAR~ ~~
+	END
+
 	// Required because of non-standard BACKUP path
 	OUTER_TEXT_SPRINT MOD_FOLDER "btl"
 

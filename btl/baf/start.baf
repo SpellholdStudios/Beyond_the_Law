@@ -1,255 +1,289 @@
-// Player goes to Seida 
-
-IF	Global("Z#MeetingSeida","GLOBAL",1)
+// Player goes to Seida
+// --------------------
+IF
+	Global("Z#MeetingSeida","GLOBAL",1)
 	Global("z#gaelanc6","GLOBAL",8)
 	Global("z#movedfinale","GLOBAL",0)
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	SetGlobal("z#movedfinale","GLOBAL",1)
-	ActionOverride(Player1,LeaveAreaLUA("Z#0041","",[370.700],8))
-	ActionOverride(Player2,LeaveAreaLUA("Z#0041","",[290.700],8))
-	ActionOverride(Player3,LeaveAreaLUA("Z#0041","",[450.700],8))
-	ActionOverride(Player4,LeaveAreaLUA("Z#0041","",[370.760],8))
-	ActionOverride(Player5,LeaveAreaLUA("Z#0041","",[290.760],8))
-	ActionOverride(Player6,LeaveAreaLUA("Z#0041","",[450.760],8))
+		SetGlobal("z#movedfinale","GLOBAL",1)
+		ActionOverride(Player1,LeaveAreaLUA("Z#0041","",[370.700],8))
+		ActionOverride(Player2,LeaveAreaLUA("Z#0041","",[290.700],8))
+		ActionOverride(Player3,LeaveAreaLUA("Z#0041","",[450.700],8))
+		ActionOverride(Player4,LeaveAreaLUA("Z#0041","",[370.760],8))
+		ActionOverride(Player5,LeaveAreaLUA("Z#0041","",[290.760],8))
+		ActionOverride(Player6,LeaveAreaLUA("Z#0041","",[450.760],8))
 END
 
 // Spawn K&K in Suldanessellar
-
-IF	AreaCheckObject("AR2800",Player1)
+// ---------------------------
+IF
+	AreaCheckObject("AR2800",Player1)
 	Global("ElvenAvatar","GLOBAL",1)
 	Global("Z#KKLeftForTrial","GLOBAL",1)
 	!InPartyAllowDead("Kiyone")
 	!InPartyAllowDead("Kova")
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	SetGlobal("Z#KKLeftForTrial","GLOBAL",2)
-	SetGlobal("Z#TrialClear","GLOBAL",2)
-	MoveGlobal("AR2800","Kiyone",[3775.2100])
-	MoveGlobal("AR2800","Kova",[3675.2160])
-	ActionOverride("Kiyone",FaceObject(Player1))
-	ActionOverride("Kova",FaceObject(Player1))
-	ActionOverride("Kova",StartDialogNoSet(Player1))
+		SetGlobal("Z#KKLeftForTrial","GLOBAL",2)
+		SetGlobal("Z#TrialClear","GLOBAL",2)
+		MoveGlobal("AR2800","Kiyone",[3775.2100])
+		MoveGlobal("AR2800","Kova",[3675.2160])
+		ActionOverride("Kiyone",FaceObject(Player1))
+		ActionOverride("Kova",FaceObject(Player1))
+		ActionOverride("Kova",StartDialogNoSet(Player1))
 END
 
 // Player goes to Linvail in Chapter 3
-
-IF 	Global("WorkingForAran","GLOBAL",1)
+// -----------------------------------
+IF
+ 	Global("WorkingForAran","GLOBAL",1)
 	Global("ShadowWork","GLOBAL",1)
 	Global("Linvail","GLOBAL",1)
 	PartyHasItem("MISC4S")
-	Global("Chapter", "GLOBAL", 3)
+	Global("Chapter","GLOBAL",%bg2_chapter_3%)
 	InParty("Kova")
 	AreaCheck("AR0311")
 	!Global("AranJob","GLOBAL",1)
-	Global("FindingKova", "GLOBAL", 10)
+	Global("FindingKova","GLOBAL",10)
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	ActionOverride(Player1,LeaveAreaLUA("AR0307","",[4530.2050],12))
-	ActionOverride(Player2,LeaveAreaLUA("AR0307","",[4520.1990],14))
-	ActionOverride(Player3,LeaveAreaLUA("AR0307","",[4520.2110],10))
-	ActionOverride(Player4,LeaveAreaLUA("AR0307","",[4460.2050],13))
-	ActionOverride(Player5,LeaveAreaLUA("AR0307","",[4460.1990],12))
-	ActionOverride(Player6,LeaveAreaLUA("AR0307","",[4460.2110],11))
+		ActionOverride(Player1,LeaveAreaLUA("AR0307","",[4530.2050],12))
+		ActionOverride(Player2,LeaveAreaLUA("AR0307","",[4520.1990],14))
+		ActionOverride(Player3,LeaveAreaLUA("AR0307","",[4520.2110],10))
+		ActionOverride(Player4,LeaveAreaLUA("AR0307","",[4460.2050],13))
+		ActionOverride(Player5,LeaveAreaLUA("AR0307","",[4460.1990],12))
+		ActionOverride(Player6,LeaveAreaLUA("AR0307","",[4460.2110],11))
 
-	SetGlobal("FindingKova", "GLOBAL", 11)
-	SetGlobal("KKJoinShadow", "GLOBAL", 1)
-	ActionOverride("Aran", StartDialogNoSet(Player1))
+		SetGlobal("FindingKova","GLOBAL",11)
+		SetGlobal("KKJoinShadow","GLOBAL",1)
+		ActionOverride("Aran",StartDialogNoSet(Player1))
 END
 
 // Gaelan shows up when there is enough evidence in chapter 6 to hand a note
-
-IF 	Global("z#gaelanc6", "GLOBAL", 0)
+// -------------------------------------------------------------------------
+IF
+ 	Global("z#gaelanc6","GLOBAL",0)
 	Global("Chapter","GLOBAL",6)
 	AreaType(CITY)
 	AreaType(OUTDOOR)
-	GlobalGT("JermClue", "GLOBAL", 0)
-	GlobalGT("LOAClue", "GLOBAL", 0)
-	GlobalGT("DayvClue", "GLOBAL", 0)
+	GlobalGT("JermClue","GLOBAL",0)
+	GlobalGT("LOAClue","GLOBAL",0)
+	GlobalGT("DayvClue","GLOBAL",0)
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	SetGlobal("z#gaelanc6","GLOBAL",1)
-	CreateCreatureObjectOffScreen("Gaelan", Player1, 0,0,0)
-	ActionOverride("Gaelan", StartDialogNoSet(Player1) )
-END	
+		SetGlobal("z#gaelanc6","GLOBAL",1)
+		CreateCreatureObjectOffScreen("Gaelan",Player1,0,0,0)
+		ActionOverride("Gaelan",StartDialogNoSet(Player1))
+END
 
 // Arledrian shows his face again
-
-IF 	Global("BaevClue","GLOBAL",3)
+// ------------------------------
+IF
+ 	Global("BaevClue","GLOBAL",3)
 	AreaCheck("AR0300")
 	Global("Z#ArledTalk","GLOBAL",0)
 	OR(2)
 		Global("Z#Gaelanc6","GLOBAL",4)
 		Global("Z#Gaelanc6","GLOBAL",5)
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	SetGlobal("Z#ArledTalk","GLOBAL",1)
-	CreateCreatureObjectOffScreen("ARLED", Player1, 0,0,0)
-	ActionOverride("Arledrian", StartDialogNoSet(Player1) )
+		SetGlobal("Z#ArledTalk","GLOBAL",1)
+		CreateCreatureObjectOffScreen("ARLED",Player1,0,0,0)
+		ActionOverride("Arledrian",StartDialogNoSet(Player1))
 END
 
-// Baevrin Plot 
-
-IF	Global("BaevClue","GLOBAL",2)
+// Baevrin Plot
+// ------------
+IF
+	Global("BaevClue","GLOBAL",2)
 	Global("Z#BaevrinPlot","GLOBAL",25)
 	AreaCheck("AR1002")
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-//	SetCutSceneLite(FALSE)
-	ActionOverride("HABREGA",StartDialogNoSet(Player1) )	
+//		SetCutSceneLite(FALSE)
+		ActionOverride("HABREGA",StartDialogNoSet(Player1))
 END
 
 
-IF	Global("Z#BaevrinPlot","GLOBAL",24)
+IF
+	Global("Z#BaevrinPlot","GLOBAL",24)
 	AreaCheck("AR1002")
 	InParty("Kiyone")
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	ActionOverride("Kiyone", StartDialogNoSet(Player1) )	
+		ActionOverride("Kiyone",StartDialogNoSet(Player1))
 END
 
-IF	Global("Z#BaevrinPlot","GLOBAL",24)
+IF
+	Global("Z#BaevrinPlot","GLOBAL",24)
 	AreaCheck("AR1002")
 	!InParty("Kiyone")
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	ActionOverride("Z#MESSEN", StartDialogNoSet(Player1) )
+		ActionOverride("Z#MESSEN",StartDialogNoSet(Player1))
 END
 
-IF 	GlobalTimerExpired("Z#BaevrinPlotT","GLOBAL")	
+IF
+ 	GlobalTimerExpired("Z#BaevrinPlotT","GLOBAL")
 	Global("Z#BaevrinPlot","GLOBAL",1)
 	AreaType(CITY)
 	AreaType(OUTDOOR)
 	InParty("Kiyone")
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	SetGlobal("Z#BaevrinPlot","GLOBAL",2)
-	CreateCreatureObjectOffScreen("Z#MESSEN", Player1, 0,0,0)
-	ActionOverride("Z#MESSEN", StartDialogNoSet(Player1) )
+		SetGlobal("Z#BaevrinPlot","GLOBAL",2)
+		CreateCreatureObjectOffScreen("Z#MESSEN",Player1,0,0,0)
+		ActionOverride("Z#MESSEN",StartDialogNoSet(Player1))
 END
 
-IF 	GlobalTimerExpired("Z#BaevrinPlotT","GLOBAL")	
+IF
+ 	GlobalTimerExpired("Z#BaevrinPlotT","GLOBAL")
 	Global("Z#BaevrinPlot","GLOBAL",6)
 	AreaType(CITY)
 	AreaType(OUTDOOR)
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	SetGlobal("Z#BaevrinPlot","GLOBAL",7)
-	CreateCreatureObjectOffScreen("ARLED", Player1, 0,0,0)
-	ActionOverride("Arledrian", StartDialogNoSet(Player1) )
+		SetGlobal("Z#BaevrinPlot","GLOBAL",7)
+		CreateCreatureObjectOffScreen("ARLED",Player1,0,0,0)
+		ActionOverride("Arledrian",StartDialogNoSet(Player1))
 END
 
 // Baevrin Plot stuff
-
-IF	AreaCheck("AR0500")
+// ------------------
+IF
+	AreaCheck("AR0500")
 	Global("Z#BaevrinPlot","GLOBAL",20)
 	ActuallyInCombat()
 	InMyArea("Z#Ardel")
-THEN	
+	%BG2_VAR%
+THEN
 	RESPONSE #100
-	SetGlobal("Z#BaevrinPlot","GLOBAL",21)
-	Wait(5)
-	CreateCreatureObjectOffset("ARLED","Z#Ardel",[-10.10])
-	ActionOverride("Arledrian",Attack("Z#Ardel"))
-	SmallWait(10)
-	Kill("Z#Ardel")
-	CreateCreatureObjectOffset("Z#AssaBV","Z#Baev",[-75.-75])
-	CreateCreatureObjectOffset("Z#AssaBV","Z#Baev",[-75.75])
-	CreateCreatureObjectOffset("Z#AssaBV","Z#Baev",[75.75])
-	CreateCreatureObjectOffset("Z#ArchBV","Z#Baev",[-200.0])
-	CreateCreatureObjectOffset("Z#ArchBV","Z#Baev",[0.200])
-	SetGlobal("Z#BaevrinPlot","GLOBAL",22)
-	ActionOverride("Arledrian",StartDialogNoSet(Player1) )
+		SetGlobal("Z#BaevrinPlot","GLOBAL",21)
+		Wait(5)
+		CreateCreatureObjectOffset("ARLED","Z#Ardel",[-10.10])
+		ActionOverride("Arledrian",Attack("Z#Ardel"))
+		SmallWait(10)
+		Kill("Z#Ardel")
+		CreateCreatureObjectOffset("Z#AssaBV","Z#Baev",[-75.-75])
+		CreateCreatureObjectOffset("Z#AssaBV","Z#Baev",[-75.75])
+		CreateCreatureObjectOffset("Z#AssaBV","Z#Baev",[75.75])
+		CreateCreatureObjectOffset("Z#ArchBV","Z#Baev",[-200.0])
+		CreateCreatureObjectOffset("Z#ArchBV","Z#Baev",[0.200])
+		SetGlobal("Z#BaevrinPlot","GLOBAL",22)
+		ActionOverride("Arledrian",StartDialogNoSet(Player1))
 END
 
-IF	Global("Z#BaevrinPlot","GLOBAL",23)
+IF
+	Global("Z#BaevrinPlot","GLOBAL",23)
 	Dead("Z#Baev")
 	!Dead("Z#Adyl")
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	DisplayStringHead("Z#Adyl", @813)
-	ActionOverride("Z#Adyl", DestroyAllEquipment() )
-	SmallWait(10)
-	Kill("Z#Adyl")
+		DisplayStringHead("Z#Adyl",@826)  // ~No! Baevrin, don't leave me!~
+		ActionOverride("Z#Adyl",DestroyAllEquipment())
+		SmallWait(10)
+		Kill("Z#Adyl")
 END
 
-IF	Global("Z#BaevrinPlot","GLOBAL",17)
+IF
+	Global("Z#BaevrinPlot","GLOBAL",17)
 	AreaCheckObject("AR0500",Player1)
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	SetGlobal("Z#BaevrinPlot","GLOBAL",18)
-	SetCutSceneLite(TRUE)
-	RealSetGlobalTimer("KKDreamT","GLOBAL",4)
-	ActionOverride(Player1,	CreateCreature("Z#Terahn", [2995.880], 3) )
-	ActionOverride(Player1,	CreateCreature("Z#Merahn", [3080.900], 1) )
-	ActionOverride(Player1,	CreateCreature("Z#Ardel", [3000.815], 0) )
-	ActionOverride(Player1,	CreateCreature("Z#Baev", [3130.750], 8) )
-	ActionOverride(Player1,	CreateCreature("Z#Adyl", [3155.740], 0) )
-	ActionOverride(Player1,	CreateCreature("Z#Messen", [3090.790], 2) )
+		SetGlobal("Z#BaevrinPlot","GLOBAL",18)
+		SetCutSceneLite(TRUE)
+		RealSetGlobalTimer("KKDreamT","GLOBAL",4)
+		ActionOverride(Player1,CreateCreature("Z#Terahn",[2995.880],3))
+		ActionOverride(Player1,CreateCreature("Z#Merahn",[3080.900],1))
+		ActionOverride(Player1,CreateCreature("Z#Ardel",[3000.815],0))
+		ActionOverride(Player1,CreateCreature("Z#Baev",[3130.750],8))
+		ActionOverride(Player1,CreateCreature("Z#Adyl",[3155.740],0))
+		ActionOverride(Player1,CreateCreature("Z#Messen",[3090.790],2))
 END
 
-IF	Global("Z#BaevrinPlot","GLOBAL",17)
+IF
+	Global("Z#BaevrinPlot","GLOBAL",17)
 	AreaCheckObject("AR0531",Player1)
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	SetGlobal("Z#BaevrinPlot","GLOBAL",18)
-	SetCutSceneLite(TRUE)
-	RealSetGlobalTimer("KKDreamT","GLOBAL",4)
-	ActionOverride(Player1,	CreateCreature("Z#Terahn", [480.390], 11) )
-	ActionOverride(Player1,	CreateCreature("Z#Merahn", [475.285], 12) )
-	ActionOverride(Player1,	CreateCreature("Z#Ardel", [420.265], 14) )
-	ActionOverride(Player1,	CreateCreature("Z#Baev", [270.430], 8) )
-	ActionOverride(Player1,	CreateCreature("Z#Adyl", [255.395], 0) )
-	ActionOverride(Player1,	CreateCreature("Z#Messen", [320.430], 10) )
+		SetGlobal("Z#BaevrinPlot","GLOBAL",18)
+		SetCutSceneLite(TRUE)
+		RealSetGlobalTimer("KKDreamT","GLOBAL",4)
+		ActionOverride(Player1,CreateCreature("Z#Terahn",[480.390],11))
+		ActionOverride(Player1,CreateCreature("Z#Merahn",[475.285],12))
+		ActionOverride(Player1,CreateCreature("Z#Ardel",[420.265],14))
+		ActionOverride(Player1,CreateCreature("Z#Baev",[270.430],8))
+		ActionOverride(Player1,CreateCreature("Z#Adyl",[255.395],0))
+		ActionOverride(Player1,CreateCreature("Z#Messen",[320.430],10))
 END
 
-IF	Global("Z#BaevrinPlot","GLOBAL",18)
+IF
+	Global("Z#BaevrinPlot","GLOBAL",18)
 	Global("Z#HabregaTalk","GLOBAL",0)
 	Dead("Z#Messen")
 	RealGlobalTimerExpired("KKDreamT","GLOBAL")
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	SetGlobal("Z#HabregaTalk","GLOBAL",1)
-	FadeFromColor([10.0],0)
-	SetCutSceneLite(FALSE)	
-	ActionOverride("Habrega",StartDialogNoSet(Player1) ) 
+		SetGlobal("Z#HabregaTalk","GLOBAL",1)
+		FadeFromColor([10.0],0)
+		SetCutSceneLite(FALSE)
+		ActionOverride("Habrega",StartDialogNoSet(Player1))
 END
 
-
 // Kharen Warning
-
-IF	Global("MetKharen", "GLOBAL", 0)
+// --------------
+IF
+	Global("MetKharen","GLOBAL",0)
 	!ActuallyInCombat()
 	RealGlobalTimerExpired("Z#KharenWarnT","AR1500")
 	Global("Z#KharenWarn","AR1500",0)
 	PartyHasItem("MISC8V")
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	SetGlobal("Z#KharenWarn","AR1500",1)
-	DisplayStringHead(Player1, @814)
+		SetGlobal("Z#KharenWarn","AR1500",1)
+		DisplayStringHead(Player1,@827)  // ~The Asylum wardstone glows slightly, in reaction to some magical energies close by.~
 END
 
 // Met too many Govt Guards - Reputation Drop
-
-IF	GlobalGT("GovtMeetGuards","GLOBAL",3)
+// ------------------------------------------
+IF
+	GlobalGT("GovtMeetGuards","GLOBAL",3)
+	%BG2_VAR%
 THEN
 	RESPONSE #10
-	SetGlobal("GovtMeetGuards","GLOBAL",2)
-	DisplayStringHead("Kiyone", @810)
-	ReputationInc(-1)
+		SetGlobal("GovtMeetGuards","GLOBAL",2)
+		DisplayStringHead("Kiyone",@823)  // ~Must we fight so many men of the law?~
+		ReputationInc(-1)
 	RESPONSE #10
-	SetGlobal("GovtMeetGuards","GLOBAL",2)
-	DisplayStringHead("Kiyone", @811)
-	ReputationInc(-1)
+		SetGlobal("GovtMeetGuards","GLOBAL",2)
+		DisplayStringHead("Kiyone",@824)  // ~More needless killing...~
+		ReputationInc(-1)
 	RESPONSE #10
-	SetGlobal("GovtMeetGuards","GLOBAL",2)
-	DisplayStringHead("Kiyone", @812)
-	ReputationInc(-1)
+		SetGlobal("GovtMeetGuards","GLOBAL",2)
+		DisplayStringHead("Kiyone",@825)  // ~This weighs heavily on my conscience.~
+		ReputationInc(-1)
 END
 
 // If the PC attacks Brega or Bylanna or Prelate Radiant Heart
-
-IF 	OR(2)
+// -----------------------------------------------------------
+IF
+ 	OR(2)
 		InParty("Kiyone")
 		InParty("Kova")
 	OR(8)
@@ -261,572 +295,647 @@ IF 	OR(2)
 		Dead("hprelate")
 		Dead("bylanna")
 		Dead("habrega")
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	DisplayStringHead("Kiyone", @804)
-	DisplayStringHead("Kova", @805)
-	ActionOverride("Kiyone", Enemy())
-	ActionOverride("Kova", Enemy())
+		DisplayStringHead("Kiyone",@821)  // ~No, I cannot allow this!~
+		DisplayStringHead("Kova",@822)    // ~This is wrong, and I cannot pretend otherwise.~
+		ActionOverride("Kiyone",Enemy())
+		ActionOverride("Kova",Enemy())
 END
 
 // Setting after Resting
-
-IF	PartyRested()
+// ---------------------
+IF
+	PartyRested()
 	GlobalGT("Z#PartyRested","GLOBAL",0)
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	SetGlobal("Z#PartyRested","GLOBAL",0)
-	MoveViewObject(Player1,INSTANT)
+		SetGlobal("Z#PartyRested","GLOBAL",0)
+		MoveViewObject(Player1,INSTANT)
 END
 
-IF	GlobalGT("KKRomance", "GLOBAL", 0)
+IF
+	GlobalGT("KKRomance","GLOBAL",0)
 	PartyRested()
 	OR(10)
-	AreaCheck("AR0313") // The Thumb
-	AreaCheck("AR0406") // Copper Coronet
-	AreaCheck("AR0509") // Five Flagons
-	AreaCheck("AR0513") // Delosar
-	AreaCheck("AR0522") // Five Flagons
-	AreaCheck("AR0704") // Mithrest
-	AreaCheck("AR0709") // Den of 7 Vales
-	AreaCheck("AR1105") // Umar Inn
-	AreaCheck("AR1602") // Brynnlaw Inn
-	AreaCheck("AR2010") // Trademeet Inn
+		AreaCheck("AR0313") // The Thumb
+		AreaCheck("AR0406") // Copper Coronet
+		AreaCheck("AR0509") // Five Flagons
+		AreaCheck("AR0513") // Delosar
+		AreaCheck("AR0522") // Five Flagons
+		AreaCheck("AR0704") // Mithrest
+		AreaCheck("AR0709") // Den of 7 Vales
+		AreaCheck("AR1105") // Umar Inn
+		AreaCheck("AR1602") // Brynnlaw Inn
+		AreaCheck("AR2010") // Trademeet Inn
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	SetGlobal("Z#RestInn", "GLOBAL", 1)	
+		SetGlobal("Z#RestInn","GLOBAL",1)
 END
 
 // Kiyone finds the PC
-
+// -------------------
 IF
 	Global("KiyoOut","GLOBAL",0)
-	Global("Chapter","GLOBAL",2)
+	Global("Chapter","GLOBAL",%bg2_chapter_2%)
 	ReputationGT(Player1,12)
-	!Alignment(Player1, Mask_Evil)
-	Global("FindingKova", "GLOBAL", 0)
+	!Alignment(Player1,Mask_Evil)
+	Global("FindingKova","GLOBAL",0)
 	OR(2)
 		AreaType(Outdoor)
 		AreaType(Forest)
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	SetGlobal("KiyoOut","GLOBAL",1)
-	CreateCreatureObjectOffScreen("Kiyone", Player1, 0,0,0)
-//	CreateCreatureOffScreen("Kiyone",0)
+		SetGlobal("KiyoOut","GLOBAL",1)
+		CreateCreatureObjectOffScreen("Kiyone",Player1,0,0,0)
+//		CreateCreatureOffScreen("Kiyone",0)
 END
 
 // Player Surrenders Kova to Brega
-
-IF	Global("BregaTalk", "GLOBAL", 248)
+// -------------------------------
+IF
+	Global("BregaTalk","GLOBAL",248)
 	InParty("Kova")
 	InParty("Kiyone")
 	AreaCheck("AR1002")
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	ActionOverride("HABREGA", ForceSpell("HaBrega", INQUIS_TRUE_SIGHT) )
-	Wait(1)
-	ActionOverride("Kova", JumpToPoint([1100.560]) )
-	MoveViewPoint([1100.560],INSTANT)
-	SetGlobal("BregaTalk", "GLOBAL", 249)
+		ActionOverride("HABREGA",ForceSpell("HaBrega",INQUIS_TRUE_SIGHT))
+		Wait(1)
+		ActionOverride("Kova",JumpToPoint([1100.560]))
+		MoveViewPoint([1100.560],INSTANT)
+		SetGlobal("BregaTalk","GLOBAL",249)
 END
 
 // Player Surrenders Kova to Corneil
-
-IF	Global("CornTalk", "GLOBAL", 248)
+// ---------------------------------
+IF
+	Global("CornTalk","GLOBAL",248)
 	InParty("Kova")
 	InParty("Kiyone")
 	AreaCheck("AR1002")
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	SetGlobal("CornTalk", "GLOBAL", 249)
-	ActionOverride("CORNEIL", ForceSpell("Corneil", INQUIS_TRUE_SIGHT) )
-	Wait(2)
-	SetGlobal("CornTalk", "GLOBAL", 250)
-	ActionOverride("Kova", JumpToPoint([560.920]) )
-	MoveViewPoint([560.920],INSTANT)
-	SetGlobal("FindingKova", "GLOBAL", 250)
+		SetGlobal("CornTalk","GLOBAL",249)
+		ActionOverride("CORNEIL",ForceSpell("Corneil",INQUIS_TRUE_SIGHT))
+		Wait(2)
+		SetGlobal("CornTalk","GLOBAL",250)
+		ActionOverride("Kova",JumpToPoint([560.920]))
+		MoveViewPoint([560.920],INSTANT)
+		SetGlobal("FindingKova","GLOBAL",250)
 END
- 
+
 // for Corneil
 
 // after Kharen cutscene with Corneil
-
-IF 	Global("Z#KharenMove","GLOBAL",5)
+// ----------------------------------
+IF
+ 	Global("Z#KharenMove","GLOBAL",5)
 	AreaCheckObject("AR1002",Player1)
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	SetGlobal("Z#KharenMove","GLOBAL",6)
-	StartDialogNoSet(Player1)
+		SetGlobal("Z#KharenMove","GLOBAL",6)
+		StartDialogNoSet(Player1)
 END
 
 // Kova and Anomen Fight
-
-IF 	Global("KvAnomFight", "GLOBAL", 2)
+// ---------------------
+IF
+ 	Global("KvAnomFight","GLOBAL",2)
 	!Dead("Anomen")
 	!Dead("Kova")
-	!StateCheck("Kova", STATE_INVISIBLE)
+	!StateCheck("Kova",STATE_INVISIBLE)
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	ActionOverride("Anomen", Attack("Kova") )
-END	
-
-IF 	Global("KvAnomFight", "GLOBAL", 2)
-	!Dead("Anomen")
-	Dead("Kova")
-THEN
-	RESPONSE #100
-	SetGlobal("KvAnomFight", "GLOBAL", 3)
-	SetGlobal("FindingKova", "GLOBAL", 250)	
-	ActionOverride("Kova", LeaveParty())
-	ActionOverride("Anomen", JoinParty())	
-	SetCutSceneLite(FALSE)
-	ActionOverride("Anomen", StartDialogNoSet(Player1) )
+		ActionOverride("Anomen",Attack("Kova"))
 END
 
-IF 	Global("KvAnomFight", "GLOBAL", 2)
-	Dead("Anomen")
-	!Dead("Kova")
+IF
+ 	Global("KvAnomFight","GLOBAL",2)
+	!Dead("Anomen")
+	Dead("Kova")
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	SetGlobal("KvAnomFight", "GLOBAL", 3)
-	ActionOverride("Anomen", LeaveParty())
-	ActionOverride("Kova", JoinParty() )
-	SetCutSceneLite(FALSE)
-	ActionOverride("Kova",StartDialogNoSet(Player1) )
+		SetGlobal("KvAnomFight","GLOBAL",3)
+		SetGlobal("FindingKova","GLOBAL",250)
+		ActionOverride("Kova",LeaveParty())
+		ActionOverride("Anomen",JoinParty())
+		SetCutSceneLite(FALSE)
+		ActionOverride("Anomen",StartDialogNoSet(Player1))
+END
+
+IF
+ 	Global("KvAnomFight","GLOBAL",2)
+	Dead("Anomen")
+	!Dead("Kova")
+	%BG2_VAR%
+THEN
+	RESPONSE #100
+		SetGlobal("KvAnomFight","GLOBAL",3)
+		ActionOverride("Anomen",LeaveParty())
+		ActionOverride("Kova",JoinParty())
+		SetCutSceneLite(FALSE)
+		ActionOverride("Kova",StartDialogNoSet(Player1))
 END
 
 // Kiyone Viconia Fight
-
-IF 	GlobalGT("KyVicFight", "GLOBAL", 0)
+// --------------------
+IF
+ 	GlobalGT("KyVicFight","GLOBAL",0)
 	Dead("Kiyone")
 	!Dead("Viconia")
-	!Global("KyVicFight", "GLOBAL", 3)
+	!Global("KyVicFight","GLOBAL",3)
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	ActionOverride("Viconia", StartDialogNoSet(Player1) )
+		ActionOverride("Viconia",StartDialogNoSet(Player1))
 END
 
 // Player kills Kova and Kiyone in Meeting
-
-IF	Dead("Kiyone")
+// ---------------------------------------
+IF
+	Dead("Kiyone")
 	Dead("Kova")
-	Global("FindingKova", "GLOBAL", 112)
+	Global("FindingKova","GLOBAL",112)
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	AddexperienceParty(10000)
-	SetGlobal("FindingKova", "GLOBAL", 113)
-	AddJournalEntry(@1051, QUEST)
+		AddexperienceParty(10000)
+		SetGlobal("FindingKova","GLOBAL",113)
+		AddJournalEntry(@5051,QUEST)
 END
 
 // Seeding Stage 2 Banters
-
-IF	InParty("Kiyone")
+// -----------------------
+IF
+	InParty("Kiyone")
 	InParty("Kova")
-	Global("BKKChat", "GLOBAL", 8)
-	Global("KKRomance", "GLOBAL", 2)
-	Global("KKInStage2x", "GLOBAL", 0)
+	Global("BKKChat","GLOBAL",8)
+	Global("KKRomance","GLOBAL",2)
+	Global("KKInStage2x","GLOBAL",0)
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	SetGlobal("KKInStage2x", "GLOBAL", 1)
-	SetGlobal("KKStage21", "GLOBAL", 1)
+			SetGlobal("KKInStage2x","GLOBAL",1)
+		SetGlobal("KKStage21","GLOBAL",1)
 END
 
 // Seeding Stage 1 Banters
-
-IF	InParty("Kiyone")
+// -----------------------
+IF
+	InParty("Kiyone")
 	InParty("Kova")
-	Global("BKKChat", "GLOBAL", 7)
-	Global("KKRomance", "GLOBAL", 1)
-	Global("KKInStage1x", "GLOBAL", 0)
+	Global("BKKChat","GLOBAL",7)
+	Global("KKRomance","GLOBAL",1)
+	Global("KKInStage1x","GLOBAL",0)
+	%BG2_VAR%
 THEN
 	RESPONSE #0
 	RESPONSE #100
-	SetGlobal("KKInStage1x", "GLOBAL", 1)
-	SetGlobal("KKStage11", "GLOBAL", 1)
-	SetGlobal("KKStage12", "GLOBAL", 2)
-	SetGlobal("KKStage13", "GLOBAL", 3)
+		SetGlobal("KKInStage1x","GLOBAL",1)
+		SetGlobal("KKStage11","GLOBAL",1)
+		SetGlobal("KKStage12","GLOBAL",2)
+		SetGlobal("KKStage13","GLOBAL",3)
 	RESPONSE #100
-	SetGlobal("KKInStage1x", "GLOBAL", 1)
-	SetGlobal("KKStage11", "GLOBAL", 1)
-	SetGlobal("KKStage12", "GLOBAL", 2)
-	SetGlobal("KKStage13", "GLOBAL", 4)
+		SetGlobal("KKInStage1x","GLOBAL",1)
+		SetGlobal("KKStage11","GLOBAL",1)
+		SetGlobal("KKStage12","GLOBAL",2)
+		SetGlobal("KKStage13","GLOBAL",4)
 	RESPONSE #100
-	SetGlobal("KKInStage1x", "GLOBAL", 1)
-	SetGlobal("KKStage11", "GLOBAL", 2)
-	SetGlobal("KKStage12", "GLOBAL", 1)
-	SetGlobal("KKStage13", "GLOBAL", 3)
+		SetGlobal("KKInStage1x","GLOBAL",1)
+		SetGlobal("KKStage11","GLOBAL",2)
+		SetGlobal("KKStage12","GLOBAL",1)
+		SetGlobal("KKStage13","GLOBAL",3)
 	RESPONSE #100
-	SetGlobal("KKInStage1x", "GLOBAL", 1)
-	SetGlobal("KKStage11", "GLOBAL", 2)
-	SetGlobal("KKStage12", "GLOBAL", 1)
-	SetGlobal("KKStage13", "GLOBAL", 4)
+		SetGlobal("KKInStage1x","GLOBAL",1)
+		SetGlobal("KKStage11","GLOBAL",2)
+		SetGlobal("KKStage12","GLOBAL",1)
+		SetGlobal("KKStage13","GLOBAL",4)
 	RESPONSE #100
-	SetGlobal("KKInStage1x", "GLOBAL", 1)
-	SetGlobal("KKStage11", "GLOBAL", 2)
-	SetGlobal("KKStage12", "GLOBAL", 3)
-	SetGlobal("KKStage13", "GLOBAL", 1)
+		SetGlobal("KKInStage1x","GLOBAL",1)
+		SetGlobal("KKStage11","GLOBAL",2)
+		SetGlobal("KKStage12","GLOBAL",3)
+		SetGlobal("KKStage13","GLOBAL",1)
 	RESPONSE #100
-	SetGlobal("KKInStage1x", "GLOBAL", 1)
-	SetGlobal("KKStage11", "GLOBAL", 2)
-	SetGlobal("KKStage12", "GLOBAL", 3)
-	SetGlobal("KKStage13", "GLOBAL", 4)
+		SetGlobal("KKInStage1x","GLOBAL",1)
+		SetGlobal("KKStage11","GLOBAL",2)
+		SetGlobal("KKStage12","GLOBAL",3)
+		SetGlobal("KKStage13","GLOBAL",4)
 	RESPONSE #100
-	SetGlobal("KKInStage1x", "GLOBAL", 1)
-	SetGlobal("KKStage11", "GLOBAL", 2)
-	SetGlobal("KKStage12", "GLOBAL", 4)
-	SetGlobal("KKStage13", "GLOBAL", 1)
+		SetGlobal("KKInStage1x","GLOBAL",1)
+		SetGlobal("KKStage11","GLOBAL",2)
+		SetGlobal("KKStage12","GLOBAL",4)
+		SetGlobal("KKStage13","GLOBAL",1)
 	RESPONSE #100
-	SetGlobal("KKInStage1x", "GLOBAL", 1)
-	SetGlobal("KKStage11", "GLOBAL", 2)
-	SetGlobal("KKStage12", "GLOBAL", 4)
-	SetGlobal("KKStage13", "GLOBAL", 3)
+		SetGlobal("KKInStage1x","GLOBAL",1)
+		SetGlobal("KKStage11","GLOBAL",2)
+		SetGlobal("KKStage12","GLOBAL",4)
+		SetGlobal("KKStage13","GLOBAL",3)
 END
 
 // Checks if Kova or Kiyone is dead
-
-IF	InPartyAllowDead("Kova")
+// --------------------------------
+IF
+	InPartyAllowDead("Kova")
 	!InParty("Kova")
-	Global("KovaDied", "GLOBAL", 0)
+	Global("KovaDied","GLOBAL",0)
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	SetGlobal("KovaDied", "GLOBAL", 1)
+		SetGlobal("KovaDied","GLOBAL",1)
 END
 
 IF	InPartyAllowDead("Kiyone")
 	!InParty("Kiyone")
-	Global("KiyoDied", "GLOBAL", 0)
+	Global("KiyoDied","GLOBAL",0)
 THEN
 	RESPONSE #100
-	SetGlobal("KiyoDied", "GLOBAL", 1)
+		SetGlobal("KiyoDied","GLOBAL",1)
 END
 
 // Displayed after Seida's face-off
-
-IF	AreaCheck("AR0306")
+// --------------------------------
+IF
+	AreaCheck("AR0306")
 	GlobalGT("Z#MeetingSeida","GLOBAL",3)
 	Global("Z#ShowRenalGone","AR0306",0)
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	SetGlobal("Z#ShowRenalGone","AR0306",1)
-	DisplayStringHead(Player1, @825)
-END	
+		SetGlobal("Z#ShowRenalGone","AR0306",1)
+		DisplayStringHead(Player1,@829)  // ~This level is noticeably empty. Renal is probably reluctant to meet you after your face-off with Seida.~
+END
 
 IF	AreaCheck("AR0307")
 	GlobalGT("Z#MeetingSeida","GLOBAL",3)
 	Global("Z#ShowRenalGone","AR0307",0)
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	SetGlobal("Z#ShowRenalGone","AR0307",1)
-	DisplayStringHead(Player1, @824)
-END	
+		SetGlobal("Z#ShowRenalGone","AR0307",1)
+		DisplayStringHead(Player1,@828)  // ~This place seems rather empty. Perhaps Aran does not wish to risk your retribution after your run-in with Seida.~
+END
 
 
 // Baddies - did not survive tough combat
-
-IF 	OR(2)
+// --------------------------------------
+IF
+ 	OR(2)
 		!InParty("Kova")
 		!InParty("Kiyone")
-	Global("Z#KKHardFight", "GLOBAL", 1)
-THEN 
+	Global("Z#KKHardFight","GLOBAL",1)
+	%BG2_VAR%
+THEN
 	RESPONSE #100
-	SetGlobal("Z#KKHardFight", "GLOBAL", 0)
+		SetGlobal("Z#KKHardFight","GLOBAL",0)
 END
 
-IF	Global("ZKKHardFight", "GLOBAL", 1)
+IF
+	Global("ZKKHardFight","GLOBAL",1)
 	!AreaCheckObject("AR1402",Player1)
 	!AreaCheckObject("AR2807",Player1)
 	!AreaCheckObject("AR0331",Player1)
 	!AreaCheckObject("AR2102",Player1)
 	!AreaCheckObject("AR1203",Player1)
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	SetGlobal("Z#KKHardFight", "GLOBAL", 0)
+		SetGlobal("Z#KKHardFight","GLOBAL",0)
 END
 
 // Checks for Dream Timers in the game to ensure there are no conflicts
 
 // Timer for Cowled Wizards to emerge
-
-IF	AreaType(City)
+// ----------------------------------
+IF
+	AreaType(City)
 	InParty("Kova")
-	!Global("FindingKova", "GLOBAL", 255)
+	!Global("FindingKova","GLOBAL",255)
 	!GlobalTimerNotExpired("KKCowlT","GLOBAL")
 	!ActuallyInCombat()
-	!Global("BribeCorn", "GLOBAL", 1)
+	!Global("BribeCorn","GLOBAL",1)
+	%BG2_VAR%
 THEN
 	RESPONSE #90
-		SetGlobalTimer("KKCowlT","GLOBAL",36000)	
-		SetGlobal("KKCowl", "GLOBAL", 1)
+		SetGlobalTimer("KKCowlT","GLOBAL",36000)
+		SetGlobal("KKCowl","GLOBAL",1)
 	RESPONSE #10
-		SetGlobalTimer("KKCowlT","GLOBAL",36000)	
+		SetGlobalTimer("KKCowlT","GLOBAL",36000)
 END
 
-IF	Global("BribeCorn", "GLOBAL", 1)
+IF
+
+	Global("BribeCorn","GLOBAL",1)
 	!GlobalTimerNotExpired("KKCowlT","GLOBAL")
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-		SetGlobalTimer("KKCowlT","GLOBAL",18000)	
-		SetGlobal("BribeCorn", "GLOBAL", 0)
+		SetGlobalTimer("KKCowlT","GLOBAL",18000)
+		SetGlobal("BribeCorn","GLOBAL",0)
 END
 
 // Timer for Thieves to emerge
-
+// ---------------------------
 IF
 	InParty("Kova")
-	Global("ShadowHunt", "GLOBAL", 1)
-	!Global("FindingKova", "GLOBAL", 255)
+	Global("ShadowHunt","GLOBAL",1)
+	!Global("FindingKova","GLOBAL",255)
 	!RealGlobalTimerNotExpired("KKThiefT","GLOBAL")
 	!ActuallyInCombat()
+	%BG2_VAR%
 THEN
 	RESPONSE #90
 		RealSetGlobalTimer("KKThiefT","GLOBAL",6000)
-		SetGlobal("KKThief", "GLOBAL", 1)
+		SetGlobal("KKThief","GLOBAL",1)
 	RESPONSE #10
-		RealSetGlobalTimer("KKThiefT","GLOBAL",6000)	
+		RealSetGlobalTimer("KKThiefT","GLOBAL",6000)
 END
 
 IF
 	InParty("Kova")
-	Global("ShadowHunt", "GLOBAL", 2)
-	!Global("FindingKova", "GLOBAL", 255)
+	Global("ShadowHunt","GLOBAL",2)
+	!Global("FindingKova","GLOBAL",255)
 	!RealGlobalTimerNotExpired("KKThiefT","GLOBAL")
 	!ActuallyInCombat()
+	%BG2_VAR%
 THEN
 	RESPONSE #90
 		RealSetGlobalTimer("KKThiefT","GLOBAL",9000)
-		SetGlobal("KKThief", "GLOBAL", 1)
+		SetGlobal("KKThief","GLOBAL",1)
 	RESPONSE #10
-		RealSetGlobalTimer("KKThiefT","GLOBAL",9000)	
+		RealSetGlobalTimer("KKThiefT","GLOBAL",9000)
 END
 
 IF
 	InParty("Kova")
-	GlobalGT("ShadowHunt", "GLOBAL", 2)
-	!Global("FindingKova", "GLOBAL", 255)
+	GlobalGT("ShadowHunt","GLOBAL",2)
+	!Global("FindingKova","GLOBAL",255)
 	!RealGlobalTimerNotExpired("KKThiefT","GLOBAL")
 	!ActuallyInCombat()
+	%BG2_VAR%
 THEN
 	RESPONSE #90
-		RealSetGlobalTimer("KKThiefT","GLOBAL",12600)	
-		SetGlobal("KKThief", "GLOBAL", 1)
+		RealSetGlobalTimer("KKThiefT","GLOBAL",12600)
+		SetGlobal("KKThief","GLOBAL",1)
 	RESPONSE #10
-		RealSetGlobalTimer("KKThiefT","GLOBAL",12600)	
+		RealSetGlobalTimer("KKThiefT","GLOBAL",12600)
 END
 
 // Timer for GovtGuards to emerge
-
+// ------------------------------
 IF
 	InParty("Kova")
-	Global("GovtGuards", "GLOBAL", 1)
-	!Global("FindingKova", "GLOBAL", 255)
+	Global("GovtGuards","GLOBAL",1)
+	!Global("FindingKova","GLOBAL",255)
 	!GlobalTimerNotExpired("KKGovtT","GLOBAL")
 	!ActuallyInCombat()
+	%BG2_VAR%
 THEN
 	RESPONSE #90
-		SetGlobalTimer("KKGovtT","GLOBAL",24480)	
-		SetGlobal("KKGovt", "GLOBAL", 1)
+		SetGlobalTimer("KKGovtT","GLOBAL",24480)
+		SetGlobal("KKGovt","GLOBAL",1)
 	RESPONSE #10
-		SetGlobalTimer("KKGovtT","GLOBAL",24480)			
+		SetGlobalTimer("KKGovtT","GLOBAL",24480)
 END
 
 // Timer for Kova / Kiyone to Banter
-
-IF 	Global("KKJoin", "GLOBAL", 1)
+// ---------------------------------
+IF
+ 	Global("KKJoin","GLOBAL",1)
 	OR(2)
 		!Global("PlayerLooksLikeDrow","GLOBAL",1)
-		!GlobalLT("KKDrowFormChat", "GLOBAL", 2)	
+		!GlobalLT("KKDrowFormChat","GLOBAL",2)
 	InParty("Kova")
 	InParty("Kiyone")
 	!ActuallyInCombat()
 	!RealGlobalTimerNotExpired("KKBanterTMin","GLOBAL")
 	!RealGlobalTimerNotExpired("KKBanterT","GLOBAL")
+	%BG2_VAR%
 THEN
 	RESPONSE #45
 		RealSetGlobalTimer("KKBanterT","GLOBAL",1500)
-		ActionOverride("Kiyone", Interact("Kova") )
+		ActionOverride("Kiyone",Interact("Kova"))
 	RESPONSE #45
 		RealSetGlobalTimer("KKBanterT","GLOBAL",1500)
-		ActionOverride("Kova", Interact("Kiyone") )
+		ActionOverride("Kova",Interact("Kiyone"))
 END
 
-// Speeds Banters to half-time, to TMin, if not yet covered 1st Stage 1 banter in Chapter 6
-
-IF 	Global("KKJoin", "GLOBAL", 1)
-	Global("Chapter","GLOBAL", 6)
-	GlobalLT("KKInStage1x", "GLOBAL", 2)
+// Speeds Banters to half-time,to TMin, if not yet covered 1st Stage 1 banter in Chapter 6
+// ---------------------------------------------------------------------------------------
+IF
+ 	Global("KKJoin","GLOBAL",1)
+	Global("Chapter","GLOBAL",%bg2_chapter_6%)
+	GlobalLT("KKInStage1x","GLOBAL",2)
 	InParty("Kova")
 	InParty("Kiyone")
 	!ActuallyInCombat()
 	!RealGlobalTimerNotExpired("KKBanterTMin","GLOBAL")
 //	!RealGlobalTimerNotExpired("KKBanterT","GLOBAL")
+	%BG2_VAR%
 THEN
 	RESPONSE #45
 		RealSetGlobalTimer("KKBanterTMin","GLOBAL",40)
-		ActionOverride("Kiyone", Interact("Kova") )
+		ActionOverride("Kiyone",Interact("Kova"))
 	RESPONSE #45
 		RealSetGlobalTimer("KKBanterTMin","GLOBAL",40)
-		ActionOverride("Kova", Interact("Kiyone") )
+		ActionOverride("Kova",Interact("Kiyone"))
 END
 
 // Timer for Kova / Kiyone to Banter in Underdark, set when Adalon's lair is entered for the first time
-
-IF	AreaCheck("AR2102")
+// ----------------------------------------------------------------------------------------------------
+IF
+	AreaCheck("AR2102")
 	OR(2)
 		InParty("Kova")
 		InParty("Kiyone")
 	Global("Z#DrowChange","GLOBAL",0)
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	SetGlobal("Z#DrowChange","GLOBAL",1)
-	RealSetGlobalTimer("KKBanterT","GLOBAL",900)
+		SetGlobal("Z#DrowChange","GLOBAL",1)
+		RealSetGlobalTimer("KKBanterT","GLOBAL",900)
 END
 
-IF 	Global("KKJoin", "GLOBAL", 1)
+IF
+ 	Global("KKJoin","GLOBAL",1)
 	Global("PlayerLooksLikeDrow","GLOBAL",1)
-	GlobalLT("KKDrowFormChat", "GLOBAL", 2)
+	GlobalLT("KKDrowFormChat","GLOBAL",2)
 	InParty("Kova")
 	InParty("Kiyone")
 	!ActuallyInCombat()
 	!RealGlobalTimerNotExpired("KKBanterT","GLOBAL")
+	%BG2_VAR%
 THEN
 	RESPONSE #50
-		ActionOverride("Kiyone", Interact("Kova") )
+		ActionOverride("Kiyone",Interact("Kova"))
 		RealSetGlobalTimer("KKBanterT","GLOBAL",900)
 	RESPONSE #50
-		ActionOverride("Kova", Interact("Kiyone") )
+		ActionOverride("Kova",Interact("Kiyone"))
 		RealSetGlobalTimer("KKBanterT","GLOBAL",900)
 END
 
 // Creates Brynnlaw Assassin
-
-IF	Global("Z#Brynn1Spoke","GLOBAL",1)
+// -------------------------
+IF
+	Global("Z#Brynn1Spoke","GLOBAL",1)
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	SetGlobal("Z#Brynn1Spoke","GLOBAL",2)
-	CreateCreatureObjectOffset("Z#Assas3",Player1,[20.-20])
-	ChangeEnemyAlly("Z#Assas3",NEUTRAL)
-	ActionOverride("Z#Assas3", StartDialog("Z#BRYNN2", Player1) )
+		SetGlobal("Z#Brynn1Spoke","GLOBAL",2)
+		CreateCreatureObjectOffset("Z#Assas3",Player1,[20.-20])
+		ChangeEnemyAlly("Z#Assas3",NEUTRAL)
+		ActionOverride("Z#Assas3",StartDialog("Z#BRYNN2",Player1))
 END
 
 // Various Stages of Trial
+// -----------------------
 // 2 clues - Z#Trial set to 1
 // all 3 clues submitted - Z#NoMoreGovt set to 1 - 5000
-// all 5 clues - Z#Trial set to 2, Linvail sets up finale
+// all 5 clues - Z#Trial set to 2,Linvail sets up finale
 // Finale - Z#Trial 3
 
-IF	GlobalGT("JermClue", "GLOBAL", 2)
-	GlobalGT("LOAClue", "GLOBAL", 2)
-	GlobalGT("DayvClue", "GLOBAL", 2)
-	GlobalGT("BaevClue", "GLOBAL", 2)
-	Global("MetKharen", "GLOBAL", 3)
+IF
+	GlobalGT("JermClue","GLOBAL",2)
+	GlobalGT("LOAClue","GLOBAL",2)
+	GlobalGT("DayvClue","GLOBAL",2)
+	GlobalGT("BaevClue","GLOBAL",2)
+	Global("MetKharen","GLOBAL",3)
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	SetGlobal("Z#Trial", "GLOBAL", 2)
+		SetGlobal("Z#Trial","GLOBAL",2)
 END
 
-IF	Global("Z#NoMoreGovt", "GLOBAL", 1)
-	GlobalLT("GovtGuards", "GLOBAL", 4)
+IF
+	Global("Z#NoMoreGovt","GLOBAL",1)
+	GlobalLT("GovtGuards","GLOBAL",4)
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	SetGlobal("GovtGuards", "GLOBAL", 4)
+		SetGlobal("GovtGuards","GLOBAL",4)
 END
 
-IF	Global("MetKharen", "GLOBAL", 3)
-	Global("JermClue", "GLOBAL", 3)
-	Global("LOAClue", "GLOBAL", 3)
-	Global("DayvClue", "GLOBAL", 3)
+IF
+	Global("MetKharen","GLOBAL",3)
+	Global("JermClue","GLOBAL",3)
+	Global("LOAClue","GLOBAL",3)
+	Global("DayvClue","GLOBAL",3)
 	Global("Z#BaevrinPlot","GLOBAL",0)
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	SetGlobalTimer("Z#BaevrinPlotT","GLOBAL",2400) // 8 hours	
-	SetGlobal("Z#BaevrinPlot","GLOBAL",1)
-//	SetGlobal("GovtGuards", "GLOBAL", 4)
+		SetGlobalTimer("Z#BaevrinPlotT","GLOBAL",2400) // 8 hours
+		SetGlobal("Z#BaevrinPlot","GLOBAL",1)
+//		SetGlobal("GovtGuards","GLOBAL",4)
 END
 
-IF	Global("Z#Trial", "GLOBAL", 0)
-	GlobalGT("DayvClue", "GLOBAL", 0)	
+IF
+	Global("Z#Trial","GLOBAL",0)
+	GlobalGT("DayvClue","GLOBAL",0)
 	OR(2)
-		GlobalGT("JermClue", "GLOBAL", 0)
-		GlobalGT("LOAClue", "GLOBAL", 0)
+		GlobalGT("JermClue","GLOBAL",0)
+		GlobalGT("LOAClue","GLOBAL",0)
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	SetGlobal("Z#Trial", "GLOBAL", 1)			
+		SetGlobal("Z#Trial","GLOBAL",1)
 END
 
-IF	GlobalGT("JermClue", "GLOBAL", 0)
-	GlobalGT("LOAClue", "GLOBAL", 0)
-	Global("Z#Trial", "GLOBAL", 0)
+IF
+	GlobalGT("JermClue","GLOBAL",0)
+	GlobalGT("LOAClue","GLOBAL",0)
+	Global("Z#Trial","GLOBAL",0)
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	SetGlobal("Z#Trial", "GLOBAL", 1)	
+		SetGlobal("Z#Trial","GLOBAL",1)
 END
 
 // Following code prevents Player1 Dreams from clashing with BTL Rest-scenes
 
 // Check for Imoen and Irenicus Dreams
-
+// -----------------------------------
 IF
 	GlobalTimerExpired("ImoenDream1","GLOBAL")
 	Global("HadImoenDream1","GLOBAL",0)
-	GlobalLT("Chapter","GLOBAL",4)
+	GlobalLT("Chapter","GLOBAL",%bg2_chapter_4%)
 	Global("Z#GotGameDream","GLOBAL",0)
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	SetGlobal("Z#GotGameDream","GLOBAL",1)
+		SetGlobal("Z#GotGameDream","GLOBAL",1)
 END
 
-IF	GlobalLT("Chapter","GLOBAL",4)
+IF
+	GlobalLT("Chapter","GLOBAL",%bg2_chapter_4%)
 	Global("HadImoenDream1","GLOBAL",1)
 	!GlobalTimerExpired("JonDream1","GLOBAL")
 	Global("Z#GotGameDream","GLOBAL",1)
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	SetGlobal("Z#GotGameDream","GLOBAL",0)
+		SetGlobal("Z#GotGameDream","GLOBAL",0)
 END
 
 IF
 	GlobalTimerExpired("JonDream1","GLOBAL")
 	Global("HadJonDream1","GLOBAL",0)
-	GlobalLT("Chapter","GLOBAL",4)
+	GlobalLT("Chapter","GLOBAL",%bg2_chapter_4%)
 	Global("Z#GotGameDream","GLOBAL",0)
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	SetGlobal("Z#GotGameDream","GLOBAL",1)
+		SetGlobal("Z#GotGameDream","GLOBAL",1)
 END
 
-IF	GlobalLT("Chapter","GLOBAL",4)
+IF
+	GlobalLT("Chapter","GLOBAL",%bg2_chapter_4%)
 	Global("HadImoenDream1","GLOBAL",1)
 	Global("HadJonDream1","GLOBAL",1)
 	!GlobalTimerExpired("JonDream2","GLOBAL")
 	Global("Z#GotGameDream","GLOBAL",1)
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	SetGlobal("Z#GotGameDream","GLOBAL",0)
+		SetGlobal("Z#GotGameDream","GLOBAL",0)
 END
 
 IF
 	GlobalTimerExpired("JonDream2","GLOBAL")
 	Global("HadJonDream2","GLOBAL",0)
-	GlobalLT("Chapter","GLOBAL",4)
+	GlobalLT("Chapter","GLOBAL",%bg2_chapter_4%)
 	Global("Z#GotGameDream","GLOBAL",0)
+	%BG2_VAR%
 THEN
 	RESPONSE #100
 	SetGlobal("Z#GotGameDream","GLOBAL",1)
 END
 
-IF	GlobalLT("Chapter","GLOBAL",4)
+IF
+	GlobalLT("Chapter","GLOBAL",%bg2_chapter_4%)
 	Global("HadImoenDream1","GLOBAL",1)
 	Global("HadJonDream1","GLOBAL",1)
 	Global("HadJonDream2","GLOBAL",1)
 	Global("Z#GotGameDream","GLOBAL",1)
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	SetGlobal("Z#GotGameDream","GLOBAL",0)
+		SetGlobal("Z#GotGameDream","GLOBAL",0)
 END
 
 // Check for Slayer and Ellesime dreams
-
-IF	!GlobalLT("Chapter","GLOBAL",4)
+// ------------------------------------
+IF
+	!GlobalLT("Chapter","GLOBAL",%bg2_chapter_4%)
 	OR(2)
 		!GlobalTimerExpired("EllesimeDream1","GLOBAL")
 		!Global("HadEllesimeDream1","GLOBAL",0)
@@ -835,79 +944,87 @@ IF	!GlobalLT("Chapter","GLOBAL",4)
 		!Global("HadSlayerDream","GLOBAL",0)
 		!GlobalGT("AsylumPlot","GLOBAL",54)
 	Global("Z#GotGameDream","GLOBAL",1)
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	SetGlobal("Z#GotGameDream","GLOBAL",0)
+		SetGlobal("Z#GotGameDream","GLOBAL",0)
 END
 
-IF	GlobalGT("DrowTalk","GLOBAL",3)
+IF
+	GlobalGT("DrowTalk","GLOBAL",3)
 	Global("HadSlayerDream","GLOBAL",0)
 	GlobalGT("AsylumPlot","GLOBAL",54)
 	Global("Z#GotGameDream","GLOBAL",0)
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	SetGlobal("Z#GotGameDream","GLOBAL",1)
+		SetGlobal("Z#GotGameDream","GLOBAL",1)
 END
 
-IF	!GlobalLT("Chapter","GLOBAL",4)
+IF
+	!GlobalLT("Chapter","GLOBAL",%bg2_chapter_4%)
 	GlobalTimerExpired("EllesimeDream1","GLOBAL")
 	Global("HadEllesimeDream1","GLOBAL",0)
 	Global("Z#GotGameDream","GLOBAL",0)
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	SetGlobal("Z#GotGameDream","GLOBAL",1)
+		SetGlobal("Z#GotGameDream","GLOBAL",1)
 END
 
 // Clears Journal if Kova is Dead or Kiyone is Dead
-
-IF	OR(2)
+// ------------------------------------------------
+IF
+	OR(2)
 		Dead("Kova")
 		Dead("Kiyone")
 	!InPartyAllowDead("Kova")
 	!InPartyAllowDead("Kiyone")
-	Global("Z#JournalClean", "GLOBAL", 0)
+	Global("Z#JournalClean","GLOBAL",0)
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	SetGlobal("Z#JournalClean", "GLOBAL", 1)
-	EraseJournalEntry(@1001)
-	EraseJournalEntry(@1002)
-	EraseJournalEntry(@1003)
-	EraseJournalEntry(@1004)
-	EraseJournalEntry(@1005)
-	EraseJournalEntry(@1006)
-	EraseJournalEntry(@1007)
-	EraseJournalEntry(@1008)
-	EraseJournalEntry(@1009)
-	EraseJournalEntry(@1010)
-	EraseJournalEntry(@1011)
-	EraseJournalEntry(@1012)
-	EraseJournalEntry(@1013)
-	EraseJournalEntry(@1015)
-	EraseJournalEntry(@1016)
-	EraseJournalEntry(@1020)
-	EraseJournalEntry(@1021)
-	EraseJournalEntry(@1022)
-	EraseJournalEntry(@1023)
-	EraseJournalEntry(@1025)
-	EraseJournalEntry(@1026)
-	EraseJournalEntry(@1027)
-	EraseJournalEntry(@1028)
-	EraseJournalEntry(@1029)
-	EraseJournalEntry(@1030)
-	EraseJournalEntry(@1031)
-	EraseJournalEntry(@1032)
-	EraseJournalEntry(@1033)
-	EraseJournalEntry(@1034)
-	EraseJournalEntry(@1035)
-	EraseJournalEntry(@1036)
-	EraseJournalEntry(@1037)
-	EraseJournalEntry(@1038)
-	EraseJournalEntry(@1039)
+		SetGlobal("Z#JournalClean","GLOBAL",1)
+		EraseJournalEntry(@5001)
+		EraseJournalEntry(@5002)
+		EraseJournalEntry(@5003)
+		EraseJournalEntry(@5004)
+		EraseJournalEntry(@5005)
+		EraseJournalEntry(@5006)
+		EraseJournalEntry(@5007)
+		EraseJournalEntry(@5008)
+		EraseJournalEntry(@5009)
+		EraseJournalEntry(@5010)
+		EraseJournalEntry(@5011)
+		EraseJournalEntry(@5012)
+		EraseJournalEntry(@5013)
+		EraseJournalEntry(@5015)
+		EraseJournalEntry(@5016)
+		EraseJournalEntry(@5020)
+		EraseJournalEntry(@5021)
+		EraseJournalEntry(@5022)
+		EraseJournalEntry(@5023)
+		EraseJournalEntry(@5025)
+		EraseJournalEntry(@5026)
+		EraseJournalEntry(@5027)
+		EraseJournalEntry(@5028)
+		EraseJournalEntry(@5029)
+		EraseJournalEntry(@5030)
+		EraseJournalEntry(@5031)
+		EraseJournalEntry(@5032)
+		EraseJournalEntry(@5033)
+		EraseJournalEntry(@5034)
+		EraseJournalEntry(@5035)
+		EraseJournalEntry(@5036)
+		EraseJournalEntry(@5037)
+		EraseJournalEntry(@5038)
+		EraseJournalEntry(@5039)
 END
 
 // Removes their stuff if they're not around
-
-IF	!InParty("Kiyone")
+// -----------------------------------------
+IF
+	!InParty("Kiyone")
 	OR(6)
 		PartyHasItem("KiyoArm3")
 		PartyHasItem("KiyoArm2")
@@ -915,17 +1032,19 @@ IF	!InParty("Kiyone")
 		PartyHasItem("KiyoBow3")
 		PartyHasItem("KiyoBow2")
 		PartyHasItem("KiyoBow1")
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	TakePartyItemAll("KiyoArm3")
-	TakePartyItemAll("KiyoArm2")
-	TakePartyItemAll("KiyoArm1")
-	TakePartyItemAll("KiyoBow3")
-	TakePartyItemAll("KiyoBow2")
-	TakePartyItemAll("KiyoBow1")
+		TakePartyItemAll("KiyoArm3")
+		TakePartyItemAll("KiyoArm2")
+		TakePartyItemAll("KiyoArm1")
+		TakePartyItemAll("KiyoBow3")
+		TakePartyItemAll("KiyoBow2")
+		TakePartyItemAll("KiyoBow1")
 END
 
-IF 	!InParty("Kova")
+IF
+ 	!InParty("Kova")
 	OR(6)
 		PartyHasItem("KovaArm5")
 		PartyHasItem("KovaArm2")
@@ -933,131 +1052,154 @@ IF 	!InParty("Kova")
 		PartyHasItem("KovaDag3")
 		PartyHasItem("KovaDag2")
 		PartyHasItem("KovaDag5")
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	TakePartyItemAll("KovaArm5")
-	TakePartyItemAll("KovaArm2")
-	TakePartyItemAll("KovaArm1")
-	TakePartyItemAll("KovaDag3")
-	TakePartyItemAll("KovaDag2")
-	TakePartyItemAll("KovaDag5")
+		TakePartyItemAll("KovaArm5")
+		TakePartyItemAll("KovaArm2")
+		TakePartyItemAll("KovaArm1")
+		TakePartyItemAll("KovaDag3")
+		TakePartyItemAll("KovaDag2")
+		TakePartyItemAll("KovaDag5")
 END
 
 // Removes Duplicates
-
-IF 	OR(3)
+// ------------------
+IF
+ 	OR(3)
 		NumItemsPartyGT("KovaDag3",1)
 		NumItemsPartyGT("KovaDag2",1)
 		NumItemsPartyGT("KovaDag5",1)
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	TakePartyItemAll("KovaDag3")
-	TakePartyItemAll("KovaDag2")
-	TakePartyItemAll("KovaDag5")
+		TakePartyItemAll("KovaDag3")
+		TakePartyItemAll("KovaDag2")
+		TakePartyItemAll("KovaDag5")
 END
 
-IF 	OR(3)
+IF
+ 	OR(3)
 		NumItemsPartyGT("KovaArm5",1)
 		NumItemsPartyGT("KovaArm2",1)
 		NumItemsPartyGT("KovaArm1",1)
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	TakePartyItemAll("KovaArm5")
-	TakePartyItemAll("KovaArm2")
-	TakePartyItemAll("KovaArm1")
+		TakePartyItemAll("KovaArm5")
+		TakePartyItemAll("KovaArm2")
+		TakePartyItemAll("KovaArm1")
 END
 
-IF	OR(3)
+IF
+	OR(3)
 		NumItemsPartyGT("KiyoArm3",1)
 		NumItemsPartyGT("KiyoArm2",1)
 		NumItemsPartyGT("KiyoArm1",1)
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	TakePartyItemAll("KiyoArm3")
-	TakePartyItemAll("KiyoArm2")
-	TakePartyItemAll("KiyoArm1")
+		TakePartyItemAll("KiyoArm3")
+		TakePartyItemAll("KiyoArm2")
+		TakePartyItemAll("KiyoArm1")
 END
 
-IF	OR(3)
+IF
+	OR(3)
 		NumItemsPartyGT("KiyoBow3",1)
 		NumItemsPartyGT("KiyoBow2",1)
 		NumItemsPartyGT("KiyoBow1",1)
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	TakePartyItemAll("KiyoBow3")
-	TakePartyItemAll("KiyoBow2")
-	TakePartyItemAll("KiyoBow1")
+		TakePartyItemAll("KiyoBow3")
+		TakePartyItemAll("KiyoBow2")
+		TakePartyItemAll("KiyoBow1")
 END
 
 // Ring Matters
-
-IF	OR(2)
+// ------------
+IF
+	OR(2)
 		NumItemsPartyGT("KyRing2",1)
 		NumItemsPartyGT("KyRing1",1)
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	TakePartyItemAll("KyRing2")
-	TakePartyItemAll("KyRing1")
+		TakePartyItemAll("KyRing2")
+		TakePartyItemAll("KyRing1")
 END
 
-IF	OR(2)
+IF
+	OR(2)
 		NumItemsPartyGT("KvRing2",1)
 		NumItemsPartyGT("KvRing1",1)
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	TakePartyItemAll("KvRing2")
-	TakePartyItemAll("KvRing1")
+		TakePartyItemAll("KvRing2")
+		TakePartyItemAll("KvRing1")
 END
 
-IF 	!InParty("Kova")
+IF
+ 	!InParty("Kova")
 	OR(2)
-		PartyHasItem("KvRing2")
-		PartyHasItem("KvRing1")
+			PartyHasItem("KvRing2")
+			PartyHasItem("KvRing1")
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	TakePartyItemAll("KvRing2")
-	TakePartyItemAll("KvRing1")
+		TakePartyItemAll("KvRing2")
+		TakePartyItemAll("KvRing1")
 END
 
-IF 	!InParty("Kiyone")
+IF
+ 	!InParty("Kiyone")
 	OR(2)
 		PartyHasItem("KyRing2")
 		PartyHasItem("KyRing1")
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	TakePartyItemAll("KyRing2")
-	TakePartyItemAll("KyRing1")
+		TakePartyItemAll("KyRing2")
+		TakePartyItemAll("KyRing1")
 END
 
 
-IF	Global("KKDream1", "GLOBAL", 10)
+IF
+	Global("KKDream1","GLOBAL",10)
 	PartyRested()
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	SetGlobal("KKDream1", "GLOBAL", 11)
-	ActionOverride(Player1, SetSequence(SEQ_AWAKE) )
-	ActionOverride(Player2, SetSequence(SEQ_AWAKE) )
-	ActionOverride(Player3, SetSequence(SEQ_AWAKE) )
-	ActionOverride(Player4, SetSequence(SEQ_AWAKE) )
-	ActionOverride(Player5, SetSequence(SEQ_AWAKE) )
-	ActionOverride(Player6, SetSequence(SEQ_AWAKE) ) 
+		SetGlobal("KKDream1","GLOBAL",11)
+		ActionOverride(Player1,SetSequence(SEQ_AWAKE))
+		ActionOverride(Player2,SetSequence(SEQ_AWAKE))
+		ActionOverride(Player3,SetSequence(SEQ_AWAKE))
+		ActionOverride(Player4,SetSequence(SEQ_AWAKE))
+		ActionOverride(Player5,SetSequence(SEQ_AWAKE))
+		ActionOverride(Player6,SetSequence(SEQ_AWAKE))
 END
 
 // D0Quest controller
-
-IF	GlobalGT("D0Maevar","GLOBAL",4)
+// ------------------
+IF
+	GlobalGT("D0Maevar","GLOBAL",4)
 	OR(2)
-	InPartyAllowDead("Kova")
-	InPartyAllowDead("Kiyone")
+		InPartyAllowDead("Kova")
+		InPartyAllowDead("Kiyone")
 	Global("Z#TrialClear","GLOBAL",0)
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	SetGlobal("D0Maevar","GLOBAL",299)
+		SetGlobal("D0Maevar","GLOBAL",299)
 END
 
-IF	Global("D0Maevar","GLOBAL",299)
+IF
+	Global("D0Maevar","GLOBAL",299)
 	!Global("Z#TrialClear","GLOBAL",0)
+	%BG2_VAR%
 THEN
 	RESPONSE #100
-	SetGlobal("D0Maevar","GLOBAL",30)	
+		SetGlobal("D0Maevar","GLOBAL",30)
 END
