@@ -1,8 +1,9 @@
 // Append to AmnTrp01.bcs,only in City
 
 // Bylanna's Messenger Myroven
-
-IF	AreaType(City)
+// ---------------------------
+IF
+	AreaType(City)
 	Delay(10)
 	Range([PC],20)
 	Global("GovtGuards","GLOBAL",2)
@@ -13,40 +14,43 @@ IF	AreaType(City)
 	Global("Z#BaevrinPlot","GLOBAL",0)
 THEN
 	RESPONSE #100
-	SetGlobal("GovtGuards","GLOBAL",3)
-	CreateCreatureObjectOffScreen("Z#MESSEN",Player1,0,0,0)
-	ActionOverride("Z#MESSEN",StartDialog("Z#MESSEN",Player1))
+		SetGlobal("GovtGuards","GLOBAL",3)
+		CreateCreatureObjectOffScreen("Z#MESSEN",Player1,0,0,0)
+		ActionOverride("Z#MESSEN",StartDialog("Z#MESSEN",Player1))
 END
 
 // After Seida Escapes
-
-IF	GlobalTimerExpired("Z#Part7Timer","GLOBAL")
+// -------------------
+IF
+	GlobalTimerExpired("Z#Part7Timer","GLOBAL")
 	Global("Z#TellSeidaFree","GLOBAL",0)
 	OR(2)
-	!Global("Z#BTLPart7Prison","GLOBAL",1)
-	!Global("Z#BTLPart7","GLOBAL",3)
+		!Global("Z#BTLPart7Prison","GLOBAL",1)
+		!Global("Z#BTLPart7","GLOBAL",3)
 THEN
 	RESPONSE #100
-	SetGlobal("Z#TellSeidaFree","GLOBAL",2)
-	CreateCreatureObjectOffScreen("Z#MESSEN",Player1,0,0,0)
-	ActionOverride("Z#MESSEN",StartDialogNoSet(Player1))
+		SetGlobal("Z#TellSeidaFree","GLOBAL",2)
+		CreateCreatureObjectOffScreen("Z#MESSEN",Player1,0,0,0)
+		ActionOverride("Z#MESSEN",StartDialogNoSet(Player1))
 END
 
-IF	GlobalTimerExpired("Z#Part7Timer","GLOBAL")
+IF
+	GlobalTimerExpired("Z#Part7Timer","GLOBAL")
 	Global("Z#TellSeidaFree","GLOBAL",0)
 	Global("Z#BTLPart7Prison","GLOBAL",1)
 	Global("Z#BTLPart7","GLOBAL",3)
 THEN
 	RESPONSE #100
-	SetGlobal("Z#TellSeidaFree","GLOBAL",1)
-	SetGlobal("Z#BTLPart7","GLOBAL",4)
-	CreateCreatureObjectOffScreen("Z#DAYVEN",Player1,0,0,0)
-	ActionOverride("Dayven",StartDialogNoSet(Player1))
+		SetGlobal("Z#TellSeidaFree","GLOBAL",1)
+		SetGlobal("Z#BTLPart7","GLOBAL",4)
+		CreateCreatureObjectOffScreen("Z#DAYVEN",Player1,0,0,0)
+		ActionOverride("Dayven",StartDialogNoSet(Player1))
 END
 
 // Cowled Wizards
-
-IF	AreaType(City)
+// --------------
+IF
+	AreaType(City)
 	Delay(10)
 	Range([PC],20)
 	Global("KKCowl","GLOBAL",1)
@@ -58,7 +62,7 @@ IF	AreaType(City)
 THEN
 	RESPONSE #100
 		SetGlobal("KKCowl","GLOBAL",0)
-		DisplayString(Myself,@16)
+		DisplayString(Myself,@851)  // ~Harbouring one as wanted as Kova in your party has gained you some unfriendly attention.~
 		RealSetGlobalTimer("Pursuit","GLOBAL",600)
 		Wait(1)
 		CreateCreatureObjectOffset("COWENF1",Myself,[100.100])
@@ -67,7 +71,8 @@ THEN
 		CreateCreatureObjectOffset("COWENF4",Myself,[100.-100])
 END
 
-IF	AreaType(City)
+IF
+	AreaType(City)
 	Delay(10)
 	Range([PC],20)
 	Global("KKCowl","GLOBAL",1)
@@ -79,7 +84,7 @@ IF	AreaType(City)
 THEN
 	RESPONSE #100
 		SetGlobal("KKCowl","GLOBAL",0)
-		DisplayString(Myself,@16)
+		DisplayString(Myself,@851)
 		RealSetGlobalTimer("Pursuit","GLOBAL",600)
 		Wait(1)
 		CreateCreatureObjectOffset("COWENF1",Myself,[100.100])
@@ -89,7 +94,8 @@ THEN
 		CreateCreatureObjectOffset("COWENF4",Myself,[100.-100])
 END
 
-IF	AreaType(City)
+IF
+	AreaType(City)
 	Delay(10)
 	Range([PC],20)
 	Global("KKCowl","GLOBAL",1)
@@ -101,7 +107,7 @@ IF	AreaType(City)
 THEN
 	RESPONSE #100
 		SetGlobal("KKCowl","GLOBAL",0)
-		DisplayString(Myself,@16)
+		DisplayString(Myself,@851)
 		RealSetGlobalTimer("Pursuit","GLOBAL",600)
 		Wait(1)
 		CreateCreatureObjectOffset("MAGE18A",Myself,[100.100])
@@ -111,7 +117,8 @@ THEN
 		CreateCreatureObjectOffset("COWENF4",Myself,[100.-100])
 END
 
-IF	AreaType(City)
+IF
+	AreaType(City)
 	Delay(10)
 	Range([PC],20)
 	Global("KKCowl","GLOBAL",1)
@@ -123,7 +130,7 @@ IF	AreaType(City)
 THEN
 	RESPONSE #100
 		SetGlobal("KKCowl","GLOBAL",0)
-		DisplayString(Myself,@16)
+		DisplayString(Myself,@851)
 		RealSetGlobalTimer("Pursuit","GLOBAL",600)
 		Wait(1)
 		CreateCreatureObjectOffset("MAGE18A",Myself,[100.100])
@@ -135,7 +142,7 @@ END
 
 
 // Shadow Thieves
-
+// --------------
 IF
 	Delay(10)
 	Range([PC],20)
@@ -148,7 +155,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobal("KKThief","GLOBAL",0)
-		DisplayString(Myself,@16)
+		DisplayString(Myself,@851)
 		RealSetGlobalTimer("Pursuit","GLOBAL",600)
 		Wait(1)
 		CreateCreatureObjectOffset("Z#Assas1",Myself,[100.100])
@@ -173,7 +180,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobal("KKThief","GLOBAL",0)
-		DisplayString(Myself,@16)
+		DisplayString(Myself,@851)
 		RealSetGlobalTimer("Pursuit","GLOBAL",600)
 		Wait(1)
 //		CreateCreatureObjectOffset("Z#Assas1",Player1,[100.100])
@@ -199,7 +206,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobal("KKThief","GLOBAL",0)
-		DisplayString(Myself,@16)
+		DisplayString(Myself,@851)
 		RealSetGlobalTimer("Pursuit","GLOBAL",600)
 		Wait(1)
 		CreateCreatureObjectOffset("Z#Assas2",Player1,[100.100])
@@ -225,7 +232,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobal("KKThief","GLOBAL",0)
-		DisplayString(Myself,@16)
+		DisplayString(Myself,@851)
 		RealSetGlobalTimer("Pursuit","GLOBAL",600)
 		Wait(1)
 		CreateCreatureObjectOffset("Z#Assas3",Player1,[100.100])
@@ -242,8 +249,9 @@ THEN
 END
 
 // Govt Guards in City
-
-IF	AreaType(City)
+// -------------------
+IF
+	AreaType(City)
 	Delay(10)
 	Range([PC],20)
 	Global("KKGovt","GLOBAL",1)
@@ -256,7 +264,7 @@ THEN
 	RESPONSE #80
 		SetGlobal("KKGovt","GLOBAL",0)
 		IncrementGlobal("GovtMeetGuards","GLOBAL",1)
-		DisplayString(Myself,@17)
+		DisplayString(Myself,@852)  // ~The lack of evidence and your continued harbouring of Kova has prompted Government action against you.~
 		RealSetGlobalTimer("Pursuit","GLOBAL",600)
 		Wait(1)
 		CreateCreatureObjectOffset("AMNLEG1",Myself,[100.100])
@@ -269,7 +277,7 @@ THEN
 	RESPONSE #20
 		SetGlobal("KKGovt","GLOBAL",0)
 		IncrementGlobal("GovtMeetGuards","GLOBAL",1)
-		DisplayString(Myself,@17)
+		DisplayString(Myself,@852)
 		RealSetGlobalTimer("Pursuit","GLOBAL",600)
 		Wait(1)
 		CreateCreatureObjectOffset("Z#Kni1",Myself,[100.100])
@@ -278,7 +286,8 @@ THEN
 		CreateCreatureObjectOffset("Z#Kni4",Myself,[-100.100])
 END
 
-IF	AreaType(City)
+IF
+	AreaType(City)
 	Delay(10)
 	Range([PC],20)
 	Global("KKGovt","GLOBAL",1)
@@ -291,7 +300,7 @@ THEN
 	RESPONSE #80
 		SetGlobal("KKGovt","GLOBAL",0)
 		IncrementGlobal("GovtMeetGuards","GLOBAL",1)
-		DisplayString(Myself,@17)
+		DisplayString(Myself,@852)
 		RealSetGlobalTimer("Pursuit","GLOBAL",600)
 		Wait(1)
 		CreateCreatureObjectOffset("AMNLEG1",Myself,[100.100])
@@ -306,7 +315,7 @@ THEN
 	RESPONSE #20
 		SetGlobal("KKGovt","GLOBAL",0)
 		IncrementGlobal("GovtMeetGuards","GLOBAL",1)
-		DisplayString(Myself,@17)
+		DisplayString(Myself,@852)
 		RealSetGlobalTimer("Pursuit","GLOBAL",600)
 		Wait(1)
 		CreateCreatureObjectOffset("Z#Kni1",Myself,[100.100])
@@ -317,7 +326,8 @@ THEN
 		CreateCreatureOffScreen("Z#Kni5",0)
 END
 
-IF	AreaType(City)
+IF
+	AreaType(City)
 	Delay(10)
 	Range([PC],20)
 	Global("KKGovt","GLOBAL",1)
@@ -330,7 +340,7 @@ THEN
 	RESPONSE #80
 		SetGlobal("KKGovt","GLOBAL",0)
 		IncrementGlobal("GovtMeetGuards","GLOBAL",1)
-		DisplayString(Myself,@17)
+		DisplayString(Myself,@852)
 		RealSetGlobalTimer("Pursuit","GLOBAL",600)
 		Wait(1)
 		CreateCreatureObjectOffset("AMNLEG1",Myself,[100.100])
@@ -347,7 +357,7 @@ THEN
 	RESPONSE #20
 		SetGlobal("KKGovt","GLOBAL",0)
 		IncrementGlobal("GovtMeetGuards","GLOBAL",1)
-		DisplayString(Myself,@17)
+		DisplayString(Myself,@852)
 		RealSetGlobalTimer("Pursuit","GLOBAL",600)
 		Wait(1)
 		CreateCreatureObjectOffset("Z#Kni1",Myself,[100.100])
@@ -360,7 +370,8 @@ THEN
 		CreateCreatureOffScreen("Z#Kni5",0)
 END
 
-IF	AreaType(City)
+IF
+	AreaType(City)
 	Delay(10)
 	Range([PC],20)
 	Global("KKGovt","GLOBAL",1)
@@ -373,7 +384,7 @@ THEN
 	RESPONSE #80
 		SetGlobal("KKGovt","GLOBAL",0)
 		IncrementGlobal("GovtMeetGuards","GLOBAL",1)
-		DisplayString(Myself,@17)
+		DisplayString(Myself,@852)
 		RealSetGlobalTimer("Pursuit","GLOBAL",600)
 		Wait(1)
 		CreateCreatureObjectOffset("AMNLEG1",Myself,[100.100])
@@ -391,7 +402,7 @@ THEN
 	RESPONSE #20
 		SetGlobal("KKGovt","GLOBAL",0)
 		IncrementGlobal("GovtMeetGuards","GLOBAL",1)
-		DisplayString(Myself,@17)
+		DisplayString(Myself,@852)
 		RealSetGlobalTimer("Pursuit","GLOBAL",600)
 		Wait(1)
 		CreateCreatureObjectOffset("Z#Kni1",Myself,[100.100])

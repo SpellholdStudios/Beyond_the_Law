@@ -1,42 +1,45 @@
 // Killing Edwin
 
-IF	True()
+IF
+	True()
 THEN
 	RESPONSE #100
-	CutSceneId("Kova")
-	ActionOverride("Edwin", Enemy())
-	EquipMostDamagingMelee()
-	Hide()
-	ApplySpell(Myself, WIZARD_INVISIBILITY)
-	ApplySpell(Myself, WIZARD_IMPROVED_HASTE)
-	MoveGlobalObjectOffScreen("Edwin", "Kova")
-	ActionOverride("Edwin", ApplySpell("Edwin", WIZARD_DISPEL_MAGIC) )
-	ActionOverride("Edwin", MoveToObject("Kova") )
-	MoveToObject("Edwin")
-	SetGlobal("KvEdwinKill", "GLOBAL", 1)
-	MoveViewObject(Myself,INSTANT)
-	AttackOneRound("Edwin")
-END 	
-
-IF	HPGT("Edwin", 0)
-	!StateCheck("Kova", STATE_INVISIBLE)
-	Global("KvEdwinKill", "GLOBAL", 1)
-THEN
-	RESPONSE #100
-	CutSceneId("Kova")	
-	ActionOverride("Edwin", ApplySpell("Edwin", WIZARD_STONE_SKIN) )
-	DisplayStringHead("Edwin", @809) // What! How dare...
-	ForceSpell("Edwin", WIZARD_FLAME_ARROW)
-	Wait(1)
-	Kill("Edwin")
+		CutSceneId("Kova")
+		ActionOverride("Edwin",Enemy())
+		EquipMostDamagingMelee()
+		Hide()
+		ApplySpell(Myself,WIZARD_INVISIBILITY)
+		ApplySpell(Myself,WIZARD_IMPROVED_HASTE)
+		MoveGlobalObjectOffScreen("Edwin","Kova")
+		ActionOverride("Edwin",ApplySpell("Edwin",WIZARD_DISPEL_MAGIC))
+		ActionOverride("Edwin",MoveToObject("Kova"))
+		MoveToObject("Edwin")
+		SetGlobal("KvEdwinKill","GLOBAL",1)
+		MoveViewObject(Myself,INSTANT)
+		AttackOneRound("Edwin")
 END
 
-IF	Dead("Edwin")
-	Global("KvEdwinKill", "GLOBAL", 1)
+IF
+	HPGT("Edwin",0)
+	!StateCheck("Kova",STATE_INVISIBLE)
+	Global("KvEdwinKill","GLOBAL",1)
 THEN
 	RESPONSE #100
-	CutSceneId("Kova")
-	EndCutSceneMode()
-//	ActionOverride("Edwin", LeaveParty() )
-	StartDialogNoSet(Player1)
+		CutSceneId("Kova")
+		ActionOverride("Edwin",ApplySpell("Edwin",WIZARD_STONE_SKIN))
+		DisplayStringHead("Edwin",@871)  // ~What! How dare...~
+		ForceSpell("Edwin",WIZARD_FLAME_ARROW)
+		Wait(1)
+		Kill("Edwin")
+END
+
+IF
+	Dead("Edwin")
+	Global("KvEdwinKill","GLOBAL",1)
+THEN
+	RESPONSE #100
+		CutSceneId("Kova")
+		EndCutSceneMode()
+//		ActionOverride("Edwin",LeaveParty())
+		StartDialogNoSet(Player1)
 END

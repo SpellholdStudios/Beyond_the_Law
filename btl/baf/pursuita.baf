@@ -1,7 +1,7 @@
 // Append to various outdoor areas
 
 // After Seida Escapes
-
+// -------------------
 IF	GlobalTimerExpired("Z#Part7Timer","GLOBAL")
 	Global("Z#TellSeidaFree","GLOBAL",0)
 	OR(2)
@@ -27,7 +27,7 @@ THEN
 END
 
 // Shadow Thieves
-
+// --------------
 IF
 	Global("KKThief","GLOBAL",1)
 //	XPGT(Player1,1000000)
@@ -38,7 +38,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobal("KKThief","GLOBAL",0)
-		DisplayString(Player1,@16)
+		DisplayString(Player1,@851)  // ~Harbouring one as wanted as Kova in your party has gained you some unfriendly attention.~
 		RealSetGlobalTimer("Pursuit","GLOBAL",600)
 		Wait(1)
 		CreateCreatureObjectOffset("Z#Assas1",Player1,[100.100])
@@ -62,7 +62,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobal("KKThief","GLOBAL",0)
-		DisplayString(Player1,@16)
+		DisplayString(Player1,@851)
 		RealSetGlobalTimer("Pursuit","GLOBAL",600)
 		Wait(1)
 //		CreateCreatureObjectOffset("Z#Assas1",Player1,[100.100])
@@ -87,7 +87,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobal("KKThief","GLOBAL",0)
-		DisplayString(Player1,@16)
+		DisplayString(Player1,@851)
 		RealSetGlobalTimer("Pursuit","GLOBAL",600)
 		Wait(1)
 		CreateCreatureObjectOffset("Z#Assas2",Player1,[100.100])
@@ -112,7 +112,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobal("KKThief","GLOBAL",0)
-		DisplayString(Player1,@16)
+		DisplayString(Player1,@851)
 		RealSetGlobalTimer("Pursuit","GLOBAL",600)
 		Wait(1)
 		CreateCreatureObjectOffset("Z#Assas3",Player1,[100.100])
@@ -130,7 +130,7 @@ THEN
 END
 
 // Govt Guards (ie Knights) Outside
-
+// --------------------------------
 IF
 	Global("KKGovt","GLOBAL",1)
 //	XPGT(Player1,1000000)
@@ -142,7 +142,7 @@ THEN
 	RESPONSE #100
 		SetGlobal("KKGovt","GLOBAL",0)
 		IncrementGlobal("GovtMeetGuards","GLOBAL",1)
-		DisplayString(Player1,@17)
+		DisplayString(Player1,@852)  // ~The lack of evidence and your continued harbouring of Kova has prompted Government action against you.~
 		RealSetGlobalTimer("Pursuit","GLOBAL",600)
 		Wait(1)
 		CreateCreatureObjectOffset("Z#Kni1",Player1,[100.100])
@@ -163,7 +163,7 @@ THEN
 	RESPONSE #100
 		SetGlobal("KKGovt","GLOBAL",0)
 		IncrementGlobal("GovtMeetGuards","GLOBAL",1)
-		DisplayString(Player1,@17)
+		DisplayString(Player1,@852)
 		RealSetGlobalTimer("Pursuit","GLOBAL",600)
 		Wait(1)
 		CreateCreatureObjectOffset("Z#Kni1",Player1,[100.100])
@@ -186,7 +186,7 @@ THEN
 	RESPONSE #100
 		SetGlobal("KKGovt","GLOBAL",0)
 		IncrementGlobal("GovtMeetGuards","GLOBAL",1)
-		DisplayString(Player1,@17)
+		DisplayString(Player1,@852)
 		RealSetGlobalTimer("Pursuit","GLOBAL",600)
 		Wait(1)
 		CreateCreatureObjectOffset("Z#Kni1",Player1,[100.100])
@@ -211,7 +211,7 @@ THEN
 	RESPONSE #100
 		SetGlobal("KKGovt","GLOBAL",0)
 		IncrementGlobal("GovtMeetGuards","GLOBAL",1)
-		DisplayString(Player1,@17)
+		DisplayString(Player1,@852)
 		RealSetGlobalTimer("Pursuit","GLOBAL",600)
 		Wait(1)
 		CreateCreatureObjectOffset("Z#Kni1",Player1,[100.100])

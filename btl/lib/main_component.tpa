@@ -1,3 +1,62 @@
+/* =============================================================================== *
+ *  v2.0.0                                                                         *
+ *                                                                                 *
+ *        B E Y O N D    T H E    L A W    ( m a i n    c o m p o n e n t )        *
+ *                                                                                 *
+ * =============================================================================== */
+
+SILENT
+
+/* ---------------------- *
+ *  Installing portraits  *
+ * ---------------------- */
+
+COPY ~%MOD_FOLDER%/portraits%ee_file%/kharens.bmp~ ~override~
+     ~%MOD_FOLDER%/portraits%ee_file%/kiyol.bmp~   ~override~
+     ~%MOD_FOLDER%/portraits%ee_file%/kiyom.bmp~   ~override~
+     ~%MOD_FOLDER%/portraits%ee_file%/kiyos.bmp~   ~override~
+     ~%MOD_FOLDER%/portraits%ee_file%/koval.bmp~   ~override~
+     ~%MOD_FOLDER%/portraits%ee_file%/kovam.bmp~   ~override~
+     ~%MOD_FOLDER%/portraits%ee_file%/kovas.bmp~   ~override~
+     ~%MOD_FOLDER%/portraits%ee_file%/seidas.bmp~  ~override~
+     ~%MOD_FOLDER%/portraits%ee_file%/seidal.bmp~  ~override~
+
+
+/* ------------------ *
+ *  Installing areas  *
+ * ------------------ */
+
+// Area for Final
+// --------------
+COPY ~btl/area/z#0041.are~   ~override~
+    ~btl/area/z#0041sr.bmp~  ~override~
+COPY_EXISTING ~ar0041.tis~   ~override~
+COPY_EXISTING ~ar0041.wed~   ~override/z#0041.wed~
+	WRITE_ASCII 0x24 ~Z#0041~
+COPY_EXISTING ~ar0041n.wed~  ~override/z#0041n.wed~
+COPY_EXISTING ~ar0041lm.bmp~ ~override/z#0041lm.bmp~
+COPY_EXISTING ~ar0041ln.bmp~ ~override/z#0041ln.bmp~
+COPY_EXISTING ~ar0041ht.bmp~ ~override/z#0041ht.bmp~
+ 
+// Area for Trial
+// --------------
+COPY ~btl/area/z#1002.are~ ~override~
+     ~btl/cre/z#nob1.cre~  ~override~
+     ~btl/cre/z#nob2.cre~  ~override~
+     ~btl/cre/z#nob3.cre~  ~override~
+
+// Areas for Cutscenes
+// -------------------
+COPY ~btl/area/z#1005.are~ ~override~
+     ~btl/area/z#2803.are~ ~override~
+     ~btl/area/z#2800.are~ ~override~
+     ~btl/area/z#2812.are~ ~override~
+     ~btl/area/z#2801.are~ ~override~
+
+COPY_EXISTING ~ar1005.are~ ~override~
+	WRITE_ASCII AREA_SCRIPT ~AR1005~
+BUT_ONLY
+
 
 /* ---------------------- *
  *  Installing dialogues  *
@@ -8,39 +67,50 @@ COMPILE ~btl/dlg/kovab.d~
 COMPILE ~btl/dlg/items.d~
 COMPILE ~btl/dlg/interj.d~ EVALUATE_BUFFER
 
+// Make sure Arledrian's DLG pauses the game
+// -----------------------------------------
+COPY_EXISTING_REGEXP ~arled.dlg~ ~override~
+  WRITE_LONG 0x30 0
+BUT_ONLY
+
+COPY_EXISTING ~bylanna.cre~ ~override~
+	WRITE_ASCII 0x280 ~Bylanna~
+BUT_ONLY
+
 
 /* -------------------- *
  *  Installing scripts  *
  * -------------------- */
 
-// The following is compiling the script and placing it in the override.
+// Compiling new scripts.
+// ----------------------
 COMPILE ~btl/baf/z#kova.baf~
 COMPILE ~btl/Z#Kiyone.baf~
 COMPILE ~btl/baf/z#kovad.baf~
         ~btl/baf/kovafoe.baf~
         ~btl/baf/kharen16.baf~
-COMPILE ~btl/Z#yoshkv.baf~
-COMPILE ~btl/baf/z#edwkv.baf~
 COMPILE ~btl/Z#kvfix.baf~
 COMPILE ~btl/Z#kyfix.baf~
+COMPILE ~btl/baf/z#0041.baf~
         ~btl/baf/z#1002.baf~
         ~btl/baf/z#1005.baf~
         ~btl/baf/z#2801.baf~
         ~btl/baf/z#2812.baf~
         ~btl/baf/z#baev.baf~
         ~btl/baf/z#corn.baf~
+        ~btl/baf/z#edwkv.baf~
         ~btl/baf/z#killbv.baf~
         ~btl/baf/z#messen.baf~
         ~btl/baf/z#prison.baf~
         ~btl/baf/z#protbv.baf~
         ~btl/baf/z#seid16.baf~
+        ~btl/baf/z#yoshkv.baf~
         ~btl/baf/z#zdseid.baf~
-COMPILE ~btl/z#0041.baf~
 
-// The following is appending what we wrote in AR1000.baf to the bottom of AR1000.bcs
-
+// Expend existing scripts
+// -----------------------
 EXTEND_TOP      ~baldur.bcs~ ~ad&l/start.baf~
-EXTEND_TOP    ~amntrp01.bcs~ ~btl/baf/pursuitc.baf~ // Only City
+EXTEND_TOP    ~amntrp01.bcs~ ~btl/baf/pursuitc.baf~ // City only
 EXTEND_TOP    ~shout.bcs~    ~btl/baf/ar0531pp.baf~ // for AR0531 for Baevrin's quest
 EXTEND_BOTTOM ~stdeath.bcs~  ~btl/baf/stdeath.baf~  // for making thieves disappear
 
@@ -60,117 +130,106 @@ EXTEND_TOP    ~ar3000.bcs~   ~btl/baf/pursuita.baf~ // Watcher's Keep
 EXTEND_TOP    ~ar6200.bcs~   ~btl/baf/ar6200.baf~   // Epilogues
 
 
-COPY_EXISTING ~ar1005.are~ ~override~
-	WRITE_ASCII AREA_SCRIPT ~AR1005~
-BUT_ONLY
-
-COPY_EXISTING ~bylanna.cre~ ~override~
-	WRITE_ASCII 0x280 ~Bylanna~
-BUT_ONLY
-
 EXTEND_TOP    ~ar0311.bcs~   ~btl/baf/ar0311.baf~
 EXTEND_TOP    ~ar0312.bcs~   ~btl/baf/ar0312.baf~
 EXTEND_TOP    ~ar0317.bcs~   ~btl/baf/ar0317.baf~
 EXTEND_TOP    ~ar0515.bcs~   ~btl/baf/ar0515.baf~
-//EXTEND_TOP      ~edwin.bcs~   ~btl/z#edwin.baf~
+//EXTEND_TOP    ~edwin.bcs~    ~btl/z#edwin.baf~
 EXTEND_TOP    ~ar1005.bcs~   ~btl/baf/ar1005.baf~
 EXTEND_TOP    ~ar1600.bcs~   ~btl/baf/ar1600.baf~
 EXTEND_TOP    ~ar2812.bcs~   ~btl/baf/ar2812.baf~ // Resurrection
 EXTEND_TOP    ~trueston.bcs~ ~btl/baf/trueston.baf~
 
-// Ensuring Arledrian's DLG pauses the game
 
-COPY_EXISTING_REGEXP ~arled.dlg~ ~override~
-  WRITE_LONG 0x30 0
-BUT_ONLY
+/* ---------------------- *
+ *  Installing creatures  *
+ * ---------------------- */
 
-// Adding Quest NPCs
+// 1. Quest NPCs
+// -------------
 
 // Inspector Dayven
 COPY ~btl/cre/z#dayven.cre~ ~override~
-	SAY NAME1 @2007
-	SAY NAME2 @2007
+	SAY NAME1 @2100
+	SAY NAME2 @2100
 
 // Myroven
 COPY ~btl/cre/z#messen.cre~ ~override~
-	SAY NAME1 @2008
-	SAY NAME2 @2008
-
-COPY ~btl/Bmp\KharenS.bmp~ ~override\KharenS.bmp~
+	SAY NAME1 @2101
+	SAY NAME2 @2101
 
 // Kharen
 COPY ~btl/cre/z#khar16.cre~ ~override~
-	SAY NAME1 @2009
-	SAY NAME2 @2009
-	SAY DAMAGE ~~
-	SAY HURT @2011
-	SAY CRITICAL_HIT @2012
-	SAY CRITICAL_MISS @2013
-	SAY HIDDEN_IN_SHADOWS @2014
-	SAY BATTLE_CRY1 @2015
-	SAY BATTLE_CRY2 @2016
-	SAY BATTLE_CRY3 @2017
-	SAY BATTLE_CRY4 @2018
-	SAY BATTLE_CRY5 @2019
+	SAY NAME1 @2102
+	SAY NAME2 @2102
+	SAY DAMAGE @2200
+	SAY HURT @2201
+	SAY CRITICAL_HIT @2202
+	SAY CRITICAL_MISS @2203
+	SAY HIDDEN_IN_SHADOWS @2204
+	SAY BATTLE_CRY1 @2205
+	SAY BATTLE_CRY2 @2206
+	SAY BATTLE_CRY3 @2207
+	SAY BATTLE_CRY4 @2208
+	SAY BATTLE_CRY5 @2209
 
-COPY ~btl/Bmp\SeidaS.bmp~ ~override\SeidaS.bmp~
 // Seida
 COPY ~btl/cre/z#seid16.cre~ ~override~
-	SAY NAME1 @2020
-	SAY NAME2 @2020
+	SAY NAME1 @2103
+	SAY NAME2 @2103
 
 // Aran's Runes
-COPY ~btl/itm/z#rune.Itm~ ~override~
-	SAY NAME1 @2021
-	SAY NAME2 @2021
-	SAY DESC @63
+COPY ~btl/itm/z#rune.itm~ ~override~
+	SAY NAME1 @2571
+	SAY NAME2 @2571
+	SAY DESC @2572
 COPY ~btl/itm/z#runeef.eff~ ~override~
-COPY ~btl/spl/z#runesp.spl~ ~override~
+     ~btl/spl/z#runesp.spl~ ~override~
 
 // Lesser Whirlwind
 COPY ~btl/spl/z#seidww.spl~ ~override~
-	SAY NAME1 @2022
-	SAY NAME2 @2022
+	SAY NAME1 @2573
+	SAY NAME2 @2573
 
 // Itona
 COPY ~btl/cre/trthf01.cre~ ~override~
-	SAY NAME1 @2023
-	SAY NAME2 @2023
+	SAY NAME1 @2104
+	SAY NAME2 @2104
 
 // Adylin
 COPY ~btl/cre/z#adyl.cre~ ~override~
-	SAY NAME1 @2024
-	SAY NAME2 @2024
+	SAY NAME1 @2105
+	SAY NAME2 @2105
 
 // Ardelios
 COPY ~btl/cre/z#ardel.cre~ ~override~
-	SAY NAME1 @2025
-	SAY NAME2 @2025
+	SAY NAME1 @2106
+	SAY NAME2 @2106
 
 // Baevrin
 COPY ~btl/cre/z#baev.cre~ ~override~
-	SAY NAME1 @2026
-	SAY NAME2 @2026
+	SAY NAME1 @2107
+	SAY NAME2 @2107
 
 // Terahn
 COPY ~btl/cre/z#terahn.cre~ ~override~
-	SAY NAME1 @2027
-	SAY NAME2 @2027
+	SAY NAME1 @2108
+	SAY NAME2 @2108
 
 // Merahn
 COPY ~btl/cre/z#merahn.cre~ ~override~
-	SAY NAME1 @2028
-	SAY NAME2 @2028
+	SAY NAME1 @2109
+	SAY NAME2 @2109
 
 // Elven Mage
 COPY ~btl/cre/z#elf1.cre~ ~override~
-	SAY NAME1 @2029
-	SAY NAME2 @2029
+	SAY NAME1 @2110
+	SAY NAME2 @2110
 
 // Cleric of Rillifane
 COPY ~btl/cre/z#zlf2.cre~ ~override~
-	SAY NAME1 @2030
-	SAY NAME2 @2030
+	SAY NAME1 @2111
+	SAY NAME2 @2111
 
 COPY ~btl/cre/z#elf3.cre~   ~override~
 COPY ~btl/cre/z#demin1.cre~ ~override~
@@ -178,431 +237,389 @@ COPY ~btl/cre/z#demin2.cre~ ~override~
 //COPY ~btl/cre/z#invis.cre~ ~override~
 
 
-// Adding Area for Finale
-
-COPY ~btl/area\Z#0041.ARE~ ~override\Z#0041.ARE~
-COPY_EXISTING ~AR0041.TIS~ ~override\Z#0041.TIS~
-COPY_EXISTING ~AR0041.WED~ ~override\Z#0041.WED~
-  WRITE_ASCII 0x24 ~Z#0041~
-COPY_EXISTING ~AR0041N.WED~ ~override\Z#0041N.WED~
-COPY_EXISTING ~AR0041LM.BMP~ ~override\Z#0041LM.BMP~
-COPY_EXISTING ~AR0041LN.BMP~ ~override\Z#0041LN.BMP~
-COPY_EXISTING ~AR0041HT.BMP~ ~override\Z#0041HT.BMP~
-COPY ~btl/area\Z#0041SR.BMP~ ~override\Z#0041SR.BMP~
-
-// Adding Area for Trial
-
-COPY ~btl/area\Z#1002.ARE~ ~override\Z#1002.ARE~
-COPY ~btl/cre\Z#NOB1.cre~ ~override\Z#NOB1.cre~
-COPY ~btl/cre\Z#NOB2.cre~ ~override\Z#NOB2.cre~
-COPY ~btl/cre\Z#NOB3.cre~ ~override\Z#NOB3.cre~
-
-// Adding Areas for Cutscenes
-
-COPY ~btl/area\Z#1005.ARE~ ~override\Z#1005.ARE~
-COPY ~btl/area\Z#2803.ARE~ ~override\Z#2803.ARE~
-COPY ~btl/area\Z#2800.ARE~ ~override\Z#2800.ARE~
-COPY ~btl/area\Z#2812.ARE~ ~override\Z#2812.ARE~
-COPY ~btl/area\Z#2801.ARE~ ~override\Z#2801.ARE~
-
 // Adding Enemies
+COPY ~btl/cre/z#cw16.cre~ ~override~
+     ~btl/cre/z#cw18.cre~ ~override~
 
-COPY ~btl/cre\Z#CW16.cre~ ~override\Z#CW16.cre~
-COPY ~btl/cre\Z#CW18.cre~ ~override\Z#CW18.cre~
+// Knights of the Order
+COPY ~btl/cre/z#kni1.cre~ ~override~
+     ~btl/cre/z#kni2.cre~ ~override~
+     ~btl/cre/z#kni3.cre~ ~override~
+     ~btl/cre/z#kni4.cre~ ~override~
+     ~btl/cre/z#kni5.cre~ ~override~
+     ~btl/cre/z#kni6.cre~ ~override~
+	SAY NAME1 @2112
+	SAY NAME2 @2112
 
-COPY ~btl/cre\Z#Kni1.cre~ ~override\Z#Kni1.cre~
-SAY NAME1 ~Knight of the Order~
-SAY NAME2 ~Knight of the Order~
-
-COPY ~btl/cre\Z#Kni2.cre~ ~override\Z#Kni2.cre~
-SAY NAME1 ~Knight of the Order~
-SAY NAME2 ~Knight of the Order~
-
-COPY ~btl/cre\Z#Kni3.cre~ ~override\Z#Kni3.cre~
-SAY NAME1 ~Knight of the Order~
-SAY NAME2 ~Knight of the Order~
-
-COPY ~btl/cre\Z#Kni4.cre~ ~override\Z#Kni4.cre~
-SAY NAME1 ~Knight of the Order~
-SAY NAME2 ~Knight of the Order~
-
-COPY ~btl/cre\Z#Kni5.cre~ ~override\Z#Kni5.cre~
-SAY NAME1 ~Knight of the Order~
-SAY NAME2 ~Knight of the Order~
-
-COPY ~btl/cre\Z#Kni6.cre~ ~override\Z#Kni6.cre~
-SAY NAME1 ~Knight of the Order~
-SAY NAME2 ~Knight of the Order~
-
-COPY ~btl/cre\Z#Assas1.cre~ ~override\Z#Assas1.cre~
-SAY NAME1 ~Assassin~
-SAY NAME2 ~Assassin~
-
-COPY ~btl/cre\Z#Assas2.cre~ ~override\Z#Assas2.cre~
-SAY NAME1 ~Assassin~
-SAY NAME2 ~Assassin~
-
-COPY ~btl/cre\Z#Assas3.cre~ ~override\Z#Assas3.cre~
-SAY NAME1 ~Assassin~
-SAY NAME2 ~Assassin~
-
-COPY ~btl/cre\Z#AssaBV.cre~ ~override\Z#AssaBV.cre~
-SAY NAME1 ~Assassin~
-SAY NAME2 ~Assassin~
-
-COPY ~btl/cre\Z#Arch1.cre~ ~override\Z#Arch1.cre~
-SAY NAME1 ~Shadow Thief~
-SAY NAME2 ~Shadow Thief~
-
-COPY ~btl/cre\Z#Arch2.cre~ ~override\Z#Arch2.cre~
-SAY NAME1 ~Shadow Thief~
-SAY NAME2 ~Shadow Thief~
-
-COPY ~btl/cre\Z#ArchBV.cre~ ~override\Z#ArchBV.cre~
-SAY NAME1 ~Shadow Thief~
-SAY NAME2 ~Shadow Thief~
-
-COPY ~btl/cre\Z#Mage1.cre~ ~override\Z#Mage1.cre~
-SAY NAME1 ~Shadow Thief Mage~
-SAY NAME2 ~Shadow Thief Mage~
-
-COPY ~btl/cre\Z#Mage2.cre~ ~override\Z#Mage2.cre~
-SAY NAME1 ~Shadow Thief Mage~
-SAY NAME2 ~Shadow Thief Mage~
-
-COPY ~btl/cre\Z#Pri1.cre~ ~override\Z#Pri1.cre~
-SAY NAME1 ~Priest of Cyric~
-SAY NAME2 ~Priest of Cyric~
-
-COPY ~btl/cre\Z#Pri2.cre~ ~override\Z#Pri2.cre~
-SAY NAME1 ~Priest of Cyric~
-SAY NAME2 ~Priest of Cyric~
-
-COPY_EXISTING ~Z#KNI1.CRE~ ~override\Z#KNI1OK.CRE~
+COPY_EXISTING ~z#kni1.cre~ ~override/z#kni1ok.cre~
+              ~z#kni2.cre~ ~override/z#kni2ok.cre~
+              ~z#kni3.cre~ ~override/z#kni3ok.cre~
+              ~z#kni4.cre~ ~override/z#kni4ok.cre~
 	WRITE_BYTE 0x270 128
-BUT_ONLY_IF_IT_CHANGES
-COPY_EXISTING ~Z#KNI2.CRE~ ~override\Z#KNI2OK.CRE~
-	WRITE_BYTE 0x270 128
-BUT_ONLY_IF_IT_CHANGES
-COPY_EXISTING ~Z#KNI3.CRE~ ~override\Z#KNI3OK.CRE~
-	WRITE_BYTE 0x270 128
-BUT_ONLY_IF_IT_CHANGES
-COPY_EXISTING ~Z#KNI4.CRE~ ~override\Z#KNI4OK.CRE~
-	WRITE_BYTE 0x270 128
-BUT_ONLY_IF_IT_CHANGES
+BUT_ONLY
 
-COPY_EXISTING ~PRISONG1.CRE~ ~override\PRISONG1.CRE~
+// Assassins
+COPY ~btl/cre/z#assas1.cre~ ~override~
+     ~btl/cre/z#assas2.cre~ ~override~
+     ~btl/cre/z#assas3.cre~ ~override~
+     ~btl/cre/z#assabv.cre~ ~override~
+	SAY NAME1 @2113
+	SAY NAME2 @2113
+
+// Shadow Thieves
+COPY ~btl/cre/z#arch1.cre~  ~override~
+     ~btl/cre/z#arch2.cre~  ~override~
+     ~btl/cre/z#archbv.cre~ ~override~
+	SAY NAME1 @2114
+	SAY NAME2 @2114
+
+// Shadow Thief Mages
+COPY ~btl/cre/z#mage1.cre~ ~override~
+     ~btl/cre/z#mage2.cre~ ~override~
+	SAY NAME1 @2115
+	SAY NAME2 @2115
+
+// Priests of Cyric
+COPY ~btl/cre/z#pri1.cre~ ~override~
+     ~btl/cre/z#pri2.cre~ ~override~
+	SAY NAME1 @2116
+	SAY NAME2 @2116
+
+COPY_EXISTING ~prisong1.cre~ ~override~
+              ~prisong2.cre~ ~override~
 	WRITE_ASCII 0x250 ~Z#PRISON~
-BUT_ONLY_IF_IT_CHANGES
-COPY_EXISTING ~PRISONG2.CRE~ ~override\PRISONG2.CRE~
-	WRITE_ASCII 0x250 ~Z#PRISON~
-BUT_ONLY_IF_IT_CHANGES
+BUT_ONLY
 
-COPY_EXISTING ~CORNEIL.CRE~ ~override\CORNEIL.CRE~
+COPY_EXISTING ~corneil.cre~ ~override~
 	WRITE_ASCII 0x250 ~Z#CORN~
-BUT_ONLY_IF_IT_CHANGES
+BUT_ONLY
 
 
-// Adding Quest Related Items
+//2. Kova and Kiyone NPCs
+// ----------------------
 
-COPY ~btl/GTHAC.spl~ ~override\GTHAC.spl~
-COPY ~btl/Z#HIDE.spl~ ~override\Z#HIDE.spl~
+// Kova
+COPY ~btl/cre/kova.cre~ ~override~
+	SAY NAME1 @2120
+	SAY NAME2 @2120
+	SAY INITIAL_MEETING @2211
+	SAY MORALE @2212
+	SAY HAPPY @2213
+	SAY UNHAPPY_ANNOYED @2214
+	SAY UNHAPPY_SERIOUS @2215
+	SAY UNHAPPY_BREAKING @2216
+	SAY LEADER @2217
+	SAY TIRED @2218
+	SAY BORED @2219
+	SAY BATTLE_CRY1 @2220
+	SAY BATTLE_CRY2 @2221
+	SAY BATTLE_CRY3 @2222
+	SAY BATTLE_CRY4 @2223
+	SAY DAMAGE @2224
+	SAY DYING @2225
+	SAY HURT @2226
+	SAY AREA_FOREST @2227
+	SAY AREA_CITY @2228
+	SAY AREA_DUNGEON @2229
+	SAY AREA_DAY @2230
+	SAY AREA_NIGHT @2231
+	SAY SELECT_COMMON1 @2232
+	SAY SELECT_COMMON2 @2233
+	SAY SELECT_COMMON3 @2234
+	SAY SELECT_COMMON4 @2235
+	SAY SELECT_COMMON5 @2236
+	SAY SELECT_COMMON6 @2237
+	SAY SELECT_ACTION1 @2238
+	SAY SELECT_ACTION2 @2239
+	SAY SELECT_ACTION3 @2240
+	SAY SELECT_ACTION4 @2241
+	SAY SELECT_ACTION5 @2242
+	SAY SELECT_ACTION6 @2243
+	SAY SELECT_ACTION7 @2244
+	SAY SELECT_RARE1 @2245
+	SAY SELECT_RARE2 @2246
+	SAY CRITICAL_HIT @2247
+	SAY CRITICAL_MISS @2248
+	SAY TARGET_IMMUNE @2249
+	SAY INVENTORY_FULL @2250
+	SAY PICKED_POCKET @2251
+	SAY HIDDEN_IN_SHADOWS @2252
+	SAY SPELL_DISRUPTED @2253
+	SAY SET_A_TRAP @2254
+	SAY BIO @2255
 
-// Adding Quest Related Items
+COPY ~btl/itm/kovawed1.itm~ ~override~
+COPY ~btl/cre/z#kvwed.cre~  ~override~
+	SAY NAME1 @2120
+	SAY NAME2 @2120
+	SAY SELECT_COMMON1 @2232
+	SAY SELECT_COMMON2 @2233
+	SAY SELECT_COMMON3 @2234
+	SAY SELECT_COMMON4 @2235
+	SAY SELECT_COMMON5 @2236
+	SAY SELECT_COMMON6 @2237
 
-COPY ~btl/itm\YoshKata.itm~ ~override\YoshKata.itm~
-SAY DESC @21
+// Kiyone
+COPY ~btl/cre/kiyone.cre~ ~override~
+	SAY NAME1 @2121
+	SAY NAME2 @2121
+	SAY INITIAL_MEETING @2301
+	SAY MORALE @2302
+	SAY HAPPY @2303
+	SAY UNHAPPY_ANNOYED @2304
+	SAY UNHAPPY_SERIOUS @2305
+	SAY UNHAPPY_BREAKING @2306
+	SAY LEADER @2307
+	SAY TIRED @2308
+	SAY BORED @2309
+	SAY BATTLE_CRY1 @2310
+	SAY BATTLE_CRY2 @2311
+	SAY BATTLE_CRY3 @2312
+	SAY BATTLE_CRY4 @2313
+	SAY DAMAGE @2314
+	SAY DYING @2315
+	SAY HURT @2316
+	SAY AREA_FOREST @2317
+	SAY AREA_CITY @2318
+	SAY AREA_DUNGEON @2319
+	SAY AREA_DAY @2320
+	SAY AREA_NIGHT @2321
+	SAY SELECT_COMMON1 @2322
+	SAY SELECT_COMMON2 @2323
+	SAY SELECT_COMMON3 @2324
+	SAY SELECT_COMMON4 @2325
+	SAY SELECT_COMMON5 @2326
+	SAY SELECT_COMMON6 @2327
+	SAY SELECT_ACTION1 @2328
+	SAY SELECT_ACTION2 @2329
+	SAY SELECT_ACTION3 @2330
+	SAY SELECT_ACTION4 @2331
+	SAY SELECT_ACTION5 @2332
+	SAY SELECT_ACTION6 @2333
+	SAY SELECT_ACTION7 @2334
+	SAY SELECT_RARE1 @2335
+	SAY SELECT_RARE2 @2336
+	SAY CRITICAL_HIT @2337
+	SAY CRITICAL_MISS @2338
+	SAY TARGET_IMMUNE @2339
+	SAY INVENTORY_FULL @2340
+	SAY HIDDEN_IN_SHADOWS @2341
+	SAY SPELL_DISRUPTED @2342
+	SAY SET_A_TRAP @2343
+	SAY BIO @2344
 
-COPY ~btl/itm\KvDieDag.itm~ ~override\KvDieDag.itm~
-SAY NAME1 ~Kova's Blade~
-SAY NAME2 ~Kova's Blade~
-SAY DESC @18
-
-COPY ~btl/itm\CornRep.itm~ ~override\CornRep.itm~
-SAY NAME1 ~Enforcer Reports~
-SAY NAME2 ~Enforcer Reports~
-SAY DESC @13
-
-COPY ~btl/itm\RayNote.itm~ ~override\RayNote.itm~
-SAY NAME1 ~Penned Letter~
-SAY NAME2 ~Penned Letter~
-SAY DESC @14
-
-COPY ~btl/itm\MaeLOA.itm~ ~override\MaeLOA.itm~
-SAY NAME1 ~Letter of Authority~
-SAY NAME2 ~Letter of Authority~
-SAY DESC @15
-
-COPY ~btl/itm\DayRec.itm~ ~override\DayRec.itm~
-SAY NAME1 ~Receipt~
-SAY NAME2 ~Receipt~
-SAY DESC @22
-
-COPY ~btl/itm\JerSig.itm~ ~override\JerSig.itm~
-SAY NAME1 ~Statement of Witness~
-SAY NAME2 ~Statement of Witness~
-SAY DESC @23
-
-COPY ~btl/itm\RenNote.itm~ ~override\RenNote.itm~
-SAY NAME1 ~Renal's Note~
-SAY NAME2 ~Renal's Note~
-SAY DESC @24
-
-COPY ~btl/itm\z#eye.itm~ ~override\z#eye.itm~
-SAY NAME1 ~The Everseeing Eye~
-SAY NAME2 ~The Everseeing Eye~
-SAY DESC @68
-
-// Adding Kova's Items
-
-COPY ~btl/itm\KovaDagF.itm~ ~override\KovaDagF.itm~
-SAY NAME1 ~Navaeren F~
-SAY NAME2 ~Navaeren F~
-
-COPY ~btl/itm\KovaArmF.itm~ ~override\KovaArmF.itm~
-SAY NAME1 ~Haeloven F~
-SAY NAME2 ~Haeloven F~
-
-COPY ~btl/itm\KovaDag2.itm~ ~override\KovaDag2.itm~
-SAY NAME1 ~Navaeren +2~
-SAY NAME2 ~Navaeren +2~
-SAY DESC @1
-
-COPY ~btl/itm\KovaDag3.itm~ ~override\KovaDag3.itm~
-SAY NAME1 ~Navaeren +3~
-SAY NAME2 ~Navaeren +3~
-SAY DESC @2
-
-COPY ~btl/itm\KovaDag5.itm~ ~override\KovaDag5.itm~
-SAY NAME1 ~Navaeren +5~
-SAY NAME2 ~Navaeren +5~
-SAY DESC @3
-
-COPY ~btl/itm\KovaArm1.itm~ ~override\KovaArm1.itm~
-SAY NAME1 ~Haeloven~
-SAY NAME2 ~Haeloven~
-SAY DESC @4
-
-COPY ~btl/itm\KovaArm2.itm~ ~override\KovaArm2.itm~
-SAY NAME1 ~Haeloven +2~
-SAY NAME2 ~Haeloven +2~
-SAY DESC @5
-
-COPY ~btl/itm\KovaArm5.itm~ ~override\KovaArm5.itm~
-SAY NAME1 ~Haeloven +4~
-SAY NAME2 ~Haeloven +4~
-SAY DESC @6
-
-// Adding Kiyone's Items
-
-COPY ~btl/itm\KiyoBow1.itm~ ~override\KiyoBow1.itm~
-SAY NAME1 ~Eye of the Sentinel +1~
-SAY NAME2 ~Eye of the Sentinel +1~
-SAY DESC @7
-
-COPY ~btl/itm\KiyoBow2.itm~ ~override\KiyoBow2.itm~
-SAY NAME1 ~Gaze of the Sentinel +2~
-SAY NAME2 ~Gaze of the Sentinel +2~
-SAY DESC @8
-
-COPY ~btl/itm\KiyoBow3.itm~ ~override\KiyoBow3.itm~
-SAY NAME1 ~Sight of the Sentinel +3~
-SAY NAME2 ~Sight of the Sentinel +3~
-SAY DESC @9
-
-COPY ~btl/itm\KiyoArm1.itm~ ~override\KiyoArm1.itm~
-SAY NAME1 ~Verdant Vigil~
-SAY NAME2 ~Verdant Vigil~
-SAY DESC @10
-
-COPY ~btl/itm\KiyoArm2.itm~ ~override\KiyoArm2.itm~
-SAY NAME1 ~Verdant Vigilant +2~
-SAY NAME2 ~Verdant Vigilant +2~
-SAY DESC @11
-
-COPY ~btl/itm\KiyoArm3.itm~ ~override\KiyoArm3.itm~
-SAY NAME1 ~Verdant Vigilante +4~
-SAY NAME2 ~Verdant Vigilante +4~
-SAY DESC @12
-
-// Adding Rings
-
-COPY ~btl/itm\KyRing1.itm~ ~override\KyRing1.itm~
-SAY NAME1 ~Kiyone's Wedding Ring~
-SAY NAME2 ~Kiyone's Wedding Ring~
-SAY DESC @65
-
-COPY ~btl/itm\KvRing1.itm~ ~override\KvRing1.itm~
-SAY NAME1 ~Kova's Wedding Ring~
-SAY NAME2 ~Kova's Wedding Ring~
-SAY DESC @64
-
-COPY ~btl/itm\KyRing2.itm~ ~override\KyRing2.itm~
-SAY NAME1 ~Kiyone's Wedding Ring~
-SAY NAME2 ~Kiyone's Wedding Ring~
-SAY DESC @67
-
-COPY ~btl/itm\KvRing2.itm~ ~override\KvRing2.itm~
-SAY NAME1 ~Kova's Wedding Ring~
-SAY NAME2 ~Kova's Wedding Ring~
-SAY DESC @66
-
-// Adding NPCs Kova and Kiyone
-
-COPY ~btl/Kova.cre~ ~override\Kova.cre~
-SAY NAME1 ~Kova~
-SAY NAME2 ~Kova~
-SAY INITIAL_MEETING ~Ah, I see you've finally found me, Kiyone.~ [kvfound]
-SAY MORALE ~Time to make a break for it!~ [kvrun]
-SAY HAPPY ~It feels... pleasant, to know that these hands can do good.~ [kvhappy]
-SAY UNHAPPY_ANNOYED ~Such actions are not right, even for one such as myself.~ [kvannoy1]
-SAY UNHAPPY_SERIOUS ~Change your ways - I will not be found guilty of more crimes.~ [kvannoy2]
-SAY UNHAPPY_BREAKING ~I'm no saint, but it looks like I'll have to put an end to this completely.~ [kvannoy3]
-SAY LEADER ~This doesn't seem a very sensible choice, but if you so wish, so be it.~ [kvleader]
-SAY TIRED ~The toll of the day weighs upon my limbs. Rest would be a welcome reprieve.~ [kvtired]
-SAY BORED ~Even if you have no urgent business of your own, I do. So let's get moving.~ [kvbored]
-SAY BATTLE_CRY1 ~This is the end of the road for you.~ [kvbc1]
-SAY BATTLE_CRY2 ~It's time to say goodbye.~ [kvbc2]
-SAY BATTLE_CRY3 ~I bid you adieu.~ [kvbc3]
-SAY BATTLE_CRY4 ~I will see you to your grave.~ [kvbc4]
-SAY DAMAGE ~~ [kvhurt]
-SAY DYING ~No... !~ [kvdie]
-SAY HURT ~Help me, lest my blood be on your hands!~ [kvhelp]
-SAY AREA_FOREST ~The idyllic outdoors, wide and wild. A welcome change from the intrigue of the city.~ [kvfor]
-SAY AREA_CITY ~Here humanity simmers in intrigue and strife. Such are my roots, though I'd prefer otherwise.~ [kvcity]
-SAY AREA_DUNGEON ~How appropriate that darkness, having plagued my steps, should now surround me on all sides.~ [kvdungn]
-SAY AREA_DAY ~Another day, and still breathing. So far, so good.~ [kvday]
-SAY AREA_NIGHT ~The shadows of the night can be both friend and foe.~ [kvnight]
-SAY SELECT_COMMON1 ~What would you have of me?~ [kvcom1]
-SAY SELECT_COMMON2 ~Yes?~ [kvcom2]
-SAY SELECT_COMMON3 ~Anytime, anywhere.~ [kvcom3]
-SAY SELECT_COMMON4 ~Well?~ [kvcom4]
-SAY SELECT_COMMON5 ~Looking for me?~ [kvcom5]
-SAY SELECT_COMMON6 ~I am here.~ [kvcom6]
-SAY SELECT_ACTION1 ~Not a problem.~ [kvact1]
-SAY SELECT_ACTION2 ~As you wish.~ [kvact2]
-SAY SELECT_ACTION3 ~If you say so.~ [kvact3]
-SAY SELECT_ACTION4 ~Consider the deed done.~ [kvact4]
-SAY SELECT_ACTION5 ~Do it once, do it right.~ [kvact5]
-SAY SELECT_ACTION6 ~Reasonable.~ [kvact6]
-SAY SELECT_ACTION7 ~One job, one man.~ [kvact7]
-SAY SELECT_RARE1 ~I wait on your will.~ [kvrare1]
-SAY SELECT_RARE2 ~Kova Kashiro here.~ [kvrare2]
-SAY CRITICAL_HIT ~A most adequate repartee.~ [kvchit]
-SAY CRITICAL_MISS ~What!? Have I been reduced to an imbecile!?~ [kvcmiss]
-SAY TARGET_IMMUNE ~I think there's a better course of action than this.~ [kvimm]
-SAY INVENTORY_FULL ~There's only so much I can carry.~ [kvfull]
-SAY PICKED_POCKET ~Well, at least we got something out of that.~ [kvpick]
-SAY HIDDEN_IN_SHADOWS ~Discretion is the better part of valour.~ [kvhide]
-SAY SPELL_DISRUPTED ~Curses! Just needed a moment more...~ [kvspell]
-SAY SET_A_TRAP ~I hope this hurts, and hurts bad.~ [kvtrap]
-SAY BIO @20
-
-COPY ~btl/itm\KovaWed1.itm~ ~override\KovaWed1.itm~
-COPY ~btl/Cre\Z#KvWed.cre~ ~override\Z#KvWed.cre~
-SAY NAME1 ~Kova~
-SAY NAME2 ~Kova~
-SAY SELECT_COMMON1 ~What would you have of me?~ [kvcom1]
-SAY SELECT_COMMON2 ~Yes?~ [kvcom2]
-SAY SELECT_COMMON3 ~Anytime, anywhere.~ [kvcom3]
-SAY SELECT_COMMON4 ~Well?~ [kvcom4]
-SAY SELECT_COMMON5 ~Looking for me?~ [kvcom5]
-SAY SELECT_COMMON6 ~I am here.~ [kvcom6]
-
-COPY ~btl/Bmp\KovaB.bmp~ ~override\KovaB.bmp~
-COPY ~btl/Bmp\KovaL.bmp~ ~override\KovaL.bmp~
-COPY ~btl/Bmp\KovaS.bmp~ ~override\KovaS.bmp~
-
-COPY ~btl/Kiyone.cre~ ~override\Kiyone.cre~
-SAY NAME1 ~Kiyone~
-SAY NAME2 ~Kiyone~
-SAY INITIAL_MEETING ~Greetings. I am Kiyone.~ [kyhello]
-SAY MORALE ~There is a time for courage, and this is not such a time.~ [kyrun]
-SAY HAPPY ~To serve the cause of truth and light is the greatest pleasure there is.~ [kyhappy]
-SAY UNHAPPY_ANNOYED ~The course you are taking will lead to destruction.~ [kyannoy1]
-SAY UNHAPPY_SERIOUS ~Turn from darkness, lest you force my hand.~ [kyannoy2]
-SAY UNHAPPY_BREAKING ~I cannot allow such lawlessness to continue, even at peril to my life - your evil ends here.~ [kyannoy3]
-SAY LEADER ~Taking the lead would be agreeable. My eyes are sharp and my arrows swift.~ [kyleader]
-SAY TIRED ~Some rest would better equip us to face the long road ahead.~ [kytired]
-SAY BORED ~Why do we idle here when there is evil out there waiting to be faced?~ [kybored]
-SAY BATTLE_CRY1 ~For righteousness!~ [kybc1]
-SAY BATTLE_CRY2 ~Your end is near.~ [kybc2]
-SAY BATTLE_CRY3 ~Justice will be served.~ [kybc3]
-SAY BATTLE_CRY4 ~My light shall pierce the darkness!~ [kybc4]
-SAY DAMAGE ~~ [kyhurt]
-SAY DYING ~Must... fight on...~ [kydie]
-SAY HURT ~I have an urgent requirement for healing.~ [kyhelp]
-SAY AREA_FOREST ~Ah, to return to the freedom of the forests. A most welcome sanctuary.~ [kyfor]
-SAY AREA_CITY ~I do not love the city, but it is to such that my duty calls me to.~ [kycity]
-SAY AREA_DUNGEON ~In such loathed areas I remember that the purpose of light is to shine in the darkness.~[kydungn]
-SAY AREA_DAY ~Another day, in the triumph of justice.~ [kyday]
-SAY AREA_NIGHT ~Such is a fine time to bring dark deeds into the light.~ [kynight]
-SAY SELECT_COMMON1 ~What is your word?~ [kycom1]
-SAY SELECT_COMMON2 ~In truth I abide.~ [kycom2]
-SAY SELECT_COMMON3 ~You needed me?~ [kycom3]
-SAY SELECT_COMMON4 ~How may I serve?~ [kycom4]
-SAY SELECT_COMMON5 ~My bow waits on you.~ [kycom5]
-SAY SELECT_COMMON6 ~What wrongs need righting?~ [kycom6]
-SAY SELECT_ACTION1 ~I will see it done.~ [kyact1]
-SAY SELECT_ACTION2 ~I heed your word.~ [kyact2]
-SAY SELECT_ACTION3 ~It shall be done.~ [kyact3]
-SAY SELECT_ACTION4 ~Consider the deed done.~ [kyact4]
-SAY SELECT_ACTION5 ~No trouble.~ [kyact5]
-SAY SELECT_ACTION6 ~Not a problem.~ [kyact6]
-SAY SELECT_ACTION7 ~I'll resolve it.~ [kyact7]
-SAY SELECT_RARE1 ~Look no further in truth.~ [kyrare1]
-SAY SELECT_RARE2 ~Kiyone, reporting for duty.~ [kyrare2]
-SAY CRITICAL_HIT ~Well struck!~ [kychit]
-SAY CRITICAL_MISS ~Ugh... no excuse for such a blunder.~ [kycmiss]
-SAY TARGET_IMMUNE ~We need an alternate plan of action, fast.~ [kyimm]
-SAY INVENTORY_FULL ~I've a burden for justice, not for material things.~ [kyfull]
-SAY HIDDEN_IN_SHADOWS ~Discretion may yet unearth secrets.~ [kyhide]
-SAY SPELL_DISRUPTED ~An uncalled-for interruption.~ [kyspell]
-SAY SET_A_TRAP ~A snare for the wicked.~ [kytrap]
-SAY BIO @19
-
-COPY ~btl/itm\KiyoWed1.itm~ ~override\KiyoWed1.itm~
-COPY ~btl/cre\Z#KyWed.cre~ ~override\Z#KyWed.cre~
-SAY NAME1 ~Kiyone~
-SAY NAME2 ~Kiyone~
-SAY SELECT_COMMON1 ~What is your word?~ [kycom1]
-SAY SELECT_COMMON2 ~In truth I abide.~ [kycom2]
-SAY SELECT_COMMON3 ~You needed me?~ [kycom3]
-SAY SELECT_COMMON4 ~How may I serve?~ [kycom4]
-SAY SELECT_COMMON5 ~My bow waits on you.~ [kycom5]
-SAY SELECT_COMMON6 ~What wrongs need righting?~ [kycom6]
-
-COPY ~btl/Bmp\KiyoB.bmp~ ~override\KiyoB.bmp~
-COPY ~btl/Bmp\KiyoL.bmp~ ~override\KiyoL.bmp~
-COPY ~btl/Bmp\KiyoS.bmp~ ~override\KiyoS.bmp~
-
-// epilogues
-
-COPY ~btl/KvEpi.2da~ ~override\Z#KV1ND.2da~
-  REPLACE ~99999~ @2000
-COPY ~btl/KyEpi.2da~ ~override\Z#KY1ND.2da~
-  REPLACE ~99999~ @2001
-COPY ~btl/KvEpi.2da~ ~override\Z#KV2ND.2da~
-  REPLACE ~99999~ @2003
-COPY ~btl/KyEpi.2da~ ~override\Z#KY2ND.2da~
-  REPLACE ~99999~ @2002
+COPY ~btl/itm/kiyowed1.itm~ ~override~
+COPY ~btl/cre/z#kywed.cre~  ~override~
+	SAY NAME1 @2121
+	SAY NAME2 @2121
+	SAY SELECT_COMMON1 @2322
+	SAY SELECT_COMMON2 @2323
+	SAY SELECT_COMMON3 @2324
+	SAY SELECT_COMMON4 @2325
+	SAY SELECT_COMMON5 @2326
+	SAY SELECT_COMMON6 @2327
 
 
-APPEND ~pdialog.2da~
-~Kova Z#KovaP Z#KovaJ Z#KovaD Z#Kv25P Z#KovaJ Z#Kv25D Z#Kova~
-UNLESS ~Kova~
+/* ------------------ *
+ *  Installing Items  *
+ * ------------------ */
 
-APPEND ~pdialog.2da~
-~Kiyone Z#KiyoP Z#KiyoJ Z#KiyoD Z#Ky25P Z#KiyoJ Z#Ky25D Z#Kiyone~
-UNLESS ~Kiyone~
+// 1. Quest related items
+// ----------------------
 
-APPEND ~interdia.2da~
-~Kova Z#KovaB Z#Kv25B~
-UNLESS ~Kova~
+COPY ~btl/spl/GTHAC.spl~  ~override~
+     ~btl/spl/z#hide.spl~ ~override~
 
-APPEND ~interdia.2da~
-~Kiyone Z#KiyoB Z#Ky25B~
-UNLESS ~Kiyone~
+// Yoshimo's Katana +2
+COPY ~btl/itm/yoshkata.itm~ ~override~
+	SAY DESC @2501
+
+// Kova's Blade
+COPY ~btl/itm/kvdiedag.itm~ ~override~
+	SAY NAME1 @2502
+	SAY NAME2 @2502
+	SAY DESC @2503
+
+// Enforcer Reports
+COPY ~btl/itm/cornrep.itm~ ~override~
+	SAY NAME1 @2504
+	SAY NAME2 @2504
+	SAY DESC @2505
+
+// Penned Letter
+COPY ~btl/itm/raynote.itm~ ~override~
+	SAY NAME1 @2506
+	SAY NAME2 @2506
+	SAY DESC @2507
+
+// Letter of Authority
+COPY ~btl/itm/maeloa.itm~ ~override~
+	SAY NAME1 @2508
+	SAY NAME2 @2508
+	SAY DESC @2509
+
+// Receipt
+COPY ~btl/itm/dayrec.itm~ ~override~
+	SAY NAME1 @2510
+	SAY NAME2 @2510
+	SAY DESC @2511
+
+// Statement of Witness
+COPY ~btl/itm/jersig.itm~ ~override~
+	SAY NAME1 @2512
+	SAY NAME2 @2512
+	SAY DESC @2513
+
+// Renal's Note
+COPY ~btl/itm/rennote.itm~ ~override~
+	SAY NAME1 @2514
+	SAY NAME2 @2514
+	SAY DESC @2515
+
+// The Everseeing Eye
+COPY ~btl/itm/z#eye.itm~ ~override~
+	SAY NAME1 @2516
+	SAY NAME2 @2516
+	SAY DESC @2517
+
+// 2. Kova's items
+// ---------------
+
+// Navaeren F
+COPY ~btl/itm/kovadagf.itm~ ~override~
+	SAY NAME1 @2518
+	SAY NAME2 @2518
+
+// Haeloven F
+COPY ~btl/itm/kovaarmf.itm~ ~override/~
+	SAY NAME1 @2520
+	SAY NAME2 @2520
+
+// Navaeren +2
+COPY ~btl/itm/kovadag2.itm~ ~override~
+	SAY NAME1 @2521
+	SAY NAME2 @2521
+	SAY DESC @2522
+
+// Navaeren +3
+COPY ~btl/itm/kovadag3.itm~ ~override~
+	SAY NAME1 @2523
+	SAY NAME2 @2523
+	SAY DESC @2524
+
+// Navaeren +5
+COPY ~btl/itm/kovadag5.itm~ ~override~
+	SAY NAME1 @2525
+	SAY NAME2 @2525
+	SAY DESC @2526
+
+// Haeloven
+COPY ~btl/itm/kovaarm1.itm~ ~override~
+	SAY NAME1 @2527
+	SAY NAME2 @2527
+	SAY DESC @2528
+
+// Haeloven +2
+COPY ~btl/itm/kovaarm2.itm~ ~override~
+	SAY NAME1 @2529
+	SAY NAME2 @2529
+	SAY DESC @2530
+
+// Haeloven +4
+COPY ~btl/itm/kovaarm5.itm~ ~override~
+	SAY NAME1 @2531
+	SAY NAME2 @2531
+	SAY DESC @2532
+
+// 3. Kiyone's items
+// -----------------
+
+// Eye of the Sentinel +1
+COPY ~btl/itm/kiyobow1.itm~ ~override~
+	SAY NAME1 @2541
+	SAY NAME2 @2541
+	SAY DESC @2542
+
+// Gaze of the Sentinel +2
+COPY ~btl/itm/kiyobow2.itm~ ~override~
+	SAY NAME1 @2543
+	SAY NAME2 @2543
+	SAY DESC @2544
+
+// Sight of the Sentinel +3
+COPY ~btl/itm/kiyobow3.itm~ ~override~
+	SAY NAME1 @2545
+	SAY NAME2 @2545
+	SAY DESC @2546
+
+// Verdant Vigil
+COPY ~btl/itm/kiyoarm1.itm~ ~override~
+	SAY NAME1 @2547
+	SAY NAME2 @2547
+	SAY DESC @2548
+
+// Verdant Vigilant +2
+COPY ~btl/itm/kiyoarm2.itm~ ~override~
+	SAY NAME1 @2549
+	SAY NAME2 @2549
+	SAY DESC @2550
+
+// Verdant Vigilante +4
+COPY ~btl/itm/kiyoarm3.itm~ ~override~
+	SAY NAME1 @2551
+	SAY NAME2 @2551
+	SAY DESC @2552
+
+// 4. Rings
+// --------
+
+// Kiyone's Wedding Rings
+COPY ~btl/itm/kyring1.itm~ ~override~
+	SAY NAME1 @2561
+	SAY NAME2 @2561
+	SAY DESC @2562
+
+COPY ~btl/itm/kyring2.itm~ ~override~
+	SAY NAME1 @2561
+	SAY NAME2 @2561
+	SAY DESC @2563
+
+// Kova's Wedding Rings
+COPY ~btl/itm/kvring1.itm~ ~override~
+	SAY NAME1 @2565
+	SAY NAME2 @2565
+	SAY DESC @2566
+
+COPY ~btl/itm/kvring2.itm~ ~override~
+	SAY NAME1 @2565
+	SAY NAME2 @2565
+	SAY DESC @2567
+
+
+/* ----------- *
+ *  Epilogues  *
+ * ----------- */
+
+COPY ~btl/2da/kvepi.2da~ ~override/z#kv1nd.2da~
+	REPLACE ~99999~ @2000
+COPY ~btl/2da/kyepi.2da~ ~override/z#ky1nd.2da~
+	REPLACE ~99999~ @2001
+COPY ~btl/2da/kvepi.2da~ ~override/z#kv2nd.2da~
+	REPLACE ~99999~ @2003
+COPY ~btl/2da/kyepi.2da~ ~override/z#ky2nd.2da~
+	REPLACE ~99999~ @2002
+
+
+/* ----------------- *
+ *  Appending files  *
+ * ----------------- */
+
+APPEND ~interdia.2da~ ~Kova   Z#kovaB Z#kv25B~ UNLESS ~Kova~
+APPEND ~interdia.2da~ ~Kiyone Z#kiyoB Z#ky25B~ UNLESS ~Kiyone~
+
+APPEND ~pdialog.2da~  ~Kova   Z#kovaP Z#kovaJ Z#kovaD Z#kv25P Z#kovaJ Z#kv25D Z#kova~   UNLESS ~Kova~
+APPEND ~pdialog.2da~  ~Kiyone Z#kiyoP Z#kiyoJ Z#kiyoD Z#ky25P Z#kiyoJ Z#ky25D Z#kiyone~ UNLESS ~Kiyone~
+
 
 COPY ~btl/wav~ ~override~
 

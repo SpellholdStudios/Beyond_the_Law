@@ -56,7 +56,7 @@ SAY @10
 IF ~~ THEN DO ~SetGlobal("CornTalk","GLOBAL",2)~ EXIT
 END
 
-IF	~PartyHasItem("MISC4V")
+IF ~PartyHasItem("MISC4V")
 	Global("LOAClue","GLOBAL",0)
 	!Global("RenalJob","GLOBAL",4)
 	InParty("Kova")~ THEN BEGIN FindMaeLOA
@@ -66,7 +66,7 @@ GiveItemCreate("MaeLOA",Myself,0,0,0)
 AddexperienceParty(12000)~ EXIT
 END
 
-IF	~PartyHasItem("MISC4V")
+IF ~PartyHasItem("MISC4V")
 	Global("LOAClue","GLOBAL",0)
 	AreaCheck("AR0300")
 	Global("RenalJob","GLOBAL",4)
@@ -120,18 +120,12 @@ IF ~!AreaCheck("AR1002")
 DO ~SetGlobal("EnforcerRep","LOCALS",1)~
 = @31
 = @32
-== Z#KIYOJ
-@33
-== Z#KOVAJ
-@34
-== Z#KIYOJ
-@35
-== Z#KOVAJ
-@36
-== Z#KIYOJ
-@37
-== Z#KOVAJ
-@38
+== Z#KIYOJ @33
+== Z#KOVAJ @34
+== Z#KIYOJ @35
+== Z#KOVAJ @36
+== Z#KIYOJ @37
+== Z#KOVAJ @38
 DO ~AddexperienceParty(12000)
 SetGlobal("EnforcerRep","LOCALS",1)
 SetGlobal("CornTalk","GLOBAL",3)~ EXIT
@@ -144,16 +138,11 @@ Global("DayvClue","GLOBAL",1)
 Global("KKFindCrom","GLOBAL",0)~ THEN Z#KOVAJ FindCrom
 @39
 DO ~SetGlobal("KKFindCrom","GLOBAL",1)~
-== Z#KIYOJ
-@40
-== Z#KOVAJ
-@41
-== YOSHJ IF ~InParty("Yoshimo") InMyArea("Yoshimo") Global("BKovaYoshi","GLOBAL",3)~ THEN
-@42
-== Z#KOVAJ IF ~InParty("Yoshimo") InMyArea("Yoshimo") Global("BKovaYoshi","GLOBAL",3)~ THEN
-@43
-== YOSHJ IF ~InParty("Yoshimo") InMyArea("Yoshimo") Global("BKovaYoshi","GLOBAL",3)~ THEN
-@44
+== Z#KIYOJ @40
+== Z#KOVAJ @41
+== YOSHJ IF ~InParty("Yoshimo") InMyArea("Yoshimo") Global("BKovaYoshi","GLOBAL",3)~ THEN @42
+== Z#KOVAJ IF ~InParty("Yoshimo") InMyArea("Yoshimo") Global("BKovaYoshi","GLOBAL",3)~ THEN @43
+== YOSHJ IF ~InParty("Yoshimo") InMyArea("Yoshimo") Global("BKovaYoshi","GLOBAL",3)~ THEN @44
 EXIT
 
 CHAIN
@@ -162,20 +151,13 @@ IF 	~Global("BodhiAppear","GLOBAL",3)
 	InParty("Kova")~ THEN Z#KOVAJ ByeBodhi
 @45
 = @46
-== Z#KIYOJ IF ~InParty("Kiyone")~ THEN
-@47
-== Z#KOVAJ IF ~InParty("Kiyone")~ THEN
-@48
-== Z#KIYOJ IF ~InParty("Kiyone")~ THEN
-@49
-== Z#KOVAJ IF ~InParty("Kiyone")~ THEN
-@50
-== Z#KIYOJ IF ~InParty("Kiyone")~ THEN
-@51
-== Z#KOVAJ IF ~InParty("Kiyone")~ THEN
-@52
-== Z#KOVAJ
-@53
+== Z#KIYOJ IF ~InParty("Kiyone")~ THEN @47
+== Z#KOVAJ IF ~InParty("Kiyone")~ THEN @48
+== Z#KIYOJ IF ~InParty("Kiyone")~ THEN @49
+== Z#KOVAJ IF ~InParty("Kiyone")~ THEN @50
+== Z#KIYOJ IF ~InParty("Kiyone")~ THEN @51
+== Z#KOVAJ IF ~InParty("Kiyone")~ THEN @52
+== Z#KOVAJ @53
 = @54
 DO ~SetGlobal("NoGaelan","LOCALS",3)~ EXIT
 
@@ -185,50 +167,38 @@ IF ~!AreaCheck("AR1103")
 	InParty("Kiyone") InMyArea("Kiyone")
 	Global("JermClue","GLOBAL",1)~ THEN Z#KOVAJ PostJermClue
 @55
-== Z#KIYOJ
-@56
-== Z#KOVAJ
-@57
-== Z#KIYOJ
-@58
-== Z#KOVAJ
-@59
+== Z#KIYOJ @56
+== Z#KOVAJ @57
+== Z#KIYOJ @58
+== Z#KOVAJ @59
 DO ~SetGlobal("JermClue","GLOBAL",2)~ EXIT
 
 CHAIN
-IF	~Global("Dayven","GLOBAL",4)
+IF ~Global("Dayven","GLOBAL",4)
 	!AreaCheckObject("AR1005","Kova")
 	!AreaCheckObject("AR1005","Kiyone")
 	InParty("Kova")
 	InParty("Kiyone") InMyArea("Kiyone")~ THEN Z#KOVAJ PostDayven1
 @60
-== Z#KIYOJ
-@61
-== Z#KOVAJ
-@62
-== Z#KIYOJ
-@63
-== Z#KOVAJ
-@64
+== Z#KIYOJ @61
+== Z#KOVAJ @62
+== Z#KIYOJ @63
+== Z#KOVAJ @64
 DO ~AddexperienceParty(9000)
 AddJournalEntry(@1013,QUEST)
 SetGlobal("Dayven","GLOBAL",5)~ EXIT
 
 CHAIN
-IF	~!AreaCheck("AR1002")
+IF ~!AreaCheck("AR1002")
 	Global("Dayven","GLOBAL",6)
 	InParty("Kova")
 	InParty("Kiyone") InMyArea("Kiyone")~ THEN Z#KOVAJ PostDayven1
 @65
-== Z#KIYOJ
-@66
-== Z#KOVAJ
-@67
-== Z#KIYOJ
-@68
-== Z#KOVAJ
-@69
-DO ~AddJournalEntry(@1006,QUEST)
+== Z#KIYOJ @66
+== Z#KOVAJ @67
+== Z#KIYOJ @68
+== Z#KOVAJ @69
+DO ~AddJournalEntry(@5006,QUEST)
 AddexperienceParty(9000)
 SetGlobal("Dayven","GLOBAL",7)~ EXIT
 
@@ -295,20 +265,15 @@ END
 
 IF ~~ THEN BEGIN 9
 SAY @102
-=
-@103
-=
-@104
-=
-@105
-=
-@106
-=
-@107
+= @103
+= @104
+= @105
+= @106
+= @107
 IF ~~ THEN
-UNSOLVED_JOURNAL @1003
-DO ~EraseJournalEntry(@1002)
-EraseJournalEntry(@1001)
+UNSOLVED_JOURNAL @5003
+DO ~EraseJournalEntry(@5002)
+EraseJournalEntry(@5001)
 RealSetGlobalTimer("askabtfirk","GLOBAL",35)
 SetGlobal("KovaJoined","LOCALS",1)
 SetGlobal("FindingKova","GLOBAL",9)
@@ -327,9 +292,9 @@ END
 IF ~~ THEN BEGIN 10Ext
 SAY @108
 IF ~~ THEN DO ~EscapeArea()
-EraseJournalEntry(@1002)
-EraseJournalEntry(@1001)
-AddJournalEntry(@1053,QUEST_DONE)
+EraseJournalEntry(@5002)
+EraseJournalEntry(@5001)
+AddJournalEntry(@5053,QUEST_DONE)
 AddexperienceParty(9000)~ EXIT
 END
 
@@ -339,10 +304,8 @@ IF ~~ THEN Z#KOVA 6-1
 = @110
 = @111
 = @112
-== Z#KIYOJ
-@113
-== Z#KOVA
-@114
+== Z#KIYOJ @113
+== Z#KOVA @114
 = @115
 EXTERN Z#KOVA 6-2
 
@@ -350,47 +313,26 @@ CHAIN
 IF ~Global("FindingKova","GLOBAL",6)~ THEN Z#KOVA 4
 @116
 DO ~SetGlobal("FindingKova","GLOBAL",7)~
-== Z#KIYOJ
-@117
-== Z#KOVA
-@118
-== Z#KIYOJ
-@119
-== Z#KOVA
-@120
-
-== ANOMENJ IF ~InParty("Anomen") InMyArea("Anomen")~ THEN
-@121
-== AERIEJ IF ~InParty("Aerie") InMyArea("Aerie")~ THEN
-@122
-== NALIAJ IF ~InParty("Nalia") InMyArea("Nalia")~ THEN
-@123
-== JAHEIRAJ IF ~InParty("Jaheira") InMyArea("Jaheira")~ THEN
-@124
-== MAZZYJ IF ~InParty("Mazzy") InMyArea("Mazzy")~ THEN
-@125
-== VALYGARJ IF ~InParty("Valygar") InMyArea("Valygar")~ THEN
-@126
-== KELDORJ IF ~InParty("Keldorn") InMyArea("Keldorn")~ THEN
-@127
-== MINSCJ IF ~InParty("Minsc") InMyArea("Minsc")~ THEN
-@128
-== HAERDAJ IF ~InParty("Haerdalis") InMyArea("Haerdalis")~ THEN
-@129
-== JANJ IF ~InParty("Jan") InMyArea("Jan")~ THEN
-@130
-== KORGANJ IF ~InParty("Korgan") InMyArea("Korgan")~ THEN
-@131
-== YOSHJ IF ~InParty("Yoshimo") InMyArea("Yoshimo")~ THEN
-@132
-== VICONIJ IF ~InParty("Viconia") InMyArea("Viconia")~ THEN
-@133
-== EDWINJ IF ~InParty("Edwin") InMyArea("Edwin")~ THEN
-@134
-== Z#KIYOJ
-@135
-== Z#KOVA
-@136
+== Z#KIYOJ @117
+== Z#KOVA @118
+== Z#KIYOJ @119
+== Z#KOVA @120
+== ANOMENJ IF ~InParty("Anomen") InMyArea("Anomen")~ THEN @121
+== AERIEJ IF ~InParty("Aerie") InMyArea("Aerie")~ THEN @122
+== NALIAJ IF ~InParty("Nalia") InMyArea("Nalia")~ THEN @123
+== JAHEIRAJ IF ~InParty("Jaheira") InMyArea("Jaheira")~ THEN @124
+== MAZZYJ IF ~InParty("Mazzy") InMyArea("Mazzy")~ THEN @125
+== VALYGARJ IF ~InParty("Valygar") InMyArea("Valygar")~ THEN @126
+== KELDORJ IF ~InParty("Keldorn") InMyArea("Keldorn")~ THEN @127
+== MINSCJ IF ~InParty("Minsc") InMyArea("Minsc")~ THEN @128
+== HAERDAJ IF ~InParty("Haerdalis") InMyArea("Haerdalis")~ THEN @129
+== JANJ IF ~InParty("Jan") InMyArea("Jan")~ THEN @130
+== KORGANJ IF ~InParty("Korgan") InMyArea("Korgan")~ THEN @131
+== YOSHJ IF ~InParty("Yoshimo") InMyArea("Yoshimo")~ THEN @132
+== VICONIJ IF ~InParty("Viconia") InMyArea("Viconia")~ THEN @133
+== EDWINJ IF ~InParty("Edwin") InMyArea("Edwin")~ THEN @134
+== Z#KIYOJ @135
+== Z#KOVA @136
 EXTERN Z#KIYOJ 5
 
 APPEND Z#KIYOJ
@@ -428,15 +370,13 @@ APPEND Z#KIYOJ
 
 	IF ~~ THEN BEGIN 5-2
 	SAY @151
-	=
-	@152
+	= @152
 	IF ~~ THEN EXTERN Z#Kova 5-3
 	END
 
 	IF ~~ THEN BEGIN 8
 	SAY @153
-	=
-	@154
+	= @154
 	IF ~~ THEN REPLY @155 EXTERN Z#KOVA 9
 	IF ~~ THEN REPLY @156 EXTERN Z#KOVA 9
 	IF ~~ THEN REPLY @157 GOTO 10
@@ -445,8 +385,7 @@ APPEND Z#KIYOJ
 
 	IF ~~ THEN BEGIN 10
 	SAY @159
-	=
-	@160
+	= @160
 	IF ~~ THEN
 	DO ~SetGlobal("KiyoJoined","LOCALS",0)
 	DropInventory()
@@ -458,12 +397,9 @@ END
 CHAIN
 IF ~~ THEN Z#KIYOJ 7
 @161
-== Z#KOVA
-@162
-== Z#KIYOJ
-@163
-== Z#KOVA
-@164
+== Z#KOVA @162
+== Z#KIYOJ @163
+== Z#KOVA @164
 = @165
 EXTERN Z#KIYOJ 8
 
@@ -530,9 +466,6 @@ SAY @178
 IF ~~ THEN DO ~EscapeArea() Wait(1) DestroySelf()~ EXIT
 END
 
-
-
-
 IF ~~ THEN BEGIN J21
 SAY @179
 IF ~~ THEN EXIT
@@ -559,10 +492,9 @@ END
 
 
 
-//
-// KiyoDlg
-//
-
+/* ================== *
+ *  Kiyone Dialogues  *
+ * ================== */
 BEGIN ~Z#KIYOJ~
 
 IF ~InParty("Kiyone")
@@ -651,32 +583,20 @@ IF ~Global("KKJoin","GLOBAL",1)
 Global("BylTalk","GLOBAL",1)
 AreaCheck("AR1002")~ THEN Z#KIYOJ BylTalk1
 @198
-== BYLANNA
-@199
-== Z#KIYOJ
-@200
-== BYLANNA
-@201
-== Z#KIYOJ
-@202
-== BYLANNA
-@203
-== Z#KIYOJ
-@204
-== BYLANNA
-@205
-== Z#KIYOJ
-@206
-== BYLANNA
-@207
-== Z#KIYOJ
-@208
-== BYLANNA
-@209
-== Z#KIYOJ
-@210
-DO ~EraseJournalEntry(@1003)
-AddJournalEntry(@1004,QUEST)
+== BYLANNA @199
+== Z#KIYOJ @200
+== BYLANNA @201
+== Z#KIYOJ @202
+== BYLANNA @203
+== Z#KIYOJ @204
+== BYLANNA @205
+== Z#KIYOJ @206
+== BYLANNA @207
+== Z#KIYOJ @208
+== BYLANNA @209
+== Z#KIYOJ @210
+DO ~EraseJournalEntry(@5003)
+AddJournalEntry(@5004,QUEST)
 SetGlobal("BylTalk","GLOBAL",2)
 SetGlobal("GovtGuards","GLOBAL",2)
 SetGlobal("KKGovt","GLOBAL",0)
@@ -690,19 +610,13 @@ IF ~InParty("Kova") InMyArea("Kova")
 	PartyHasItem("RayNote")
 	!ActuallyInCombat()~ THEN Z#KIYOJ PostRayic
 @211
-== Z#KOVAJ
-@212
-== Z#KIYOJ
-@213
-== Z#KOVAJ
-@214
-== Z#KIYOJ
-@215
-== Z#KOVAJ
-@216
-== Z#KIYOJ
-@217
-DO ~AddJournalEntry(@1010,QUEST)
+== Z#KOVAJ @212
+== Z#KIYOJ @213
+== Z#KOVAJ @214
+== Z#KIYOJ @215
+== Z#KOVAJ @216
+== Z#KIYOJ @217
+DO ~AddJournalEntry(@5010,QUEST)
 SetGlobal("AddRayic","GLOBAL",2)
 AddexperienceParty(9000)~
 EXIT
@@ -710,34 +624,22 @@ EXIT
 CHAIN
 IF ~~ THEN Z#KIYOJ JermClue1
 @218
-== JUGJER01
-@219
-== Z#KIYOJ
-@220
-== JUGJER01
-@221
+== JUGJER01 @219
+== Z#KIYOJ @220
+== JUGJER01 @221
 = @222
 = @223
 = @224
 = @225
-== Z#KIYOJ
-@226
-== JUGJER01
-@227
-== Z#KIYOJ
-@228
-== JUGJER01
-@229
-== Z#KIYOJ
-@230
-== JUGJER01
-@231
-== Z#KIYOJ
-@232
-== JUGJER01
-@233
-== Z#KIYOJ
-@234
+== Z#KIYOJ @226
+== JUGJER01 @227
+== Z#KIYOJ @228
+== JUGJER01 @229
+== Z#KIYOJ @230
+== JUGJER01 @231
+== Z#KIYOJ @232
+== JUGJER01 @233
+== Z#KIYOJ @234
 DO ~SetGlobal("AddRayic","GLOBAL",3)
 GiveItemCreate("JerSig",Player1,0,0,0)
 SetGlobal("JermClue","GLOBAL",1) AddexperienceParty(12000)~ EXTERN JUGJER01 Bye
@@ -817,7 +719,7 @@ IF ~~ THEN BEGIN Joining
 SAY @272
 = @273
 IF ~CheckStatGT(Player1,17,INT) CheckSTatGT(Player1,15,CHR)~ THEN REPLY @274 DO ~SetGlobal("KiyoTell","LOCALS",1)~ GOTO KnowHim
-IF ~~ THEN REPLY @275 UNSOLVED_JOURNAL @1001
+IF ~~ THEN REPLY @275 UNSOLVED_JOURNAL @5001
 DO ~SetGlobal("KiyoJoined","LOCALS",1) JoinParty()~ EXIT
 END
 
@@ -827,14 +729,14 @@ SAY @276
 = @278
 IF ~~ THEN REPLY @279 GOTO ThankYou
 IF ~~ THEN REPLY @280 DO ~SetGlobal("KiyoJoined","LOCALS",1) JoinParty()~
-UNSOLVED_JOURNAL @1002 EXIT
+UNSOLVED_JOURNAL @5002 EXIT
 IF ~~ THEN REPLY @281 DO ~SetGlobal("KiyoJoined","LOCALS",1) JoinParty()~
-UNSOLVED_JOURNAL @1002 EXIT
+UNSOLVED_JOURNAL @5002 EXIT
 END
 
 IF ~~ THEN BEGIN ThankYou
 SAY @282
-IF ~~ THEN UNSOLVED_JOURNAL @1002 DO ~SetGlobal("KiyoJoined","LOCALS",1) JoinParty()~ EXIT
+IF ~~ THEN UNSOLVED_JOURNAL @5002 DO ~SetGlobal("KiyoJoined","LOCALS",1) JoinParty()~ EXIT
 END
 
 //
@@ -962,8 +864,9 @@ IF ~~ THEN DO ~SetGlobal("KiyoJoined","LOCALS",1) JoinParty()~ EXIT
 END
 
 
-// Dialogues for either one of their deaths and removal from the party
-
+/* ===================================================================== *
+ *  Dialogues for either one of their deaths and removal from the party  *
+ * ===================================================================== */
 BEGIN KYCDEAD
 BEGIN KVCDEAD
 BEGIN KVCSPLAT
@@ -1007,9 +910,9 @@ DO ~DropInventory() LeaveParty() EscapeArea()
 SetGlobal("KKJoin","GLOBAL",0)~ EXIT
 
 
-
-// Dayven Dialogue
-
+/* ================= *
+ *  Dayven Dialogue  *
+ * ================= */
 BEGIN ~DAYVEN~
 
 IF ~NumTimesTalkedTo(0)~ THEN BEGIN Hi1
@@ -1038,8 +941,7 @@ END
 
 IF ~~ THEN BEGIN 4
 SAY @317
-=
-@318
+= @318
 IF ~~ THEN REPLY @319 GOTO 5
 END
 
@@ -1094,18 +996,15 @@ IF ~~ THEN DAYVEN 2
 = @338
 = @339
 = @340
-== Z#KIYOJ
-@341
+== Z#KIYOJ @341
 DO ~SetGlobal("Dayven","GLOBAL",4)~ EXTERN DAYVEN 3
 
 CHAIN
 IF ~~ THEN DAYVEN 6
 @342
-== Z#KIYOJ
-@343
+== Z#KIYOJ @343
 = @344
-== DAYVEN
-@345
+== DAYVEN @345
 = @346
 = @347
 = @348
@@ -1114,29 +1013,21 @@ EXTERN DAYVEN 6Opt
 CHAIN
 IF ~~ THEN DAYVEN 6Opt2
 @349
-== Z#KIYOJ IF ~InParty("Kiyone") InMyArea("Kiyone")~ THEN
-@350
-== DAYVEN
-@351
-=
-@352
-=
-@353
+== Z#KIYOJ IF ~InParty("Kiyone") InMyArea("Kiyone")~ THEN @350
+== DAYVEN @351
+= @352
+= @353
 DO ~SetGlobal("Dayven","GLOBAL",12)~ EXIT
 
 CHAIN
 IF ~~ THEN DAYVEN 7
 @354
-== Z#KIYOJ IF ~InParty("Kiyone") InMyArea("Kiyone")~ THEN
-@355
-== DAYVEN
-@356
-== Z#KIYOJ IF ~InParty("Kiyone") InMyArea("Kiyone")~ THEN
-@357
-== DAYVEN
-@358
+== Z#KIYOJ IF ~InParty("Kiyone") InMyArea("Kiyone")~ THEN @355
+== DAYVEN @356
+== Z#KIYOJ IF ~InParty("Kiyone") InMyArea("Kiyone")~ THEN @357
+== DAYVEN @358
 DO ~SetGlobal("Dayven","GLOBAL",13)
-AddJournalEntry(@1009,QUEST)
+AddJournalEntry(@5009,QUEST)
 AddexperienceParty(15000)
 SetGlobal("DayvClue","GLOBAL",1)~ EXIT
 
@@ -1147,20 +1038,18 @@ APPEND Z#KIYOJ
 	END
 END
 
-// Renal Extension
 
+/* ================= *
+ *  Renal Extension  *
+ * ================= */
 INTERJECT_COPY_TRANS ~Renal~ 2 HiKova
-== RENAL IF ~InParty("Kova")~ THEN
-@360
-=
-@361
-=
-@362
+== RENAL IF ~InParty("Kova")~ THEN @360
+= @361
+= @362
 END
 
 INTERJECT_COPY_TRANS ~Renal~ 48 OffThief
-== RENAL IF ~GlobalGT("KKJoin","GLOBAL",0) InParty("Kova")~ THEN
-@363
+== RENAL IF ~GlobalGT("KKJoin","GLOBAL",0) InParty("Kova")~ THEN @363
 = @364
 = @365
 DO ~IncrementGlobal("ShadowHunt","GLOBAL",1)~
@@ -1171,8 +1060,7 @@ IF WEIGHT #-1 ~Global("PlayerThiefGuild","GLOBAL",1)
 Global("PGFailed","GLOBAL",0)
 !Global("Chapter","GLOBAL",%bg2_chapter_6%)
 InParty("Kova")
-Global("KKJoin","GLOBAL",1)~ THEN RENAL KvHaveGuild
-@366
+Global("KKJoin","GLOBAL",1)~ THEN RENAL KvHaveGuild @366
 END
 IF ~~ THEN REPLY @367 EXIT
 IF ~InParty("Kova")
@@ -1314,7 +1202,7 @@ APPEND ~RENAL~
 	SetGlobal("Dayven","GLOBAL",8)
 	SetGlobalTimer("RenalCheckDayven","GLOBAL",ONE_DAY)
 	AddexperienceParty(9000)
-	AddJournalEntry(@1007,QUEST)~ EXIT
+	AddJournalEntry(@5007,QUEST)~ EXIT
 	END
 
 	IF ~~ THEN BEGIN Ren22no
@@ -1329,12 +1217,14 @@ APPEND ~RENAL~
 	= @392
 	IF ~~ THEN DO ~SetGlobal("Dayven","GLOBAL",9)
 	GiveItemCreate("DayRec",Player1,0,0,0)
-	AddJournalEntry(@1008,QUEST)~ EXIT
+	AddJournalEntry(@5008,QUEST)~ EXIT
 	END
 END
 
-// Jermien Extension
 
+/* =================== *
+ *  Jermien Extension  *
+ * =================== */
 EXTEND_BOTTOM ~JUGJER01~ 33
 IF ~GlobalGT("AddRayic","GLOBAL",1)
 InParty("Kiyone") InMyArea("Kiyone")~ THEN
@@ -1360,47 +1250,40 @@ APPEND ~JUGJER01~
 	END
 END
 
-// Bodhi Interjection on Offer
 
+/* ============================= *
+ *  Bodhi Interjection on Offer  *
+ * ============================= */
 EXTEND_BOTTOM ~Bodhi~ 1
 IF ~InParty("Kiyone") InMyArea("Kiyone")~ THEN EXTERN Z#KIYOJ BodhiKiyo1
 END
 
 INTERJECT_COPY_TRANS ~Bodhi~ 11 BodhiKiyo2
-== Z#KIYOJ IF ~InParty("Kiyone") InMyArea("Kiyone") !InParty("Kova") InMyArea("Kova")~
-@396
-== BODHI IF ~InParty("Kiyone") InMyArea("Kiyone") !InParty("Kova") InMyArea("Kova")~
-@397
+== Z#KIYOJ IF ~InParty("Kiyone") InMyArea("Kiyone") !InParty("Kova") InMyArea("Kova")~ @396
+== BODHI IF ~InParty("Kiyone") InMyArea("Kiyone") !InParty("Kova") InMyArea("Kova")~ @397
 END
 
 INTERJECT_COPY_TRANS ~Bodhi~ 11 BodhiKova
-== Z#KOVAJ IF ~InParty("Kova") InMyArea("Kova")~ THEN
-@398
-== BODHI IF ~InParty("Kova") InMyArea("Kova")~ THEN
-@399
-== Z#KOVAJ IF ~InParty("Kova") InMyArea("Kova")~ THEN
-@400
-== BODHI IF ~InParty("Kova") InMyArea("Kova")~ THEN
-@401
-== Z#KIYOJ IF ~InParty("Kiyone") InMyArea("Kiyone") InParty("Kova") InMyArea("Kova")~ THEN
-@402
-== BODHI IF ~InParty("Kiyone") InMyArea("Kiyone") InParty("Kova") InMyArea("Kova")~ THEN
-@403
-== BODHI IF ~InParty("Kova") InMyArea("Kova")~ THEN
-@404
+== Z#KOVAJ IF ~InParty("Kova") InMyArea("Kova")~ THEN @398
+== BODHI IF ~InParty("Kova") InMyArea("Kova")~ THEN @399
+== Z#KOVAJ IF ~InParty("Kova") InMyArea("Kova")~ THEN @400
+== BODHI IF ~InParty("Kova") InMyArea("Kova")~ THEN @401
+== Z#KIYOJ IF ~InParty("Kiyone") InMyArea("Kiyone") InParty("Kova") InMyArea("Kova")~ THEN @402
+== BODHI IF ~InParty("Kiyone") InMyArea("Kiyone") InParty("Kova") InMyArea("Kova")~ THEN @403
+== BODHI IF ~InParty("Kova") InMyArea("Kova")~ THEN @404
 END
 
 INTERJECT_COPY_TRANS ~Bodhi~ 18 JoinedBodhi
-== Z#KIYOJ IF ~InParty("Kiyone")~ THEN
-@405
+== Z#KIYOJ IF ~InParty("Kiyone")~ THEN @405
 DO ~DropInventory() LeaveParty() EscapeArea()~
-== Z#KIYOJ IF ~InParty("Kova")~ THEN
-@406
+== Z#KIYOJ IF ~InParty("Kova")~ THEN @406
 DO ~DropInventory() LeaveParty() EscapeArea()~
 END
 
-// Aran Extension
 
+/* ================ *
+ *  Aran Extension  *
+ * ================ */
 EXTEND_BOTTOM ~ARAN~ 0
 IF ~InParty("Kova") InMyArea("Kova")~ THEN GOTO Aran1
 END
@@ -1421,8 +1304,10 @@ APPEND ~ARAN~
 
 END
 
-// Gaelan Extension
 
+/* ================== *
+ *  Gaelan Extension  *
+ * ================== */
 EXTEND_BOTTOM ~GAELAN~ 39
 IF ~~ THEN GOTO GoGetKova
 END
@@ -1512,17 +1397,15 @@ BEGIN SEEKOVA
 	SetDialogue("GAELAN")~ EXIT
 	END
 
-// Bylanna Extension
 
+/* =================== *
+ *  Bylanna Extension  *
+ * =================== */
 INTERJECT_COPY_TRANS ~BYLANNA~ 5 KiyoGreet
-== Z#KIYOJ IF ~InParty("Kiyone") InMyArea("Kiyone") Global("KKJoin","GLOBAL",0)~ THEN
-@426
-== BYLANNA IF ~InParty("Kiyone") InMyArea("Kiyone") Global("KKJoin","GLOBAL",0)~ THEN
-@427
-== Z#KIYOJ IF ~InParty("Kiyone") InMyArea("Kiyone") Global("KKJoin","GLOBAL",0)~ THEN
-@428
-== BYLANNA IF ~InParty("Kiyone") InMyArea("Kiyone") Global("KKJoin","GLOBAL",0)~ THEN
-@429
+== Z#KIYOJ IF ~InParty("Kiyone") InMyArea("Kiyone") Global("KKJoin","GLOBAL",0)~ THEN @426
+== BYLANNA IF ~InParty("Kiyone") InMyArea("Kiyone") Global("KKJoin","GLOBAL",0)~ THEN @427
+== Z#KIYOJ IF ~InParty("Kiyone") InMyArea("Kiyone") Global("KKJoin","GLOBAL",0)~ THEN @428
+== BYLANNA IF ~InParty("Kiyone") InMyArea("Kiyone") Global("KKJoin","GLOBAL",0)~ THEN @429
 END
 
 EXTEND_BOTTOM ~BYLANNA~ 5
@@ -1543,37 +1426,28 @@ END
 CHAIN
 IF ~~ THEN BYLANNA CaseReview
 @432
-== BYLANNA IF ~Global("LOAClue","GLOBAL",3)~ THEN
-@433
-== BYLANNA IF ~Global("JermClue","GLOBAL",3) !Global("MetKharen","GLOBAL",3)~ THEN
-@434
-== BYLANNA IF ~Global("DayvClue","GLOBAL",3)~ THEN
-@435
-== BYLANNA IF ~!Global("JermClue","GLOBAL",3) Global("MetKharen","GLOBAL",3)~ THEN
-@436
-== BYLANNA IF ~Global("JermClue","GLOBAL",3) Global("MetKharen","GLOBAL",3)~ THEN
-@437
+== BYLANNA IF ~Global("LOAClue","GLOBAL",3)~ THEN @433
+== BYLANNA IF ~Global("JermClue","GLOBAL",3) !Global("MetKharen","GLOBAL",3)~ THEN @434
+== BYLANNA IF ~Global("DayvClue","GLOBAL",3)~ THEN @435
+== BYLANNA IF ~!Global("JermClue","GLOBAL",3) Global("MetKharen","GLOBAL",3)~ THEN @436
+== BYLANNA IF ~Global("JermClue","GLOBAL",3) Global("MetKharen","GLOBAL",3)~ THEN @437
 == BYLANNA
 IF ~Global("LOAClue","GLOBAL",3)
 Global("JermClue","GLOBAL",3)
-Global("DayvClue","GLOBAL",3)~ THEN
-@438
+Global("DayvClue","GLOBAL",3)~ THEN @438
 == BYLANNA
 IF ~OR(3)
 Global("LOAClue","GLOBAL",3)
 Global("JermClue","GLOBAL",3)
-Global("DayvClue","GLOBAL",3)~ THEN
-@439
+Global("DayvClue","GLOBAL",3)~ THEN @439
 == BYLANNA
 IF ~!Global("LOAClue","GLOBAL",3)
 !Global("JermClue","GLOBAL",3)
-!Global("DayvClue","GLOBAL",3)~ THEN
-@440
+!Global("DayvClue","GLOBAL",3)~ THEN @440
 == BYLANNA IF ~OR(3)
 !Global("LOAClue","GLOBAL",3)
 !Global("JermClue","GLOBAL",3)
-!Global("DayvClue","GLOBAL",3)~ THEN
-@441
+!Global("DayvClue","GLOBAL",3)~ THEN @441
 == Z#KIYOJ
 IF ~OR(7)
 Global("JermClue","GLOBAL",1)
@@ -1582,8 +1456,7 @@ Global("DayvClue","GLOBAL",1)
 Global("LOAClue","GLOBAL",1)
 Global("LOAClue","GLOBAL",2)
 Global("AddRayic","GLOBAL",2)
-PartyHasItem("CornRep")~ THEN
-@442
+PartyHasItem("CornRep")~ THEN @442
 END
 IF ~GlobalGT("JermClue","GLOBAL",0)
 !Global("JermClue","GLOBAL",3)~ THEN
@@ -1634,32 +1507,22 @@ CHAIN
 IF ~~ THEN Z#KIYOJ bylevidmetkharen
 @450
 = @451
-== Z#KIYOJ IF ~GlobalGT("JermClue","GLOBAL",0) Global("CornTalk","GLOBAL",3)~ THEN
-@452
-== Z#KIYOJ IF ~GlobalGT("JermClue","GLOBAL",0) !Global("CornTalk","GLOBAL",3)~ THEN
-@453
-== BYLANNA
-@454
-== CORNEIL
-@455
+== Z#KIYOJ IF ~GlobalGT("JermClue","GLOBAL",0) Global("CornTalk","GLOBAL",3)~ THEN @452
+== Z#KIYOJ IF ~GlobalGT("JermClue","GLOBAL",0) !Global("CornTalk","GLOBAL",3)~ THEN @453
+== BYLANNA @454
+== CORNEIL @455
 = @456
 = @457
 = @458
-== BYLANNA
-@459
-== Z#KIYOJ
-@460
-== BYLANNA
-@461
+== BYLANNA @459
+== Z#KIYOJ @460
+== BYLANNA @461
 == BYLANNA
 IF ~Global("LOAClue","GLOBAL",3)
 Global("JermClue","GLOBAL",3)
-Global("DayvClue","GLOBAL",3)~ THEN
-@462
-== Z#KIYOJ
-@463
-== BYLANNA
-@464
+Global("DayvClue","GLOBAL",3)~ THEN @462
+== Z#KIYOJ @463
+== BYLANNA @464
 DO ~SetGlobal("MetKharen","GLOBAL",3)
 AddexperienceParty(12000)
 SetGlobalTimer("KKGovtT","GLOBAL",50400)~ EXIT
@@ -1667,44 +1530,34 @@ SetGlobalTimer("KKGovtT","GLOBAL",50400)~ EXIT
 CHAIN
 IF ~~ THEN BYLANNA bylevidenough
 @465
-== Z#KIYOJ
-@466
-== BYLANNA
-@467
+== Z#KIYOJ @466
+== BYLANNA @467
 = @468
-== Z#KIYOJ
-@469
-== BYLANNA
-@470
+== Z#KIYOJ @469
+== BYLANNA @470
 DO ~SetGlobal("GovtGuards","GLOBAL",4)
 RealSetGlobalTimer("Z#enoughT","GLOBAL",15)~ EXIT
 
 CHAIN
 IF ~~ THEN Z#KIYOJ bylevidnone
 @471
-== BYLANNA IF ~Global("GovtGuards","GLOBAL",2)~ THEN
-@472
-== BYLANNA IF ~Global("GovtGuards","GLOBAL",1)~ THEN
-@473
-== BYLANNA IF ~Global("GovtGuards","GLOBAL",1)~ THEN
-@474
-== Z#KIYOJ IF ~Global("GovtGuards","GLOBAL",1)~ THEN
-@475
+== BYLANNA IF ~Global("GovtGuards","GLOBAL",2)~ THEN @472
+== BYLANNA IF ~Global("GovtGuards","GLOBAL",1)~ THEN @473
+== BYLANNA IF ~Global("GovtGuards","GLOBAL",1)~ THEN @474
+== Z#KIYOJ IF ~Global("GovtGuards","GLOBAL",1)~ THEN @475
 EXIT
 
 CHAIN
 IF ~~ THEN BYLANNA bylevidno
 @476
-== BYLANNA IF ~Global("GovtGuards","GLOBAL",2)~ THEN
-@472
+== BYLANNA IF ~Global("GovtGuards","GLOBAL",2)~ THEN @472
 EXIT
 
 CHAIN
 IF ~~ THEN Z#KIYOJ bylevidjerm
 @477
 = @478
-== BYLANNA
-@479
+== BYLANNA @479
 = @480
 DO ~SetGlobal("JermClue","GLOBAL",3)
 TakePartyItem("JerSig")
@@ -1715,8 +1568,7 @@ SetGlobal("GovtGuards","GLOBAL",2)~ EXIT
 CHAIN
 IF ~~ THEN Z#KIYOJ byleviddayv
 @481
-== BYLANNA
-@482
+== BYLANNA @482
 = @483
 = @484
 DO ~SetGlobal("DayvClue","GLOBAL",3)
@@ -1727,8 +1579,7 @@ CHAIN
 IF ~~ THEN Z#KIYOJ bylevidloa
 @485
 = @486
-== BYLANNA
-@487
+== BYLANNA @487
 = @488
 = @489
 = @490
@@ -1742,13 +1593,10 @@ CHAIN
 IF ~~ THEN Z#KIYOJ bylevidcornrep
 @491
 = @492
-== BYLANNA
-@493
+== BYLANNA @493
 = @494
-== Z#KIYOJ
-@495
-== BYLANNA
-@496
+== Z#KIYOJ @495
+== BYLANNA @496
 DO ~TakePartyItem("CornRep")
 DestroyItem("CornRep")
 SetGlobalTimer("KKGovtT","GLOBAL",10800)
@@ -1758,18 +1606,17 @@ CHAIN
 IF ~~ THEN Z#KIYOJ bylevidraynote
 @497
 = @498
-== BYLANNA
-@499
+== BYLANNA @499
 = @500
-== Z#KIYOJ
-@501
+== Z#KIYOJ @501
 DO ~SetGlobal("AddRayic","GLOBAL",3)
 SetGlobalTimer("KKGovtT","GLOBAL",25200)
 SetGlobal("GovtGuards","GLOBAL",2)~ EXIT
 
 
-// Brega Extension
-
+/* ================= *
+ *  Brega Extension  *
+ * ================= */
 EXTEND_BOTTOM ~HABREGA~ 0
 IF ~Global("KKJoin","GLOBAL",1) InParty("Kiyone") InParty("Kova")~
 THEN REPLY @502 GOTO C1
@@ -1832,10 +1679,10 @@ APPEND ~HABREGA~
 	TakePartyItemNum("KvDieDag",1) DestroyItem("KvDieDag")
 	GiveGoldForce(7000)
 	ReputationInc(1)
-	EraseJournalEntry(@1001)
-	EraseJournalEntry(@1002)
-	EraseJournalEntry(@1051)
-	AddJournalEntry(@1052,QUEST_DONE)
+	EraseJournalEntry(@5001)
+	EraseJournalEntry(@5002)
+	EraseJournalEntry(@5051)
+	AddJournalEntry(@5052,QUEST_DONE)
 	~ EXIT
 	END
 
@@ -1883,13 +1730,13 @@ APPEND ~HABREGA~
 	IF ~~ THEN BEGIN C4
 	SAY @539
 	IF ~Global("Dayven","GLOBAL",0)~ THEN REPLY @528
-	UNSOLVED_JOURNAL @1005	DO ~SetGlobal("Dayven","GLOBAL",1)~ GOTO C2
+	UNSOLVED_JOURNAL @5005 DO ~SetGlobal("Dayven","GLOBAL",1)~ GOTO C2
 	IF ~Global("Dayven","GLOBAL",0)~ THEN REPLY @535
-	UNSOLVED_JOURNAL @1005	DO ~SetGlobal("Dayven","GLOBAL",1)~ GOTO C3
+	UNSOLVED_JOURNAL @5005 DO ~SetGlobal("Dayven","GLOBAL",1)~ GOTO C3
 	IF ~Global("Dayven","GLOBAL",0)~ THEN REPLY @538
-	UNSOLVED_JOURNAL @1005	DO ~SetGlobal("Dayven","GLOBAL",1)~ GOTO C5
+	UNSOLVED_JOURNAL @5005 DO ~SetGlobal("Dayven","GLOBAL",1)~ GOTO C5
 	IF ~Global("Dayven","GLOBAL",0)~ THEN REPLY @533
-	UNSOLVED_JOURNAL @1005	DO ~SetGlobal("Dayven","GLOBAL",1)~ GOTO C6
+	UNSOLVED_JOURNAL @5005 DO ~SetGlobal("Dayven","GLOBAL",1)~ GOTO C6
 	IF ~!Global("Dayven","GLOBAL",0)~ THEN REPLY @528 GOTO C2
 	IF ~!Global("Dayven","GLOBAL",0)~ THEN REPLY @535 GOTO C3
 	IF ~!Global("Dayven","GLOBAL",0)~ THEN REPLY @538 GOTO C5
@@ -1948,14 +1795,16 @@ APPEND ~HABREGA~
 	= @553
 	= @554
 	IF ~~ THEN DO ~SetGlobal("Dayven","GLOBAL",15)
-	AddJournalEntry(@1009,QUEST)
+	AddJournalEntry(@5009,QUEST)
 	AddexperienceParty(15000)
 	SetGlobal("DayvClue","GLOBAL",1)~ EXIT
 	END
 END
 
-// Corneil / Tolgerias Extensions
 
+/* ================================ *
+ *  Corneil / Tolgerias Extensions  *
+ * ================================ */
 EXTEND_BOTTOM ~TOLGER~ 1
 IF ~Global("KKJoin","GLOBAL",1) InParty("Kova") InParty("Kiyone")~ THEN REPLY @555GOTO TolTalk
 END
@@ -1994,8 +1843,7 @@ END
 APPEND ~CORNEIL~
 	IF ~~ THEN BEGIN CornTalk
 	SAY @561
-	=
-	@562
+	= @562
 	IF ~~ THEN REPLY @563 EXIT
 	IF ~~ THEN REPLY @558 GOTO TICowl1
 	END
@@ -2014,8 +1862,7 @@ APPEND ~CORNEIL~
 
 	IF ~~ THEN BEGIN BC1
 	SAY @566
-	=
-	@567
+	= @567
 	IF ~PartyGoldGT(2499)~ THEN REPLY @568
 	DO ~TakePartyGold(2500) DestroyGold(2500)~ GOTO BC2
 	IF ~~ THEN REPLY @569 GOTO BC3
@@ -2035,8 +1882,9 @@ APPEND ~CORNEIL~
 END
 
 
-// Z#MESSEN
-
+/* ================ *
+ *  Myroven Dialog  *
+ * ================ */
 BEGIN Z#MESSEN
 
 CHAIN
@@ -2046,14 +1894,10 @@ Global("LOAClue","GLOBAL",3)
 Global("Z#BaevrinPlot","GLOBAL",0)~ THEN Z#MESSEN evidenough
 @573
 = @574
-== Z#KIYOJ
-@575
-== Z#MESSEN
-@576
-== Z#KIYOJ
-@577
-== Z#MESSEN
-@578
+== Z#KIYOJ @575
+== Z#MESSEN @576
+== Z#KIYOJ @577
+== Z#MESSEN @578
 = @579
 DO ~SetGlobal("GovtGuards","GLOBAL",4)
 SetGlobal("Z#NoMoreGovt","GLOBAL",1)
@@ -2076,8 +1920,7 @@ Global("DayvClue","GLOBAL",1)
 Global("LOAClue","GLOBAL",1)
 Global("LOAClue","GLOBAL",2)
 Global("AddRayic","GLOBAL",2)
-PartyHasItem("CornRep")~ THEN
-@581
+PartyHasItem("CornRep")~ THEN @581
 END
 IF ~GlobalGT("JermClue","GLOBAL",0)
 !Global("JermClue","GLOBAL",3)~ THEN
@@ -2113,17 +1956,12 @@ IF ~~ THEN Z#KIYOJ evidmetkharen
 @585
 = @586
 = @587
-== Z#KIYOJ IF ~GlobalGT("JermClue","GLOBAL",0) Global("CornTalk","GLOBAL",3)~ THEN
-@452
-== Z#KIYOJ IF ~GlobalGT("JermClue","GLOBAL",0) !Global("CornTalk","GLOBAL",3)~ THEN
-@453
-== Z#MESSEN
-@588
-== Z#KIYOJ
-@589
+== Z#KIYOJ IF ~GlobalGT("JermClue","GLOBAL",0) Global("CornTalk","GLOBAL",3)~ THEN @452
+== Z#KIYOJ IF ~GlobalGT("JermClue","GLOBAL",0) !Global("CornTalk","GLOBAL",3)~ THEN @453
+== Z#MESSEN @588
+== Z#KIYOJ @589
 = @590
-== Z#MESSEN
-@591
+== Z#MESSEN @591
 = @592
 DO ~EscapeArea()
 SetGlobal("MetKharen","GLOBAL",3)
@@ -2135,8 +1973,7 @@ EscapeArea()~ EXIT
 CHAIN
 IF ~~ THEN Z#KIYOJ evidnone
 @593
-== Z#MESSEN
-@594
+== Z#MESSEN @594
 = @595
 DO ~SetGlobal("GovtGuards","GLOBAL",1)
 SetGlobalTimer("KKGovtT","GLOBAL",12240) EscapeArea()~ EXIT
@@ -2146,8 +1983,7 @@ IF ~~ THEN Z#KIYOJ evidjerm
 @596
 = @477
 = @597
-== Z#MESSEN
-@598
+== Z#MESSEN @598
 DO ~SetGlobal("JermClue","GLOBAL",3)
 SetGlobal("GovtGuards","GLOBAL",2)
 TakePartyItem("JerSig")
@@ -2160,8 +1996,7 @@ IF ~~ THEN Z#KIYOJ eviddayv
 @599
 = @600
 = @601
-== Z#MESSEN
-@602
+== Z#MESSEN @602
 DO ~SetGlobal("DayvClue","GLOBAL",3)
 SetGlobal("GovtGuards","GLOBAL",2)
 SetGlobalTimer("KKGovtT","GLOBAL",50400)
@@ -2172,8 +2007,7 @@ IF ~~ THEN Z#KIYOJ evidloa
 @603
 = @604
 = @605
-== Z#MESSEN
-@606
+== Z#MESSEN @606
 DO ~SetGlobal("LOAClue","GLOBAL",3)
 TakePartyItem("MaeLOA")
 DestroyItem("MaeLOA")
@@ -2186,12 +2020,9 @@ IF ~~ THEN Z#KIYOJ evidcornrep
 @607
 = @608
 = @609
-== Z#MESSEN
-@610
-== Z#KIYOJ
-@611
-== Z#MESSEN
-@612
+== Z#MESSEN @610
+== Z#KIYOJ @611
+== Z#MESSEN @612
 DO ~TakePartyItem("CornRep")
 DestroyItem("CornRep")
 SetGlobal("GovtGuards","GLOBAL",2)
@@ -2203,19 +2034,18 @@ IF ~~ THEN Z#KIYOJ evidraynote
 @613
 = @614
 = @615
-== Z#MESSEN
-@616
-== Z#KIYOJ
-@617
-== Z#MESSEN
-@618
+== Z#MESSEN @616
+== Z#KIYOJ @617
+== Z#MESSEN @618
 DO ~SetGlobal("AddRayic","GLOBAL",3)
 SetGlobal("GovtGuards","GLOBAL",2)
 SetGlobalTimer("KKGovtT","GLOBAL",25200)
 EscapeArea()~ EXIT
 
-// Kharen16
 
+/* =============== *
+ *  Kharen Dialog  *
+ * =============== */
 EXTEND_BOTTOM PPSAEM2 29
 IF ~Global("KKJoin","GLOBAL",1)
 InParty("Kova")
@@ -2301,8 +2131,7 @@ CHAIN
 IF ~~ THEN KHAREN16 Kh4
 @646
 = @647
-== KHAREN16 IF ~XPLT(Player1,1000000)~ THEN
-@648
+== KHAREN16 IF ~XPLT(Player1,1000000)~ THEN @648
 DO ~ // 505.2920  725.2740
 SetInterrupt(FALSE)
 ReallyForceSpell(Myself,WIZARD_PROTECTION_FROM_FIRE)
@@ -2322,8 +2151,7 @@ ActionOverride("COWENF4",ApplySpell(Myself,WIZARD_STONE_SKIN))
 ActionOverride("COWENF3",ApplySpell(Myself,WIZARD_STONE_SKIN))
 SetInterrupt(TRUE)~
 == KHAREN16 IF ~XPLT(Player1,2000000)
-XPGT(Player1,999999)~ THEN
-@648
+XPGT(Player1,999999)~ THEN @648
 DO ~
 SetInterrupt(FALSE)
 ReallyForceSpell(Myself,WIZARD_PROTECTION_FROM_FIRE)
@@ -2342,8 +2170,7 @@ ActionOverride("COWENF1",ApplySpell(Myself,WIZARD_STONE_SKIN))
 ActionOverride("Z#CW16",ApplySpell(Myself,WIZARD_STONE_SKIN))
 ActionOverride("Z#CW18",ApplySpell(Myself,WIZARD_STONE_SKIN))
 SetInterrupt(TRUE)~
-== KHAREN16 IF ~XPGT(Player1,1999999)~ THEN
-@648
+== KHAREN16 IF ~XPGT(Player1,1999999)~ THEN @648
 DO ~
 SetInterrupt(FALSE)
 ReallyForceSpell(Myself,WIZARD_PROTECTION_FROM_FIRE)
@@ -2391,13 +2218,11 @@ ActionOverride("Kiyone",Face(3))
 ActionOverride("Kiyone",EquipRanged())
 ActionOverride("Kova",EquipRanged())
 ApplySpell(Myself,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)~
-== Z#KIYOJ
-@650
+== Z#KIYOJ @650
 DO ~JumpToPoint([710.2725])
 Attack("Kharen")
 ChangeAIScript("",DEFAULT)~
-== KHAREN16
-@651
+== KHAREN16 @651
 DO ~SetCutSceneLite(TRUE)
 ForceSpell(Myself,DO_NOTHING)
 SetGlobal("KhWin","GLOBAL",1)
@@ -2454,10 +2279,8 @@ StateCheck("Kova",STATE_STONE_DEATH)~ THEN KHAREN16 KhWin2
 DO ~SetGlobal("KhWin","GLOBAL",3)
 ForceSpell("Kova",WIZARD_FLAME_ARROW)
 SetCutSceneLite(TRUE)~
-== Z#KIYOJ IF ~Detect("Kiyone")~ THEN
-@654
-== KHAREN16 IF ~Detect("Kiyone")~ THEN
-@655
+== Z#KIYOJ IF ~Detect("Kiyone")~ THEN @654
+== KHAREN16 IF ~Detect("Kiyone")~ THEN @655
 DO ~SetCutSceneLite(TRUE)~
 EXIT
 
@@ -2469,11 +2292,9 @@ Detect("Kiyone")
 StateCheck("Kova",STATE_EXPLODING_DEATH)
 ~ THEN KHAREN16 KhWin3
 @656
-== Z#KIYOJ
-@657
+== Z#KIYOJ @657
 DO ~Attack("Kharen")~
-== KHAREN16
-@658
+== KHAREN16 @658
 DO ~SetCutSceneLite(TRUE)
 ForceSpell(Myself,DO_NOTHING)
 CreateVisualEffectObject("SPROTECT" ,"Kharen")
@@ -2491,8 +2312,7 @@ Dead("Kiyone")~ THEN KHAREN16 KhOK2
 = @660
 DO ~SetCutSceneLite(FALSE)
 GiveGoldForce(8000)~
-== KHAREN16 IF ~GlobalGT("KhWin","GLOBAL",3)~ THEN
-@661
+== KHAREN16 IF ~GlobalGT("KhWin","GLOBAL",3)~ THEN @661
 END
 IF ~~ THEN REPLY @662 GOTO Kh7
 IF ~GlobalGT("KhWin","GLOBAL",3)~ THEN REPLY @663 GOTO Kh5
@@ -2527,56 +2347,36 @@ Global("MetKharen","GLOBAL",1)
 Global("BrynnAmbush","GLOBAL",0)
 !ActuallyInCombat()~ THEN Z#KIYOJ PostKh
 @670
-== Z#KOVAJ
-@671
-== Z#KIYOJ
-@672
-== Z#KOVAJ
-@673
-== Z#KIYOJ IF ~GlobalLT("CornTalk","GLOBAL",3)~ THEN
-@674
-== Z#KOVAJ IF ~GlobalLT("CornTalk","GLOBAL",3)~ THEN
-@675
-== Z#KOVAJ IF ~GlobalGT("JermClue","GLOBAL",0)~ THEN
-@676
-DO ~AddJournalEntry(@1025,QUEST)~
-== Z#KIYOJ IF ~GlobalGT("JermClue","GLOBAL",0)~ THEN
-@677
-== Z#KIYOJ IF ~Global("JermClue","GLOBAL",0)~ THEN
-@678
-== Z#KOVAJ
-@679
+== Z#KOVAJ @671
+== Z#KIYOJ @672
+== Z#KOVAJ @673
+== Z#KIYOJ IF ~GlobalLT("CornTalk","GLOBAL",3)~ THEN @674
+== Z#KOVAJ IF ~GlobalLT("CornTalk","GLOBAL",3)~ THEN @675
+== Z#KOVAJ IF ~GlobalGT("JermClue","GLOBAL",0)~ THEN @676
+DO ~AddJournalEntry(@5025,QUEST)~
+== Z#KIYOJ IF ~GlobalGT("JermClue","GLOBAL",0)~ THEN @677
+== Z#KIYOJ IF ~Global("JermClue","GLOBAL",0)~ THEN @678
+== Z#KOVAJ @679
 = @680
-== Z#KIYOJ
-@681
-== Z#KOVAJ
-@682
-== Z#KIYOJ
-@683
-== Z#KOVAJ
-@684
-== Z#KIYOJ
-@685
-== Z#KOVAJ
-@686
-== Z#KIYOJ
-@687
-== Z#KOVAJ
-@688
-== Z#KIYOJ
-@689
-== Z#KOVAJ
-@690
-== Z#KIYOJ
-@691
-== Z#KOVAJ
-@692
-== Z#KIYOJ
-@693
+== Z#KIYOJ @681
+== Z#KOVAJ @682
+== Z#KIYOJ @683
+== Z#KOVAJ @684
+== Z#KIYOJ @685
+== Z#KOVAJ @686
+== Z#KIYOJ @687
+== Z#KOVAJ @688
+== Z#KIYOJ @689
+== Z#KOVAJ @690
+== Z#KIYOJ @691
+== Z#KOVAJ @692
+== Z#KIYOJ @693
 DO ~SetGlobal("MetKharen","GLOBAL",2)~ EXIT
 
-// ST People Z#BRYNN1 Z#BRYNN2
 
+/* ============================== *
+ *  GST People Z#BRYNN1 Z#BRYNN2  *
+ * ============================== */
 BEGIN Z#BRYNN1
 BEGIN Z#BRYNN2
 
@@ -2657,10 +2457,8 @@ IF ~AreaType(OUTDOOR)
 	RealGlobalTimerExpired("Z#EnoughT","GLOBAL")~ THEN Z#KOVAJ KvEvidEnough
 @704
 DO ~SetGlobal("KvEvidEnough","GLOBAL",1)~
-== Z#KIYOJ IF ~!GlobalGT("BKKChat","GLOBAL",5)~ THEN
-@705
-== Z#KIYOJ IF ~GlobalGT("BKKChat","GLOBAL",5)~ THEN
-@706
+== Z#KIYOJ IF ~!GlobalGT("BKKChat","GLOBAL",5)~ THEN @705
+== Z#KIYOJ IF ~GlobalGT("BKKChat","GLOBAL",5)~ THEN @706
 == Z#KOVAJ @707
 = @708
 == Z#KIYOJ @709
@@ -2678,15 +2476,12 @@ GlobalGT("DayvClue","GLOBAL",0)~ THEN GAELAN z#gaelanc6
 @713
 = @714
 = @715
-== GAELAN IF ~!Dead("c6bodhi")~ THEN
-@716
-== GAELAN IF ~!Dead("c6bodhi")~ THEN
-@717
-== GAELAN IF ~Dead("c6bodhi")~ THEN
-@718
+== GAELAN IF ~!Dead("c6bodhi")~ THEN @716
+== GAELAN IF ~!Dead("c6bodhi")~ THEN @717
+== GAELAN IF ~Dead("c6bodhi")~ THEN @718
 == GAELAN @719
 DO ~SetGlobal("z#gaelanc6","GLOBAL",2)
-AddJournalEntry(@1020,QUEST)
+AddJournalEntry(@5020,QUEST)
 GiveItemCreate("RenNote",Player1,0,0,0)
 EscapeArea()~ EXIT
 
@@ -2803,35 +2598,29 @@ CHAIN
 IF ~~ THEN RENAL rennote4
 @762
 = @763
-== RENAL IF ~!Dead("c6bodhi")~ THEN
-@764
-== RENAL IF ~Dead("c6bodhi")~ THEN
-@765
+== RENAL IF ~!Dead("c6bodhi")~ THEN @764
+== RENAL IF ~Dead("c6bodhi")~ THEN @765
 == RENAL @766
 = @767
 = @768
-DO ~AddJournalEntry(@1021,QUEST)~ EXIT
+DO ~AddJournalEntry(@5021,QUEST)~ EXIT
 
 
-// Baevrin Starts
-
+/* ================ *
+ *  Baevrin Starts  *
+ * ================ */
 CHAIN
 IF WEIGHT #-1 ~Global("Z#BaevrinPlot","GLOBAL",2)~ THEN Z#MESSEN bae1
 @769
 = @770
 == Z#KIYOJ @771
 == Z#MESSEN @772
-== Z#MESSEN IF ~!Global("GovtGuards","GLOBAL",4)~ THEN
-@773
+== Z#MESSEN IF ~!Global("GovtGuards","GLOBAL",4)~ THEN @773
 = @774
-== Z#KIYOJ IF ~!Global("GovtGuards","GLOBAL",4)~ THEN
-@575
-== Z#MESSEN IF ~!Global("GovtGuards","GLOBAL",4)~ THEN
-@576
-== Z#KIYOJ IF ~!Global("GovtGuards","GLOBAL",4)~ THEN
-@577
-== Z#MESSEN IF ~!Global("GovtGuards","GLOBAL",4)~ THEN
-@775
+== Z#KIYOJ IF ~!Global("GovtGuards","GLOBAL",4)~ THEN @575
+== Z#MESSEN IF ~!Global("GovtGuards","GLOBAL",4)~ THEN @576
+== Z#KIYOJ IF ~!Global("GovtGuards","GLOBAL",4)~ THEN @577
+== Z#MESSEN IF ~!Global("GovtGuards","GLOBAL",4)~ THEN @775
 DO ~SetGlobal("GovtGuards","GLOBAL",4)~
 == Z#MESSEN @776
 = @777
@@ -2852,7 +2641,7 @@ CHAIN
 IF ~~ THEN Z#MESSEN bae1-2
 @784
 DO ~SetGlobal("Z#BaevrinPlot","GLOBAL",3)
-AddJournalEntry(@1030,QUEST)
+AddJournalEntry(@5030,QUEST)
 EscapeAreaMove("AR0511",430,955,2)~ EXIT
 
 CHAIN
@@ -3071,7 +2860,7 @@ IF ~~ THEN Z#BAEV BaevPlot55
 == Z#MESSEN @886
 == Z#ARDEL @887
 DO ~SetGlobal("Z#BaevrinPlot","GLOBAL",6)
-AddJournalEntry(@1031,QUEST)
+AddJournalEntry(@5031,QUEST)
 SetGlobalTimer("Z#BaevrinPlotT","GLOBAL",2400) // 8 hours
 ReallyForceSpell("Z#BAEV",WIZARD_INVISIBILITY)
 ReallyForceSpell("Z#TERAHN",WIZARD_INVISIBILITY)
@@ -3104,8 +2893,10 @@ DO ~SetGlobal("Z#BvPlotComm1","LOCALS",1)~
 == Z#KIYOJ @895
 EXIT
 
-// Arledrian in BvP7
 
+/* =================== *
+ *  Arledrian in BvP7  *
+ * =================== */
 CHAIN
 IF WEIGHT #-1 ~OR(2)
 Global("Z#BaevrinPlot","GLOBAL",6)
@@ -3155,16 +2946,13 @@ CHAIN
 IF ~~ THEN ARLED BvPlot7Yes
 @913
 DO ~SetGlobal("Z#BaevrinPlot","GLOBAL",8)
-AddJournalEntry(@1032,QUEST)
-SetGlobalTimer("Z#BaevrinPlotT","GLOBAL",1800) ~ // 6 hours
+AddJournalEntry(@5032,QUEST)
+SetGlobalTimer("Z#BaevrinPlotT","GLOBAL",1800)~ // 6 hours
 = @914
 = @915
-== JAHEIRAJ IF ~InParty("Jaheira") InMyArea("Jaheira")~
-@916
-== IMOEN2J IF ~InParty("Imoen2") InMyArea("Imoen2")~ THEN
-@917
-== KELDORJ IF ~InParty("Keldorn") InMyArea("Keldorn")~ THEN
-@918
+== JAHEIRAJ IF ~InParty("Jaheira") InMyArea("Jaheira")~ @916
+== IMOEN2J IF ~InParty("Imoen2") InMyArea("Imoen2")~ THEN @917
+== KELDORJ IF ~InParty("Keldorn") InMyArea("Keldorn")~ THEN @918
 == ARLED @919
 == ARLED @920
 = @921
@@ -3184,8 +2972,8 @@ END
 IF ~XPGT(Player1,1100000)~ THEN
 DO ~SetGlobal("Z#BaevrinPlot","GLOBAL",10)
 DestroyItem("MinHp1")
-	CreateCreature("Z#Assas2",[377.320],14)
-	CreateCreature("Z#Assas2",[630.490],6)
+CreateCreature("Z#Assas2",[377.320],14)
+CreateCreature("Z#Assas2",[630.490],6)
 CreateCreature("Z#Assas3",[585.120],0)
 CreateCreature("Z#Assas3",[595.255],0)
 CreateCreature("Z#Assas3",[735.340],0)
@@ -3193,10 +2981,10 @@ Enemy()~ EXIT
 IF ~!XPGT(Player1,1100000)~ THEN
 DO ~SetGlobal("Z#BaevrinPlot","GLOBAL",10)
 DestroyItem("MinHp1")
-	CreateCreature("Z#Assas2",[377.320],14)
-	CreateCreature("Z#Assas2",[630.490],6)
-	CreateCreature("Z#Arch2",[550.602],8)
-	CreateCreature("Z#Arch2",[260.384],12)
+CreateCreature("Z#Assas2",[377.320],14)
+CreateCreature("Z#Assas2",[630.490],6)
+CreateCreature("Z#Arch2",[550.602],8)
+CreateCreature("Z#Arch2",[260.384],12)
 CreateCreature("Z#Assas2",[585.120],0)
 CreateCreature("Z#Assas3",[595.255],0)
 CreateCreature("Z#Assas2",[735.340],0)
@@ -3207,12 +2995,9 @@ IF ~!GlobalTimerExpired("Z#BaevrinPlotT","GLOBAL")
 Global("Z#BaevrinPlot","GLOBAL",9)~ THEN Z#BvP8 punctual
 @925
 DO ~SetGlobal("Z#BaevrinPlot","GLOBAL",10)~
-== Z#KIYOJ IF ~InParty("Kiyone") InMyArea("Kiyone")~ THEN
-@926
-== Z#BvP8 IF ~InParty("Kiyone") InMyArea("Kiyone")~ THEN
-@927
-== Z#BvP8 IF ~OR(2) !InParty("Kiyone") !InMyArea("Kiyone")~ THEN
-@928
+== Z#KIYOJ IF ~InParty("Kiyone") InMyArea("Kiyone")~ THEN @926
+== Z#BvP8 IF ~InParty("Kiyone") InMyArea("Kiyone")~ THEN @927
+== Z#BvP8 IF ~OR(2) !InParty("Kiyone") !InMyArea("Kiyone")~ THEN @928
 == Z#BvP8 @929
 DO ~DestroyItem("MinHp1")
 	CreateCreature("Z#Assas2",[377.320],14)
@@ -3230,14 +3015,10 @@ IF ~Global("Z#BaevrinPlot","GLOBAL",10)
 	!ActuallyInCombat()~ THEN Z#Adyl BvPlot10
 @930
 DO ~SetGlobal("Z#BaevrinPlot","GLOBAL",11)~
-== Z#KIYOJ IF ~InParty("Kiyone") InMyArea("Kiyone")~ THEN
-@931
-== Z#Adyl IF ~InParty("Kiyone") InMyArea("Kiyone")~ THEN
-@932
-== Z#KIYOJ IF ~InParty("Kiyone") InMyArea("Kiyone")~ THEN
-@933
-== Z#Adyl IF ~InParty("Kiyone") InMyArea("Kiyone")~ THEN
-@934
+== Z#KIYOJ IF ~InParty("Kiyone") InMyArea("Kiyone")~ THEN @931
+== Z#Adyl IF ~InParty("Kiyone") InMyArea("Kiyone")~ THEN @932
+== Z#KIYOJ IF ~InParty("Kiyone") InMyArea("Kiyone")~ THEN @933
+== Z#Adyl IF ~InParty("Kiyone") InMyArea("Kiyone")~ THEN @934
 END
 IF ~InParty("Kiyone") InMyArea("Kiyone")~ THEN REPLY @935 GOTO BvPlot101
 IF ~InParty("Kiyone") InMyArea("Kiyone")~ THEN REPLY @936 GOTO BvPlot101
@@ -3248,13 +3029,11 @@ IF ~OR(2) !InParty("Kiyone") !InMyArea("Kiyone")~ THEN REPLY @939 GOTO BvPlot102
 CHAIN
 IF ~~ THEN Z#ADYL BvPlot101
 @940
-== Z#KOVAJ IF ~InParty("Kova") InMyArea("Kova")~ THEN
-@941
+== Z#KOVAJ IF ~InParty("Kova") InMyArea("Kova")~ THEN @941
 == Z#Adyl @942
 == Z#KIYOJ @943
 = @944
-== Z#KOVAJ IF ~InParty("Kova") InMyArea("Kova")~ THEN
-@945
+== Z#KOVAJ IF ~InParty("Kova") InMyArea("Kova")~ THEN @945
 DO ~ActionOverride("Z#ADYL",MoveBetweenAreas("AR0528",[550.325],10))
 ActionOverride(Player1,LeaveAreaLUA("AR0528","",[175.443],10))
 ActionOverride(Player2,LeaveAreaLUA("AR0528","",[145.413],10))
@@ -3266,13 +3045,10 @@ ActionOverride(Player6,LeaveAreaLUA("AR0528","",[175.503],10))~ EXIT
 CHAIN
 IF ~~ THEN Z#ADYL BvPlot102
 @946
-== Z#KOVAJ IF ~InParty("Kova") InMyArea("Kova")~ THEN
-@947
+== Z#KOVAJ IF ~InParty("Kova") InMyArea("Kova")~ THEN @947
 == Z#Adyl @942
-== Z#KOVAJ IF ~InParty("Kova") InMyArea("Kova")~ THEN
-@948
-== Z#KOVAJ IF ~InParty("Kova") InMyArea("Kova")~ THEN
-@949
+== Z#KOVAJ IF ~InParty("Kova") InMyArea("Kova")~ THEN @948
+== Z#KOVAJ IF ~InParty("Kova") InMyArea("Kova")~ THEN @949
 DO ~ActionOverride(Player1,LeaveAreaLUA("AR0528","",[175.443],10))
 ActionOverride(Player2,LeaveAreaLUA("AR0528","",[145.413],10))
 ActionOverride(Player3,LeaveAreaLUA("AR0528","",[205.473],10))
@@ -3312,14 +3088,14 @@ CHAIN
 IF ~~ THEN Z#MESSEN BvPlotOk1a
 @962
 DO ~SetGlobal("Z#BaevrinPlot","GLOBAL",13)
-AddJournalEntry(@1033,QUEST)~ EXTERN Z#BAEV BvPlotOk1
+AddJournalEntry(@5033,QUEST)~ EXTERN Z#BAEV BvPlotOk1
 
 CHAIN
 IF ~~ THEN Z#MESSEN BvPlotOk1b
 @962
 = @963
 DO ~SetGlobal("Z#BaevrinPlot","GLOBAL",14)
-AddJournalEntry(@1034,QUEST)~ EXTERN Z#BAEV BvPlotOk1
+AddJournalEntry(@5034,QUEST)~ EXTERN Z#BAEV BvPlotOk1
 
 CHAIN
 IF ~~ THEN Z#BAEV BvPlotOk1
@@ -3343,7 +3119,7 @@ CHAIN
 IF ~~ THEN Z#MESSEN BvPlotOk2
 @965
 == Z#Baev @964
-DO ~AddJournalEntry(@1035,QUEST)
+DO ~AddJournalEntry(@5035,QUEST)
 SetGlobalTimer("KKCowlT","GLOBAL",9000)
 SetGlobal("KKCowl","GLOBAL",0)
 RealSetGlobalTimer("KKThiefT","GLOBAL",0)
@@ -3380,8 +3156,7 @@ IF ~~ THEN ARLED BvPlot221
 @971
 = @972
 DO ~EscapeArea()~
-== Z#KIYOJ IF ~InParty("Kiyone") InMyArea("Kiyone")~ THEN
-@973
+== Z#KIYOJ IF ~InParty("Kiyone") InMyArea("Kiyone")~ THEN @973
 EXIT
 
 CHAIN
@@ -3389,12 +3164,9 @@ IF WEIGHT #-1 ~Dead("Z#Baev")
 !ActuallyInCombat()
 Global("Z#BaevrinPlot","GLOBAL",23)~ THEN Z#MESSEN BvPlot23NotSurv
 @974
-== Z#KOVAJ IF ~InParty("Kova") InMyArea("Kova")~ THEN
-@975
-== Z#KIYOJ IF ~InParty("Kiyone") InMyArea("Kiyone") InParty("Kova") InMyArea("Kova")~ THEN
-@976
-== Z#MESSEN IF ~InParty("Kiyone") InMyArea("Kiyone") InParty("Kova") InMyArea("Kova")~ THEN
-@977
+== Z#KOVAJ IF ~InParty("Kova") InMyArea("Kova")~ THEN @975
+== Z#KIYOJ IF ~InParty("Kiyone") InMyArea("Kiyone") InParty("Kova") InMyArea("Kova")~ THEN @976
+== Z#MESSEN IF ~InParty("Kiyone") InMyArea("Kiyone") InParty("Kova") InMyArea("Kova")~ THEN @977
 == Z#MESSEN @978
 DO ~SetGlobal("Z#BaevrinPlot","GLOBAL",30)
 // Brega at 1123.491
@@ -3417,25 +3189,18 @@ AreaCheck("AR1002")~ THEN Z#MESSEN MyroFail
 == Z#MESSEN @981
 == HABREGA @982
 = @983
-== Z#KIYOJ IF ~InParty("Kiyone") InMyArea("Kiyone")~ THEN
-@984
-== Z#MESSEN IF ~OR(2) !InParty("Kiyone") !InMyArea("Kiyone")~ THEN
-@984
+== Z#KIYOJ IF ~InParty("Kiyone") InMyArea("Kiyone")~ THEN @984
+== Z#MESSEN IF ~OR(2) !InParty("Kiyone") !InMyArea("Kiyone")~ THEN @984
 == Z#MESSEN @985
-== HABREGA IF ~InParty("Kiyone") InMyArea("Kiyone")~ THEN
-@986
-== Z#KIYOJ IF ~InParty("Kiyone") InMyArea("Kiyone")~ THEN
-@987
-== HABREGA IF ~OR(2) !InParty("Kiyone") !InMyArea("Kiyone")~ THEN
-@988
-== HABREGA
-@989
+== HABREGA IF ~InParty("Kiyone") InMyArea("Kiyone")~ THEN @986
+== Z#KIYOJ IF ~InParty("Kiyone") InMyArea("Kiyone")~ THEN @987
+== HABREGA IF ~OR(2) !InParty("Kiyone") !InMyArea("Kiyone")~ THEN @988
+== HABREGA @989
 = @990
 = @991
-== Z#MESSEN
-@992
+== Z#MESSEN @992
 DO ~SetGlobal("BaevClue","GLOBAL",1) AddexperienceParty(12000)
-AddJournalEntry(@1038,QUEST)
+AddJournalEntry(@5038,QUEST)
 ActionOverride("Z#Terahn",EscapeArea()) ActionOverride("Z#Merahn",EscapeArea())
 EscapeArea()~ EXIT
 
@@ -3499,14 +3264,12 @@ DO ~SetGlobal("Z#BaevrinPlot","GLOBAL",25)~
 = @1019
 == Z#Adyl @1020
 DO ~ReputationInc(1)~
-== Z#Messen IF ~InParty("Kiyone")~ THEN
-@1021
-== Z#KIYOJ IF ~InParty("Kiyone")~ THEN
-@1022
+== Z#Messen IF ~InParty("Kiyone")~ THEN @1021
+== Z#KIYOJ IF ~InParty("Kiyone")~ THEN @1022
 == Z#Messen @1023
 DO ~ActionOverride("Z#Baev",EscapeArea()) ActionOverride("Z#Adyl",EscapeArea())
 ActionOverride("Z#Terahn",EscapeArea()) ActionOverride("Z#Merahn",EscapeArea())
-AddJournalEntry(@1039,QUEST)
+AddJournalEntry(@5039,QUEST)
 // SetCutSceneLite(TRUE)
 MoveToPoint([860.580]) // 1060.430
 SetInterrupt(FALSE)
@@ -3548,10 +3311,8 @@ AddexperienceParty(24000) ActionOverride("Myroven",EscapeArea())~ EXIT
 CHAIN
 IF ~~ THEN HABREGA BvPlot14 // Meet you at Rendezvous
 @1037
-== Z#KIYOJ
-@1038
-== HABREGA
-@1039
+== Z#KIYOJ @1038
+== HABREGA @1039
 = @1040
 == Z#KIYOJ @1041
 = @1042
@@ -3567,20 +3328,16 @@ ActionOverride(Player3,LeaveAreaLUA("AR0531","",[550.280],4))
 ActionOverride(Player4,LeaveAreaLUA("AR0531","",[630.360],4))
 ActionOverride(Player5,LeaveAreaLUA("AR0531","",[630.440],4))
 ActionOverride(Player6,LeaveAreaLUA("AR0531","",[630.380],4))
-AddJournalEntry(@1037,QUEST)
+AddJournalEntry(@5037,QUEST)
 SetGlobal("Z#BaevrinPlot","GLOBAL",17)~ EXIT
 
 CHAIN
 IF ~~ THEN HABREGA BvPlot13 // Meet you at Brega
 @1037
-== Z#KIYOJ
-@1038
-== HABREGA
-@1046
-== Z#KIYOJ IF ~GlobalTimerExpired("Z#BaevrinPlotT","GLOBAL")~ THEN
-@1047
-== Z#KIYOJ IF ~GlobalTimerExpired("Z#BaevrinPlotT","GLOBAL")~ THEN
-@1048
+== Z#KIYOJ @1038
+== HABREGA @1046
+== Z#KIYOJ IF ~GlobalTimerExpired("Z#BaevrinPlotT","GLOBAL")~ THEN @1047
+== Z#KIYOJ IF ~GlobalTimerExpired("Z#BaevrinPlotT","GLOBAL")~ THEN @1048
 == HABREGA @1049
 == Z#KIYOJ @1050
 == HABREGA @1051
@@ -3607,7 +3364,7 @@ ActionOverride(Player4,LeaveAreaLUA("AR0500","",[2990.990],7))
 ActionOverride(Player5,LeaveAreaLUA("AR0500","",[2930.930],7))
 ActionOverride(Player6,LeaveAreaLUA("AR0500","",[3050.1050],7))
 ActionOverride(Player1,LeaveAreaLUA("AR0500","",[3050.930],7))
-AddJournalEntry(@1036,QUEST)
+AddJournalEntry(@5036,QUEST)
 MoveBetweenAreas("AR0500",[3070.850],10)~ EXIT
 
 CHAIN
@@ -3644,8 +3401,10 @@ DO ~SetGlobal("Z#MyroDead","LOCALS",1)~
 == Z#KIYOJ @1071
 EXIT
 
-// Edwin outside the Party before Seida Meeting
 
+/* ============================================== *
+ *  Edwin outside the Party before Seida Meeting  *
+ * ============================================== */
 CHAIN
 IF WEIGHT #-1 ~Global("KickedOut","LOCALS",1)
 GlobalGT("z#gaelanc6","GLOBAL",3)
@@ -3693,7 +3452,6 @@ IF ~~ THEN EDWINP z#moneyjoin
 DO ~JoinParty() SetGlobal("KickedOut","LOCALS",0)~ EXIT
 
 // Kova warns abt Edwin
-
 CHAIN
 IF ~InParty("Kiyone") InMyArea("Kiyone")
 InPartyAllowDead("Edwin") InMyArea(Player1)
@@ -3707,8 +3465,10 @@ DO ~SetGlobal("Z#doubtededwin","GLOBAL",1)~
 == Z#KIYOJ @1086
 EXIT
 
-// Edwin Talk
 
+/* ============ *
+ *  Edwin Talk  *
+ * ============ */
 CHAIN
 IF ~Global("Z#doubtededwin","GLOBAL",1)
 	Global("Z#GotGameDream","GLOBAL",0)
@@ -3921,8 +3681,7 @@ IF ~~ THEN ARLED arledsay
 = @1153
 = @1154
 DO ~SetGlobal("Z#ArledTalk","GLOBAL",3)~
-== Z#KOVAJ IF ~InParty("Kova") InMyArea("Kova")~ THEN
-@1155
+== Z#KOVAJ IF ~InParty("Kova") InMyArea("Kova")~ THEN @1155
 == ARLED @1156
 END
 IF ~~ THEN REPLY @1157 EXTERN ARLED dieaftersay
@@ -3944,8 +3703,7 @@ CHAIN
 IF ~~ THEN ARLED goodbye
 @1162
 = @1163
-== ARLED IF ~!InParty("Edwin") !Dead("Edwin")~ THEN
-@1164
+== ARLED IF ~!InParty("Edwin") !Dead("Edwin")~ THEN @1164
 DO ~SetGlobal("Z#ArledSpokeEdwin","GLOBAL",1)~
 == ARLED @1165
 DO ~EscapeArea()~ EXIT
@@ -4100,16 +3858,13 @@ CHAIN
 IF ~~ THEN ARAN nailseidanotfree
 @1212
 DO ~SetGlobal("Z#Gaelanc6","GLOBAL",6)
-AddJournalEntry(@1022,QUEST)~
+AddJournalEntry(@5022,QUEST)~
 == Z#KOVAJ @1213
 == ARAN @1214
 = @1215
-== ARAN IF ~InParty("Edwin")~ THEN
-@1216
-== ARAN IF ~OR(2) Dead("Gaelan") Dead("Arledrian")~ THEN
-@1217
-== ARAN IF ~!Dead("Arledrian") !Dead("Gaelan")~ THEN
-@1218
+== ARAN IF ~InParty("Edwin")~ THEN @1216
+== ARAN IF ~OR(2) Dead("Gaelan") Dead("Arledrian")~ THEN @1217
+== ARAN IF ~!Dead("Arledrian") !Dead("Gaelan")~ THEN @1218
 END
 IF ~PartyGoldGT(6999)~ THEN REPLY @1219 DO ~TakePartyGold(7000) DestroyGold(7000)~ EXTERN ARAN gomeetseidanotfree
 IF ~~ THEN REPLY @1220 EXTERN ARAN hangonseida
@@ -4125,8 +3880,7 @@ IF ~~ THEN Z#KOVAJ wonderseidayes
 == ARAN @1227
 == Z#KOVAJ @1228
 == ARAN @1229
-== Z#KIYOJ IF ~InParty("Kiyone") InMyArea("Kiyone")~ THEN
-@1230
+== Z#KIYOJ IF ~InParty("Kiyone") InMyArea("Kiyone")~ THEN @1230
 == ARAN @1231
 = @1232
 == Z#KOVAJ @1233
@@ -4167,10 +3921,8 @@ DO ~SetGlobal("Z#Gaelanc6","GLOBAL",7)~
 = @1241
 == ARAN IF ~InParty("Edwin")~ THEN
 @1216
-== ARAN IF ~OR(2) Dead("Gaelan") Dead("Arledrian")~ THEN
-@1217
-== ARAN IF ~!Dead("Arledrian") !Dead("Gaelan")~ THEN
-@1218
+== ARAN IF ~OR(2) Dead("Gaelan") Dead("Arledrian")~ THEN @1217
+== ARAN IF ~!Dead("Arledrian") !Dead("Gaelan")~ THEN @1218
 END
 IF ~~ THEN REPLY @1242 EXTERN ARAN gomeetseidafree
 IF ~~ THEN REPLY @1220 EXTERN ARAN hangonseida
@@ -4225,6 +3977,10 @@ InMyArea("Kova")~ THEN ARAN weshallnotmeetseida
 = @1253
 EXIT
 
+
+/* ======= *
+ *  Seida  *
+ * ======= */
 BEGIN Z#SEID16
 
 // Aran Renal & Seida
@@ -4253,10 +4009,8 @@ IF WEIGHT #-1 ~Global("Z#MeetingSeida","GLOBAL",3)
 Global("Z#Player1MoveIn","Z#0041",2)
 Allegiance(Myself,NEUTRAL)~ THEN Z#SEID16 hikovaseida
 @1264
-== Z#KIYOJ IF ~InParty("Kiyone") InMyArea("Kiyone")~ THEN
-@1265
-== Z#KOVAJ IF ~InParty("Kiyone") InMyArea("Kiyone")~ THEN
-@1266
+== Z#KIYOJ IF ~InParty("Kiyone") InMyArea("Kiyone")~ THEN @1265
+== Z#KOVAJ IF ~InParty("Kiyone") InMyArea("Kiyone")~ THEN @1266
 == Z#SEID16 @1267
 = @1268
 == Z#KOVAJ @1269
@@ -4282,10 +4036,8 @@ Enemy()~ EXIT
 CHAIN
 IF ~~ THEN Z#SEID16 kovaseidacatchup
 @1274
-== Z#KIYOJ IF ~InParty("Kiyone") InMyArea("Kiyone")~ THEN
-@1275
-== Z#KOVAJ IF ~InParty("Kiyone") InMyArea("Kiyone")~ THEN
-@1276
+== Z#KIYOJ IF ~InParty("Kiyone") InMyArea("Kiyone")~ THEN @1275
+== Z#KOVAJ IF ~InParty("Kiyone") InMyArea("Kiyone")~ THEN @1276
 == Z#SEID16 @1277
 = @1278
 == Z#KOVAJ @1279
@@ -4304,8 +4056,7 @@ IF ~~ THEN Z#SEID16 kovaseidacatchup
 = @1292
 = @1293
 = @1294
-== Z#KIYOJ IF ~InParty("Kiyone") InMyArea("Kiyone")~ THEN
-@1295
+== Z#KIYOJ IF ~InParty("Kiyone") InMyArea("Kiyone")~ THEN @1295
 == Z#SEID16 @1296
 = @1297
 DO ~CreateCreatureOffScreen("Z#Assas3",0)
@@ -4502,7 +4253,6 @@ DO ~LeaveParty() DropInventory() EscapeArea()~
 DO ~LeaveParty() DropInventory() EscapeArea()~ EXIT
 
 
-
 // Post Fighting Seida
 
 CHAIN
@@ -4528,12 +4278,9 @@ AreaCheck("Z#0041")~ THEN Z#MESSEN shallwego
 DO ~SetGlobal("BregaIn","Z#0041",2)~
 == HABREGA IF ~OR(2)
 !InPartyAllowDead("Kova")
-!InPartyAllowDead("Kiyone")~ THEN
-@1332
-== Z#MESSEN IF ~InParty("Kiyone") InPartyAllowDead("Kova")~ THEN
-@1333
-== Z#KIYOJ IF ~InParty("Kiyone") InPartyAllowDead("Kova")~ THEN
-@1334
+!InPartyAllowDead("Kiyone")~ THEN @1332
+== Z#MESSEN IF ~InParty("Kiyone") InPartyAllowDead("Kova")~ THEN @1333
+== Z#KIYOJ IF ~InParty("Kiyone") InPartyAllowDead("Kova")~ THEN @1334
 == HABREGA @1335
 = @1336
 == Z#MESSEN @1337
@@ -4562,7 +4309,7 @@ ChangeEnemyAlly("Z#MESSEN",NEUTRAL)
 ActionOverride("Z#Kni2",MoveToObject("Z#Seid16"))~
 = @1345
 DO ~SetCutSceneLite(FALSE)
-AddJournalEntry(@1023,QUEST)~ EXIT
+AddJournalEntry(@5023,QUEST)~ EXIT
 
 CHAIN
 IF ~~ THEN HABREGA seidareason
@@ -4573,7 +4320,7 @@ ChangeEnemyAlly("Z#MESSEN",NEUTRAL)
 ActionOverride("Z#Kni2",MoveToObject("Z#Seid16"))~
 = @1345
 DO ~SetCutSceneLite(FALSE)
-AddJournalEntry(@1023,QUEST)~ EXIT
+AddJournalEntry(@5023,QUEST)~ EXIT
 
 CHAIN
 IF ~~ THEN HABREGA seidacustody
@@ -4583,7 +4330,7 @@ ChangeEnemyAlly("Z#MESSEN",NEUTRAL)
 ActionOverride("Z#Kni2",MoveToObject("Z#Seid16"))~
 = @1345
 DO ~SetCutSceneLite(FALSE)
-AddJournalEntry(@1023,QUEST)~ EXIT
+AddJournalEntry(@5023,QUEST)~ EXIT
 
 CHAIN
 IF WEIGHT #-1 ~Global("BregaIn","Z#0041",3)
@@ -5067,7 +4814,7 @@ EquipItem("KiyoBow1")
 EquipItem("KiyoArm1")
 AddexperienceParty(24000)
 ReputationInc(1)
-AddJournalEntry(@1040,QUEST_DONE)
+AddJournalEntry(@5040,QUEST_DONE)
 SetCutSceneLite(TRUE)
 MoveToObject("Kova")~ EXIT
 
@@ -5237,7 +4984,7 @@ Global("Z#NoblesLeft","Z#1002",1)~ THEN BYLANNA Z#BylBribeFreeToGo
 == Z#KIYOJ @1598
 DO ~AddexperienceParty(36000)
 SetGlobal("Z#ByePostBribe","Z#1002",1)
-AddJournalEntry(@1041,QUEST_DONE)
+AddJournalEntry(@5041,QUEST_DONE)
 ReputationInc(1)~ EXIT
 
 CHAIN
@@ -5253,10 +5000,8 @@ DO ~SetGlobal("Z#KiyoneComplainBylBribe","LOCALS",1)~
 == Z#KOVAJ @1604
 == Z#KIYOJ @1605
 == Z#KOVAJ @1606
-== Z#KIYOJ IF ~Dead("Z#MESSEN")~ THEN
-@1607
-== Z#KIYOJ IF ~!Dead("Z#MESSEN")~ THEN
-@1608
+== Z#KIYOJ IF ~Dead("Z#MESSEN")~ THEN @1607
+== Z#KIYOJ IF ~!Dead("Z#MESSEN")~ THEN @1608
 = @1609
 EXIT
 
@@ -5322,7 +5067,7 @@ DO ~SetCutSceneLite(TRUE)
 PlaySound("kktrialc") PlaySong(0)
 AddexperienceParty(48000)
 ReputationInc(1)
-AddJournalEntry(@1042,QUEST_DONE)
+AddJournalEntry(@5042,QUEST_DONE)
 RealSetGlobalTimer("Z#NoblesLeftT","Z#1002",2) // (move to AR1002)
 SetGlobal("Z#TrialClear","GLOBAL",4)~ EXIT
 
@@ -5337,15 +5082,12 @@ DO ~SetGlobal("Z#TrialClear","GLOBAL",5)~
 = @1630
 == Z#KIYOJ @1631
 == BYLANNA @1632
-== Z#KIYOJ IF ~GlobalGT("KKRomance","GLOBAL",1)~ THEN
-@1633
-== Z#KIYOJ IF ~!GlobalGT("KKRomance","GLOBAL",1)~ THEN
-@1634
+== Z#KIYOJ IF ~GlobalGT("KKRomance","GLOBAL",1)~ THEN @1633
+== Z#KIYOJ IF ~!GlobalGT("KKRomance","GLOBAL",1)~ THEN @1634
 == Z#KOVAJ @1635
 == Z#KIYOJ @1636
 == Z#KOVAJ @1637
-== Z#KIYOJ IF ~GlobalGT("KKRomance","GLOBAL",1)~ THEN
-@1638
+== Z#KIYOJ IF ~GlobalGT("KKRomance","GLOBAL",1)~ THEN @1638
 == BYLANNA @1639
 == Z#MESSEN @1640
 EXIT
@@ -5357,36 +5099,22 @@ AreaCheck("AR1000")~ THEN Z#KOVAJ Z#postfullacquit
 @1641
 DO ~SetGlobal("Z#postfullacquit","LOCALS",1)
 PlaySound("kktrialc") PlaySong(0)~
-== EDWINJ IF ~InParty("Edwin") InMyArea("Edwin")~ THEN
-@1642
-== ANOMENJ IF ~InParty("Anomen") InMyArea("Anomen") !Global("AnomenIsKnight","GLOBAL",1)~ THEN
-@1643
-== ANOMENJ IF ~InParty("Anomen") InMyArea("Anomen") Global("AnomenIsKnight","GLOBAL",1)~ THEN
-@1644
-== NALIAJ IF ~InParty("Nalia") InMyArea("Nalia")~ THEN
-@1645
-== MAZZYJ IF ~InParty("Mazzy") InMyArea("Mazzy")~ THEN
-@1646
-== KELDORJ IF ~InParty("Keldorn") InMyArea("Keldorn")~ THEN
-@1647
+== EDWINJ IF ~InParty("Edwin") InMyArea("Edwin")~ THEN @1642
+== ANOMENJ IF ~InParty("Anomen") InMyArea("Anomen") !Global("AnomenIsKnight","GLOBAL",1)~ THEN @1643
+== ANOMENJ IF ~InParty("Anomen") InMyArea("Anomen") Global("AnomenIsKnight","GLOBAL",1)~ THEN @1644
+== NALIAJ IF ~InParty("Nalia") InMyArea("Nalia")~ THEN @1645
+== MAZZYJ IF ~InParty("Mazzy") InMyArea("Mazzy")~ THEN @1646
+== KELDORJ IF ~InParty("Keldorn") InMyArea("Keldorn")~ THEN @1647
 = @1648
-== IMOEN2J IF ~InParty("Imoen2") InMyArea("Imoen2")~ THEN
-@1649
+== IMOEN2J IF ~InParty("Imoen2") InMyArea("Imoen2")~ THEN @1649
 = @1650
-== VALYGARJ IF ~InParty("Valygar") InMyArea("Valygar")~ THEN
-@1651
-== JAHEIRAJ IF ~InParty("Jaheira") InMyArea("Jaheira")~ THEN
-@1652
-== AERIEJ IF ~InParty("Aerie") InMyArea("Aerie")~ THEN
-@1653
-== HAERDAJ IF ~InParty("Haerdalis") InMyArea("Haerdalis")~ THEN
-@1654
-== VICONIJ IF ~InParty("Viconia") InMyArea("Viconia")~ THEN
-@1655
-== KORGANJ IF ~InParty("Korgan") InMyArea("Korgan")~ THEN
-@1656
-== JANJ IF ~InParty("Jan") InMyArea("Jan")~ THEN
-@1657
+== VALYGARJ IF ~InParty("Valygar") InMyArea("Valygar")~ THEN @1651
+== JAHEIRAJ IF ~InParty("Jaheira") InMyArea("Jaheira")~ THEN @1652
+== AERIEJ IF ~InParty("Aerie") InMyArea("Aerie")~ THEN @1653
+== HAERDAJ IF ~InParty("Haerdalis") InMyArea("Haerdalis")~ THEN @1654
+== VICONIJ IF ~InParty("Viconia") InMyArea("Viconia")~ THEN @1655
+== KORGANJ IF ~InParty("Korgan") InMyArea("Korgan")~ THEN @1656
+== JANJ IF ~InParty("Jan") InMyArea("Jan")~ THEN @1657
 == Z#KOVAJ @1658
 == Z#KIYOJ @1659
 == Z#KOVAJ @1660
@@ -5401,10 +5129,8 @@ PlaySound("kktrialc") PlaySong(0)~
 == Z#KOVAJ @1669
 = @1670
 == Z#KIYOJ @1671
-== Z#KOVAJ IF ~GlobalGT("KKRomance","GLOBAL",1)~ THEN
-@1672
-== Z#KIYOJ IF ~GlobalGT("KKRomance","GLOBAL",1)~ THEN
-@1673
+== Z#KOVAJ IF ~GlobalGT("KKRomance","GLOBAL",1)~ THEN @1672
+== Z#KIYOJ IF ~GlobalGT("KKRomance","GLOBAL",1)~ THEN @1673
 EXIT
 
 // BTL Part 7
@@ -5424,10 +5150,8 @@ Global("Z#BTLPart7","GLOBAL",1)~ THEN DAYVEN youlookingseida
 @1677
 DO ~SetGlobal("Z#BTLPart7","GLOBAL",2)~
 = @1678
-== Z#KIYOJ IF ~InParty("Kiyone") InMyArea("Kiyone")~ THEN
-@1679
-== DAYVEN IF ~InParty("Kiyone") InMyArea("Kiyone")~ THEN
-@1680
+== Z#KIYOJ IF ~InParty("Kiyone") InMyArea("Kiyone")~ THEN @1679
+== DAYVEN IF ~InParty("Kiyone") InMyArea("Kiyone")~ THEN @1680
 == DAYVEN @1681
 END
 IF ~OR(2)
@@ -5462,7 +5186,7 @@ IF ~~ THEN DAYVEN ribaldeye
 @1689
 = @1690
 = @1691
-DO ~AddJournalEntry(@1060,QUEST)~ EXIT
+DO ~AddJournalEntry(@5060,QUEST)~ EXIT
 
 CHAIN
 IF WEIGHT #-1 ~Global("Z#BTLPart7","GLOBAL",2)
@@ -5478,7 +5202,7 @@ PartyHasItem("Z#Eye")~ THEN DAYVEN gotribaldeye
 @1693
 DO ~SetGlobal("Z#BTLPart7","GLOBAL",3)
 TakePartyItem("Z#Eye") DestroyItem("Z#Eye")
-AddJournalEntry(@1062,QUEST)
+AddJournalEntry(@5062,QUEST)
 EscapeArea()~ EXIT
 
 CHAIN
@@ -5541,7 +5265,7 @@ IF ~~ THEN REPLY @1704 EXTERN RIBALD 1
 CHAIN
 IF ~~ THEN RIBALD z#giveeye
 @1708
-DO ~GiveItemCreate("Z#Eye",Player1,0,0,0) AddJournalEntry(@1061,QUEST)~
+DO ~GiveItemCreate("Z#Eye",Player1,0,0,0) AddJournalEntry(@5061,QUEST)~
 = @1709
 EXIT
 
@@ -5550,20 +5274,19 @@ IF ~~ THEN RIBALD z#returneye
 @1710
 DO ~SetGlobal("z#ribaldeye","LOCALS",3)
 TakePartyItem("Z#Eye") DestroyItem("Z#Eye")
-EraseJournalEntry(@1061)
-AddJournalEntry(@1065,QUEST_DONE)~
+EraseJournalEntry(@5061)
+AddJournalEntry(@5065,QUEST_DONE)~
 = @1711
 EXIT
 
 CHAIN
 IF WEIGHT #-1 ~Global("Z#TellSeidaFree","GLOBAL",2)~ THEN Z#MESSEN z#seidafree
 @1712
-== Z#MESSEN IF ~Global("Z#BTLPart7","GLOBAL",3)~ THEN
-@1713
+== Z#MESSEN IF ~Global("Z#BTLPart7","GLOBAL",3)~ THEN @1713
 == Z#MESSEN @1714
 DO ~SetGlobal("Z#BTLPart7","GLOBAL",5)
 SetGlobal("Z#TellSeidaFree","GLOBAL",3)
-AddJournalEntry(@1059,QUEST_DONE) EscapeArea()~ EXIT
+AddJournalEntry(@5059,QUEST_DONE) EscapeArea()~ EXIT
 
 CHAIN
 IF WEIGHT #-1 ~Global("Z#BTLPart7","GLOBAL",4)
@@ -5575,7 +5298,7 @@ Global("Z#BTLPart7Prison","GLOBAL",1)~ THEN DAYVEN z#dayvenalivereport
 = @1719
 DO ~GiveItemCreate("Z#Eye",Player1,0,0,0)
 SetGlobal("Z#BTLPart7","GLOBAL",7)
-AddJournalEntry(@1063,QUEST) EscapeArea()~ EXIT
+AddJournalEntry(@5063,QUEST) EscapeArea()~ EXIT
 
 CHAIN
 IF ~~ THEN CORNEIL z#showcorneye
@@ -5591,17 +5314,16 @@ DO ~SetGlobal("Z#KharenMove","GLOBAL",7)~
 = @1722
 = @1723
 = @1724
-== CORNEIL IF ~Global("BribedCowled","GLOBAL",0)~ THEN
-@1725
+== CORNEIL IF ~Global("BribedCowled","GLOBAL",0)~ THEN @1725
 DO ~SetGlobal("BribedCowled","GLOBAL",1)~
 == CORNEIL @1726
 DO ~SetCutSceneLite(FALSE)
 SetGlobal("Z#BTLPart7","GLOBAL",10)
 AddexperienceParty(36000)
-EraseJournalEntry(@1060)
-EraseJournalEntry(@1062)
-EraseJournalEntry(@1063)
-AddJournalEntry(@1064,QUEST_DONE)
+EraseJournalEntry(@5060)
+EraseJournalEntry(@5062)
+EraseJournalEntry(@5063)
+AddJournalEntry(@5064,QUEST_DONE)
 ReputationInc(1)
 SetGlobal("BribeCorn","GLOBAL",1)
 SetGlobalTimer("KKCowlT","GLOBAL",999999999)

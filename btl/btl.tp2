@@ -24,135 +24,159 @@ END
 LANGUAGE ~English~
          ~english~
          ~btl/lang/english/setup.tra~
+         ~btl/lang/english/strings.tra~
 
 
-BEGIN ~Beyond the Law - Kova & Kiyone~
-REQUIRE_FILE ~Data/25Dialog.bif~ ~You do not appear to have TOB installed.~
+/* ================================ *
+ *  Beyond the Law - Kova & Kiyone  *
+ * ================================ */
+BEGIN @0                              // ~Beyond the Law - Kova & Kiyone~
+REQUIRE_FILE ~Data/25Dialog.bif~ @11  // ~You do not appear to have TOB installed.~
 
 	INCLUDE ~%MOD_FOLDER%/lib/main_component.tpa~
 
 
-// 1
+/* ========================================== *
+ *  Alternate sound set for Kiyone (Female4)  *
+ * ========================================== */
+BEGIN @1                                   // ~Alternate sound set for Kiyone (Female4)~
+REQUIRE_COMPONENT "Setup-BTL.tp2" "0" @12  // ~This component requires Beyond the Law.~
 
-BEGIN ~Alternate Soundset for Kiyone - Female4~
-REQUIRE_COMPONENT "Setup-BTL.tp2" "0" "This component requires Beyond the Law."
 
-COMPILE ~btl/Extras\Z#kyfix.baf~
+COMPILE ~btl/extras/z#kyfix.baf~
 
-COPY ~btl/Kiyone.cre~ ~override\Kiyone.cre~
-SAY NAME1 ~Kiyone~
-SAY NAME2 ~Kiyone~
-SAY LEADER ~Taking the lead would be agreeable. My eyes are sharp and my arrows swift.~ [female4b]
-SAY TIRED ~Some rest would better equip us to face the long road ahead.~ [female4c]
-SAY BORED ~Why do we idle here when there is evil out there waiting to be faced?~ [female4d]
-SAY BATTLE_CRY1 ~For righteousness!~ [female4a]
-SAY BATTLE_CRY2 ~Your end is near.~ [female48]
-SAY BATTLE_CRY3 ~Justice will be served.~ [female49]
-SAY DAMAGE ~~ [female4l]
-SAY DYING ~Must... fight on...~ [female4m]
-SAY HURT ~I have an urgent requirement for healing.~ [female4e]
-SAY AREA_FOREST ~Ah, to return to the freedom of the forests. A most welcome sanctuary.~ [female4n]
-SAY AREA_CITY ~I do not love the city, but it is to such that my duty calls me to.~ [female4o]
-SAY AREA_DUNGEON ~In such loathed areas I remember that the purpose of light is to shine in the darkness.~[female4p]
-SAY AREA_DAY ~Another day, in the triumph of justice.~ [female4q]
-SAY AREA_NIGHT ~Such is a fine time to bring dark deeds into the light.~ [female4r]
-SAY SELECT_COMMON1 ~What is your word?~ [female4f]
-SAY SELECT_COMMON2 ~In truth I abide.~ [female4g]
-SAY SELECT_COMMON3 ~You needed me?~ [female4h]
-SAY SELECT_COMMON4 ~How may I serve?~ [female40]
-SAY SELECT_ACTION1 ~I will see it done.~ [female4i]
-SAY SELECT_ACTION2 ~I heed your word.~ [female4j]
-SAY SELECT_ACTION3 ~It shall be done.~ [female4k]
-SAY SELECT_ACTION4 ~Consider the deed done.~ [female4s]
-SAY SELECT_ACTION5 ~No trouble.~ [female4t]
-SAY SELECT_ACTION6 ~Not a problem.~ [female4u]
-SAY SELECT_ACTION7 ~I'll resolve it.~ [female4v]
-SAY SELECT_RARE1 ~Look no further in truth.~ [female4x]
-SAY SELECT_RARE2 ~Kiyone, reporting for duty.~ [female4y]
-SAY CRITICAL_HIT ~Well struck!~ [female4z]
-SAY CRITICAL_MISS ~Ugh... no excuse for such a blunder.~ [female41]
-SAY TARGET_IMMUNE ~We need an alternate plan of action, fast.~ [female42]
-SAY INVENTORY_FULL ~I've a burden for justice, not for material things.~ [female43]
-SAY HIDDEN_IN_SHADOWS ~Discretion may yet unearth secrets.~ [female45]
-SAY SPELL_DISRUPTED ~An uncalled-for interruption.~ [female46]
-SAY SET_A_TRAP ~A snare for the wicked.~ [female47]
-SAY BIO @19
+COPY ~btl/cre/kiyone.cre~ ~override~
+	SAY NAME1 @2121
+	SAY NAME2 @2121
+	SAY LEADER @2401
+	SAY TIRED @2402
+	SAY BORED @2403
+	SAY BATTLE_CRY1 @2404
+	SAY BATTLE_CRY2 @2405
+	SAY BATTLE_CRY3 @2406
+	SAY DAMAGE @2407
+	SAY DYING @2408
+	SAY HURT @2409
+	SAY AREA_FOREST @2410
+	SAY AREA_CITY @2411
+	SAY AREA_DUNGEON @2412
+	SAY AREA_DAY @2413
+	SAY AREA_NIGHT @2414
+	SAY SELECT_COMMON1 @2415
+	SAY SELECT_COMMON2 @2416
+	SAY SELECT_COMMON3 @2417
+	SAY SELECT_COMMON4 @2418
+	SAY SELECT_ACTION1 @2419
+	SAY SELECT_ACTION2 @2420
+	SAY SELECT_ACTION3 @2421
+	SAY SELECT_ACTION4 @2422
+	SAY SELECT_ACTION5 @2423
+	SAY SELECT_ACTION6 @2424
+	SAY SELECT_ACTION7 @2425
+	SAY SELECT_RARE1 @2426
+	SAY SELECT_RARE2 @2427
+	SAY CRITICAL_HIT @2428
+	SAY CRITICAL_MISS @2429
+	SAY TARGET_IMMUNE @2430
+	SAY INVENTORY_FULL @2431
+	SAY HIDDEN_IN_SHADOWS @2432
+	SAY SPELL_DISRUPTED @2433
+	SAY SET_A_TRAP @2434
+	SAY BIO @2344
 
-// 2
 
-BEGIN ~Better Balanced BTL Items~
-REQUIRE_COMPONENT "Setup-BTL.tp2" "0" "This component requires Beyond the Law."
+/* =========================== *
+ *  Better balanced BTL items  *
+ * =========================== */
+BEGIN @2                                   // ~Better balanced BTL items~
+REQUIRE_COMPONENT "Setup-BTL.tp2" "0" @12  // ~This component requires Beyond the Law.~
 
-// Adding Kova's Items
+// 1. Kova's items
+// ----------------
 
-COPY ~btl/extras\KovaDag2.itm~ ~override\KovaDag2.itm~
-SAY NAME1 ~Navaeren +2~
-SAY NAME2 ~Navaeren +2~
-SAY DESC @51
+// Navaeren +2
+COPY ~btl/extras/kovadag2.itm~ ~override~
+	SAY NAME1 @2521
+	SAY NAME2 @2521
+	SAY DESC @2601
 
-COPY ~btl/extras\KovaDag3.itm~ ~override\KovaDag3.itm~
-SAY NAME1 ~Navaeren +3~
-SAY NAME2 ~Navaeren +3~
-SAY DESC @52
+// Navaeren +3
+COPY ~btl/extras/kovadag3.itm~ ~override~
+	SAY NAME1 @2523
+	SAY NAME2 @2523
+	SAY DESC @2602
 
-COPY ~btl/extras\KovaDag5.itm~ ~override\KovaDag5.itm~
-SAY NAME1 ~Navaeren +5~
-SAY NAME2 ~Navaeren +5~
-SAY DESC @53
+// Navaeren +5
+COPY ~btl/extras/kovadag5.itm~ ~override~
+	SAY NAME1 @2525
+	SAY NAME2 @2525
+	SAY DESC @2603
 
-COPY ~btl/extras\KovaArm1.itm~ ~override\KovaArm1.itm~
-SAY NAME1 ~Haeloven~
-SAY NAME2 ~Haeloven~
-SAY DESC @54
+// Haeloven
+COPY ~btl/extras/kovaarm1.itm~ ~override~
+	SAY NAME1 @2527
+	SAY NAME2 @2527
+	SAY DESC @2611
 
-COPY ~btl/extras\KovaArm2.itm~ ~override\KovaArm2.itm~
-SAY NAME1 ~Haeloven +1~
-SAY NAME2 ~Haeloven +1~
-SAY DESC @55
+// Haeloven +1
+COPY ~btl/extras/kovaarm2.itm~ ~override~
+	SAY NAME1 @2612
+	SAY NAME2 @2612
+	SAY DESC @2613
 
-COPY ~btl/extras\KovaArm5.itm~ ~override\KovaArm5.itm~
-SAY NAME1 ~Haeloven +2~
-SAY NAME2 ~Haeloven +2~
-SAY DESC @56
+// Haeloven +2
+COPY ~btl/extras/kovaarm5.itm~ ~override~
+	SAY NAME1 @2529
+	SAY NAME2 @2529
+	SAY DESC @2615
 
-// Adding Kiyone's Items
+// 2. Kiyone's items
+// -----------------
 
-COPY ~btl/extras\KiyoBow1.itm~ ~override\KiyoBow1.itm~
-SAY NAME1 ~Eye of the Sentinel +1~
-SAY NAME2 ~Eye of the Sentinel +1~
-SAY DESC @57
+// Eye of the Sentinel +1
+COPY ~btl/extras/kiyobow1.itm~ ~override~
+	SAY NAME1 @2541
+	SAY NAME2 @2541
+	SAY DESC @2621
 
-COPY ~btl/extras\KiyoBow2.itm~ ~override\KiyoBow2.itm~
-SAY NAME1 ~Gaze of the Sentinel +2~
-SAY NAME2 ~Gaze of the Sentinel +2~
-SAY DESC @58
+// Gaze of the Sentinel +2
+COPY ~btl/extras/kiyobow2.itm~ ~override~
+	SAY NAME1 @2543
+	SAY NAME2 @2543
+	SAY DESC @2622
 
-COPY ~btl/extras\KiyoBow3.itm~ ~override\KiyoBow3.itm~
-SAY NAME1 ~Sight of the Sentinel +3~
-SAY NAME2 ~Sight of the Sentinel +3~
-SAY DESC @59
+// Eye of the Sentinel +3
+COPY ~btl/extras/kiyobow3.itm~ ~override~
+	SAY NAME1 @2545
+	SAY NAME2 @2545
+	SAY DESC @2623
 
-COPY ~btl/extras\KiyoArm1.itm~ ~override\KiyoArm1.itm~
-SAY NAME1 ~Verdant Vigil~
-SAY NAME2 ~Verdant Vigil~
-SAY DESC @60
+// Verdant Vigil
+COPY ~btl/extras/kiyoarm1.itm~ ~override~
+	SAY NAME1 @2547
+	SAY NAME2 @2547
+	SAY DESC @2624
 
-COPY ~btl/extras\KiyoArm2.itm~ ~override\KiyoArm2.itm~
-SAY NAME1 ~Verdant Vigilant +2~
-SAY NAME2 ~Verdant Vigilant +2~
-SAY DESC @61
+// Verdant Vigilant +2
+COPY ~btl/extras/kiyoarm2.itm~ ~override~
+	SAY NAME1 @2549
+	SAY NAME2 @2549
+	SAY DESC @2625
 
-COPY ~btl/extras\KiyoArm3.itm~ ~override\KiyoArm3.itm~
-SAY NAME1 ~Verdant Vigilante +4~
-SAY NAME2 ~Verdant Vigilante +4~
-SAY DESC @62
+// Verdant Vigilant +4
+COPY ~btl/extras/kiyoarm3.itm~ ~override~
+	SAY NAME1 @2551
+	SAY NAME2 @2551
+	SAY DESC @2626
 
-COPY ~btl/extras\Z#DETECT.SPL~ ~override\Z#DETECT.SPL~
+COPY ~btl/extras/z#detect.spl~ ~override~
 
-// 3
 
-BEGIN ~Portraits for Minor Non-Joinable BTL NPCs~
-REQUIRE_COMPONENT "Setup-BTL.tp2" "0" "This component requires Beyond the Law."
+/* =========================================== *
+ *  Portraits for minor non-joinable BTL NPCs  *
+ * =========================================== */
+BEGIN @3                                   // ~Portraits for minor non-joinable BTL NPCs~
+REQUIRE_COMPONENT "Setup-BTL.tp2" "0" @12  // ~This component requires Beyond the Law.~
 
-COPY ~btl/Bmp\DayvenS.bmp~ ~override\DayvenS.bmp~
-COPY ~btl/Bmp\myroS.bmp~ ~override\myroS.bmp~
+COPY ~btl/portraits\dayvens.bmp~ ~override~
+COPY ~btl/portraits\myros.bmp~   ~override~

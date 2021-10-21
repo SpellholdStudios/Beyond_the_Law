@@ -9,7 +9,7 @@ IF
 	LOS("Z#Kni2",5)
 THEN
 	RESPONSE #100
-		AddJournalEntry(@1023,QUEST)
+		AddJournalEntry(@5023,QUEST)
 		DestroyItem("MinHp1")
 		DestroySelf()
 END
@@ -65,7 +65,7 @@ IF
 		!GlobalLT("Z#MeetingSeida","GLOBAL",7)
 THEN
 	RESPONSE #100
-		DisplayStringHead(Myself,@821)
+		DisplayStringHead(Myself,@837)  // ~The Rune has no effect as Seida is conscious.~
 		DestroyItem("SCRL1M")
 END
 
@@ -80,7 +80,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobal("Z#SpawnArkanis","Z#0041",1)
-		DisplayStringHead(Player1,@816)
+		DisplayStringHead(Player1,@832)  // ~You get a bad feeling as you find yourself no longer having any Runes that Aran gave you...~
 		CreateCreatureObjectOffset("STDeath",Player1,[-10.10])
 END
 
@@ -96,7 +96,7 @@ THEN
 	RESPONSE #100
 		SetGlobal("Z#EdwinLeave","Z#0041",1)
 		ChangeEnemyAlly("Edwin",NEUTRAL)
-		DisplayStringHead("Edwin",@820)
+		DisplayStringHead("Edwin",@836)  // ~Bah, looks like the idiot got himself killed. Now, I should be going...~
 		ActionOverride("Edwin",ApplySpell(Myself,DRYAD_TELEPORT))
 END
 
@@ -106,13 +106,13 @@ IF
 	Global("Z#MeetingSeida","GLOBAL",5)
 THEN
 	RESPONSE #30
-		DisplayStringHead(NearestEnemyOf([PC]),@817)
+		DisplayStringHead(NearestEnemyOf([PC]),@833)  // ~Let's get out of here...~
 		ActionOverride(NearestEnemyOf([PC]),DestroySelf())
 	RESPONSE #30
-		DisplayStringHead(NearestEnemyOf([PC]),@818)
+		DisplayStringHead(NearestEnemyOf([PC]),@834)  // ~No point fighting for a dead man.~
 		ActionOverride(NearestEnemyOf([PC]),DestroySelf())
 	RESPONSE #30
-		DisplayStringHead(NearestEnemyOf([PC]),@819)
+		DisplayStringHead(NearestEnemyOf([PC]),@835)  // ~Looks like he won't be needing anymore help.~
 		ActionOverride(NearestEnemyOf([PC]),DestroySelf())
 END
 
@@ -294,7 +294,7 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("Z#StoneT","LOCALS",20)
 		IncrementGlobal("Z#Stoneskin","LOCALS",1)
-		DisplayStringHead(Myself,@815)
+		DisplayStringHead(Myself,@831)  // ~uses scroll~
 		ApplySpell(Myself,WIZARD_STONE_SKIN)
 		Continue()
 END
@@ -313,7 +313,7 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("Z#StoneT","LOCALS",20)
 		IncrementGlobal("Z#Stoneskin","LOCALS",1)
-		DisplayStringHead(Myself,@815)
+		DisplayStringHead(Myself,@831)  // ~uses scroll~
 		ApplySpell(Myself,WIZARD_STONE_SKIN)
 		Continue()
 END
