@@ -27,8 +27,9 @@ LANGUAGE ~English~
 /* ================================ *
  *  Beyond the Law - Kova & Kiyone  *
  * ================================ */
-BEGIN @0                              // ~Beyond the Law - Kova & Kiyone~
-REQUIRE_FILE ~Data/25Dialog.bif~ @11  // ~You do not appear to have TOB installed.~
+BEGIN @0                                           // ~Beyond the Law - Kova & Kiyone~
+DESIGNATED 0
+REQUIRE_PREDICATE GAME_IS ~tob bgt bg2ee eet~ @11  // ~You must have ToB, BGT, BG2:EE or EET installed to install this mod.~
 
 	INCLUDE ~%MOD_FOLDER%/lib/main_component.tpa~
 
@@ -36,9 +37,9 @@ REQUIRE_FILE ~Data/25Dialog.bif~ @11  // ~You do not appear to have TOB installe
 /* ========================================== *
  *  Alternate sound set for Kiyone (Female4)  *
  * ========================================== */
-BEGIN @1                                   // ~Alternate sound set for Kiyone (Female4)~
-REQUIRE_COMPONENT "Setup-BTL.tp2" "0" @12  // ~This component requires Beyond the Law.~
-
+BEGIN @1                             // ~Alternate sound set for Kiyone (Female4)~
+DESIGNATED 1
+REQUIRE_COMPONENT "btl.tp2" "0" @12  // ~This component requires Beyond the Law main component to be installed.~
 
 COMPILE ~btl/extras/z#kyfix.baf~
 
@@ -79,14 +80,15 @@ COPY ~btl/cre/kiyone.cre~ ~override~
 	SAY HIDDEN_IN_SHADOWS @2432
 	SAY SPELL_DISRUPTED @2433
 	SAY SET_A_TRAP @2434
-	SAY BIO @2344
+	SAY BIO @2345
 
 
 /* =========================== *
  *  Better balanced BTL items  *
  * =========================== */
-BEGIN @2                                   // ~Better balanced BTL items~
-REQUIRE_COMPONENT "Setup-BTL.tp2" "0" @12  // ~This component requires Beyond the Law.~
+BEGIN @2                             // ~Better balanced BTL items~
+DESIGNATED 2
+REQUIRE_COMPONENT "btl.tp2" "0" @12  // ~This component requires Beyond the Law main component to be installed.~
 
 // 1. Kova's items
 // ----------------
@@ -208,8 +210,9 @@ COPY ~btl/extras/z#detect.spl~ ~override~
 /* =========================================== *
  *  Portraits for minor non-joinable BTL NPCs  *
  * =========================================== */
-BEGIN @3                                   // ~Portraits for minor non-joinable BTL NPCs~
-REQUIRE_COMPONENT "Setup-BTL.tp2" "0" @12  // ~This component requires Beyond the Law.~
+BEGIN @3                             // ~Portraits for minor non-joinable BTL NPCs~
+DESIGNATED 3
+REQUIRE_COMPONENT "btl.tp2" "0" @12  // ~This component requires Beyond the Law main component to be installed.~
 
 COPY ~btl/portraits\dayvens.bmp~ ~override~
 COPY ~btl/portraits\myros.bmp~   ~override~

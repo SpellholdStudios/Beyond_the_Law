@@ -4,6 +4,5 @@
 @3    = ~Portraits for minor non-joinable BTL NPCs~
 
 
-@11   = ~You do not appear to have TOB installed.~
-@12   = ~This component requires Beyond the Law.~
-
+@11   = ~You must have ToB, BGT, BG2:EE or EET installed to install this mod.~
+@12   = ~This component requires Beyond the Law main component to be installed.~

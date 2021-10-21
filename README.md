@@ -123,8 +123,8 @@ https://www.pocketplane.net/zyraens-miscellany/
 - Added `VERSION` flag.
 - Replaced `AT_INTERACTIVE_EXIT` deprecated command with `README`.
 - Added Immutability concept.
-- Added `REQUIRE_PREDICATE` conditions to avoid installing the mod in inaccurate games.
-- Added component `DESIGNATED` number and global `LABELS`.
+- Replaced `REQUIRE_FILE` with `REQUIRE_PREDICATE` condition to avoid installing the mod in inaccurate games.
+- Added components `DESIGNATED` numbers.
 - Externalized tp2 code into *main_component.tpa* library for more comfortable readability and maintenance.
 - Commented code as much as possible.
 - Added native BG2:EE and EET compatibility:
