@@ -1,5 +1,8 @@
 BACKUP ~btl/backup~
 AUTHOR ~zyraen@hotmail.com~
+
+VERSION ~2.0.0~
+
 // ALWAYS
 //  AT_INTERACTIVE_EXIT ~VIEW readme-btl.html~
 // END
@@ -8,46 +11,17 @@ ASK_EVERY_COMPONENT
 
 ALWAYS
 
-	ACTION_IF !VARIABLE_IS_SET bg2_chapter BEGIN // Always block must run only once per install!
-
-		SILENT
-
-		ACTION_IF (GAME_IS ~eet~) BEGIN
-			OUTER_SET bg2_chapter = 12
-		END ELSE BEGIN
-			OUTER_SET bg2_chapter = 0
-		END
-		OUTER_FOR (i = 1 ; i <= 10 ; ++i) BEGIN
-			OUTER_SET bg2_chapter = bg2_chapter + 1
-			OUTER_SPRINT name_source ~bg2_chapter_%i%~
-			OUTER_SET EVAL ~%name_source%~ = bg2_chapter
-		END
-
-	/* --------------------------------------------- *
-	 *    Convert strings to UTF-8 for BGEE/BG2EE    *
-	 * --------------------------------------------- */
-
-		ACTION_DEFINE_ARRAY z#noconvert BEGIN setup END
-		ACTION_DEFINE_ARRAY z#reload BEGIN strings END
-
-		LAF HANDLE_CHARSETS
-			INT_VAR infer_charsets  = 1
-			STR_VAR tra_path        = EVAL ~%MOD_FOLDER%/lang~
-			        noconvert_array = z#noconvert
-			        reload_array    = z#reload
-		END
-
-	END
+	INCLUDE ~btl/lib/always.tph~
 
 END
 
 
-AUTO_TRA ~btl/lang/%s~
+AUTO_TRA ~weidu_external/lang/btl/%s~
 
 LANGUAGE ~English~
          ~english~
          ~btl/lang/english/setup.tra~
-         ~btl/lang/english/strings.tra~
+         ~weidu_external/lang/btl/english/strings.tra~
 
 
 /* ================================ *
