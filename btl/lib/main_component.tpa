@@ -85,7 +85,7 @@ COMPILE ~btl/dlg/interj.d~ EVALUATE_BUFFER
 
 // Journal entries for EE games
 // ----------------------------
-ADD_JOURNAL @5001 @5002 @5003 @5004 @5005 @5006 @5007 @5008 @5009 @5010 @5011 @5012 @5013 @5015 @5016 @5020 @5021 @5022 @5023 @5025 @5026 @5027 @5028 @5029 @5030 @5031 @5032 @5033 @5034 @5035 @5036 @5037 @5038 @5039 @1040 @1041 @1042 @1050 @1051 @1052 @1053 @5059 @5060 @5061 @5062 @5063 @5064 @5065 USING ~weidu_external/lang/btl/%LANGUAGE%/strings.tra~
+ADD_JOURNAL @5001 @5002 @5003 @5004 @5005 @5006 @5007 @5008 @5009 @5010 @5011 @5012 @5013 @5015 @5016 @5020 @5021 @5022 @5023 @5025 @5026 @5027 @5028 @5029 @5030 @5031 @5032 @5033 @5034 @5035 @5036 @5037 @5038 @5039 @5040 @5041 @5042 @5050 @5051 @5052 @5053 @5059 @5060 @5061 @5062 @5063 @5064 @5065 USING ~weidu_external/lang/btl/%LANGUAGE%/strings.tra~
 
 // Make sure Arledrian's DLG pauses the game
 // -----------------------------------------
@@ -129,7 +129,7 @@ COMPILE ~btl/baf/z#0041.baf~
 
 // Expend existing scripts
 // -----------------------
-EXTEND_TOP      ~baldur.bcs~ ~ad&l/start.baf~
+EXTEND_TOP    ~baldur.bcs~   ~btl/baf/start.baf~ EVALUATE_BUFFER
 EXTEND_TOP    ~amntrp01.bcs~ ~btl/baf/pursuitc.baf~ // City only
 EXTEND_TOP    ~shout.bcs~    ~btl/baf/ar0531pp.baf~ // for AR0531 for Baevrin's quest
 EXTEND_BOTTOM ~stdeath.bcs~  ~btl/baf/stdeath.baf~  // for making thieves disappear
@@ -452,7 +452,7 @@ COPY ~btl/spl/z#gthac.spl~  ~override~
 
 // Yoshimo's Katana +2
 COPY ~btl/itm/yoshkata.itm~ ~override~
-	SAY DESC @2501
+	LPF ~GW_WRITE_EE_ITM_DESCRIPTIONS~ STR_VAR GW_desc_to_update = "@2501" END
 
 // Kova's Blade
 COPY ~btl/itm/kvdiedag.itm~ ~override~
@@ -519,37 +519,55 @@ COPY ~btl/itm/kovaarmf.itm~ ~override/~
 COPY ~btl/itm/kovadag2.itm~ ~override~
 	SAY NAME1 @2521
 	SAY NAME2 @2521
-	SAY DESC @2522
+	LPF ~GW_WRITE_EE_ITM_DESCRIPTIONS~ STR_VAR GW_desc_to_update = "@2522" END
+	PATCH_IF is_ee BEGIN
+		LPF ~GW_ITEM_RESTRICT_USABILITY_EE~ STR_VAR GW_restrict = "@2120" GW_kind = "name" GW_power = 1 GW_mess319 = "@2120" END
+	END
 
 // Navaeren +3
 COPY ~btl/itm/kovadag3.itm~ ~override~
 	SAY NAME1 @2523
 	SAY NAME2 @2523
-	SAY DESC @2524
+	LPF ~GW_WRITE_EE_ITM_DESCRIPTIONS~ STR_VAR GW_desc_to_update = "@2524" END
+	PATCH_IF is_ee BEGIN
+		LPF ~GW_ITEM_RESTRICT_USABILITY_EE~ STR_VAR GW_restrict = "@2120" GW_kind = "name" GW_power = 1 GW_mess319 = "@2120" END
+	END
 
 // Navaeren +5
 COPY ~btl/itm/kovadag5.itm~ ~override~
 	SAY NAME1 @2525
 	SAY NAME2 @2525
-	SAY DESC @2526
+	LPF ~GW_WRITE_EE_ITM_DESCRIPTIONS~ STR_VAR GW_desc_to_update = "@2526" END
+	PATCH_IF is_ee BEGIN
+		LPF ~GW_ITEM_RESTRICT_USABILITY_EE~ STR_VAR GW_restrict = "@2120" GW_kind = "name" GW_power = 1 GW_mess319 = "@2120" END
+	END
 
 // Haeloven
 COPY ~btl/itm/kovaarm1.itm~ ~override~
 	SAY NAME1 @2527
 	SAY NAME2 @2527
-	SAY DESC @2528
+	LPF ~GW_WRITE_EE_ITM_DESCRIPTIONS~ STR_VAR GW_desc_to_update = "@2528" END
+	PATCH_IF is_ee BEGIN
+		LPF ~GW_ITEM_RESTRICT_USABILITY_EE~ STR_VAR GW_restrict = "@2120" GW_kind = "name" GW_power = 1 GW_mess319 = "@2120" END
+	END
 
 // Haeloven +2
 COPY ~btl/itm/kovaarm2.itm~ ~override~
 	SAY NAME1 @2529
 	SAY NAME2 @2529
-	SAY DESC @2530
+	LPF ~GW_WRITE_EE_ITM_DESCRIPTIONS~ STR_VAR GW_desc_to_update = "@2530" END
+	PATCH_IF is_ee BEGIN
+		LPF ~GW_ITEM_RESTRICT_USABILITY_EE~ STR_VAR GW_restrict = "@2120" GW_kind = "name" GW_power = 1 GW_mess319 = "@2120" END
+	END
 
 // Haeloven +4
 COPY ~btl/itm/kovaarm5.itm~ ~override~
 	SAY NAME1 @2531
 	SAY NAME2 @2531
-	SAY DESC @2532
+	LPF ~GW_WRITE_EE_ITM_DESCRIPTIONS~ STR_VAR GW_desc_to_update = "@2532" END
+	PATCH_IF is_ee BEGIN
+		LPF ~GW_ITEM_RESTRICT_USABILITY_EE~ STR_VAR GW_restrict = "@2120" GW_kind = "name" GW_power = 1 GW_mess319 = "@2120" END
+	END
 
 // 3. Kiyone's items
 // -----------------
@@ -558,37 +576,55 @@ COPY ~btl/itm/kovaarm5.itm~ ~override~
 COPY ~btl/itm/kiyobow1.itm~ ~override~
 	SAY NAME1 @2541
 	SAY NAME2 @2541
-	SAY DESC @2542
+	LPF ~GW_WRITE_EE_ITM_DESCRIPTIONS~ STR_VAR GW_desc_to_update = "@2542" END
+	PATCH_IF is_ee BEGIN
+		LPF ~GW_ITEM_RESTRICT_USABILITY_EE~ STR_VAR GW_restrict = "@2121" GW_kind = "name" GW_power = 1 GW_mess319 = "@2121" END
+	END
 
 // Gaze of the Sentinel +2
 COPY ~btl/itm/kiyobow2.itm~ ~override~
 	SAY NAME1 @2543
 	SAY NAME2 @2543
-	SAY DESC @2544
+	LPF ~GW_WRITE_EE_ITM_DESCRIPTIONS~ STR_VAR GW_desc_to_update = "@2544" END
+	PATCH_IF is_ee BEGIN
+		LPF ~GW_ITEM_RESTRICT_USABILITY_EE~ STR_VAR GW_restrict = "@2121" GW_kind = "name" GW_power = 1 GW_mess319 = "@2121" END
+	END
 
 // Sight of the Sentinel +3
 COPY ~btl/itm/kiyobow3.itm~ ~override~
 	SAY NAME1 @2545
 	SAY NAME2 @2545
-	SAY DESC @2546
+	LPF ~GW_WRITE_EE_ITM_DESCRIPTIONS~ STR_VAR GW_desc_to_update = "@2546" END
+	PATCH_IF is_ee BEGIN
+		LPF ~GW_ITEM_RESTRICT_USABILITY_EE~ STR_VAR GW_restrict = "@2121" GW_kind = "name" GW_power = 1 GW_mess319 = "@2121" END
+	END
 
 // Verdant Vigil
 COPY ~btl/itm/kiyoarm1.itm~ ~override~
 	SAY NAME1 @2547
 	SAY NAME2 @2547
-	SAY DESC @2548
+	LPF ~GW_WRITE_EE_ITM_DESCRIPTIONS~ STR_VAR GW_desc_to_update = "@2548" END
+	PATCH_IF is_ee BEGIN
+		LPF ~GW_ITEM_RESTRICT_USABILITY_EE~ STR_VAR GW_restrict = "@2121" GW_kind = "name" GW_power = 1 GW_mess319 = "@2121" END
+	END
 
 // Verdant Vigilant +2
 COPY ~btl/itm/kiyoarm2.itm~ ~override~
 	SAY NAME1 @2549
 	SAY NAME2 @2549
-	SAY DESC @2550
+	LPF ~GW_WRITE_EE_ITM_DESCRIPTIONS~ STR_VAR GW_desc_to_update = "@2550" END
+	PATCH_IF is_ee BEGIN
+		LPF ~GW_ITEM_RESTRICT_USABILITY_EE~ STR_VAR GW_restrict = "@2121" GW_kind = "name" GW_power = 1 GW_mess319 = "@2121" END
+	END
 
 // Verdant Vigilante +4
 COPY ~btl/itm/kiyoarm3.itm~ ~override~
 	SAY NAME1 @2551
 	SAY NAME2 @2551
-	SAY DESC @2552
+	LPF ~GW_WRITE_EE_ITM_DESCRIPTIONS~ STR_VAR GW_desc_to_update = "@2552" END
+	PATCH_IF is_ee BEGIN
+		LPF ~GW_ITEM_RESTRICT_USABILITY_EE~ STR_VAR GW_restrict = "@2121" GW_kind = "name" GW_power = 1 GW_mess319 = "@2121" END
+	END
 
 // 4. Rings
 // --------
@@ -597,23 +633,65 @@ COPY ~btl/itm/kiyoarm3.itm~ ~override~
 COPY ~btl/itm/kyring1.itm~ ~override~
 	SAY NAME1 @2561
 	SAY NAME2 @2561
-	SAY DESC @2562
+	LPF ~GW_WRITE_EE_ITM_DESCRIPTIONS~ STR_VAR GW_desc_to_update = "@2562" END
+	PATCH_IF is_ee BEGIN
+		LPF ~GW_ITEM_RESTRICT_USABILITY_EE~ STR_VAR GW_restrict = "@2121" GW_kind = "name" GW_power = 1 GW_mess319 = "@2121" END
+	END
 
 COPY ~btl/itm/kyring2.itm~ ~override~
 	SAY NAME1 @2561
 	SAY NAME2 @2561
-	SAY DESC @2563
+	LPF ~GW_WRITE_EE_ITM_DESCRIPTIONS~ STR_VAR GW_desc_to_update = "@2563" END
+	PATCH_IF is_ee BEGIN
+		LPF ~GW_ITEM_RESTRICT_USABILITY_EE~ STR_VAR GW_restrict = "@2121" GW_kind = "name" GW_power = 1 GW_mess319 = "@2121" END
+	END
 
 // Kova's Wedding Rings
 COPY ~btl/itm/kvring1.itm~ ~override~
 	SAY NAME1 @2565
 	SAY NAME2 @2565
-	SAY DESC @2566
+	LPF ~GW_WRITE_EE_ITM_DESCRIPTIONS~ STR_VAR GW_desc_to_update = "@2566" END
+	PATCH_IF is_ee BEGIN
+		LPF ~GW_ITEM_RESTRICT_USABILITY_EE~ STR_VAR GW_restrict = "@2120" GW_kind = "name" GW_power = 1 GW_mess319 = "@2120" END
+	END
 
 COPY ~btl/itm/kvring2.itm~ ~override~
 	SAY NAME1 @2565
 	SAY NAME2 @2565
-	SAY DESC @2567
+	LPF ~GW_WRITE_EE_ITM_DESCRIPTIONS~ STR_VAR GW_desc_to_update = "@2567" END
+	PATCH_IF is_ee BEGIN
+		LPF ~GW_ITEM_RESTRICT_USABILITY_EE~ STR_VAR GW_restrict = "@2120" GW_kind = "name" GW_power = 1 GW_mess319 = "@2120" END
+	END
+
+
+/* --------------------- *
+ *  Installing tooltips  *
+ * --------------------- */
+
+// First, Shaman's Staff +1 needs 4 tooltips strref columns.
+// ---------------------------------------------------------
+LAM ~GW_ADJUST_COL_TOOLTIP~
+
+// Read how many columns are in tooltip.2da file to append it accordingly.
+// -----------------------------------------------------------------------
+LAM ~GW_READ_COL_TOOLTIP~
+
+// Append tooltip.2da
+// ------------------
+LAF ~GW_ADD_ITEM_TOOLTIPS~ STR_VAR GW_objet = ~kovadag2~ GW_tooltips = ~15227 15229~ END       // Navaeren +2 : Thrown - Melee
+LAF ~GW_ADD_ITEM_TOOLTIPS~ STR_VAR GW_objet = ~kovadag3~ GW_tooltips = ~15227 15229~ END       // Navaeren +3 : Thrown - Melee
+LAF ~GW_ADD_ITEM_TOOLTIPS~ STR_VAR GW_objet = ~kovadag5~ GW_tooltips = ~15227 15229~ END       // Navaeren +5 : Thrown - Melee
+LAF ~GW_ADD_ITEM_TOOLTIPS~ STR_VAR GW_objet = ~kiyobow1~ GW_tooltips = ~@2541 25633~ END       // Eye of the Sentinel +1 : True Sight once per day
+LAF ~GW_ADD_ITEM_TOOLTIPS~ STR_VAR GW_objet = ~kiyobow2~ GW_tooltips = ~@2543 25633 12026~ END // Gaze of the Sentinel +2 : True Sight twice per day - Dispel Magic twice per day
+LAF ~GW_ADD_ITEM_TOOLTIPS~ STR_VAR GW_objet = ~kiyobow3~ GW_tooltips = ~@2545 25633 12026~ END // Sight of the Sentinel +3 : True Sight four times per day - Dispel Magic four times per day
+LAF ~GW_ADD_ITEM_TOOLTIPS~ STR_VAR GW_objet = ~kyring1~  GW_tooltips = ~8786 44941~ END        // Kiyone's Wedding Ring : Heal twice per day - Iron Skins twice per day
+LAF ~GW_ADD_ITEM_TOOLTIPS~ STR_VAR GW_objet = ~kyring2~  GW_tooltips = ~8786 44941~ END        // Kiyone's Wedding Ring : Heal twice per day - Iron Skins twice per day
+
+// Pure cosmetic, but so cool!
+// ---------------------------
+COPY_EXISTING ~tooltip.2da~ ~override~
+	PRETTY_PRINT_2DA
+BUT_ONLY
 
 
 /* ----------- *

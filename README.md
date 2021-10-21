@@ -115,10 +115,9 @@ https://www.pocketplane.net/zyraens-miscellany/
 
 ## <a name="versions" id="versions"></a>Version History
 
-
 ##### Version 2.0.0 (October nn, 2021)
 
-- Added *luvnalia.ini* metadata file (including dynamic install order syntax and global `LABELS`) to support AL|EN's "Project Infinity".
+- Added *btl.ini* metadata file (including dynamic install order syntax and global `LABELS`) to support AL|EN's "Project Infinity".
 - Renamed *setup-BTL.tp2* -> *btl.tp2* and moved it to mod top folder to support AL|EN's "Project Infinity".
 - Replaced `AUTHOR` keyword with `SUPPORT`.
 - Added `VERSION` flag.
@@ -133,14 +132,15 @@ https://www.pocketplane.net/zyraens-miscellany/
     - Rewrote sound sets installation procedure to use WeiDU's built-in `HANDLE_AUDIO` function.
     - Added `ADD_JOURNAL` entries.
     - Added chapters continuity for EET games.
-    - ...
+    - Removed items usability restriction flags in description for EE games with `GW_UPDATE_ITM_DESCRIPTION_TO_EE` WeiDU function.
+    - Added special item usability restrictions (EE games) with `GW_ITEM_RESTRICT_USABILITY_EE` WeiDU function.
     - Provided accurate sized NPC portraits for EE games and renamed large portraits in epilogue files.
 - Included all BWP Fixpack fixes:
     - *start.baf*: <a href="http://www.shsforums.net/topic/33192-btl-with-bgt/">Hoppy's BGT compatibility fix start</a> preventing Kiyone from showing up in the BG1 part meeting the alignment, rep requirements and chapter 2. Revamped by Gwendolyne for compatibility with EET and oBG2 games.
     - *z#1002.baf*: <a href="http://www.shsforums.net/topic/47635-notes-oddities-and-possible-bugs-in-my-bwp-game-spoilers/page-14#entry566555">Lollorian's methodical `OnCreation()` removal from blocks that have a LOCALS/GLOBAL associated with them</a>.
     - *z#2801.baf*: <a href="https://www.gibberlings3.net/forums/topic/27712-bg2ee-parse-error-compiling-g3mrsgtubaf">agb1's `Face()` -> `FaceObject()` conversion</a>.
     - "*items.d*": <a href="http://www.shsforums.net/topic/45266-small-typo/">Lollorian's small typo fixes</a> (also renamed "*gthac.spl*" to "*z#gthac.spl*").
- - ...
+ - Appended "*tooltip.2da*" whenever relevant.
 - Fixed typos.
 - Split setup.tra files into separate thematic files for more comfortable readability.
 - Completed mod traification.
@@ -164,6 +164,22 @@ https://www.pocketplane.net/zyraens-miscellany/
 - Final Banter between the two of them being friends should not repeat anymore.
 - Loading area for the Finale of BTL has been resolved.
 - Updated WeiDU installer to v203.
+
+## 
+
+##### Version 1.30 (Unknown)
+
+:page_facing_up: Details <a href="https://spellholdstudios.github.io/readmes/btl-readme-english.html#version">here</a>.
+
+## 
+
+##### Version 1.20 (Unknown)
+
+:page_facing_up: Details <a href="https://spellholdstudios.github.io/readmes/btl-readme-english.html#version">here</a>.
+
+## 
+
+##### Version Alpha 1.10 (Unknown)
 
 ## 
 

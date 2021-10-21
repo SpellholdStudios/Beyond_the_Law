@@ -95,37 +95,55 @@ REQUIRE_COMPONENT "Setup-BTL.tp2" "0" @12  // ~This component requires Beyond th
 COPY ~btl/extras/kovadag2.itm~ ~override~
 	SAY NAME1 @2521
 	SAY NAME2 @2521
-	SAY DESC @2601
+	LPF ~GW_WRITE_EE_ITM_DESCRIPTIONS~ STR_VAR GW_desc_to_update = "@2601" END
+	PATCH_IF is_ee BEGIN
+		LPF ~GW_ITEM_RESTRICT_USABILITY_EE~ STR_VAR GW_restrict = "@2120" GW_kind = "name" GW_power = 1 GW_mess319 = "@2120" END
+	END
 
 // Navaeren +3
 COPY ~btl/extras/kovadag3.itm~ ~override~
 	SAY NAME1 @2523
 	SAY NAME2 @2523
-	SAY DESC @2602
+	LPF ~GW_WRITE_EE_ITM_DESCRIPTIONS~ STR_VAR GW_desc_to_update = "@2602" END
+	PATCH_IF is_ee BEGIN
+		LPF ~GW_ITEM_RESTRICT_USABILITY_EE~ STR_VAR GW_restrict = "@2120" GW_kind = "name" GW_power = 1 GW_mess319 = "@2120" END
+	END
 
 // Navaeren +5
 COPY ~btl/extras/kovadag5.itm~ ~override~
 	SAY NAME1 @2525
 	SAY NAME2 @2525
-	SAY DESC @2603
+	LPF ~GW_WRITE_EE_ITM_DESCRIPTIONS~ STR_VAR GW_desc_to_update = "@2603" END
+	PATCH_IF is_ee BEGIN
+		LPF ~GW_ITEM_RESTRICT_USABILITY_EE~ STR_VAR GW_restrict = "@2120" GW_kind = "name" GW_power = 1 GW_mess319 = "@2120" END
+	END
 
 // Haeloven
 COPY ~btl/extras/kovaarm1.itm~ ~override~
 	SAY NAME1 @2527
 	SAY NAME2 @2527
-	SAY DESC @2611
+	LPF ~GW_WRITE_EE_ITM_DESCRIPTIONS~ STR_VAR GW_desc_to_update = "@2611" END
+	PATCH_IF is_ee BEGIN
+		LPF ~GW_ITEM_RESTRICT_USABILITY_EE~ STR_VAR GW_restrict = "@2120" GW_kind = "name" GW_power = 1 GW_mess319 = "@2120" END
+	END
 
 // Haeloven +1
 COPY ~btl/extras/kovaarm2.itm~ ~override~
 	SAY NAME1 @2612
 	SAY NAME2 @2612
-	SAY DESC @2613
+	LPF ~GW_WRITE_EE_ITM_DESCRIPTIONS~ STR_VAR GW_desc_to_update = "@2613" END
+	PATCH_IF is_ee BEGIN
+		LPF ~GW_ITEM_RESTRICT_USABILITY_EE~ STR_VAR GW_restrict = "@2120" GW_kind = "name" GW_power = 1 GW_mess319 = "@2120" END
+	END
 
 // Haeloven +2
 COPY ~btl/extras/kovaarm5.itm~ ~override~
 	SAY NAME1 @2529
 	SAY NAME2 @2529
-	SAY DESC @2615
+	LPF ~GW_WRITE_EE_ITM_DESCRIPTIONS~ STR_VAR GW_desc_to_update = "@26015" END
+	PATCH_IF is_ee BEGIN
+		LPF ~GW_ITEM_RESTRICT_USABILITY_EE~ STR_VAR GW_restrict = "@2120" GW_kind = "name" GW_power = 1 GW_mess319 = "@2120" END
+	END
 
 // 2. Kiyone's items
 // -----------------
@@ -134,37 +152,55 @@ COPY ~btl/extras/kovaarm5.itm~ ~override~
 COPY ~btl/extras/kiyobow1.itm~ ~override~
 	SAY NAME1 @2541
 	SAY NAME2 @2541
-	SAY DESC @2621
+	LPF ~GW_WRITE_EE_ITM_DESCRIPTIONS~ STR_VAR GW_desc_to_update = "@2621" END
+	PATCH_IF is_ee BEGIN
+		LPF ~GW_ITEM_RESTRICT_USABILITY_EE~ STR_VAR GW_restrict = "@2121" GW_kind = "name" GW_power = 1 GW_mess319 = "@2121" END
+	END
 
 // Gaze of the Sentinel +2
 COPY ~btl/extras/kiyobow2.itm~ ~override~
 	SAY NAME1 @2543
 	SAY NAME2 @2543
-	SAY DESC @2622
+	LPF ~GW_WRITE_EE_ITM_DESCRIPTIONS~ STR_VAR GW_desc_to_update = "@2622" END
+	PATCH_IF is_ee BEGIN
+		LPF ~GW_ITEM_RESTRICT_USABILITY_EE~ STR_VAR GW_restrict = "@2121" GW_kind = "name" GW_power = 1 GW_mess319 = "@2121" END
+	END
 
 // Eye of the Sentinel +3
 COPY ~btl/extras/kiyobow3.itm~ ~override~
 	SAY NAME1 @2545
 	SAY NAME2 @2545
-	SAY DESC @2623
+	LPF ~GW_WRITE_EE_ITM_DESCRIPTIONS~ STR_VAR GW_desc_to_update = "@2623" END
+	PATCH_IF is_ee BEGIN
+		LPF ~GW_ITEM_RESTRICT_USABILITY_EE~ STR_VAR GW_restrict = "@2121" GW_kind = "name" GW_power = 1 GW_mess319 = "@2121" END
+	END
 
 // Verdant Vigil
 COPY ~btl/extras/kiyoarm1.itm~ ~override~
 	SAY NAME1 @2547
 	SAY NAME2 @2547
-	SAY DESC @2624
+	LPF ~GW_WRITE_EE_ITM_DESCRIPTIONS~ STR_VAR GW_desc_to_update = "@2624" END
+	PATCH_IF is_ee BEGIN
+		LPF ~GW_ITEM_RESTRICT_USABILITY_EE~ STR_VAR GW_restrict = "@2121" GW_kind = "name" GW_power = 1 GW_mess319 = "@2121" END
+	END
 
 // Verdant Vigilant +2
 COPY ~btl/extras/kiyoarm2.itm~ ~override~
 	SAY NAME1 @2549
 	SAY NAME2 @2549
-	SAY DESC @2625
+	LPF ~GW_WRITE_EE_ITM_DESCRIPTIONS~ STR_VAR GW_desc_to_update = "@2625" END
+	PATCH_IF is_ee BEGIN
+		LPF ~GW_ITEM_RESTRICT_USABILITY_EE~ STR_VAR GW_restrict = "@2121" GW_kind = "name" GW_power = 1 GW_mess319 = "@2121" END
+	END
 
 // Verdant Vigilant +4
 COPY ~btl/extras/kiyoarm3.itm~ ~override~
 	SAY NAME1 @2551
 	SAY NAME2 @2551
-	SAY DESC @2626
+	LPF ~GW_WRITE_EE_ITM_DESCRIPTIONS~ STR_VAR GW_desc_to_update = "@2626" END
+	PATCH_IF is_ee BEGIN
+		LPF ~GW_ITEM_RESTRICT_USABILITY_EE~ STR_VAR GW_restrict = "@2121" GW_kind = "name" GW_power = 1 GW_mess319 = "@2121" END
+	END
 
 COPY ~btl/extras/z#detect.spl~ ~override~
 

@@ -85,6 +85,14 @@ ACTION_IF !VARIABLE_IS_SET bg2_chapter BEGIN // Always block must run only once 
 		END
 
 
+	/* -------------------------------------------- *
+	 *    Loads in any shared function libraries    *
+	 * -------------------------------------------- */
+
+	// Loads macros and functions library dealing with tooltip appending, specific EE items descriptions, and more...
+	INCLUDE ~%MOD_FOLDER%/lib/gw_functions.tpa~
+
+
 	/* -------------------------- *
 	 *    Creates a blank file    *
 	 * -------------------------- */
