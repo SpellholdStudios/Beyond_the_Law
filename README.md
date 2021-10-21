@@ -134,7 +134,7 @@ https://www.pocketplane.net/zyraens-miscellany/
     - *start.baf*: <a href="http://www.shsforums.net/topic/33192-btl-with-bgt/">Hoppy's BGT compatibility fix start</a> preventing Kiyone from showing up in the BG1 part meeting the alignment, rep requirements and chapter 2.
     - *z#1002.baf*: <a href="http://www.shsforums.net/topic/47635-notes-oddities-and-possible-bugs-in-my-bwp-game-spoilers/page-14#entry566555">Lollorian's methodical `OnCreation()` removal from blocks that have a LOCALS/GLOBAL associated with them</a>.
     - *z#2801.baf*: <a href="https://www.gibberlings3.net/forums/topic/27712-bg2ee-parse-error-compiling-g3mrsgtubaf">agb1's `Face()` -> `FaceObject()` conversion</a>.
-    - "*items.d*": <a href="http://www.shsforums.net/topic/45266-small-typo/">Lollorian's small typo fixes</a>.
+    - "*items.d*": <a href="http://www.shsforums.net/topic/45266-small-typo/">Lollorian's small typo fixes</a> (also renamed gthac.spl to z#gthac.spl).
  - ...
 - Fixed typos.
 - Split setup.tra files into separate thematic files for more comfortable readability.

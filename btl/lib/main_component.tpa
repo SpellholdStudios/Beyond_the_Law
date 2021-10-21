@@ -447,7 +447,7 @@ COPY ~btl/cre/z#kywed.cre~  ~override~
 // 1. Quest related items
 // ----------------------
 
-COPY ~btl/spl/GTHAC.spl~  ~override~
+COPY ~btl/spl/z#gthac.spl~  ~override~
      ~btl/spl/z#hide.spl~ ~override~
 
 // Yoshimo's Katana +2
