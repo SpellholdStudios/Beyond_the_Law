@@ -118,16 +118,16 @@ https://www.pocketplane.net/zyraens-miscellany/
 - Replaced `AUTHOR` keyword with `SUPPORT`.
 - Added `VERSION` flag.
 - Replaced `AT_INTERACTIVE_EXIT` deprecated command with `README`.
-- Added Immutability concept:
-- Added `HANDLE_CHARSETS` function to convert string entries for EE games.
+- Added Immutability concept.
 - Added `REQUIRE_PREDICATE` conditions to avoid installing the mod in inaccurate games.
 - Added component `DESIGNATED` number and global `LABELS`.
 - Externalized tp2 code into *main_component.tpa* library for more comfortable readability and maintenance.
 - Commented code as much as possible.
 - Added native BG2:EE and EET compatibility:
-    - ...
-    - ...
-    - ...
+    - Added WeiDU's built-in `HANDLE_CHARSETS` function to convert string entries for EE games.
+    - Rewrote sound sets installation procedure to use WeiDU's built-in `HANDLE_AUDIO` function.
+    - Added `ADD_JOURNAL` entries.
+    - Added chapters continuity for EET games.
     - ...
     - Provided accurate sized NPC portraits for EE games and renamed large portraits in epilogue files.
 - Included all BWP Fixpack fixes:
@@ -136,7 +136,6 @@ https://www.pocketplane.net/zyraens-miscellany/
     - *z#2801.baf*: <a href="https://www.gibberlings3.net/forums/topic/27712-bg2ee-parse-error-compiling-g3mrsgtubaf">agb1's `Face()` -> `FaceObject()` conversion</a>.
     - "*items.d*": <a href="http://www.shsforums.net/topic/45266-small-typo/">Lollorian's small typo fixes</a>.
  - ...
-- Added missing journal entries.
 - Fixed typos.
 - Split setup.tra files into separate thematic files for more comfortable readability.
 - Completed mod traification.
@@ -145,6 +144,7 @@ https://www.pocketplane.net/zyraens-miscellany/
 - Reorganized mod architecture tree: created or renamed folders to sort files according to their types.
 - Lower cased files.
 - TODO Included Linux and Mac OS versions in the same package (thanks AL|EN's Infinity Auto Packager tool!).
+- Updated OggDec to v1.9.7 and added sox v14.4.1 for mac.
 - Added archive libiconv-1.9.2-1-src.7z with iconv licence info.
 - Updated WeiDU installer to v247.
 - TODO Uploaded mod to official Spellhold Studios GitHub mirror account.

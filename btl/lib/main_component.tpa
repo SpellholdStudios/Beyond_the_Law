@@ -22,6 +22,22 @@ COPY ~%MOD_FOLDER%/portraits%ee_file%/kharens.bmp~ ~override~
      ~%MOD_FOLDER%/portraits%ee_file%/seidal.bmp~  ~override~
 
 
+/* ------------------------ *
+ *  Installing audio files  *
+ * ------------------------ */
+
+// Installing music
+// ----------------
+COPY ~%MOD_FOLDER%/music/z#none.mus~ ~music~
+
+COPY_EXISTING ~songlist.2da~ ~override~
+	SET_2DA_ENTRY 0 2 3 ~z#none.mus~
+
+// Installing custom sound sets
+// ----------------------------
+LAF HANDLE_AUDIO END
+
+
 /* ------------------ *
  *  Installing areas  *
  * ------------------ */
@@ -66,6 +82,10 @@ COMPILE ~btl/dlg/kova.d~ EVALUATE_BUFFER
 COMPILE ~btl/dlg/kovab.d~
 COMPILE ~btl/dlg/items.d~
 COMPILE ~btl/dlg/interj.d~ EVALUATE_BUFFER
+
+// Journal entries for EE games
+// ----------------------------
+ADD_JOURNAL @5001 @5002 @5003 @5004 @5005 @5006 @5007 @5008 @5009 @5010 @5011 @5012 @5013 @5015 @5016 @5020 @5021 @5022 @5023 @5025 @5026 @5027 @5028 @5029 @5030 @5031 @5032 @5033 @5034 @5035 @5036 @5037 @5038 @5039 @1040 @1041 @1042 @1050 @1051 @1052 @1053 @5059 @5060 @5061 @5062 @5063 @5064 @5065 USING ~btl/lang/%LANGUAGE%/strings.tra~
 
 // Make sure Arledrian's DLG pauses the game
 // -----------------------------------------
@@ -619,16 +639,3 @@ APPEND ~interdia.2da~ ~Kiyone Z#kiyoB Z#ky25B~ UNLESS ~Kiyone~
 
 APPEND ~pdialog.2da~  ~Kova   Z#kovaP Z#kovaJ Z#kovaD Z#kv25P Z#kovaJ Z#kv25D Z#kova~   UNLESS ~Kova~
 APPEND ~pdialog.2da~  ~Kiyone Z#kiyoP Z#kiyoJ Z#kiyoD Z#ky25P Z#kiyoJ Z#ky25D Z#kiyone~ UNLESS ~Kiyone~
-
-
-COPY ~btl/wav~ ~override~
-
-COPY_EXISTING ~songlist.2da~ ~override~
-REPLACE_TEXTUALLY
-~0       No_music        ****~
-~0       ZNONE           z#none.mus~
-COPY ~btl/z#none.mus~ ~music\z#none.mus~
-
-AT_INTERACTIVE_EXIT ~btlaudio.bat~
-AT_INTERACTIVE_UNINSTALL ~btlaudiouninstall.bat~
-
