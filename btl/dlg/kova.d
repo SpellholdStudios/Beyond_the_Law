@@ -146,7 +146,7 @@ DO ~SetGlobal("KKFindCrom","GLOBAL",1)~
 EXIT
 
 CHAIN
-IF 	~Global("BodhiAppear","GLOBAL",3)
+IF ~Global("BodhiAppear","GLOBAL",3)
 	!Global("NoGaelan","LOCALS",3)
 	InParty("Kova")~ THEN Z#KOVAJ ByeBodhi
 @45

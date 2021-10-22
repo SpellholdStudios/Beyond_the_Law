@@ -400,7 +400,7 @@ THEN
 		StartDialogNoSet(Player1)
 END
 
-// Kova dies or Injured
+// Kova dies or injured
 // --------------------
 IF
 	!HPPercentLT("Kova",20)
@@ -443,7 +443,8 @@ END
 IF
 	Global("Z#RestInn","GLOBAL",1)
 	Global("Z#TrialClear","GLOBAL",0)
-	InParty("Kova") InMyArea("Kova")
+	InParty("Kova")
+	InMyArea("Kova")
 	GlobalGT("KKRomance","GLOBAL",0)
 	GlobalLT("BKvCook","GLOBAL",2)
 	OR(10)
@@ -465,7 +466,8 @@ END
 IF
 	GlobalGT("KKRomance","GLOBAL",0)
 	Global("Z#TrialClear","GLOBAL",0)
-	InParty("Kova") InMyArea("Kova")
+	InParty("Kova")
+	InMyArea("Kova")
 	Global("BKvCook","GLOBAL",3)
 	RealGlobalTimerExpired("KvCookT","GLOBAL")	
 	OR(10)
@@ -1009,7 +1011,6 @@ THEN
 		ActionOverride(Player5,DestroyItem("KiyoArm3"))
 		ActionOverride(Player6,DestroyItem("KiyoArm3"))
 END
-
 
 // Kiyone's Ring1
 // --------------

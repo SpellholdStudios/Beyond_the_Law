@@ -271,8 +271,8 @@ THEN
 		SetSequence(SEQ_SLEEP)
 END
 
-// If injured drink potion
-// -----------------------
+// If injured, drink potion
+// ------------------------
 IF
 	HPPercentLT(Myself,60)
 THEN
@@ -282,8 +282,8 @@ THEN
 		Continue()
 END
 
-// If injured use Stoneskin
-// ------------------------
+// If injured, use Stoneskin
+// -------------------------
 IF
  	CheckStat(Myself,0,STONESKINS)
 	!StateCheck(Myself,STATE_INVISIBLE)
@@ -299,8 +299,8 @@ THEN
 		Continue()
 END
 
-// If many close use Stoneskin
-// ---------------------------
+// If many close, use Stoneskin
+// ----------------------------
 IF
  	CheckStat(Myself,0,STONESKINS)
 	!StateCheck(Myself,STATE_INVISIBLE)
@@ -356,7 +356,7 @@ IF
 	!Allegiance(Myself,NEUTRAL)
 THEN
 	RESPONSE #100
-		DisplayStringHead(Myself,46150)
+		DisplayStringHead(Myself,46150)  // *quaffs a potion*
 		ReallyForceSpell(Myself,WIZARD_INVISIBILITY)
 		SetGlobalTimer("Z#InvisT","LOCALS",4)
 		Continue()
@@ -373,8 +373,8 @@ THEN
 		AttackReevaluate(NearestEnemyOf(Myself),15)
 END
 
-// If invisible attack with melee
-// ------------------------------
+// If invisible, attack with melee
+// -------------------------------
 IF
 	StateCheck(Myself,STATE_INVISIBLE)
 	Detect(NearestEnemyOf(Myself))
@@ -384,8 +384,8 @@ THEN
 		AttackReevaluate(NearestEnemyOf(Myself),15)
 END
 
-// If near tried invis use melee 15
-// --------------------------------
+// If near tried invis, use melee 15
+// ---------------------------------
 IF
 	!StateCheck(Myself,STATE_INVISIBLE)
 	GlobalTimerNotExpired("Z#InvisT","LOCALS")
@@ -396,7 +396,7 @@ THEN
 		AttackReevaluate(NearestEnemyOf(Myself),15)
 END
 
-// If visible move away,use ranged
+// If visible move away, use ranged
 // --------------------------------
 IF
 	!StateCheck(Myself,STATE_INVISIBLE)
@@ -408,7 +408,7 @@ THEN
 		RunAwayFrom(NearestEnemyOf(Myself),15)
 END
 
-// If Far enough,use Ranged
+// If Far enough, use Ranged
 // -------------------------
 IF
 	!StateCheck(Myself,STATE_INVISIBLE)
