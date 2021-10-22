@@ -6,3 +6,11 @@
 
 @11   = ~You must have ToB, BGT, BG2:EE or EET installed to install this mod.~
 @12   = ~This component requires Beyond the Law main component to be installed.~
+
+
+@21   = ~Installing graphics and sound sets...~
+@22   = ~Installing areas...~
+@23   = ~Installing dialogues...~
+@24   = ~Installing scripts...~
+@25   = ~Installing creatures...~
+@26   = ~Installing items...~

@@ -209,10 +209,11 @@ COPY ~btl/extras/z#detect.spl~ ~override~
 
 /* =========================================== *
  *  Portraits for minor non-joinable BTL NPCs  *
- * =========================================== */
+ * =========================================== *
 BEGIN @3                             // ~Portraits for minor non-joinable BTL NPCs~
 DESIGNATED 3
 REQUIRE_COMPONENT "btl.tp2" "0" @12  // ~This component requires Beyond the Law main component to be installed.~
 
-COPY ~btl/portraits\dayvens.bmp~ ~override~
-COPY ~btl/portraits\myros.bmp~   ~override~
+COPY ~%MOD_FOLDER%/portraits%ee_file%/dayvens.bmp~ ~override~
+COPY ~%MOD_FOLDER%/portraits%ee_file%/myros.bmp~   ~override~
+*/

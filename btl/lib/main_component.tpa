@@ -5,21 +5,14 @@
  *                                                                                 *
  * =============================================================================== */
 
+PRINT @21  // ~Installing graphics and sound sets...~
 SILENT
 
 /* ---------------------- *
  *  Installing portraits  *
  * ---------------------- */
 
-COPY ~%MOD_FOLDER%/portraits%ee_file%/kharens.bmp~ ~override~
-     ~%MOD_FOLDER%/portraits%ee_file%/kiyol.bmp~   ~override~
-     ~%MOD_FOLDER%/portraits%ee_file%/kiyom.bmp~   ~override~
-     ~%MOD_FOLDER%/portraits%ee_file%/kiyos.bmp~   ~override~
-     ~%MOD_FOLDER%/portraits%ee_file%/koval.bmp~   ~override~
-     ~%MOD_FOLDER%/portraits%ee_file%/kovam.bmp~   ~override~
-     ~%MOD_FOLDER%/portraits%ee_file%/kovas.bmp~   ~override~
-     ~%MOD_FOLDER%/portraits%ee_file%/seidas.bmp~  ~override~
-     ~%MOD_FOLDER%/portraits%ee_file%/seidal.bmp~  ~override~
+COPY ~%MOD_FOLDER%/portraits%ee_file%~ ~override~
 
 
 /* ------------------------ *
@@ -41,6 +34,9 @@ LAF HANDLE_AUDIO END
 /* ------------------ *
  *  Installing areas  *
  * ------------------ */
+
+PRINT @22  // ~Installing areas...~
+SILENT
 
 // Area for Final
 // --------------
@@ -78,10 +74,13 @@ BUT_ONLY
  *  Installing dialogues  *
  * ---------------------- */
 
+PRINT @23  // ~Installing dialogues...~
+SILENT
+
 COMPILE ~btl/dlg/kova.d~ EVALUATE_BUFFER
-COMPILE ~btl/dlg/kovab.d~
-COMPILE ~btl/dlg/items.d~
 COMPILE ~btl/dlg/interj.d~ EVALUATE_BUFFER
+COMPILE ~btl/dlg/kovab.d~
+        ~btl/dlg/items.d~
 
 // Journal entries for EE games
 // ----------------------------
@@ -102,15 +101,18 @@ BUT_ONLY
  *  Installing scripts  *
  * -------------------- */
 
+PRINT @24  // ~Installing scripts...~
+SILENT
+
 // Compiling new scripts.
 // ----------------------
 COMPILE ~btl/baf/z#kova.baf~
-COMPILE ~btl/Z#Kiyone.baf~
+COMPILE ~btl/baf/z#kiyone.baf~ EVALUATE_BUFFER
 COMPILE ~btl/baf/z#kovad.baf~
+        ~btl/baf/z#kvfix.baf~
+        ~btl/baf/z#kyfix.baf~
         ~btl/baf/kovafoe.baf~
         ~btl/baf/kharen16.baf~
-COMPILE ~btl/Z#kvfix.baf~
-COMPILE ~btl/Z#kyfix.baf~
 COMPILE ~btl/baf/z#0041.baf~
         ~btl/baf/z#1002.baf~
         ~btl/baf/z#1005.baf~
@@ -164,6 +166,9 @@ EXTEND_TOP    ~trueston.bcs~ ~btl/baf/trueston.baf~
 /* ---------------------- *
  *  Installing creatures  *
  * ---------------------- */
+
+PRINT @25  // ~Installing creatures...~
+SILENT
 
 // 1. Quest NPCs
 // -------------
@@ -443,6 +448,9 @@ COPY ~btl/cre/z#kywed.cre~  ~override~
 /* ------------------ *
  *  Installing Items  *
  * ------------------ */
+
+PRINT @26  // ~Installing items...~
+SILENT
 
 // 1. Quest related items
 // ----------------------
