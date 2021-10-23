@@ -15,7 +15,9 @@ Baldur's Gate Trilogy and EET<h3>
 
 **Original Author:** Zyraen  
 **Mod Website:** <a href="http://spellholdstudios.net/ie/btl">Spellhold Studios</a>  
-**Mod Forum:** <a href="http://www.shsforums.net/forum/325-beyond-the-law">TODO</a><br>
+**Mod Forum:** <a href="http://www.shsforums.net/forum/325-beyond-the-law">Beyond the Law</a><br>
+
+http://www.shsforums.net/topic/61120-beyond-the-law-updated-to-v200-ee-compatible/
 
 ## 
 
@@ -52,8 +54,10 @@ https://www.pocketplane.net/zyraens-miscellany/
 
 ## <a name="intro" id="intro"></a>Overview
 
-This mod introduces two joinable NPCs, Zaiya and Kiara, to your game. Kova is a Chaotic Good Half-Elf mage/thief with an unsavoury background and good heart (or so he claims).<br>
-Kiyone is a Lawful Good Half-Elf female, law-enforcing, impartial (or so she claims) archer<br>
+This mod introduces two joinable NPCs, Kova and Kiyone, to your game.
+- Kova is a Chaotic Good Half-Elf mage/thief with an unsavoury background and good heart (or so he claims).
+- Kiyone is a Lawful Good Half-Elf female, law-enforcing, impartial (or so she claims) archer.<br><br>
+
 They will only show up if:
 - Your character is of either good or neutral alignment.
 - Your character's reputation rises above 12 and you are still in Chapter 2.
@@ -278,6 +282,25 @@ Select the character and press "F" to invoke the strings fixer.
 
 ## <a name="components" id="components"></a>Components
 
+As of v2.0.0, the installer offers two main sub-components, letting the players decide which one they want to install.
+
+## 
+
+**[0-1] Beyond the Law - Kova & Kiyone** (Main component)
+&nbsp;&nbsp;&nbsp;**[0]** Beyond the Law with Kiyone original sound set<br>
+&nbsp;&nbsp;&nbsp;**[1]** Beyond the Law with alternate sound set for Kiyone (Female4)<br>
+
+&#10173; This is the main component that adds Kova and Kiyone to the game.
+
+## 
+
+**[2] Better balanced BTL items**
+
+&#10173; This optional component nerves Kova and Kiyone's equipment.
+
+
+Their weapons and armor are arranged so that (once upgraded) they are among the best items you can give to them. This gives the player more reason to leave them on the NPCs, giving them a consistent look and feel throughout the game. If you find them too powerful, please install this component, though that probably will mean their look and feel in the game will not be quite so consistent.
+
 <div align="right"><a href="#top">Back to top</a></div>
 
 
@@ -409,7 +432,7 @@ The other possibility is that Kiyone and Kova have not developed their relations
 - Added Immutability concept.
 - Replaced `REQUIRE_FILE` with `REQUIRE_PREDICATE` condition to avoid installing the mod in inaccurate games.
 - Added components `DESIGNATED` numbers.
-- Externalized tp2 code into *main_component.tpa* library for more comfortable readability and maintenance.
+- Externalized tp2 code into specific components *.tpa* libraries for more comfortable readability and maintenance.
 - Commented code as much as possible.
 - Grouped original and vanilla sound sets for Kiyone into two main `SUBCOMPONENTS`.
 - Included optional "*Portraits for minor non-joinable BTL NPCs*" component into main component as two portraits really don't deserve a dedicated component! :wink:
@@ -422,9 +445,9 @@ The other possibility is that Kiyone and Kova have not developed their relations
     - Added special item usability restrictions (EE games) with `GW_ITEM_RESTRICT_USABILITY_EE` WeiDU function.
     - Provided accurate sized NPC portraits for EE games, and renamed large portraits in epilogue files.
 - Included all BWP Fixpack fixes:
-    - *start.baf*: <a href="http://www.shsforums.net/topic/33192-btl-with-bgt/">Hoppy's BGT compatibility fix start</a> preventing Kiyone from showing up in the BG1 part meeting the alignment, rep requirements and chapter 2. Revamped by Gwendolyne for compatibility with EET and oBG2 games.
+    - "*start.baf*": <a href="http://www.shsforums.net/topic/33192-btl-with-bgt/">Hoppy's BGT compatibility fix start</a> preventing Kiyone from showing up in the BG1 part meeting the alignment, rep requirements and chapter 2. Revamped by Gwendolyne for compatibility with EET and oBG2 games.
     - *z#1002.baf*: <a href="http://www.shsforums.net/topic/47635-notes-oddities-and-possible-bugs-in-my-bwp-game-spoilers/page-14#entry566555">Lollorian's methodical `OnCreation()` removal from blocks that have a LOCALS/GLOBAL associated with them</a>.
-    - *z#2801.baf*: <a href="https://www.gibberlings3.net/forums/topic/27712-bg2ee-parse-error-compiling-g3mrsgtubaf">agb1's `Face()` -> `FaceObject()` conversion</a>.
+    - "*z#2801.baf*: <a href="https://www.gibberlings3.net/forums/topic/27712-bg2ee-parse-error-compiling-g3mrsgtubaf">agb1's `Face()` -> `FaceObject()` conversion</a>.
     - "*items.d*": <a href="http://www.shsforums.net/topic/45266-small-typo/">Lollorian's small typo fixes</a> (also renamed "*gthac.spl*" to "*z#gthac.spl*").
  - Appended "*tooltip.2da*" whenever relevant.
 - Fixed items descriptions and typos.
