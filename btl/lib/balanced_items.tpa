@@ -64,7 +64,7 @@ COPY ~btl/extras/kovaarm2.itm~ ~override~
 COPY ~btl/extras/kovaarm5.itm~ ~override~
 	SAY NAME1 @2529
 	SAY NAME2 @2529
-	LPF ~GW_WRITE_EE_ITM_DESCRIPTIONS~ STR_VAR GW_desc_to_update = "@26015" END
+	LPF ~GW_WRITE_EE_ITM_DESCRIPTIONS~ STR_VAR GW_desc_to_update = "@2615" END
 	PATCH_IF is_ee BEGIN
 		LPF ~GW_ITEM_RESTRICT_USABILITY_EE~ STR_VAR GW_restrict = "@2120" GW_kind = "name" GW_power = 1 GW_mess319 = "@2120" END
 	END
@@ -133,7 +133,7 @@ COPY ~btl/extras/z#detect.spl~ ~override~
  *  Fixing tooltips: replace Eye of the Sentinel +1 True Sight tooltip (25633) with Detect Invisibility (12042)  *
  * ------------------------------------------------------------------------------------------------------------- */
 
-COPY_EXISTING ~tooltip.2da~ ~tool.2da~
+COPY_EXISTING ~tooltip.2da~ ~override~
 	COUNT_2DA_COLS cn
 	READ_2DA_ENTRIES_NOW tooltips cn
 	FOR (row = 0 ; row < tooltips ; ++row) BEGIN
@@ -141,7 +141,7 @@ COPY_EXISTING ~tooltip.2da~ ~tool.2da~
 		PATCH_IF (~%item%~ STRING_EQUAL_CASE ~kiyobow1~) BEGIN
 			FOR (col = 1 ; col < cn ; ++col) BEGIN
 				READ_2DA_ENTRY_FORMER tooltips row col tip
-				PATCH_PRINT "row = %row% - item = %item% - tip = %tip%"
+//				PATCH_PRINT "row = %row% - item = %item% - tip = %tip%"
 				PATCH_IF (tip = 25633) BEGIN
 					SET_2DA_ENTRY_LATER new_tip row col 12042
 					col = cn

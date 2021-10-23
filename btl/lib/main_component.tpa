@@ -41,7 +41,7 @@ SILENT
 // Area for Final
 // --------------
 COPY ~btl/area/z#0041.are~   ~override~
-    ~btl/area/z#0041sr.bmp~  ~override~
+     ~btl/area/z#0041sr.bmp~ ~override~
 COPY_EXISTING ~ar0041.tis~   ~override~
 COPY_EXISTING ~ar0041.wed~   ~override/z#0041.wed~
 	WRITE_ASCII 0x24 ~Z#0041~
@@ -78,9 +78,9 @@ PRINT @23  // ~Installing dialogues...~
 SILENT
 
 COMPILE ~btl/dlg/kova.d~ EVALUATE_BUFFER
-COMPILE ~btl/dlg/interj.d~ EVALUATE_BUFFER
 COMPILE ~btl/dlg/kovab.d~
         ~btl/dlg/items.d~
+COMPILE ~btl/dlg/interj.d~ EVALUATE_BUFFER
 
 // Journal entries for EE games
 // ----------------------------
@@ -119,6 +119,7 @@ COMPILE ~btl/baf/z#0041.baf~
         ~btl/baf/z#2812.baf~
         ~btl/baf/z#baev.baf~
         ~btl/baf/z#corn.baf~
+        ~btl/baf/z#edseid.baf~
         ~btl/baf/z#edwkv.baf~
         ~btl/baf/z#killbv.baf~
         ~btl/baf/z#messen.baf~
@@ -126,7 +127,6 @@ COMPILE ~btl/baf/z#0041.baf~
         ~btl/baf/z#protbv.baf~
         ~btl/baf/z#seid16.baf~
         ~btl/baf/z#yoshkv.baf~
-        ~btl/baf/z#zdseid.baf~
 
 // Gwendolyne: this script only differs from z#kyfix.baf by the alternate vanilla sound set strrefs.
 // -------------------------------------------------------------------------------------------------
@@ -259,7 +259,7 @@ COPY ~btl/cre/z#elf1.cre~ ~override~
 	SAY NAME2 @2110
 
 // Cleric of Rillifane
-COPY ~btl/cre/z#zlf2.cre~ ~override~
+COPY ~btl/cre/z#elf2.cre~ ~override~
 	SAY NAME1 @2111
 	SAY NAME2 @2111
 
@@ -398,40 +398,40 @@ COPY ~btl/cre/kiyone.cre~ ~override~
 	SAY BIO @2345
 	// Sound set
 	PATCH_IF z#vanilla BEGIN
-		SAY LEADER @2401
-		SAY TIRED @2402
-		SAY BORED @2403
-		SAY BATTLE_CRY1 @2404
-		SAY BATTLE_CRY2 @2405
-		SAY BATTLE_CRY3 @2406
-		SAY DAMAGE @2407
-		SAY DYING @2408
-		SAY HURT @2409
-		SAY AREA_FOREST @2410
-		SAY AREA_CITY @2411
-		SAY AREA_DUNGEON @2412
-		SAY AREA_DAY @2413
-		SAY AREA_NIGHT @2414
-		SAY SELECT_COMMON1 @2415
-		SAY SELECT_COMMON2 @2416
-		SAY SELECT_COMMON3 @2417
-		SAY SELECT_COMMON4 @2418
-		SAY SELECT_ACTION1 @2419
-		SAY SELECT_ACTION2 @2420
-		SAY SELECT_ACTION3 @2421
-		SAY SELECT_ACTION4 @2422
-		SAY SELECT_ACTION5 @2423
-		SAY SELECT_ACTION6 @2424
-		SAY SELECT_ACTION7 @2425
-		SAY SELECT_RARE1 @2426
-		SAY SELECT_RARE2 @2427
-		SAY CRITICAL_HIT @2428
-		SAY CRITICAL_MISS @2429
-		SAY TARGET_IMMUNE @2430
-		SAY INVENTORY_FULL @2431
-		SAY HIDDEN_IN_SHADOWS @2432
-		SAY SPELL_DISRUPTED @2433
-		SAY SET_A_TRAP @2434
+		SAY LEADER @2407
+		SAY TIRED @2408
+		SAY BORED @2409
+		SAY BATTLE_CRY1 @2410
+		SAY BATTLE_CRY2 @2411
+		SAY BATTLE_CRY3 @2412
+		SAY DAMAGE @2414
+		SAY DYING @2415
+		SAY HURT @2416
+		SAY AREA_FOREST @2417
+		SAY AREA_CITY @2418
+		SAY AREA_DUNGEON @2419
+		SAY AREA_DAY @2420
+		SAY AREA_NIGHT @2421
+		SAY SELECT_COMMON1 @2422
+		SAY SELECT_COMMON2 @2423
+		SAY SELECT_COMMON3 @2424
+		SAY SELECT_COMMON4 @2425
+		SAY SELECT_ACTION1 @2428
+		SAY SELECT_ACTION2 @2429
+		SAY SELECT_ACTION3 @2430
+		SAY SELECT_ACTION4 @2431
+		SAY SELECT_ACTION5 @2432
+		SAY SELECT_ACTION6 @2433
+		SAY SELECT_ACTION7 @2434
+		SAY SELECT_RARE1 @2435
+		SAY SELECT_RARE2 @2436
+		SAY CRITICAL_HIT @2437
+		SAY CRITICAL_MISS @2438
+		SAY TARGET_IMMUNE @2439
+		SAY INVENTORY_FULL @2440
+		SAY HIDDEN_IN_SHADOWS @2442
+		SAY SPELL_DISRUPTED @2443
+		SAY SET_A_TRAP @2444
 	END ELSE BEGIN
 		SAY INITIAL_MEETING @2301
 		SAY MORALE @2302

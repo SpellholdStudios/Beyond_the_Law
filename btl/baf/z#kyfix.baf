@@ -47,6 +47,6 @@ THEN
 		SetPlayerSound(Myself,@2342,HIDDEN_IN_SHADOWS)
 		SetPlayerSound(Myself,@2343,SPELL_DISRUPTED)
 		SetPlayerSound(Myself,@2344,SET_A_TRAP)
-		SetPlayerSound(Myself)@2345,EXISTANCE5)
+		SetPlayerSound(Myself,@2345,EXISTANCE5)
 		EndCutSceneMode()
 END

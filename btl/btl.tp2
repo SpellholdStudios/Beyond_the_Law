@@ -1,11 +1,10 @@
 BACKUP ~btl/backup~
-AUTHOR ~zyraen@hotmail.com~
+//AUTHOR ~zyraen@hotmail.com~
+SUPPORT ~Spellhold Studios at http://www.shsforums.net/forum/325-beyond-the-law/~
 
 VERSION ~2.0.0~
 
-// ALWAYS
-//  AT_INTERACTIVE_EXIT ~VIEW readme-btl.html~
-// END
+README ~btl/readme/btl-readme-english.html~
 
 ASK_EVERY_COMPONENT
 
@@ -58,10 +57,10 @@ REQUIRE_COMPONENT "btl.tp2" "0" @12  // ~This component requires Beyond the Law 
 /* =========================== *
  *  Better balanced BTL items  *
  * =========================== */
-BEGIN @2                             // ~Better balanced BTL items~
+BEGIN @3                                                                                                   // ~Better balanced BTL items~
 DESIGNATED 2 LABEL ~z#_btl_better_balanced_items~
 REQUIRE_PREDICATE (MOD_IS_INSTALLED ~btl.tp2~ (ID_OF_LABEL ~btl.tp2~ ~z#_btl_main~) OR
-                   MOD_IS_INSTALLED ~btl.tp2~ (ID_OF_LABEL ~btl.tp2~ ~z#_btl_main_vanilla_soundset~) @12  // ~This component requires Beyond the Law main component to be installed.~
+                   MOD_IS_INSTALLED ~btl.tp2~ (ID_OF_LABEL ~btl.tp2~ ~z#_btl_main_vanilla_soundset~)) @12  // ~This component requires Beyond the Law main component to be installed.~
 
 INCLUDE ~%MOD_FOLDER%/lib/balanced_items.tpa~
 
