@@ -24,63 +24,35 @@ LANGUAGE ~English~
          ~weidu_external/lang/btl/english/strings.tra~
 
 
-/* ================================ *
- *  Beyond the Law - Kova & Kiyone  *
- * ================================ */
-BEGIN @0                                           // ~Beyond the Law - Kova & Kiyone~
+/* ================================================= *
+ *  Beyond the Law - Kova & Kiyone (main component)  *
+ * ================================================= */
+BEGIN @1                                           // ~Beyond the Law with Kiyone's original sound set~
 DESIGNATED 0
+SUBCOMPONENT @0                                    // ~Beyond the Law - Kova & Kiyone~
 REQUIRE_PREDICATE GAME_IS ~tob bgt bg2ee eet~ @11  // ~You must have ToB, BGT, BG2:EE or EET installed to install this mod.~
 
-	INCLUDE ~%MOD_FOLDER%/lib/main_component.tpa~
+OUTER_SET z#vanilla = 0
+INCLUDE ~%MOD_FOLDER%/lib/main_component.tpa~
 
 
-/* ========================================== *
+BEGIN @2                                           // ~Beyond the Law with alternate sound set for Kiyone (Female4)~
+DESIGNATED 1
+SUBCOMPONENT @0
+REQUIRE_PREDICATE GAME_IS ~tob bgt bg2ee eet~ @11  // ~You must have ToB, BGT, BG2:EE or EET installed to install this mod.~
+
+OUTER_SET z#vanilla = 1
+INCLUDE ~%MOD_FOLDER%/lib/main_component.tpa~
+
+
+/* DEPRECATED as of v2.0.0
+   ========================================== *
  *  Alternate sound set for Kiyone (Female4)  *
- * ========================================== */
+ * ========================================== *
 BEGIN @1                             // ~Alternate sound set for Kiyone (Female4)~
 DESIGNATED 1
 REQUIRE_COMPONENT "btl.tp2" "0" @12  // ~This component requires Beyond the Law main component to be installed.~
-
-COMPILE ~btl/extras/z#kyfix.baf~
-
-COPY ~btl/cre/kiyone.cre~ ~override~
-	SAY NAME1 @2121
-	SAY NAME2 @2121
-	SAY LEADER @2401
-	SAY TIRED @2402
-	SAY BORED @2403
-	SAY BATTLE_CRY1 @2404
-	SAY BATTLE_CRY2 @2405
-	SAY BATTLE_CRY3 @2406
-	SAY DAMAGE @2407
-	SAY DYING @2408
-	SAY HURT @2409
-	SAY AREA_FOREST @2410
-	SAY AREA_CITY @2411
-	SAY AREA_DUNGEON @2412
-	SAY AREA_DAY @2413
-	SAY AREA_NIGHT @2414
-	SAY SELECT_COMMON1 @2415
-	SAY SELECT_COMMON2 @2416
-	SAY SELECT_COMMON3 @2417
-	SAY SELECT_COMMON4 @2418
-	SAY SELECT_ACTION1 @2419
-	SAY SELECT_ACTION2 @2420
-	SAY SELECT_ACTION3 @2421
-	SAY SELECT_ACTION4 @2422
-	SAY SELECT_ACTION5 @2423
-	SAY SELECT_ACTION6 @2424
-	SAY SELECT_ACTION7 @2425
-	SAY SELECT_RARE1 @2426
-	SAY SELECT_RARE2 @2427
-	SAY CRITICAL_HIT @2428
-	SAY CRITICAL_MISS @2429
-	SAY TARGET_IMMUNE @2430
-	SAY INVENTORY_FULL @2431
-	SAY HIDDEN_IN_SHADOWS @2432
-	SAY SPELL_DISRUPTED @2433
-	SAY SET_A_TRAP @2434
-	SAY BIO @2345
+*/
 
 
 /* =========================== *
@@ -91,7 +63,7 @@ DESIGNATED 2
 REQUIRE_COMPONENT "btl.tp2" "0" @12  // ~This component requires Beyond the Law main component to be installed.~
 
 // 1. Kova's items
-// ----------------
+// ---------------
 
 // Navaeren +2
 COPY ~btl/extras/kovadag2.itm~ ~override~
@@ -206,8 +178,32 @@ COPY ~btl/extras/kiyoarm3.itm~ ~override~
 
 COPY ~btl/extras/z#detect.spl~ ~override~
 
+// 3. Eye of the Sentinel +1: replace True Sight tooltip (25633) with Detect Invisibility (12042)
+// ----------------------------------------------------------------------------------------------
+COPY_EXISTING ~tooltip.2da~ ~tool.2da~
+	COUNT_2DA_COLS cn
+	READ_2DA_ENTRIES_NOW tooltips cn
+	FOR (row = 0 ; row < tooltips ; ++row) BEGIN
+		READ_2DA_ENTRY_FORMER tooltips row 0 item
+		PATCH_IF (~%item%~ STRING_EQUAL_CASE ~kiyobow1~) BEGIN
+			FOR (col = 1 ; col < cn ; ++col) BEGIN
+				READ_2DA_ENTRY_FORMER tooltips row col tip
+				PATCH_PRINT "row = %row% - item = %item% - tip = %tip%"
+				PATCH_IF (tip = 25633) BEGIN
+					SET_2DA_ENTRY_LATER new_tip row col 12042
+					col = cn
+					row = tooltips
+				END
+			END
+		END
+	END
+	SET_2DA_ENTRIES_NOW new_tip cn
+	PRETTY_PRINT_2DA
+BUT_ONLY
 
-/* =========================================== *
+
+/* DEPRECATED as of v2.0.0
+   =========================================== *
  *  Portraits for minor non-joinable BTL NPCs  *
  * =========================================== *
 BEGIN @3                             // ~Portraits for minor non-joinable BTL NPCs~

@@ -1,12 +1,13 @@
 @0    = ~Beyond the Law - Kova & Kiyone~
-@1    = ~Alternate sound set for Kiyone (Female4)~
-@2    = ~Better balanced BTL items~
+@1    = ~Beyond the Law with Kiyone original sound set~
+@2    = ~Beyond the Law with alternate sound set for Kiyone (Female4)~
+@3    = ~Better balanced BTL items~
+/* DEPRECATED as of v2.0.0
 @3    = ~Portraits for minor non-joinable BTL NPCs~
-
+*/
 
 @11   = ~You must have ToB, BGT, BG2:EE or EET installed to install this mod.~
 @12   = ~This component requires Beyond the Law main component to be installed.~
-
 
 @21   = ~Installing graphics and sound sets...~
 @22   = ~Installing areas...~
