@@ -59,7 +59,7 @@ BTL also examines many of our concepts of good & evil, right & wrong, justice & 
 
 &nbsp;
 
-<details><summary>&#160;&#160What is/isn't in this release?</summary>
+<details><summary>&#160;&#160<ins>What is/isn't in this release?</ins></summary>
 <p>
 
 - Extensive quest involving the NPCs, from chapter 2 to 6, with roughly 7 separate parts.
@@ -80,9 +80,7 @@ BTL also examines many of our concepts of good & evil, right & wrong, justice & 
 </p>
 </details><br>
 
-&nbsp;
-
-<details><summary>&#160;&#160What kind of person would enjoy this mod?</summary> 
+<details><summary>&#160;&#160<ins>What kind of person would enjoy this mod?</ins></summary> 
 <p>
 
 You probably NEED to be this kind of person to ENJOY playing the mod to any extent, namely someone who
@@ -92,7 +90,7 @@ You probably NEED to be this kind of person to ENJOY playing the mod to any exte
 - enjoys some degree of combat OR doesn't rest much in the game.
 - willing to make do with bugs showing up, especially when the mod was done and tested on a heavily modded version of ToB.
 </p>
-</details><br>
+</details>
 
 &nbsp;
 
