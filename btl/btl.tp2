@@ -28,7 +28,7 @@ LANGUAGE ~English~
  *  Beyond the Law - Kova & Kiyone (main component)  *
  * ================================================= */
 BEGIN @1                                           // ~Beyond the Law with Kiyone's original sound set~
-DESIGNATED 0
+DESIGNATED 0 LABEL ~z#_btl_main~
 SUBCOMPONENT @0                                    // ~Beyond the Law - Kova & Kiyone~
 REQUIRE_PREDICATE GAME_IS ~tob bgt bg2ee eet~ @11  // ~You must have ToB, BGT, BG2:EE or EET installed to install this mod.~
 
@@ -37,7 +37,7 @@ INCLUDE ~%MOD_FOLDER%/lib/main_component.tpa~
 
 
 BEGIN @2                                           // ~Beyond the Law with alternate sound set for Kiyone (Female4)~
-DESIGNATED 1
+DESIGNATED 1 LABEL ~z#_btl_main_vanilla_soundset~
 SUBCOMPONENT @0
 REQUIRE_PREDICATE GAME_IS ~tob bgt bg2ee eet~ @11  // ~You must have ToB, BGT, BG2:EE or EET installed to install this mod.~
 
@@ -59,8 +59,9 @@ REQUIRE_COMPONENT "btl.tp2" "0" @12  // ~This component requires Beyond the Law 
  *  Better balanced BTL items  *
  * =========================== */
 BEGIN @2                             // ~Better balanced BTL items~
-DESIGNATED 2
-REQUIRE_COMPONENT "btl.tp2" "0" @12  // ~This component requires Beyond the Law main component to be installed.~
+DESIGNATED 2 LABEL ~z#_btl_better_balanced_items~
+REQUIRE_PREDICATE (MOD_IS_INSTALLED ~btl.tp2~ (ID_OF_LABEL ~btl.tp2~ ~z#_btl_main~) OR
+                   MOD_IS_INSTALLED ~btl.tp2~ (ID_OF_LABEL ~btl.tp2~ ~z#_btl_main_vanilla_soundset~) @12  // ~This component requires Beyond the Law main component to be installed.~
 
 INCLUDE ~%MOD_FOLDER%/lib/balanced_items.tpa~
 

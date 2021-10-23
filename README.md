@@ -36,20 +36,10 @@ http://www.shsforums.net/topic/61120-beyond-the-law-updated-to-v200-ee-compatibl
 ## 
 
 <div align="center">
-<a href="#intro">Overview</a> &#8226; <a href="#compat">Compatibility</a> &#8226; <a href="#installation">Installation</a> &#8226; <a href="#details">Details</a> &#8226; <a href="#components">Components</a> <a href="#credits">Credits and Acknowledgements</a> &#8226; <a href="#versions">Version History</a></br>
+<a href="#intro">Overview</a> &#8226; <a href="#compat">Compatibility</a> &#8226; <a href="#installation">Installation</a> &#8226; <a href="#details">Details</a> &#8226; <a href="#components">Components</a> &#8226; <a href="#faq">FAQ</a> &#8226; <a href="#credits">Credits and Acknowledgements</a> &#8226; <a href="#versions">Version History</a></br>
 </div>
 
 <hr>
-
------------------------------------------------------------------------------
-Hello! I traified and added EE-EET compatibility to another mod, "Beyond the Law".
-
-P.S. In the mod there is a file Inter25.tra, in which dialogues with Volo and interjections of the ToB part are added, except for the call through the Fate Spirit, but this file is not compiled in a tp2 file - perhaps it is worth including it there?
-At the same time, without strings for the Fate Spirit the EET_TRANSITION function will not be needed, so I did not add it.
- 
-Also, the TP2 file does not compile the riddles.d file (as it has been included under Zyraen's Miscellaneous Mods), and files from the Extras folder (for what reason, I don’t know)
-
-https://www.pocketplane.net/zyraens-miscellany/
 
 
 ## <a name="intro" id="intro"></a>Overview
@@ -69,7 +59,9 @@ BTL also examines many of our concepts of good & evil, right & wrong, justice & 
 
 &nbsp;
 
-**What is/isn't in this release?**
+<details><summary>&#160;&#160What is/isn't in this release?</summary>
+<p>
+
 - Extensive quest involving the NPCs, from chapter 2 to 6, with roughly 7 separate parts.
 - Interjections up until ToB (mod content will end after leaving Suldanessellar).
 - Interjections have been done for ALL Major (and most Minor) quests that are not NPC-specific and non stronghold-related quests in SoA.
@@ -85,16 +77,22 @@ BTL also examines many of our concepts of good & evil, right & wrong, justice & 
 - More than 4 cutscenes throughout the mod.
 - No voiced lines just yet.
 - Enhanced Statue of Riddles has been removed, as it has been included under <a href="https://www.pocketplane.net/zyraens-miscellany">Zyraen’s Miscellany Mod</a>.
+</p>
+</details><br>
 
 &nbsp;
 
-What kind of person would enjoy this mod?  
+<details><summary>&#160;&#160What kind of person would enjoy this mod?</summary> 
+<p>
+
 You probably NEED to be this kind of person to ENJOY playing the mod to any extent, namely someone who
 - likes a serious mod and not a joke mod.
 - likes reading quite a bit to enjoy in-depth banters.
 - enjoys observing character development in other characters, especially Bioware ones.
 - enjoys some degree of combat OR doesn't rest much in the game.
 - willing to make do with bugs showing up, especially when the mod was done and tested on a heavily modded version of ToB.
+</p>
+</details><br>
 
 &nbsp;
 
