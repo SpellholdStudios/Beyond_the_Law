@@ -1,0 +1,13 @@
+
+NOTES from  Austin:
+-------------------
+
+1. In the mod there is a file Inter25.tra, in which dialogues with Volo and interjections of the ToB part are added, except for the call through the Fate Spirit, but this file is not compiled in a tp2 file - perhaps it is worth including it there?
+2. At the same time, without strings for the Fate Spirit the EET_TRANSITION function will not be needed, so I did not add it.
+3. Also, the TP2 file does not compile the riddles.d file (as it has been included under Zyraen's Miscellaneous Mods), and files from the Extras folder (for what reason, I don’t know)
+
+
+NOTE from the author:
+---------------------
+
+3. "Enhanced Statue of Riddles has been removed, as it has been included under Zyraen’s Miscellany Mod ( https://www.pocketplane.net/zyraens-miscellany )". ;)
