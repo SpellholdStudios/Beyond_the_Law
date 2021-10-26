@@ -721,10 +721,6 @@ COPY ~btl/itm/kvring2.itm~ ~override~
  *  Installing tooltips  *
  * --------------------- */
 
-// First, Shaman's Staff +1 needs 4 tooltips strref columns.
-// ---------------------------------------------------------
-LAM ~GW_ADJUST_COL_TOOLTIP~
-
 // Read how many columns are in tooltip.2da file to append it accordingly.
 // -----------------------------------------------------------------------
 LAM ~GW_READ_COL_TOOLTIP~

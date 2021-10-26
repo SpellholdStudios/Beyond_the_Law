@@ -1,11 +1,11 @@
 
-![Latest Release](https://img.shields.io/github/v/release/GwendolyneFreddy/Beyond_the_Law?include_prereleases&color=darkred)<a name="top" id="top"> </a>
-![GitHub (Pre-)Release Date](https://img.shields.io/github/release-date-pre/GwendolyneFreddy/Beyond_the_Law?color=gold)
+![Latest Release](https://img.shields.io/github/v/release/SpellholdStudios/Beyond_the_Law?include_prereleases&color=darkred)<a name="top" id="top"> </a>
+![GitHub (Pre-)Release Date](https://img.shields.io/github/release-date-pre/SpellholdStudios/Beyond_the_Law?color=gold)
 ![Platform](https://img.shields.io/static/v1?label=platform&message=windows%20%7C%20macOS%20%7C%20linux%20%7C%20Project%20Infinity&color=informational)
 ![Language](https://img.shields.io/static/v1?label=language&message=English&color=limegreen)
 
 ![Supported games](https://img.shields.io/static/v1?label=supported%20games&message=BGII%20%7C%20BGT%20%7C%20BG2%3AEE%20%7C%20EET&color=dodgerblue)
-<div align="center"><h1></a>Beyond the Law (WIP)</h1>
+<div align="center"><h1></a>Beyond the Law</h1>
 
 <h3>A mod hosted at Spellhold Studios for Baldur's Gate II: ToB (original and EE games),<br>
 Baldur's Gate Trilogy and EET<h3>
@@ -17,15 +17,13 @@ Baldur's Gate Trilogy and EET<h3>
 **Mod Website:** <a href="http://spellholdstudios.net/ie/btl">Spellhold Studios</a>  
 **Mod Forum:** <a href="http://www.shsforums.net/forum/325-beyond-the-law">Beyond the Law</a><br>
 
-http://www.shsforums.net/topic/61120-beyond-the-law-updated-to-v200-ee-compatible/
-
 ## 
 
-[![Created Badge](https://badges.pufler.dev/created/GwendolyneFreddy/Beyond_the_Law?style=plastic)](https://badges.pufler.dev)
-![GitHub repo size](https://img.shields.io/github/repo-size/GwendolyneFreddy/Beyond_the_Law?style=plastic)
-[![Visits Badge](https://badges.pufler.dev/visits/GwendolyneFreddy/Beyond_the_Law?color=cyan&style=plastic)](https://badges.pufler.dev) 
+[![Created Badge](https://badges.pufler.dev/created/SpellholdStudios/Beyond_the_Law?style=plastic)](https://badges.pufler.dev)
+![GitHub repo size](https://img.shields.io/github/repo-size/SpellholdStudios/Beyond_the_Law?style=plastic)
+[![Visits Badge](https://badges.pufler.dev/visits/SpellholdStudios/Beyond_the_Law?color=cyan&style=plastic)](https://badges.pufler.dev) 
 ![Maintenance](https://img.shields.io/static/v1?label=maintained%3F&message=yes&color=greenlight&style=plastic)
-![GitHub contributors](https://img.shields.io/github/contributors/GwendolyneFreddy/Beyond_the_Law?color=blueviolet&style=plastic) [![Contributors Display](https://badges.pufler.dev/contributors/GwendolyneFreddy/Beyond_the_Law?size=30&padding=5&bots=true)](https://badges.pufler.dev)
+![GitHub contributors](https://img.shields.io/github/contributors/SpellholdStudios/Beyond_the_Law?color=blueviolet&style=plastic) [![Contributors Display](https://badges.pufler.dev/contributors/SpellholdStudios/Beyond_the_Law?size=30&padding=5&bots=true)](https://badges.pufler.dev)
 
 ## 
 
@@ -78,7 +76,7 @@ BTL also examines many of our concepts of good & evil, right & wrong, justice & 
 - No voiced lines just yet.
 - Enhanced Statue of Riddles has been removed, as it has been included under <a href="https://www.pocketplane.net/zyraens-miscellany">Zyraen’s Miscellany Mod</a>.
 </p>
-</details><br>
+</details>
 
 <details><summary>&#160;&#160<ins>What kind of person would enjoy this mod?</ins></summary> 
 <p>
@@ -92,7 +90,6 @@ You probably NEED to be this kind of person to ENJOY playing the mod to any exte
 </p>
 </details>
 
-&nbsp;
 
 To get the most out of this mod, it is recommended that you try to have your party as full of Bioware NPCs as possible. In terms of banter quality, I would recommend the following NPCs for positions in your party, in no particular order of preference:
 - Mazzy
@@ -418,7 +415,7 @@ The other possibility is that Kiyone and Kova have not developed their relations
 
 ## <a name="versions" id="versions"></a>Version History
 
-##### Version 2.0.0 (October nn, 2021)
+##### Version 2.0.0 (October 26, 2021)
 
 - Added *btl.ini* metadata file (including dynamic install order syntax and global `LABELS`) to support AL|EN's "Project Infinity".
 - Renamed *setup-BTL.tp2* -> *btl.tp2* and moved it to mod top folder to support AL|EN's "Project Infinity".
@@ -432,7 +429,7 @@ The other possibility is that Kiyone and Kova have not developed their relations
 - Commented code as much as possible.
 - Grouped original and vanilla sound sets for Kiyone into two main `SUBCOMPONENTS`.
 - Included optional "*Portraits for minor non-joinable BTL NPCs*" component into main component as two portraits really don't deserve a dedicated component! :wink:
-- Added native BG2:EE and EET compatibility:
+- Added native BG2:EE and EET compatibility (thanks Austin and Gwendoyne):
     - Added WeiDU's built-in `HANDLE_CHARSETS` function to convert string entries for EE games.
     - Rewrote sound sets installation procedure to use WeiDU's built-in `HANDLE_AUDIO` function.
     - Added `ADD_JOURNAL` entries.
@@ -442,20 +439,20 @@ The other possibility is that Kiyone and Kova have not developed their relations
     - Provided accurate sized NPC portraits for EE games, and renamed large portraits in epilogue files.
 - Included all BWP Fixpack fixes:
     - "*start.baf*": <a href="http://www.shsforums.net/topic/33192-btl-with-bgt/">Hoppy's BGT compatibility fix start</a> preventing Kiyone from showing up in the BG1 part meeting the alignment, rep requirements and chapter 2. Revamped by Gwendolyne for compatibility with EET and oBG2 games.
-    - *z#1002.baf*: <a href="http://www.shsforums.net/topic/47635-notes-oddities-and-possible-bugs-in-my-bwp-game-spoilers/page-14#entry566555">Lollorian's methodical `OnCreation()` removal from blocks that have a LOCALS/GLOBAL associated with them</a>.
-    - "*z#2801.baf*: <a href="https://www.gibberlings3.net/forums/topic/27712-bg2ee-parse-error-compiling-g3mrsgtubaf">agb1's `Face()` -> `FaceObject()` conversion</a>.
+    - "*z#1002.baf*": <a href="http://www.shsforums.net/topic/47635-notes-oddities-and-possible-bugs-in-my-bwp-game-spoilers/page-14#entry566555">Lollorian's methodical `OnCreation()` removal from blocks that have a LOCALS/GLOBAL associated with them</a>.
+    - "*z#2801.baf*": <a href="https://www.gibberlings3.net/forums/topic/27712-bg2ee-parse-error-compiling-g3mrsgtubaf">agb1's `Face()` -> `FaceObject()` conversion</a>.
     - "*items.d*": <a href="http://www.shsforums.net/topic/45266-small-typo/">Lollorian's small typo fixes</a> (also renamed "*gthac.spl*" to "*z#gthac.spl*").
- - Appended "*tooltip.2da*" whenever relevant.
+- Appended "*tooltip.2da*" whenever relevant.
 - Fixed items descriptions and typos.
 - Split setup.tra files into separate thematic files for more comfortable readability.
 - Completed mod traification.
-- TODO Re-formated, updated and renamed readme file to *btl-readme-english.html*, then moved it into new :file_folder: "*readme*" folder.
+- Re-formated, updated and renamed readme file to *btl-readme-english.html*, then moved it into new :file_folder: "*readme*" folder.
 - Removed useless files and :file_folder: "*backup*" folder.
 - Reorganized mod architecture tree: created or renamed folders to sort files according to their types.
 - Lower cased files.
-- TODO Included Linux and Mac OS versions in the same package (thanks AL|EN's Infinity Auto Packager tool!).
+- Included Linux and Mac OS versions in the same package (thanks AL|EN's Infinity Auto Packager tool!).
 - Updated OggDec to v1.9.7 and added sox v14.4.1 for mac.
-- Added archive libiconv-1.9.2-1-src.7z with iconv licence info.
+- Added archive libiconv-1.9.2-1-src.7z with iconv license info.
 - Updated WeiDU installer to v247.
 - Uploaded mod to official Spellhold Studios GitHub mirror account.
 

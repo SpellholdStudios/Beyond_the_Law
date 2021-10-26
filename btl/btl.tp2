@@ -1,8 +1,8 @@
-BACKUP ~btl/backup~
+BACKUP ~weidu_external/backup/btl~
 //AUTHOR ~zyraen@hotmail.com~
 SUPPORT ~Spellhold Studios at http://www.shsforums.net/forum/325-beyond-the-law/~
 
-VERSION ~2.0.0~
+VERSION ~v2.0.0~
 
 README ~btl/readme/btl-readme-english.html~
 
