@@ -1,3 +1,8 @@
+<hr>
+
+:warning: **The maintenance and support of this project has been moved to a [new repository](https://github.com/Spellhold-Studios/Beyond-the-Law).**
+
+<hr><br>
 
 ![Latest Release](https://img.shields.io/github/v/release/SpellholdStudios/Beyond_the_Law?include_prereleases&color=darkred)<a name="top" id="top"> </a>
 ![GitHub (Pre-)Release Date](https://img.shields.io/github/release-date-pre/SpellholdStudios/Beyond_the_Law?color=gold)
@@ -74,7 +79,7 @@ BTL also examines many of our concepts of good & evil, right & wrong, justice & 
 - 2 extended BGMs for particular events in the mod.
 - More than 4 cutscenes throughout the mod.
 - No voiced lines just yet.
-- Enhanced Statue of Riddles has been removed, as it has been included under <a href="https://www.pocketplane.net/zyraens-miscellany">Zyraen’s Miscellany Mod</a>.
+- Enhanced Statue of Riddles has been removed, as it has been included under <a href="https://www.pocketplane.net/zyraens-miscellany">Zyraenâ€™s Miscellany Mod</a>.
 </p>
 </details>
 
